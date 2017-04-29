@@ -4,7 +4,7 @@ import React, { PureComponent } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import { IndicatorViewPager, PagerTitleIndicator } from 'rn-viewpager';
 import { connect } from 'react-redux';
-import { Profile } from 'containers';
+import { Profile, ProfileRepositories } from 'containers';
 
 type Props = {
 }
@@ -25,8 +25,8 @@ class ProfileScreen extends PureComponent<void, Props, void> {
                 <View style={{ flex: 1 }}>
                     <Profile />
                 </View>
-                <View>
-                    <Text>Repositories</Text>
+                <View style={{ flex: 1 }}>
+                    <ProfileRepositories />
                 </View>
                 <View>
                     <Text>Starred</Text>

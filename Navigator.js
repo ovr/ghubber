@@ -1,3 +1,4 @@
+// @author Dmitry Patsura <talk@dmtry.me> https://github.com/ovr
 
 import React from 'react';
 import { connect } from 'react-redux';

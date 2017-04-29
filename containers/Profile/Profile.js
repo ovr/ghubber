@@ -1,8 +1,9 @@
 // @flow
 
 import React, { PureComponent } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
+import { Avatar } from 'components';
 import { fetchProfile } from 'actions';
 
 // import flow types
@@ -38,14 +39,39 @@ class Profile extends PureComponent<void, Props, void> {
         }
 
         return (
-            <View>
-                <Text>{ user.login }</Text>
-                <Text>{ user.bio }</Text>
-                <Text>{ user.email }</Text>
+            <View style={styles.root}>
+                <View style={styles.avatarWrapper}>
+                    <Avatar user={user} size={250}/>
+                </View>
+                <View style={styles.root}>
+                    <Text style={styles.name} numberOfLines={1}>{ user.name }</Text>
+                    <Text style={styles.login} numberOfLines={1}>{ user.login }</Text>
+                    <Text>{ user.bio }</Text>
+                    <Text>{ user.email }</Text>
+                </View>
             </View>
         )
     }
 }
+
+const styles = StyleSheet.create({
+    root: {
+        flex: 1,
+        padding: 10
+    },
+    avatarWrapper: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'center'
+    },
+    name: {
+        fontSize: 20,
+        fontWeight: 'bold'
+    },
+    login: {
+        fontSize: 14,
+    }
+});
 
 export default connect(
     (state) => {

@@ -1,8 +1,9 @@
 // @flow
 
 import React, { Component } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, AppRegistry } from 'react-native';
 import { Provider } from 'react-redux';
+import { StackNavigator } from 'react-navigation';
 
 import { configureStore } from 'utils';
 
@@ -26,3 +27,10 @@ const styles = StyleSheet.create({
     flex: 1
   }
 });
+
+
+const Navigator = StackNavigator({
+    Home: { screen: App },
+});
+
+AppRegistry.registerComponent('ghubber', () => Navigator);

@@ -45,7 +45,7 @@ class Profile extends PureComponent<void, Props, void> {
                 </View>
                 <View style={styles.statsWrapper}>
                     <View style={styles.statsBlock}>
-                        <Text>
+                        <Text style={styles.statsBlockTitle}>
                             Followers
                         </Text>
                         <Text>
@@ -53,23 +53,23 @@ class Profile extends PureComponent<void, Props, void> {
                         </Text>
                     </View>
                     <View style={styles.statsBlock}>
-                        <Text>
-                            Public Repos
+                        <Text style={styles.statsBlockTitle}>
+                            Repos
                         </Text>
                         <Text>
                             {user.public_repos}
                         </Text>
                     </View>
                     <View style={styles.statsBlock}>
-                        <Text>
-                            Public Gists
+                        <Text style={styles.statsBlockTitle}>
+                            Gists
                         </Text>
                         <Text>
                             {user.public_gists}
                         </Text>
                     </View>
                     <View style={styles.statsBlock}>
-                        <Text>
+                        <Text style={styles.statsBlockTitle}>
                             Following
                         </Text>
                         <Text>
@@ -108,10 +108,12 @@ const styles = StyleSheet.create({
         marginVertical: 15,
         padding: 5,
         backgroundColor: '#FFFFFF',
-        height: 50
     },
     statsBlock: {
         flex: 0.25
+    },
+    statsBlockTitle: {
+        fontWeight: 'bold'
     }
 });
 

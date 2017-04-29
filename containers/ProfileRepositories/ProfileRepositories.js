@@ -2,9 +2,9 @@
 // @flow
 
 import React, { PureComponent } from 'react';
-import { View, Text, StyleSheet, FlatList } from 'react-native';
+import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
-import { fetchRepositories } from 'actions';
+import { fetchRepositories, showRepository } from 'actions';
 
 // import flow types
 import type { RepositoryEntity } from 'github-flow-js';
@@ -12,7 +12,8 @@ import type { ProfileRepositoriesState } from 'reducers/profile-repositories';
 
 type Props = {
     state: ProfileRepositoriesState,
-    fetchRepositories: typeof fetchRepositories
+    fetchRepositories: typeof fetchRepositories,
+    showRepository: typeof showRepository,
 }
 
 class ProfileRepositories extends PureComponent<void, Props, void> {
@@ -39,14 +40,16 @@ class ProfileRepositories extends PureComponent<void, Props, void> {
             )
         }
 
+        const { showRepository } = this.props;
+
         const renderRow = (repository: RepositoryEntity) => {
             return (
-                <View style={styles.row}>
+                <TouchableOpacity style={styles.row} onPress={() => showRepository(repository.id)}>
                     <Text style={styles.name} numberOfLines={1}>{repository.name}</Text>
                     <View style={{ flex: 1 }}>
                         <Text>{repository.stargazers_count}</Text>
                     </View>
-                </View>
+                </TouchableOpacity>
             )
         }
 
@@ -84,5 +87,5 @@ export default connect(
             navigation: state.navigation
         }
     },
-    { fetchRepositories }
+    { fetchRepositories, showRepository }
 )(ProfileRepositories);

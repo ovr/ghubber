@@ -4,11 +4,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { addNavigationHelpers, StackNavigator } from 'react-navigation';
 
-import { Home, ProfileScreen } from 'containers';
+import { Home, ProfileScreen, RepositoryScreen } from 'containers';
 
 export const AppNavigator = StackNavigator({
     Home: { screen: Home },
-    Profile: { screen: ProfileScreen }
+    Profile: { screen: ProfileScreen },
+    Repository: { screen: RepositoryScreen },
 });
 
 const AppWithNavigationState = ({ dispatch, navigation }) => (

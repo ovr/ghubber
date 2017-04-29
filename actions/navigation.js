@@ -11,3 +11,12 @@ export function showProfile(id: string) {
         }
     })
 }
+
+export function showRepository(id: string) {
+    return NavigationActions.navigate({
+        routeName: 'Repository',
+        params: {
+            id
+        }
+    })
+}

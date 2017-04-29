@@ -1,7 +1,7 @@
 // @flow
 
 import React, { PureComponent } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import { Avatar } from 'components';
 import { fetchProfile } from 'actions';
@@ -39,19 +39,51 @@ class Profile extends PureComponent<void, Props, void> {
         }
 
         return (
-            <View style={{ flex: 1 }}>
-                <View style={styles.root}>
-                    <View style={styles.avatarWrapper}>
-                        <Avatar user={user} size={250}/>
+            <ScrollView style={styles.root}>
+                <View style={styles.avatarWrapper}>
+                    <Avatar user={user} size={250} />
+                </View>
+                <View style={styles.statsWrapper}>
+                    <View style={styles.statsBlock}>
+                        <Text>
+                            Followers
+                        </Text>
+                        <Text>
+                            {user.followers}
+                        </Text>
                     </View>
-                    <View style={styles.root}>
-                        <Text style={styles.name} numberOfLines={1}>{ user.name }</Text>
-                        <Text style={styles.login} numberOfLines={1}>{ user.login }</Text>
-                        <Text>{ user.bio }</Text>
-                        <Text>{ user.email }</Text>
+                    <View style={styles.statsBlock}>
+                        <Text>
+                            Public Repos
+                        </Text>
+                        <Text>
+                            {user.public_repos}
+                        </Text>
+                    </View>
+                    <View style={styles.statsBlock}>
+                        <Text>
+                            Public Gists
+                        </Text>
+                        <Text>
+                            {user.public_gists}
+                        </Text>
+                    </View>
+                    <View style={styles.statsBlock}>
+                        <Text>
+                            Following
+                        </Text>
+                        <Text>
+                            {user.following}
+                        </Text>
                     </View>
                 </View>
-            </View>
+                <View style={styles.root}>
+                    <Text style={styles.name} numberOfLines={1}>{ user.name }</Text>
+                    <Text style={styles.login} numberOfLines={1}>{ user.login }</Text>
+                    <Text>{ user.bio }</Text>
+                    <Text>{ user.email }</Text>
+                </View>
+            </ScrollView>
         )
     }
 }
@@ -66,10 +98,21 @@ const styles = StyleSheet.create({
         padding: 10
     },
     avatarWrapper: {
+        flex: 0.6,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    statsWrapper: {
         flex: 1,
         flexDirection: 'row',
-        justifyContent: 'center'
+        marginVertical: 15,
+        padding: 5,
+        backgroundColor: '#FFFFFF',
+        height: 50
     },
+    statsBlock: {
+        flex: 0.25
+    }
 });
 
 export default connect(

@@ -2,6 +2,11 @@
 
 import { NavigationActions } from 'react-navigation';
 
-export function showProfile() {
-    return NavigationActions.navigate({ routeName: 'Profile' })
+export function showProfile(id: string) {
+    return NavigationActions.navigate({
+        routeName: 'Profile',
+        params: {
+            id
+        }
+    })
 }

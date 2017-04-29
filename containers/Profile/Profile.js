@@ -2,6 +2,7 @@
 
 import React, { PureComponent } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { IndicatorViewPager, PagerTitleIndicator } from 'rn-viewpager';
 import { connect } from 'react-redux';
 import { Avatar } from 'components';
 import { fetchProfile } from 'actions';
@@ -39,22 +40,45 @@ class Profile extends PureComponent<void, Props, void> {
         }
 
         return (
-            <View style={styles.root}>
-                <View style={styles.avatarWrapper}>
-                    <Avatar user={user} size={250}/>
+            <IndicatorViewPager
+                style={ styles.viewPager }
+                indicator={
+                    <PagerTitleIndicator
+                        titles={
+                            ['Overview', 'Repos']
+                        }
+                    />
+                }
+            >
+                <View style={{ flex: 1 }}>
+                    <View style={styles.root}>
+                        <View style={styles.avatarWrapper}>
+                            <Avatar user={user} size={250}/>
+                        </View>
+                        <View style={styles.root}>
+                            <Text style={styles.name} numberOfLines={1}>{ user.name }</Text>
+                            <Text style={styles.login} numberOfLines={1}>{ user.login }</Text>
+                            <Text>{ user.bio }</Text>
+                            <Text>{ user.email }</Text>
+                        </View>
+                    </View>
                 </View>
-                <View style={styles.root}>
-                    <Text style={styles.name} numberOfLines={1}>{ user.name }</Text>
-                    <Text style={styles.login} numberOfLines={1}>{ user.login }</Text>
-                    <Text>{ user.bio }</Text>
-                    <Text>{ user.email }</Text>
+                <View>
+                    <Text>Repositories</Text>
                 </View>
-            </View>
+                <View>
+                    <Text>Starred</Text>
+                </View>
+            </IndicatorViewPager>
         )
     }
 }
 
 const styles = StyleSheet.create({
+    viewPager: {
+        flex: 1,
+        flexDirection: 'column-reverse'
+    },
     root: {
         flex: 1,
         padding: 10

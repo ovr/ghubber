@@ -17,7 +17,8 @@
     "react-redux": "^5.0.4",
     "redux": "^3.6.0",
     "redux-logger": "^3.0.1",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "rn-viewpager": "^1.2.1"
   },
   "devDependencies": {
     "babel-jest": "19.0.0",

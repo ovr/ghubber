@@ -2,7 +2,6 @@
 
 import React, { PureComponent } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { IndicatorViewPager, PagerTitleIndicator } from 'rn-viewpager';
 import { connect } from 'react-redux';
 import { Avatar } from 'components';
 import { fetchProfile } from 'actions';
@@ -40,36 +39,19 @@ class Profile extends PureComponent<void, Props, void> {
         }
 
         return (
-            <IndicatorViewPager
-                style={ styles.viewPager }
-                indicator={
-                    <PagerTitleIndicator
-                        titles={
-                            ['Overview', 'Repos']
-                        }
-                    />
-                }
-            >
-                <View style={{ flex: 1 }}>
+            <View style={{ flex: 1 }}>
+                <View style={styles.root}>
+                    <View style={styles.avatarWrapper}>
+                        <Avatar user={user} size={250}/>
+                    </View>
                     <View style={styles.root}>
-                        <View style={styles.avatarWrapper}>
-                            <Avatar user={user} size={250}/>
-                        </View>
-                        <View style={styles.root}>
-                            <Text style={styles.name} numberOfLines={1}>{ user.name }</Text>
-                            <Text style={styles.login} numberOfLines={1}>{ user.login }</Text>
-                            <Text>{ user.bio }</Text>
-                            <Text>{ user.email }</Text>
-                        </View>
+                        <Text style={styles.name} numberOfLines={1}>{ user.name }</Text>
+                        <Text style={styles.login} numberOfLines={1}>{ user.login }</Text>
+                        <Text>{ user.bio }</Text>
+                        <Text>{ user.email }</Text>
                     </View>
                 </View>
-                <View>
-                    <Text>Repositories</Text>
-                </View>
-                <View>
-                    <Text>Starred</Text>
-                </View>
-            </IndicatorViewPager>
+            </View>
         )
     }
 }
@@ -88,13 +70,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center'
     },
-    name: {
-        fontSize: 20,
-        fontWeight: 'bold'
-    },
-    login: {
-        fontSize: 14,
-    }
 });
 
 export default connect(

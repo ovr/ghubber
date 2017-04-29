@@ -3,11 +3,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { addNavigationHelpers, StackNavigator } from 'react-navigation';
 
-import { Home, Profile } from 'containers';
+import { Home, ProfileScreen } from 'containers';
 
 export const AppNavigator = StackNavigator({
     Home: { screen: Home },
-    Profile: { screen: Profile }
+    Profile: { screen: ProfileScreen }
 });
 
 const AppWithNavigationState = ({ dispatch, navigation }) => (

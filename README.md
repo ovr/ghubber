@@ -1,5 +1,7 @@
 # <img src="https://socialconnect.github.io/assets/icons/mark-github.svg" width="27"> GHubber (GitHub mobile client)
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/ovr/ghubber.svg)](https://greenkeeper.io/)
+
 
 Yet another Mobile :iphone: client for GitHub powered on react-native.
  

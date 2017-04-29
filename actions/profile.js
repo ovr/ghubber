@@ -13,6 +13,23 @@ export function fetchProfile(id: string) {
             type: PROFILE_REQUEST
         });
 
-        //const request = getUserById(id);
+        const request = getUserById({
+            id
+        });
+
+        request.then(
+            (result) => {
+                dispatch({
+                    type: PROFILE_REQUEST_SUCCESS,
+                    payload: result
+                })
+            },
+            () => {
+                dispatch({
+                    type: PROFILE_REQUEST_FAIL,
+                    payload: result
+                })
+            }
+        )
     }
 }

@@ -6,14 +6,19 @@ import {
     PROFILE_REQUEST_FAIL
 } from 'constants';
 
+// import flow types
+import type { UserEntity } from 'github-flow-js';
+
 type ProfileState = {
     loading: boolean,
-    error: null|Object
+    error: Object|null,
+    user: UserEntity|null
 }
 
 const initialState: ProfileState = {
     loading: false,
-    error: null
+    error: null,
+    user: null
 }
 
 export default (state: ProfileState = initialState, action: Object): ProfileState => {
@@ -21,7 +26,21 @@ export default (state: ProfileState = initialState, action: Object): ProfileStat
         case PROFILE_REQUEST:
             return {
                 ...state,
-                loading: true
+                user: null,
+                loading: true,
+                error: null
+            }
+        case PROFILE_REQUEST_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                user: action.payload
+            }
+        case PROFILE_REQUEST_FAIL:
+            return {
+                ...state,
+                loading: false,
+                error: 'Unknown error @todo'
             }
         default:
             return state;

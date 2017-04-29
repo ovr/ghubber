@@ -19,9 +19,9 @@ class Profile extends PureComponent<void, Props, void> {
     }
 
     render() {
-        const { loading, error } = this.props.profile;
+        const { loading, error, user } = this.props.profile;
 
-        if (loading) {
+        if (loading || !user) {
             return (
                 <View>
                     <Text>Loading...</Text>
@@ -29,7 +29,7 @@ class Profile extends PureComponent<void, Props, void> {
             )
         }
 
-        if (loading) {
+        if (error) {
             return (
                 <View>
                     <Text>Oops! Error...</Text>
@@ -39,7 +39,9 @@ class Profile extends PureComponent<void, Props, void> {
 
         return (
             <View>
-                <Text>Profile</Text>
+                <Text>{ user.login }</Text>
+                <Text>{ user.bio }</Text>
+                <Text>{ user.email }</Text>
             </View>
         )
     }

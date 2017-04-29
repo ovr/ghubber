@@ -1,5 +1,5 @@
-GHubber (GitHub mobile client)
-==============================
+# <img src="https://socialconnect.github.io/assets/icons/mark-github.svg" width="27"> GHubber (GitHub mobile client)
+
 
 Yet another Mobile :iphone: client for GitHub powered on react-native.
  

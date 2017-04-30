@@ -3,6 +3,8 @@
 
 import { NavigationActions } from 'react-navigation';
 
+import { NAVIGATION_SET_TITLE } from 'constants';
+
 export function showProfile(id: string) {
     return NavigationActions.navigate({
         routeName: 'Profile',
@@ -10,6 +12,13 @@ export function showProfile(id: string) {
             id
         }
     })
+}
+
+export function setTitle(title: Object) {
+    return {
+        type: NAVIGATION_SET_TITLE,
+        payload: title
+    };
 }
 
 export function showRepository(id: string) {

@@ -8,6 +8,8 @@ import {
     PROFILE_REQUEST_FAIL
 } from 'constants';
 
+import { setTitle } from './navigation';
+
 export function fetchProfile(id: string) {
     return dispatch => {
         dispatch({
@@ -19,11 +21,13 @@ export function fetchProfile(id: string) {
         });
 
         request.then(
-            (result) => {
+            (user) => {
                 dispatch({
                     type: PROFILE_REQUEST_SUCCESS,
-                    payload: result
+                    payload: user
                 })
+
+                dispatch(setTitle(user.name));
             },
             () => {
                 dispatch({

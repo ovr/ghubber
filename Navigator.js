@@ -8,8 +8,18 @@ import { Home, ProfileScreen, RepositoryScreen } from 'containers';
 
 export const AppNavigator = StackNavigator({
     Home: { screen: Home },
-    Profile: { screen: ProfileScreen },
-    Repository: { screen: RepositoryScreen },
+    Profile: {
+        screen: ProfileScreen,
+        navigationOptions: {
+            title: 'Profile'
+        },
+    },
+    Repository: {
+        screen: RepositoryScreen,
+        navigationOptions: {
+            title: 'Repository'
+        },
+    },
 });
 
 const AppWithNavigationState = ({ dispatch, navigation }) => (

@@ -2,6 +2,7 @@
 // @flow
 
 import { AppNavigator } from '../Navigator';
+import { NAVIGATION_SET_TITLE } from 'constants';
 
 type NavigationState = {
 
@@ -12,15 +13,26 @@ const initialState = AppNavigator.router.getStateForAction(
 );
 
 export default (state: NavigationState = initialState, action: Object): NavigationState => {
-    let nextState = AppNavigator.router.getStateForAction(action, state);
+    switch (action.type) {
+        case NAVIGATION_SET_TITLE:
+            return {
+                ...state,
+                params: {
+                    ...state.params,
+                    title: action.payload
+                }
+            }
+        default:
+            let nextState = AppNavigator.router.getStateForAction(action, state);
 
-    // @todo Fix or ask related question inside app, because I cannot explain
-    if (nextState && action.params) {
-        nextState = {
-            ...nextState,
-            params: action.params
-        }
+            // @todo Fix or ask related question inside app, because I cannot explain
+            if (nextState && action.params) {
+                nextState = {
+                    ...nextState,
+                    params: action.params
+                }
+            }
+
+            return nextState || state;
     }
-
-    return nextState || state;
 }

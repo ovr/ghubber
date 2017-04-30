@@ -2,6 +2,7 @@
 // @flow
 
 export * from './Home';
+export * from './NavigationTitle';
 export * from './ProfileRepositories';
 export * from './ProfileScreen';
 export * from './Profile';

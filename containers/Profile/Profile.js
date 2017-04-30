@@ -4,7 +4,8 @@
 import React, { PureComponent } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
-import { Avatar } from 'components';
+
+import { Avatar, Spinner } from 'components';
 import { fetchProfile } from 'actions';
 
 // import flow types
@@ -25,15 +26,15 @@ class Profile extends PureComponent<void, Props, void> {
 
         if (loading || !user) {
             return (
-                <View>
-                    <Text>Loading...</Text>
+                <View style={styles.container}>
+                    <Spinner />
                 </View>
             )
         }
 
         if (error) {
             return (
-                <View>
+                <View style={styles.container}>
                     <Text>Oops! Error...</Text>
                 </View>
             )
@@ -93,6 +94,11 @@ const styles = StyleSheet.create({
     viewPager: {
         flex: 1,
         flexDirection: 'column-reverse'
+    },
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     root: {
         flex: 1,

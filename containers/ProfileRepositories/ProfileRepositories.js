@@ -6,6 +6,8 @@ import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native
 import { connect } from 'react-redux';
 import { fetchRepositories, showRepository } from 'actions';
 
+import { Spinner } from 'components';
+
 // import flow types
 import type { RepositoryEntity } from 'github-flow-js';
 import type { ProfileRepositoriesState } from 'reducers/profile-repositories';
@@ -26,15 +28,15 @@ class ProfileRepositories extends PureComponent<void, Props, void> {
 
         if (loading || !repositories) {
             return (
-                <View>
-                    <Text>Loading...</Text>
+                <View style={styles.container}>
+                    <Spinner />
                 </View>
             )
         }
 
         if (error) {
             return (
-                <View>
+                <View style={styles.container}>
                     <Text>Oops! Error...</Text>
                 </View>
             )
@@ -69,6 +71,11 @@ const styles = StyleSheet.create({
         flex: 0,
         marginTop: 5,
         marginHorizontal: 15
+    },
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     row: {
         flex: 1

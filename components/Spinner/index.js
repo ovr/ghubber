@@ -1,5 +1,4 @@
 // @author Dmitry Patsura <talk@dmtry.me> https://github.com/ovr
 // @flow
 
-export * from './Avatar';
-export * from './Spinner';
+export { default as Spinner } from './Spinner';

@@ -18,3 +18,12 @@ android:
 
 script:
   - cd android && ./gradlew assembleRelease
+
+deploy:
+  provider: releases
+  api_key:
+    secure: Jk5Y0KT1LMBjMxkw3EhH91H3/ntN6tfH1BX4IQRLlZnRI3LA0LGISuMXiNwxwMSS/YQQe/MlOxeTIN3KHHwCynIuCTksNpS3bXnasL2ywrxxARVJ2lLwpZdnLhc0aikeBdK7xOOMUqjhlKX2e4GU+cQ+nf6UAaZlvdabK/Zi+aQ2Sf0x50oXc8AeatX10KL0lYpJ2FW4sR6BAtgTxy8SIw20CD+bNR7DK1s0duKeENZNIud9FRqWyVU65CPUfUdcZypRn36YvE7OiSkQvd4NxuMBNkeuhB0I/lUac2aR0m3w4hkBW5VSqPiUWNNiRgNJllXTZ/0jjKsVL2jK1hC4IWG0ZWLyjN44X6bt+W7gt3g8Ia+Kq5X5wuDilKcXb6kwEO4O26BPhQ28VyWUU5CACZIxBJXG/VcU3LayVjolqUEmbusv2yNscRD7dZSANdzMa3H4Rr6aQ8WsKgy3gfQnR9GTCL77N+tF9QgLS0wvDo8OgCXetBbQd4c0oNwVfTh+kYKXXTmfh9Dw5NHQ5kVfYT81e6mAYPtta9A89qryKTbjB3eaB+tUzN9M44rjohMpS4vikDr4hg5Lr6bu5leMKB8RWLNZ+5LnVYjW/OKIkMfoEGCnsL3fTnb+h7Vcbm9cuRkRTTpx2sAUpqjhhHtSZpM5r4NjYidWXUHbOy78L+8=
+  file: $TRAVIS_BUILD_DIR/android/app/build/outputs/apk/app-release-unsigned.apk
+  on:
+    repo: ovr/ghubber
+    tags: true

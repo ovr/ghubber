@@ -7,10 +7,12 @@ import { default as app } from './app';
 import { default as profile } from './profile';
 import { default as profileRepositories } from './profile-repositories';
 import { default as navigation } from './navigation';
+import { default as repository } from './repository';
 
 export default combineReducers({
     app,
     profile,
     profileRepositories,
-    navigation
+    navigation,
+    repository
 })

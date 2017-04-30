@@ -6,4 +6,5 @@ export * from './NavigationTitle';
 export * from './ProfileRepositories';
 export * from './ProfileScreen';
 export * from './Profile';
+export * from './Repository';
 export * from './RepositoryScreen';

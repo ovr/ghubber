@@ -21,11 +21,12 @@ export function setTitle(title: Object) {
     };
 }
 
-export function showRepository(id: string) {
+export function showRepository(owner: string, repo: string) {
     return NavigationActions.navigate({
         routeName: 'Repository',
         params: {
-            id
+            owner,
+            repo
         }
     })
 }

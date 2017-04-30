@@ -46,7 +46,7 @@ class ProfileRepositories extends PureComponent<void, Props, void> {
 
         const renderRow = (repository: RepositoryEntity) => {
             return (
-                <TouchableOpacity style={styles.row} onPress={() => showRepository(repository.id)}>
+                <TouchableOpacity style={styles.row} onPress={() => showRepository(repository.owner.login, repository.name)}>
                     <Text style={styles.name} numberOfLines={1}>{repository.name}</Text>
                     <View style={{ flex: 1 }}>
                         <Text>{repository.stargazers_count}</Text>

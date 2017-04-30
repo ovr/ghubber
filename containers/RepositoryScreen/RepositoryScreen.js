@@ -5,7 +5,7 @@ import React, { PureComponent } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import { IndicatorViewPager, PagerTitleIndicator } from 'rn-viewpager';
 import { connect } from 'react-redux';
-// import { Repository } from 'containers';
+import { Repository } from 'containers';
 
 type Props = {
 }
@@ -23,8 +23,8 @@ class RepositoryScreen extends PureComponent<void, Props, void> {
                     />
                 }
             >
-                <View>
-                    <Text>Overview</Text>
+                <View style={{ flex: 1 }}>
+                    <Repository />
                 </View>
                 <View>
                     <Text>Commits</Text>

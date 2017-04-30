@@ -4,26 +4,27 @@
 import React, { PureComponent } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { connect } from 'react-redux';
-import { fetchRepositories } from 'actions';
+import { fetchRepository } from 'actions';
 
 // import flow types
-import type { RepositoryEntity } from 'github-flow-js';
-import type { ProfileRepositoriesState } from 'reducers/profile-repositories';
+import type { RepositoryState } from 'reducers/repository';
 
 type Props = {
-    state: ProfileRepositoriesState,
-    fetchRepositories: typeof fetchRepositories
+    state: RepositoryState,
+    fetchRepository: typeof fetchRepository
 }
 
 class Repository extends PureComponent<void, Props, void> {
     componentWillMount() {
-        this.props.fetchRepositories(this.props.navigation.params.id);
+        const { owner, repo } = this.props.navigation.params;
+
+        this.props.fetchRepository(owner, repo);
     }
 
     render() {
-        const { loading, error, repositories } = this.props.state;
+        const { loading, error, repository } = this.props.state;
 
-        if (loading || !repositories) {
+        if (loading || !repository) {
             return (
                 <View>
                     <Text>Loading...</Text>
@@ -40,12 +41,9 @@ class Repository extends PureComponent<void, Props, void> {
         }
 
         return (
-            <FlatList
-                style={styles.list}
-                data={repositories}
-                keyExtractor={(repository: RepositoryEntity) => repository.id}
-                renderItem={({ item }) => renderRow(item)}
-            />
+            <View style={styles.root}>
+                <Text>Test</Text>
+            </View>
         )
     }
 }
@@ -69,9 +67,9 @@ const styles = StyleSheet.create({
 export default connect(
     (state) => {
         return {
-            state: state.profileRepositories,
+            state: state.repository,
             navigation: state.navigation
         }
     },
-    { fetchRepositories }
+    { fetchRepository }
 )(Repository);

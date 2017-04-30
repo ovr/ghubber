@@ -2,6 +2,8 @@
 #
 .DS_Store
 
+work
+
 # Xcode
 #
 build/
@@ -29,6 +31,7 @@ build/
 .gradle
 local.properties
 *.iml
+*.p12
 
 # node.js
 #

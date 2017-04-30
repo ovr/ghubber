@@ -1,4 +1,5 @@
-apply plugin: "com.android.application"
+apply plugin: 'com.android.application'
+apply plugin: 'com.github.triplet.play'
 
 import com.android.build.OutputFile
 
@@ -84,7 +85,14 @@ def enableProguardInReleaseBuilds = false
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.1"
+    buildToolsVersion "25.0.2"
+
+    playAccountConfigs {
+        defaultAccountConfig {
+            serviceAccountEmail = 'google-play-developer-serv-992@api-7355752457068319474-462914.iam.gserviceaccount.com'
+            pk12File = file('key.p12')
+        }
+    }
 
     defaultConfig {
         applicationId "com.ghubber"
@@ -92,10 +100,25 @@ android {
         targetSdkVersion 22
         versionCode 2
         versionName "0.1.0"
+
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
+
+        playAccountConfig = playAccountConfigs.defaultAccountConfig
     }
+
+    signingConfigs {
+        release {
+            if (project.hasProperty('GHUBBER_RELEASE_STORE_PASSWORD')) {
+                storeFile file('ghubber.keystore')
+                storePassword GHUBBER_RELEASE_STORE_PASSWORD
+                keyAlias GHUBBER_RELEASE_KEY_ALIAS
+                keyPassword GHUBBER_RELEASE_KEY_PASSWORD
+            }
+        }
+    }
+
     splits {
         abi {
             reset()
@@ -108,6 +131,8 @@ android {
         release {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+
+            signingConfig signingConfigs.release
         }
     }
     // applicationVariants are e.g. debug, release

@@ -2,8 +2,9 @@
 // @flow
 
 import React, { PureComponent } from 'react';
-import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { connect } from 'react-redux';
+import { RepositoryRow } from 'components';
 import { fetchRepositories, showRepository } from 'actions';
 
 import { Spinner } from 'components';
@@ -44,23 +45,19 @@ class ProfileRepositories extends PureComponent<void, Props, void> {
 
         const { showRepository } = this.props;
 
-        const renderRow = (repository: RepositoryEntity) => {
-            return (
-                <TouchableOpacity style={styles.row} onPress={() => showRepository(repository.owner.login, repository.name)}>
-                    <Text style={styles.name} numberOfLines={1}>{repository.name}</Text>
-                    <View style={{ flex: 1 }}>
-                        <Text>{repository.stargazers_count}</Text>
-                    </View>
-                </TouchableOpacity>
-            )
-        }
-
         return (
             <FlatList
                 style={styles.list}
                 data={repositories}
                 keyExtractor={(repository: RepositoryEntity) => repository.id}
-                renderItem={({ item }) => renderRow(item)}
+                renderItem={
+                    ({ item }) => (
+                        <RepositoryRow
+                            repo={item}
+                            onPress={() => showRepository(item.owner.login, item.name)}
+                        />
+                    )
+                }
             />
         )
     }
@@ -76,14 +73,6 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center'
-    },
-    row: {
-        flex: 1
-    },
-    name: {
-        flex: 1,
-        fontSize: 16,
-        fontWeight: 'bold'
     }
 });
 

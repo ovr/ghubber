@@ -54,7 +54,7 @@ class ProfileRepositories extends PureComponent<void, Props, void> {
                     ({ item }) => (
                         <RepositoryRow
                             repo={item}
-                            onPress={() => showRepository(item.owner.login, item.name)}
+                            onPress={() => showRepository(item)}
                         />
                     )
                 }

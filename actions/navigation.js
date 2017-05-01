@@ -2,8 +2,11 @@
 // @flow
 
 import { NavigationActions } from 'react-navigation';
-
 import { NAVIGATION_SET_TITLE } from 'constants';
+import { setupRepository } from './repository';
+
+// import flow types
+import type { RepositoryEntity } from 'github-flow-js';
 
 export function showProfile(id: string) {
     return NavigationActions.navigate({
@@ -21,7 +24,7 @@ export function setTitle(title: Object) {
     };
 }
 
-export function showRepository(owner: string, repo: string) {
+export function showRepositoryByParams(owner: string, repo: string) {
     return NavigationActions.navigate({
         routeName: 'Repository',
         params: {
@@ -29,4 +32,20 @@ export function showRepository(owner: string, repo: string) {
             repo
         }
     })
+}
+
+export function showRepository(repository: RepositoryEntity) {
+    return dispatch => {
+        dispatch(setupRepository(repository));
+
+        dispatch(
+            NavigationActions.navigate({
+                routeName: 'Repository',
+                params: {
+                    owner: repository.owner.login,
+                    repo: repository.name
+                }
+            })
+        )
+    }
 }

@@ -38,3 +38,10 @@ export function fetchRepository(owner: string, repo: string) {
         )
     }
 }
+
+export function setupRepository(repository: RepositoryEntity) {
+    return {
+        type: REPOSITORY_REQUEST_SUCCESS,
+        payload: repository
+    }
+}

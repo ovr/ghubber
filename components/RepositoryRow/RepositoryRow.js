@@ -11,21 +11,6 @@ type Props = {
     repo: RepositoryEntity,
 };
 
-export default class RepositoryRow extends PureComponent<void, Props, void> {
-    render() {
-        const { repo, onPress } = this.props;
-
-        return (
-            <TouchableOpacity style={styles.row} onPress={onPress}>
-                <Text style={styles.name} numberOfLines={1}>{repo.name}</Text>
-                <View style={{ flex: 1 }}>
-                    <Text>{repo.stargazers_count}</Text>
-                </View>
-            </TouchableOpacity>
-        )
-    }
-}
-
 const styles = StyleSheet.create({
     row: {
         flex: 1
@@ -33,6 +18,36 @@ const styles = StyleSheet.create({
     name: {
         flex: 1,
         fontSize: 16,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        justifyContent: 'center',
+        alignContent: 'center',
+    },
+    forkBadge: {
+        paddingVertical: 5,
+        paddingHorizontal: 10,
+        marginRight: 10,
+        backgroundColor: 'yellow'
     }
 });
+
+const ForkBadge = <View style={styles.forkBadge}><Text>Fork</Text></View>;
+
+export default class RepositoryRow extends PureComponent<void, Props, void> {
+    render() {
+        const { repo, onPress } = this.props;
+
+        return (
+            <TouchableOpacity style={styles.row} onPress={onPress}>
+                <View style={{ flex: 1, flexDirection: 'row', alignContent: 'center', justifyContent: 'center' }}>
+                    {repo.fork ? ForkBadge : null}
+                    <Text style={styles.name} numberOfLines={1}>
+                        {repo.name}
+                    </Text>
+                </View>
+                <View style={{ flex: 1 }}>
+                    <Text>{repo.stargazers_count}</Text>
+                </View>
+            </TouchableOpacity>
+        )
+    }
+}

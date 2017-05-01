@@ -5,6 +5,23 @@
 
 
 Yet another Mobile :iphone: client for GitHub powered on react-native.
+
+> It's alpha, in development ;)
+ 
+## Installation 
+ 
+### Android
+
+#### Sorry, I've got banned in Play Market (just give me time to w8th reply from Google and fix issue)
+
+Due, app is an alpha, the easy way to install it will be Play Market Alpha version, to get access to alpha version you should do:
+
+1. Join [Google Plus Group](https://plus.google.com/communities/115242870069378334413) (needed to access in play market alpha page)
+2. 
+
+### iOS
+
+I am sorry, but this will be in near feature
  
 ### Roadmap
 

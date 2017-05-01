@@ -16,9 +16,13 @@ type Props = {
 
 class Repository extends PureComponent<void, Props, void> {
     componentWillMount() {
-        const { owner, repo } = this.props.navigation.params;
+        const { repository } = this.props.state;
 
-        this.props.fetchRepository(owner, repo);
+        if (!repository) {
+            const { owner, repo } = this.props.navigation.params;
+
+            this.props.fetchRepository(owner, repo);
+        }
     }
 
     render() {

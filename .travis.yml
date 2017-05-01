@@ -22,6 +22,11 @@ android:
     - extra-google-m2repository
     - addon-google_apis-google-16
 
+licenses:
+  - 'android-sdk-preview-license-.+'
+  - 'android-sdk-license-.+'
+  - 'google-gdk-license-.+'
+
 script:
   - cd android && ./gradlew assembleRelease
 

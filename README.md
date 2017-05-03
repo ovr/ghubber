@@ -15,7 +15,8 @@ Yet another Mobile :iphone: client for GitHub powered on react-native.
 Due, app is an alpha, the easiest way to install, will be Play Market Alpha version, to get access for alpha, you should do:
 
 1. Join [Google Plus Group](https://plus.google.com/communities/115242870069378334413) (needed to access in play market alpha page)
-2. https://play.google.com/apps/testing/com.ghubber (Refresh multiple rounds, if it's white screen)
+2. https://play.google.com/apps/testing/com.ghubber
+3. https://play.google.com/store/apps/details?id=com.ghubber
 
 ### iOS
 

@@ -12,12 +12,10 @@ Yet another Mobile :iphone: client for GitHub powered on react-native.
  
 ### Android
 
-#### Sorry, I've got banned in Play Market (just give me time to w8th reply from Google and fix issue)
-
-Due, app is an alpha, the easy way to install it will be Play Market Alpha version, to get access to alpha version you should do:
+Due, app is an alpha, the easiest way to install, will be Play Market Alpha version, to get access for alpha, you should do:
 
 1. Join [Google Plus Group](https://plus.google.com/communities/115242870069378334413) (needed to access in play market alpha page)
-2. 
+2. https://play.google.com/apps/testing/com.ghubber (Refresh multiple rounds, if it's white screen)
 
 ### iOS
 

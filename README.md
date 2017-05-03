@@ -16,7 +16,7 @@ Due, app is an alpha, the easiest way to install, will be Play Market Alpha vers
 
 1. Join [Google Plus Group](https://plus.google.com/communities/115242870069378334413) (needed to access in play market alpha page)
 2. https://play.google.com/apps/testing/com.ghubber
-3. https://play.google.com/store/apps/details?id=com.ghubber
+3. https://play.google.com/store/apps/details?id=com.ghubber (refresh multiple times, maybe not allowed due delay in Google)
 
 ### iOS
 

@@ -4,10 +4,18 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { addNavigationHelpers, StackNavigator } from 'react-navigation';
 
-import { Home, ProfileScreen, RepositoryScreen } from 'containers';
+import { Home, LoginScreen, ProfileScreen, RepositoryScreen } from 'containers';
 
 export const AppNavigator = StackNavigator({
-    Home: { screen: Home },
+    Home: {
+        screen: Home
+    },
+    Login: {
+        screen: LoginScreen,
+        navigationOptions: {
+            header: null
+        }
+    },
     Profile: {
         screen: ProfileScreen,
         navigationOptions: {

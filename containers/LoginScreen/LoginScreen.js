@@ -2,8 +2,8 @@
 // @flow
 
 import React, { PureComponent } from 'react';
-import { View, StyleSheet, Text, TextInput, Platform } from 'react-native';
-import { Button } from 'components';
+import { View, StyleSheet, Text, Platform } from 'react-native';
+import { Button, InputField } from 'components';
 import { connect } from 'react-redux';
 import { login } from 'actions';
 
@@ -17,11 +17,13 @@ class LoginScreen extends PureComponent<void, Props, void> {
 
         return (
             <View style={styles.root}>
-                <View style={{ flex: 1, justifyContent: 'center' }}>
+                <View style={{ flex: 1, marginTop: 100 }}>
                     <Text style={styles.title}>GHubber</Text>
 
-                    <TextInput style={styles.input} placeholder={"email or login"} autoCapitalize="none" />
-                    <TextInput style={styles.input} placeholder={"password"} autoCapitalize="none" />
+                    <View style={styles.card}>
+                        <InputField placeholder="email or login" style={styles.input} />
+                        <InputField placeholder="password" style={styles.input} />
+                    </View>
 
                     <Button onPress={login}>
                         Login
@@ -37,14 +39,20 @@ const styles = StyleSheet.create({
         flex: 1,
         marginTop: Platform.OS === 'ios' ? 20 : 0,
         padding: 20,
+        justifyContent: 'center'
     },
     title: {
         fontSize: 40,
         textAlign: 'center',
     },
+    card: {
+        flex: 0,
+        marginVertical: 10
+    },
     input: {
-        width: 100,
-        height: 40
+        flex: 0,
+        height: 40,
+        marginBottom: 10
     }
 });
 

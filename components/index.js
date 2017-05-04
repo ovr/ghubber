@@ -2,5 +2,6 @@
 // @flow
 
 export * from './Avatar';
+export * from './Button';
 export * from './RepositoryRow';
 export * from './Spinner';

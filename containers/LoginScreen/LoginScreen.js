@@ -3,17 +3,22 @@
 
 import React, { PureComponent } from 'react';
 import { View, StyleSheet, Text, Platform } from 'react-native';
-import { Button, InputField } from 'components';
+import { Button, InputField, Spinner } from 'components';
 import { connect } from 'react-redux';
-import { login } from 'actions';
+import { makeLogin } from 'actions';
+
+// import flow types
+import type { LoginState } from 'reducers/login';
 
 type Props = {
-    login: typeof login
+    login: LoginState,
+    makeLogin: typeof makeLogin
 }
 
 class LoginScreen extends PureComponent<void, Props, void> {
     render() {
-        const { login } = this.props;
+        const { loading } = this.props.login;
+        const { makeLogin } = this.props;
 
         return (
             <View style={styles.root}>
@@ -25,9 +30,13 @@ class LoginScreen extends PureComponent<void, Props, void> {
                         <InputField placeholder="password" style={styles.input} />
                     </View>
 
-                    <Button onPress={login}>
-                        Login
-                    </Button>
+                    {
+                        loading ? <Spinner/> :(
+                            <Button onPress={makeLogin}>
+                                Login
+                            </Button>
+                        )
+                    }
                 </View>
             </View>
         )
@@ -59,8 +68,8 @@ const styles = StyleSheet.create({
 export default connect(
     (state) => {
         return {
-            navigation: state.navigation
+            login: state.login
         }
     },
-    { login }
+    { makeLogin }
 )(LoginScreen);

@@ -52,41 +52,39 @@ class LoginScreen extends PureComponent<State, Props, void> {
 
         return (
             <View style={styles.root}>
-                <View style={{ flex: 1, marginTop: 100 }}>
-                    <Text style={styles.title}>GHubber</Text>
+                <Text style={styles.title}>GHubber</Text>
 
-                    <View style={styles.card}>
-                        <InputField
-                            placeholder="email or login"
-                            style={styles.input}
-                            onChangeText={(value) => this.setState({username: value})}
-                        />
-                        <InputField
-                            placeholder="password"
-                            style={styles.input}
-                            onChangeText={(value) => this.setState({password: value})}
-                            secureTextEntry={true}
-                        />
-                        {
-                            twoFA ? (
-                                <InputField
-                                    placeholder="TFA Code"
-                                    style={styles.input}
-                                    onChangeText={(value) => this.setState({twoFA: value})}
-                                />
-                            ) : null
-                        }
-                    </View>
-
-                    { error ? this.renderError() : null}
+                <View style={styles.card}>
+                    <InputField
+                        placeholder="email or login"
+                        style={styles.input}
+                        onChangeText={(value) => this.setState({username: value})}
+                    />
+                    <InputField
+                        placeholder="password"
+                        style={styles.input}
+                        onChangeText={(value) => this.setState({password: value})}
+                        secureTextEntry={true}
+                    />
                     {
-                        loading ? <Spinner/> :(
-                            <Button onPress={() => makeLogin(username, password)}>
-                                Login
-                            </Button>
-                        )
+                        twoFA ? (
+                            <InputField
+                                placeholder="TFA Code"
+                                style={styles.input}
+                                onChangeText={(value) => this.setState({twoFA: value})}
+                            />
+                        ) : null
                     }
                 </View>
+
+                { error ? this.renderError() : null}
+                {
+                    loading ? <Spinner/> :(
+                        <Button onPress={() => makeLogin(username, password)}>
+                            Login
+                        </Button>
+                    )
+                }
             </View>
         )
     }
@@ -97,7 +95,7 @@ const styles = StyleSheet.create({
         flex: 1,
         marginTop: Platform.OS === 'ios' ? 20 : 0,
         padding: 20,
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     title: {
         fontSize: 40,

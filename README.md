@@ -61,19 +61,19 @@ export ANDROID_HOME=/Users/ovr/Library/Android/sdk
 export PATH=$ANDROID_HOME/platform-tools:$PATH
 ```
 
-3. Run emulator, you can run default emulator or genymotion
+3. Run emulator:
 
-- Built-in Android emulator, use KVM on linux if it's installed for acceleration
+### Way 1: Built-in Android emulator, use KVM on linux if it's installed for acceleration
 
 > Attentation, KVM and VirtualBox supposedly cannot coexist, or rather, VirtualBox won't run while the KVM modules are loaded in memory
 
 The easy way will be to create a new device inside Android Studio, press run
 
-- [Genymotion](https://www.genymotion.com/) is a cool emulator, it runs on VirtualBox
+### Way 2: [Genymotion](https://www.genymotion.com/) is a cool emulator, it runs on VirtualBox
 
 Run it, you will see ;)
 
-- Run on real device (I didn't use this method for development, and I didn't recommend it)
+### Way 3: Run on real device (I didn't use this method for development, and I didn't recommend it)
 
 First you should enable Developer menu on Android, read in the Internet or try
  

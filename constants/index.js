@@ -3,6 +3,7 @@
 
 export const APP_PROFILE_SUCCESS                  = 'APP_PROFILE_SUCCESS';
 
+export const APP_LOGOUT_SUCCESS                   = 'APP_LOGOUT_SUCCESS';
 
 export const LOGIN_REQUEST                        = 'LOGIN_REQUEST';
 export const LOGIN_REQUEST_FAIL                   = 'LOGIN_REQUEST_FAIL';

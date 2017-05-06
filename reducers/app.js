@@ -4,7 +4,9 @@
 import { saveStoreKey } from 'utils';
 import {
     LOGIN_REQUEST_SUCCESS,
-    APP_PROFILE_SUCCESS
+    //
+    APP_PROFILE_SUCCESS,
+    APP_LOGOUT_SUCCESS
 } from 'constants';
 
 // flow import
@@ -41,6 +43,11 @@ export default (state: AppState = initialState, action: Object): AppState => {
             saveStoreKey('state:app', nextState);
 
             return nextState;
+        }
+        case APP_LOGOUT_SUCCESS: {
+            saveStoreKey('state:app', initialState);
+
+            return initialState;
         }
         default:
             return state;

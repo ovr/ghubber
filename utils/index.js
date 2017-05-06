@@ -4,3 +4,4 @@
 export * from './configure-store';
 export * from './get-initial-state';
 export * from './save-state-key';
+export * from './images';

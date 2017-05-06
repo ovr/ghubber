@@ -2,10 +2,11 @@
 // @flow
 
 import React, { PureComponent } from 'react';
-import { View, StyleSheet, Text, Platform } from 'react-native';
+import { Image, View, StyleSheet, Text, Platform } from 'react-native';
 import { Button, InputField, Spinner } from 'components';
 import { connect } from 'react-redux';
 import { makeLogin, showHome } from 'actions';
+import { images } from 'utils/images';
 
 // import flow types
 import type { AppState } from 'reducers/app';
@@ -51,51 +52,59 @@ class LoginScreen extends PureComponent<State, Props, void> {
         const { username, password } = this.state;
 
         return (
-            <View style={styles.root}>
-                <Text style={styles.title}>GHubber</Text>
+            <Image resizeMode="cover" style={styles.background} source={images.background}>
+                <View style={styles.root}>
+                    <Text style={styles.title}>GHubber</Text>
 
-                <View style={styles.card}>
-                    <InputField
-                        placeholder="email or login"
-                        style={styles.input}
-                        onChangeText={(value) => this.setState({username: value})}
-                    />
-                    <InputField
-                        placeholder="password"
-                        style={styles.input}
-                        onChangeText={(value) => this.setState({password: value})}
-                        secureTextEntry={true}
-                    />
+                    <View style={styles.card}>
+                        <InputField
+                            placeholder="email or login"
+                            style={styles.input}
+                            onChangeText={(value) => this.setState({username: value})}
+                        />
+                        <InputField
+                            placeholder="password"
+                            style={styles.input}
+                            onChangeText={(value) => this.setState({password: value})}
+                            secureTextEntry={true}
+                        />
+                        {
+                            twoFA ? (
+                                <InputField
+                                    placeholder="TFA Code"
+                                    style={styles.input}
+                                    onChangeText={(value) => this.setState({twoFA: value})}
+                                />
+                            ) : null
+                        }
+                    </View>
+
+                    { error ? this.renderError() : null}
                     {
-                        twoFA ? (
-                            <InputField
-                                placeholder="TFA Code"
-                                style={styles.input}
-                                onChangeText={(value) => this.setState({twoFA: value})}
-                            />
-                        ) : null
+                        loading ? <Spinner/> :(
+                            <Button onPress={() => makeLogin(username, password)}>
+                                Login
+                            </Button>
+                        )
                     }
                 </View>
-
-                { error ? this.renderError() : null}
-                {
-                    loading ? <Spinner/> :(
-                        <Button onPress={() => makeLogin(username, password)}>
-                            Login
-                        </Button>
-                    )
-                }
-            </View>
+            </Image>
         )
     }
 }
 
 const styles = StyleSheet.create({
+    background: {
+        flex: 1,
+        width: null,
+        height: null,
+        marginTop: Platform.OS === 'ios' ? 20 : 0,
+    },
     root: {
         flex: 1,
-        marginTop: Platform.OS === 'ios' ? 20 : 0,
         padding: 20,
         justifyContent: 'center',
+        backgroundColor: 'transparent'
     },
     title: {
         fontSize: 40,

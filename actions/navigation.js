@@ -8,6 +8,14 @@ import { setupRepository } from './repository';
 // import flow types
 import type { RepositoryEntity } from 'github-flow-js';
 
+export function showAccount() {
+    return (dispatch, getState) => {
+        const app = getState().app;
+
+        dispatch(showProfile(app.user.login));
+    }
+}
+
 export function showProfile(id: string) {
     return NavigationActions.navigate({
         routeName: 'Profile',

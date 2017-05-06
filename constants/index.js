@@ -1,6 +1,9 @@
 // @author Dmitry Patsura <talk@dmtry.me> https://github.com/ovr
 // @flow
 
+export const APP_PROFILE_SUCCESS                  = 'APP_PROFILE_SUCCESS';
+
+
 export const LOGIN_REQUEST                        = 'LOGIN_REQUEST';
 export const LOGIN_REQUEST_FAIL                   = 'LOGIN_REQUEST_FAIL';
 export const LOGIN_REQUEST_SUCCESS                = 'LOGIN_REQUEST_SUCCESS';

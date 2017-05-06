@@ -15,10 +15,29 @@ type Props = {
     makeLogin: typeof makeLogin
 }
 
-class LoginScreen extends PureComponent<void, Props, void> {
+type State = {
+    username: string,
+    password: string,
+    code: string
+}
+
+class LoginScreen extends PureComponent<State, Props, void> {
+    state: State = {
+        username: '',
+        password: '',
+        code: ''
+    };
+
+    renderError(error) {
+        return (
+            <Text style={styles.error}>Oops! We cannot auth you, possible password/username are wrong ;( </Text>
+        )
+    }
+
     render() {
-        const { loading } = this.props.login;
+        const { loading, error, twoFA } = this.props.login;
         const { makeLogin } = this.props;
+        const { username, password } = this.state;
 
         return (
             <View style={styles.root}>
@@ -26,13 +45,31 @@ class LoginScreen extends PureComponent<void, Props, void> {
                     <Text style={styles.title}>GHubber</Text>
 
                     <View style={styles.card}>
-                        <InputField placeholder="email or login" style={styles.input} />
-                        <InputField placeholder="password" style={styles.input} />
+                        <InputField
+                            placeholder="email or login"
+                            style={styles.input}
+                            onChangeText={(value) => this.setState({username: value})}
+                        />
+                        <InputField
+                            placeholder="password"
+                            style={styles.input}
+                            onChangeText={(value) => this.setState({password: value})}
+                        />
+                        {
+                            twoFA ? (
+                                <InputField
+                                    placeholder="TFA Code"
+                                    style={styles.input}
+                                    onChangeText={(value) => this.setState({twoFA: value})}
+                                />
+                            ) : null
+                        }
                     </View>
 
+                    { error ? this.renderError() : null}
                     {
                         loading ? <Spinner/> :(
-                            <Button onPress={makeLogin}>
+                            <Button onPress={() => makeLogin(username, password)}>
                                 Login
                             </Button>
                         )
@@ -62,6 +99,9 @@ const styles = StyleSheet.create({
         flex: 0,
         height: 40,
         marginBottom: 10
+    },
+    error: {
+        marginBottom: 15
     }
 });
 

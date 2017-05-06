@@ -5,19 +5,21 @@ import React, { PureComponent } from 'react';
 import { TextInput, StyleSheet } from 'react-native';
 
 type Props = {
+    onChangeText: () => null,
     placeholder: string,
     style?: Object
 };
 
 export default class InputField extends PureComponent<void, Props, void> {
     render() {
-        const { style, placeholder } = this.props;
+        const { style, placeholder, onChangeText } = this.props;
 
         return (
             <TextInput
                 style={[styles.input, style]}
                 autoCapitalize="none"
                 placeholder={placeholder}
+                onChangeText={onChangeText}
             />
         )
     }

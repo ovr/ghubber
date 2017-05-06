@@ -8,7 +8,7 @@ Yet another Mobile :iphone: client for GitHub powered on react-native.
 
 > It's alpha, in development ;)
  
-## Installation 
+## How to get alpha version :atom:
  
 ### Android
 
@@ -21,6 +21,57 @@ Due, app is an alpha, the easiest way to install, will be Play Market Alpha vers
 ### iOS
 
 I am sorry, but this will be in near feature
+
+# Installation 
+
+Before We start to develop app your should configure your env:
+
+## Common
+
+1. You should install NodeJS with NPM
+
+OSX by brew:
+
+```bash
+brew install nodejs
+```
+
+Debian and Ubuntu:
+
+```bash
+curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
+sudo apt-get install -y nodejs
+```
+
+2. Now you should install dependencies by `NPM`, inside project directory run:
+
+```bash
+npm install
+```
+
+[If you are having another OS](https://nodejs.org/en/download/package-manager/)
+
+## For Android
+
+1. You should download and [install Android Studio](https://developer.android.com/studio/install.html)
+2. Run Android Studio and download default SDKs, don't forget to configure path(s)
+
+```
+export ANDROID_HOME=/Users/ovr/Library/Android/sdk
+```
+
+3. Run emulator, you can run default emulator or genymotion
+
+- Built-in Android emulator, use KVM on linux if it's installed for acceleration
+
+> Attentation, KVM and VirtualBox supposedly cannot coexist, or rather, VirtualBox won't run while the KVM modules are loaded in memory
+
+- [Genymotion](https://www.genymotion.com/) is a cool emulator, it runs on VirtualBox
+
+## For OSX
+
+It's pretty easy, you should install XCode by AppStore
+
  
 ### Roadmap
 

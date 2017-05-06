@@ -93,10 +93,6 @@ class Profile extends PureComponent<void, Props, void> {
 }
 
 const styles = StyleSheet.create({
-    viewPager: {
-        flex: 1,
-        flexDirection: 'column-reverse'
-    },
     container: {
         flex: 1,
         justifyContent: 'center',

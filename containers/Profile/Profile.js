@@ -79,11 +79,13 @@ class Profile extends PureComponent<void, Props, void> {
                         </Text>
                     </View>
                 </View>
-                <View style={styles.root}>
-                    <Text style={styles.name} numberOfLines={1}>{ user.name }</Text>
-                    <Text style={styles.login} numberOfLines={1}>{ user.login }</Text>
-                    <Text>{ user.bio }</Text>
+                <View style={styles.info}>
+                    <Text style={styles.name} numberOfLines={1}>
+                        { user.name }
+                        <Text style={styles.login} numberOfLines={1}> @{ user.login }</Text>
+                    </Text>
                     <Text>{ user.email }</Text>
+                    <Text style={styles.bio}>{ user.bio }</Text>
                 </View>
             </ScrollView>
         )
@@ -104,6 +106,9 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 10
     },
+    info: {
+        flex: 1
+    },
     avatarWrapper: {
         flex: 0.6,
         alignItems: 'center',
@@ -120,6 +125,13 @@ const styles = StyleSheet.create({
         flex: 0.25
     },
     statsBlockTitle: {
+        fontWeight: 'bold'
+    },
+    name: {
+        fontSize: 20
+    },
+    login: {
+        fontSize: 18,
         fontWeight: 'bold'
     }
 });

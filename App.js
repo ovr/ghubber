@@ -6,18 +6,52 @@ import { AppRegistry } from 'react-native';
 import { Provider } from 'react-redux';
 
 import { default as Navigator } from './Navigator'
-import { configureStore } from 'utils';
+import { configureStore, getInitialState } from 'utils';
 
-class App extends Component {
-  render() {
-    const store = configureStore({});
+type State = {
+    initialized: boolean,
+    error: boolean,
+    preloadedState: Object|null
+}
 
-    return (
-        <Provider store={store}>
-            <Navigator />
-        </Provider>
-    );
-  }
+class App extends Component<State, void, void> {
+    state = {
+        initialized: false,
+        error: false,
+        preloadedState: null
+    }
+
+    componentWillMount() {
+        getInitialState().then(
+            (state) => {
+                this.setState({
+                    initialized: true,
+                    preloadedState: state
+                })
+            },
+            (error) => {
+
+            }
+        )
+    }
+
+    render() {
+        if (!this.state.initialized) {
+            return null;
+        }
+
+        if (this.state.error) {
+            return null;
+        }
+
+        const store = configureStore(this.state.preloadedState);
+
+        return (
+            <Provider store={store}>
+                <Navigator />
+            </Provider>
+        );
+    }
 }
 
 AppRegistry.registerComponent('ghubber', () => App);

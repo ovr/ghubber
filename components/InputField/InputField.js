@@ -7,12 +7,13 @@ import { TextInput, StyleSheet } from 'react-native';
 type Props = {
     onChangeText: () => null,
     placeholder: string,
-    style?: Object
+    secureTextEntry?: boolean,
+    style?: Object,
 };
 
 export default class InputField extends PureComponent<void, Props, void> {
     render() {
-        const { style, placeholder, onChangeText } = this.props;
+        const { style, placeholder, onChangeText, secureTextEntry } = this.props;
 
         return (
             <TextInput
@@ -20,6 +21,7 @@ export default class InputField extends PureComponent<void, Props, void> {
                 autoCapitalize="none"
                 placeholder={placeholder}
                 onChangeText={onChangeText}
+                secureTextEntry={secureTextEntry}
             />
         )
     }

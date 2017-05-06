@@ -54,6 +54,7 @@ class LoginScreen extends PureComponent<State, Props, void> {
                             placeholder="password"
                             style={styles.input}
                             onChangeText={(value) => this.setState({password: value})}
+                            secureTextEntry={true}
                         />
                         {
                             twoFA ? (

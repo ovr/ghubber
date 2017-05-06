@@ -6,3 +6,4 @@ export * from './Button';
 export * from './RepositoryRow';
 export * from './Spinner';
 export * from './InputField';
+export * from './ProfileView';

@@ -2,7 +2,7 @@
 // @flow
 
 import { NavigationActions } from 'react-navigation';
-import { NAVIGATION_SET_TITLE, NAVIGATION_HOME } from 'constants';
+import { NAVIGATION_SET_TITLE, NAVIGATION_HOME, NAVIGATION_LOGIN } from 'constants';
 import { setupRepository } from './repository';
 
 // import flow types
@@ -15,6 +15,12 @@ export function showProfile(id: string) {
             id
         }
     })
+}
+
+export function showLogin() {
+    return {
+        type: NAVIGATION_LOGIN
+    }
 }
 
 export function showHome() {

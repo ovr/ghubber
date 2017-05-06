@@ -5,14 +5,17 @@ import React, { PureComponent } from 'react';
 import { View, StyleSheet, Text, Platform } from 'react-native';
 import { Button, InputField, Spinner } from 'components';
 import { connect } from 'react-redux';
-import { makeLogin } from 'actions';
+import { makeLogin, showHome } from 'actions';
 
 // import flow types
+import type { AppState } from 'reducers/app';
 import type { LoginState } from 'reducers/login';
 
 type Props = {
+    app: AppState,
     login: LoginState,
-    makeLogin: typeof makeLogin
+    showHome: typeof showHome,
+    makeLogin: typeof makeLogin,
 }
 
 type State = {
@@ -27,6 +30,14 @@ class LoginScreen extends PureComponent<State, Props, void> {
         password: '',
         code: ''
     };
+
+    componentWillMount() {
+        const { user, authorization } = this.props.app;
+
+        if (user && authorization) {
+            this.props.showHome();
+        }
+    }
 
     renderError(error) {
         return (
@@ -109,8 +120,9 @@ const styles = StyleSheet.create({
 export default connect(
     (state) => {
         return {
-            login: state.login
+            login: state.login,
+            app: state.app
         }
     },
-    { makeLogin }
+    { makeLogin, showHome }
 )(LoginScreen);

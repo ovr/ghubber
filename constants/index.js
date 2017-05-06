@@ -23,3 +23,4 @@ export const PROFILE_REPOSITORIES_REQUEST_SUCCESS = 'PROFILE_REPOSITORIES_REQUES
 
 export const NAVIGATION_SET_TITLE                 = 'NAVIGATION_SET_TITLE';
 export const NAVIGATION_HOME                      = 'NAVIGATION_HOME';
+export const NAVIGATION_LOGIN                     = 'NAVIGATION_LOGIN';

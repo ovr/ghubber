@@ -105,7 +105,7 @@ Android:
 npm run android
 ```
 
-Android:
+iOS:
 
 ```bash
 npm run ios

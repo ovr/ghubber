@@ -29,9 +29,6 @@ class ProfileScreen extends PureComponent<void, Props, void> {
                 <View style={{ flex: 1 }}>
                     <ProfileRepositories />
                 </View>
-                <View>
-                    <Text>Starred</Text>
-                </View>
             </IndicatorViewPager>
         )
     }

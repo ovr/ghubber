@@ -2,7 +2,7 @@
 // @flow
 
 import React, { PureComponent } from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, WebView } from 'react-native';
 import { connect } from 'react-redux';
 
 import { Spinner, ProfileView, OrganizationAvatar } from 'components';
@@ -70,6 +70,10 @@ class Profile extends PureComponent<void, Props, void> {
             <ScrollView style={styles.root}>
                 <ProfileView user={user} />
                 {this.renderOrganizations()}
+                <WebView
+                    source={{uri: `https://github.com/users/${user.login}/contributions`}}
+                    style={{ flex: 1, height: 120, marginVertical: 20 }}
+                />
             </ScrollView>
         )
     }

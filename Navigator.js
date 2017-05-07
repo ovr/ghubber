@@ -6,29 +6,36 @@ import { addNavigationHelpers, StackNavigator } from 'react-navigation';
 
 import { Home, LoginScreen, ProfileScreen, RepositoryScreen } from 'containers';
 
-export const AppNavigator = StackNavigator({
-    Home: {
-        screen: Home
+export const AppNavigator = StackNavigator(
+    {
+        Home: {
+            screen: Home
+        },
+        Login: {
+            screen: LoginScreen,
+            navigationOptions: {
+                header: null
+            }
+        },
+        Profile: {
+            screen: ProfileScreen,
+            navigationOptions: {
+                title: 'Profile'
+            },
+        },
+        Repository: {
+            screen: RepositoryScreen,
+            navigationOptions: {
+                title: 'Repository',
+            },
+        },
     },
-    Login: {
-        screen: LoginScreen,
-        navigationOptions: {
-            header: null
+    {
+        cardStyle: {
+            backgroundColor: 'white'
         }
-    },
-    Profile: {
-        screen: ProfileScreen,
-        navigationOptions: {
-            title: 'Profile'
-        },
-    },
-    Repository: {
-        screen: RepositoryScreen,
-        navigationOptions: {
-            title: 'Repository'
-        },
-    },
-});
+    }
+);
 
 const AppWithNavigationState = ({ dispatch, navigation }) => (
     <AppNavigator navigation={addNavigationHelpers({ dispatch, state: navigation })} />

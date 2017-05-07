@@ -13,7 +13,9 @@ type Props = {
 
 const styles = StyleSheet.create({
     row: {
-        flex: 1
+        flex: 1,
+        paddingTop: 5,
+        paddingBottom: 5,
     },
     name: {
         flex: 1,

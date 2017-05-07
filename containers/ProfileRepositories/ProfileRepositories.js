@@ -4,7 +4,7 @@
 import React, { PureComponent } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { connect } from 'react-redux';
-import { RepositoryRow } from 'components';
+import { RepositoryRow, RowSeparator } from 'components';
 import { fetchRepositories, showRepository } from 'actions';
 
 import { Spinner } from 'components';
@@ -58,6 +58,7 @@ class ProfileRepositories extends PureComponent<void, Props, void> {
                         />
                     )
                 }
+                ItemSeparatorComponent={RowSeparator}
             />
         )
     }

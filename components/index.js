@@ -7,4 +7,5 @@ export * from './RepositoryRow';
 export * from './RowSeparator';
 export * from './Spinner';
 export * from './InputField';
+export * from './OrganizationAvatar';
 export * from './ProfileView';

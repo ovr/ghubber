@@ -5,20 +5,46 @@ import React, { PureComponent } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 
-import { Spinner, ProfileView } from 'components';
-import { fetchProfile } from 'actions';
+import { Spinner, ProfileView, OrganizationAvatar } from 'components';
+import { fetchProfile, fetchOrganizations } from 'actions';
 
 // import flow types
 import type { ProfileState } from 'reducers/profile';
+import type { ProfileOrganizationsState } from 'reducers/profile-organizations';
 
 type Props = {
     profile: ProfileState,
-    fetchProfile: typeof fetchProfile
+    profileOrganizations: ProfileOrganizationsState,
+    fetchProfile: typeof fetchProfile,
+    fetchOrganizations: typeof fetchOrganizations,
 }
 
 class Profile extends PureComponent<void, Props, void> {
     componentWillMount() {
         this.props.fetchProfile(this.props.navigation.params.id);
+        this.props.fetchOrganizations(this.props.navigation.params.id);
+    }
+
+    renderOrganizations() {
+        const { loading, error, organizations } = this.props.profileOrganizations;
+
+        if (loading || error) {
+            return null;
+        }
+
+        if (organizations) {
+            return (
+                <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'flex-start' }}>
+                    {
+                        organizations.map(
+                            (organization) => (
+                                <OrganizationAvatar key={organization.id} organization={organization} size={50} style={{ marginRight: 5 }} />
+                            )
+                        )
+                    }
+                </View>
+            )
+        }
     }
 
     render() {
@@ -43,6 +69,7 @@ class Profile extends PureComponent<void, Props, void> {
         return (
             <ScrollView style={styles.root}>
                 <ProfileView user={user} />
+                {this.renderOrganizations()}
             </ScrollView>
         )
     }
@@ -64,8 +91,9 @@ export default connect(
     (state) => {
         return {
             profile: state.profile,
+            profileOrganizations: state.profileOrganizations,
             navigation: state.navigation
         }
     },
-    { fetchProfile }
+    { fetchProfile, fetchOrganizations }
 )(Profile);

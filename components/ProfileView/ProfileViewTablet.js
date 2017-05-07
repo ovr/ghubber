@@ -19,7 +19,7 @@ export default class ProfileViewTablet extends PureComponent<void, Props, void> 
         return (
             <View style={styles.root}>
                 <View style={styles.left}>
-                    <Avatar user={user} size={150} />
+                    <Avatar user={user} size={200} />
                 </View>
                 <View style={styles.right}>
                     <View style={styles.info}>
@@ -92,6 +92,9 @@ const styles = StyleSheet.create({
         marginVertical: 15,
         padding: 5,
         backgroundColor: '#FFFFFF',
+        borderWidth: 1,
+        borderColor: '#dfe2e5',
+        borderRadius: 4
     },
     statsBlock: {
         flex: 0.25

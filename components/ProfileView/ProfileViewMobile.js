@@ -77,15 +77,18 @@ const styles = StyleSheet.create({
     },
     avatarWrapper: {
         flex: 0.6,
-            alignItems: 'center',
-            justifyContent: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     statsWrapper: {
         flex: 1,
-            flexDirection: 'row',
-            marginVertical: 15,
-            padding: 5,
-            backgroundColor: '#FFFFFF',
+        flexDirection: 'row',
+        marginVertical: 15,
+        padding: 5,
+        backgroundColor: '#FFFFFF',
+        borderWidth: 1,
+        borderColor: '#dfe2e5',
+        borderRadius: 4
     },
     statsBlock: {
         flex: 0.25
@@ -98,6 +101,6 @@ const styles = StyleSheet.create({
     },
     login: {
         fontSize: 18,
-            fontWeight: 'bold'
+        fontWeight: 'bold'
     }
 })

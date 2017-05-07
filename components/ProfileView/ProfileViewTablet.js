@@ -19,7 +19,7 @@ export default class ProfileViewTablet extends PureComponent<void, Props, void> 
         return (
             <View style={styles.root}>
                 <View style={styles.left}>
-                    <Avatar user={user} size={200} />
+                    <Avatar user={user} size={150} />
                 </View>
                 <View style={styles.right}>
                     <View style={styles.info}>

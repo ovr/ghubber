@@ -3,6 +3,8 @@
 
 import React, { PureComponent } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import Entypo from 'react-native-vector-icons/Entypo';
 
 // import flow types
 import type { RepositoryEntity } from 'github-flow-js';
@@ -39,6 +41,15 @@ const styles = StyleSheet.create({
     bottom: {
         flex: 1,
         flexDirection: 'row',
+    },
+    counter: {
+        marginRight: 10
+    },
+    counterIcon: {
+        paddingRight: 5
+    },
+    languageCounter: {
+        color: 'red'
     }
 });
 
@@ -57,7 +68,24 @@ export default class RepositoryRow extends PureComponent<void, Props, void> {
                     </Text>
                 </View>
                 <View style={styles.bottom}>
-                    <Text>{repo.stargazers_count}</Text>
+                    <Text style={styles.counter}>
+                        <Icon name="star" size={15} color="black" style={styles.counterIcon} />
+                        {" Stars: "}
+                        {repo.stargazers_count}
+                    </Text>
+                    <Text style={styles.counter}>
+                        <Icon name="eye" size={15} color="black" style={styles.counterIcon} />
+                        {" Watchers: "}
+                        {repo.watchers_count}
+                    </Text>
+                    <Text style={styles.counter}>
+                        <Entypo name="flow-branch" size={15} color="black" style={styles.counterIcon} />
+                        {"Forks: "}
+                        {repo.forks_count}
+                    </Text>
+                    <Text style={[styles.counter, styles.languageCounter]}>
+                        {repo.language}
+                    </Text>
                 </View>
             </TouchableOpacity>
         )

@@ -29,6 +29,16 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         marginRight: 10,
         backgroundColor: 'yellow'
+    },
+    header: {
+        flex: 1,
+        flexDirection: 'row',
+        alignContent: 'center',
+        justifyContent: 'center'
+    },
+    bottom: {
+        flex: 1,
+        flexDirection: 'row',
     }
 });
 
@@ -40,13 +50,13 @@ export default class RepositoryRow extends PureComponent<void, Props, void> {
 
         return (
             <TouchableOpacity style={styles.row} onPress={onPress}>
-                <View style={{ flex: 1, flexDirection: 'row', alignContent: 'center', justifyContent: 'center' }}>
+                <View style={styles.header}>
                     {repo.fork ? ForkBadge : null}
                     <Text style={styles.name} numberOfLines={1}>
                         {repo.name}
                     </Text>
                 </View>
-                <View style={{ flex: 1 }}>
+                <View style={styles.bottom}>
                     <Text>{repo.stargazers_count}</Text>
                 </View>
             </TouchableOpacity>

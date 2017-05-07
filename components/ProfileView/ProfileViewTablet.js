@@ -73,15 +73,15 @@ export default class ProfileViewTablet extends PureComponent<void, Props, void> 
 const styles = StyleSheet.create({
     root: {
         flex: 1,
-        flexDirection: 'row'
+        flexDirection: 'row',
+        marginBottom: 20,
     },
     info: {
         flex: 1
     },
     left: {
-        flex: .3,
-        alignItems: 'center',
-        justifyContent: 'center',
+        flex: 0,
+        paddingRight: 20,
     },
     right: {
         flex: .7,

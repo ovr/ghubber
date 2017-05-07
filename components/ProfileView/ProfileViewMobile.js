@@ -71,6 +71,7 @@ export default class ProfileViewMobile extends PureComponent<void, Props, void> 
 const styles = StyleSheet.create({
     root: {
         flex: 1,
+        marginBottom: 20,
     },
     info: {
         flex: 1

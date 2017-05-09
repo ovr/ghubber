@@ -20,7 +20,9 @@ Due, app is an alpha, the easiest way to install, will be Play Market Alpha vers
 
 ### iOS
 
-I am sorry, but this will be in near feature
+Please write me mail to `zaets28rus@gmail.com` with Subject: `Invite me to GHubber TestFlight` and your email, firstname, lastname.
+
+> Attention. Write you email that connected inside ITunes.
 
 # Installation 
 

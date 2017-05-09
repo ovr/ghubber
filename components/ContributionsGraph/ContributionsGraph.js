@@ -12,7 +12,7 @@ type Props = {
     user: UserEntity,
 };
 
-export default class Avatar extends PureComponent<void, Props, void> {
+export default class ContributionsGraph extends PureComponent<void, Props, void> {
     render() {
         // Not supported now for mobile, because It's not optimized for it :(
         if (!isTablet()) {

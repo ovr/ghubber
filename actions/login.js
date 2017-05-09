@@ -60,7 +60,7 @@ export function makeLogin(username: string, password: string, code: string) {
 
                         dispatch(showHome());
                     },
-                    (error) => {
+                    (err) => {
                         console.warn(err);
 
                         dispatch({

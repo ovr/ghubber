@@ -61,7 +61,8 @@ class ProfileRepositories extends PureComponent<void, Props, void> {
                         />
                     )
                 }
-                onEndReachedThreshold={0.8}
+                refreshing={moreLoading}
+                onEndReachedThreshold={0.5}
                 onEndReached={moreLoading ? () => null : () => fetchMoreRepositories(username, page + 1)}
                 ItemSeparatorComponent={RowSeparator}
             />

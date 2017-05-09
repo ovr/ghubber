@@ -19,7 +19,8 @@ export function fetchRepositories(id: string) {
         });
 
         const request = getRepositoriesByUsername({
-            username: id
+            username: id,
+            "per_page": 50
         });
 
         request.then(

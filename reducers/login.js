@@ -5,6 +5,8 @@ import {
     LOGIN_REQUEST,
     LOGIN_REQUEST_2FA_REQUIRED,
     LOGIN_REQUEST_FAIL,
+    //
+    NAVIGATION_LOGIN,
 } from 'constants';
 
 export type LoginState = {
@@ -21,6 +23,10 @@ const initialState: LoginState = {
 
 export default (state: LoginState = initialState, action: Object): LoginState => {
     switch (action.type) {
+        case NAVIGATION_LOGIN:
+            return {
+                ...initialState
+            };
         case LOGIN_REQUEST:
             return {
                 ...initialState,

@@ -7,7 +7,7 @@
     "ios": "node node_modules/react-native/local-cli/cli.js run-ios",
     "android": "node node_modules/react-native/local-cli/cli.js run-android",
     "test": "jest",
-    "postversion": "react-native-version --never-amend"
+    "postversion": "react-native-version"
   },
   "dependencies": {
     "babel-plugin-module-resolver": "^2.7.0",

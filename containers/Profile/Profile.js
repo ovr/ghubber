@@ -5,7 +5,7 @@ import React, { PureComponent } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 
-import { Spinner, ProfileView, OrganizationAvatar, ContributionsGraph } from 'components';
+import { Spinner, ProfileView, ProfileOrganizationsView, ContributionsGraph } from 'components';
 import { fetchProfile, fetchOrganizations } from 'actions';
 
 // import flow types
@@ -28,23 +28,11 @@ class Profile extends PureComponent<void, Props, void> {
     renderOrganizations() {
         const { loading, error, organizations } = this.props.profileOrganizations;
 
-        if (loading || error) {
+        if (loading || error || !organizations) {
             return null;
         }
 
-        if (organizations) {
-            return (
-                <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'flex-start' }}>
-                    {
-                        organizations.map(
-                            (organization) => (
-                                <OrganizationAvatar key={organization.id} organization={organization} size={50} style={{ marginRight: 5 }} />
-                            )
-                        )
-                    }
-                </View>
-            )
-        }
+        return <ProfileOrganizationsView organizations={organizations} />
     }
 
     render() {

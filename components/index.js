@@ -9,4 +9,5 @@ export * from './Spinner';
 export * from './InputField';
 export * from './OrganizationAvatar';
 export * from './ContributionsGraph';
+export * from './ProfileOrganizationsView';
 export * from './ProfileView';

@@ -6,6 +6,7 @@
     "start": "node node_modules/react-native/local-cli/cli.js start --reset-cache",
     "ios": "node node_modules/react-native/local-cli/cli.js run-ios",
     "android": "node node_modules/react-native/local-cli/cli.js run-android",
+    "flow": "flow check",
     "test": "jest",
     "postversion": "react-native-version"
   },
@@ -28,6 +29,7 @@
   "devDependencies": {
     "babel-jest": "20.0.0",
     "babel-preset-react-native": "1.9.1",
+    "flow-bin": "^0.45.0",
     "jest": "20.0.0",
     "react-native-version": "^2.3.1",
     "react-test-renderer": "16.0.0-alpha.6"

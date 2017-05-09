@@ -65,6 +65,7 @@ class ProfileRepositories extends PureComponent<void, Props, void> {
                 onEndReachedThreshold={0.5}
                 onEndReached={moreLoading ? () => null : () => fetchMoreRepositories(username, page + 1)}
                 ItemSeparatorComponent={RowSeparator}
+                ListFooterComponent={() => moreLoading ? <Spinner style={styles.moreLoadingSpinner} /> : null}
             />
         )
     }
@@ -80,6 +81,9 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center'
+    },
+    moreLoadingSpinner: {
+        marginVertical: 15
     }
 });
 

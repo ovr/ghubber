@@ -5,12 +5,15 @@ import React, { PureComponent } from 'react';
 import { ActivityIndicator } from 'react-native';
 
 type Props = {
+    style?: Object
 };
 
 export default class Spinner extends PureComponent<void, Props, void> {
     render() {
+        const { style } = this.props;
+
         return (
-            <ActivityIndicator size={'large'} />
+            <ActivityIndicator size={'large'} style={style} />
         )
     }
 }

@@ -32,6 +32,12 @@ munge_underscores=true
 
 module.name_mapper='^[./a-zA-Z0-9$_-]+\.\(bmp\|gif\|jpg\|jpeg\|png\|psd\|svg\|webp\|m4v\|mov\|mp4\|mpeg\|mpg\|webm\|aac\|aiff\|caf\|m4a\|mp3\|wav\|html\|pdf\)$' -> 'RelativeImageStub'
 
+module.name_mapper='utils' -> '<PROJECT_ROOT>/utils/'
+module.name_mapper='reducers' -> '<PROJECT_ROOT>/reducers/'
+module.name_mapper='actions' -> '<PROJECT_ROOT>/actions/'
+module.name_mapper='constants' -> '<PROJECT_ROOT>/constants/'
+module.name_mapper='components' -> '<PROJECT_ROOT>/components/'
+
 suppress_type=$FlowIssue
 suppress_type=$FlowFixMe
 suppress_type=$FixMe

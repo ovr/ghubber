@@ -5,7 +5,7 @@ import React, { PureComponent } from 'react';
 import { Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 type Props = {
-    children: string,
+    children: Object,
     onPress: () => void
 };
 

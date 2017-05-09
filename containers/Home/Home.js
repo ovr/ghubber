@@ -6,7 +6,13 @@ import { View, Button } from 'react-native';
 import { connect } from 'react-redux';
 import { showAccount, showProfile, logout } from 'actions';
 
-class Home extends PureComponent<void, void, void> {
+type Props = {
+    showAccount: typeof showAccount,
+    showProfile: typeof showProfile,
+    logout: typeof logout
+}
+
+class Home extends PureComponent<void, Props, void> {
     render() {
         const { showAccount, showProfile, logout } = this.props;
 

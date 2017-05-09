@@ -2,10 +2,10 @@
 // @flow
 
 import React, { PureComponent } from 'react';
-import { View, Text, StyleSheet, FlatList } from 'react-native';
+import { View, Text, StyleSheet, FlatList, RefreshControl } from 'react-native';
 import { connect } from 'react-redux';
 import { RepositoryRow, RowSeparator } from 'components';
-import { fetchRepositories, showRepository } from 'actions';
+import { fetchRepositories, fetchMoreRepositories, showRepository } from 'actions';
 
 import { Spinner } from 'components';
 
@@ -16,6 +16,7 @@ import type { ProfileRepositoriesState } from 'reducers/profile-repositories';
 type Props = {
     state: ProfileRepositoriesState,
     fetchRepositories: typeof fetchRepositories,
+    fetchMoreRepositories: typeof fetchMoreRepositories,
     showRepository: typeof showRepository,
 }
 
@@ -43,7 +44,9 @@ class ProfileRepositories extends PureComponent<void, Props, void> {
             )
         }
 
-        const { showRepository } = this.props;
+        const { moreLoading, page } = this.props.state;
+        const { showRepository, fetchMoreRepositories } = this.props;
+        const username = this.props.navigation.params.id;
 
         return (
             <FlatList
@@ -58,6 +61,8 @@ class ProfileRepositories extends PureComponent<void, Props, void> {
                         />
                     )
                 }
+                onEndReachedThreshold={0.8}
+                onEndReached={moreLoading ? () => null : () => fetchMoreRepositories(username, page + 1)}
                 ItemSeparatorComponent={RowSeparator}
             />
         )
@@ -84,5 +89,5 @@ export default connect(
             navigation: state.navigation
         }
     },
-    { fetchRepositories, showRepository }
+    { fetchRepositories, fetchMoreRepositories, showRepository }
 )(ProfileRepositories);

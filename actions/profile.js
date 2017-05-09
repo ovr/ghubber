@@ -31,8 +31,7 @@ export function fetchProfile(id: string) {
             },
             () => {
                 dispatch({
-                    type: PROFILE_REQUEST_FAIL,
-                    payload: result
+                    type: PROFILE_REQUEST_FAIL
                 })
             }
         )

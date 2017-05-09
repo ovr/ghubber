@@ -31,8 +31,7 @@ export function fetchRepository(owner: string, repo: string) {
             },
             () => {
                 dispatch({
-                    type: REPOSITORY_REQUEST_FAIL,
-                    payload: result
+                    type: REPOSITORY_REQUEST_FAIL
                 })
             }
         )

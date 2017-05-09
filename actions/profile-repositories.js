@@ -27,8 +27,7 @@ export function fetchRepositories(id: string) {
             },
             () => {
                 dispatch({
-                    type: PROFILE_REPOSITORIES_REQUEST_FAIL,
-                    payload: result
+                    type: PROFILE_REPOSITORIES_REQUEST_FAIL
                 })
             }
         )

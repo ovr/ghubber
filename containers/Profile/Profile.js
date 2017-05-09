@@ -38,7 +38,7 @@ class Profile extends PureComponent<void, Props, void> {
     render() {
         const { loading, error, user } = this.props.profile;
 
-        if (loading || !user) {
+        if (loading) {
             return (
                 <View style={styles.container}>
                     <Spinner />
@@ -52,6 +52,10 @@ class Profile extends PureComponent<void, Props, void> {
                     <Text>Oops! Error...</Text>
                 </View>
             )
+        }
+
+        if (!user) {
+            return null;
         }
 
         return (

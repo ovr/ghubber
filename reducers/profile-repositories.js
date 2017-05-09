@@ -13,7 +13,7 @@ import type { RepositoryEntity } from 'github-flow-js';
 type ProfileRepositoriesState = {
     loading: boolean,
     error: Object|null,
-    user: Array<RepositoryEntity>
+    repositories: Array<RepositoryEntity>
 }
 
 const initialState: ProfileRepositoriesState = {

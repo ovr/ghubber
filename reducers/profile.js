@@ -41,7 +41,7 @@ export default (state: ProfileState = initialState, action: Object): ProfileStat
             return {
                 ...state,
                 loading: false,
-                error: 'Unknown error @todo'
+                error: action.error
             }
         default:
             return state;

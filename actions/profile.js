@@ -29,9 +29,10 @@ export function fetchProfile(id: string) {
 
                 dispatch(setTitle(user.name));
             },
-            () => {
+            (error) => {
                 dispatch({
-                    type: PROFILE_REQUEST_FAIL
+                    type: PROFILE_REQUEST_FAIL,
+                    error: error
                 })
             }
         )

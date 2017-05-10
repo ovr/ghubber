@@ -44,7 +44,7 @@ class ProfileRepositories extends PureComponent<void, Props, void> {
             )
         }
 
-        const { moreLoading, page } = this.props.state;
+        const { moreLoading, hasMore, page } = this.props.state;
         const { showRepository, fetchMoreRepositories } = this.props;
         const username = this.props.navigation.params.id;
 
@@ -63,7 +63,7 @@ class ProfileRepositories extends PureComponent<void, Props, void> {
                 }
                 refreshing={moreLoading}
                 onEndReachedThreshold={0.5}
-                onEndReached={moreLoading ? () => null : () => fetchMoreRepositories(username, page + 1)}
+                onEndReached={moreLoading || !hasMore ? () => null : () => fetchMoreRepositories(username, page + 1)}
                 ItemSeparatorComponent={RowSeparator}
                 ListFooterComponent={() => moreLoading ? <Spinner style={styles.moreLoadingSpinner} /> : null}
             />

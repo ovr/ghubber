@@ -51,6 +51,7 @@ export default (state: ProfileRepositoriesState = initialState, action: Object):
             return {
                 ...state,
                 loading: false,
+                hasMore: action.payload.length === 50,
                 repositories: action.payload
             }
         case PROFILE_REPOSITORIES_REQUEST_FAIL:
@@ -70,6 +71,7 @@ export default (state: ProfileRepositoriesState = initialState, action: Object):
                 ...state,
                 moreLoading: false,
                 page: action.payload.page,
+                hasMore: action.payload.repositories.length === 50,
                 repositories: state.repositories.concat(action.payload.repositories)
             }
         case PROFILE_REPOSITORIES_MORE_REQUEST_FAIL:

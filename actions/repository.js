@@ -17,12 +17,7 @@ export function fetchRepository(owner: string, repo: string) {
             type: REPOSITORY_REQUEST
         });
 
-        const request = getRepository({
-            owner,
-            repo
-        });
-
-        request.then(
+        getRepository(owner, repo, {}).then(
             (user) => {
                 dispatch({
                     type: REPOSITORY_REQUEST_SUCCESS,

@@ -12,16 +12,18 @@ import {
     PROFILE_REPOSITORIES_MORE_REQUEST_FAIL
 } from 'constants';
 
-export function fetchRepositories(id: string) {
+export function fetchRepositories(username: string) {
     return dispatch => {
         dispatch({
             type: PROFILE_REPOSITORIES_REQUEST
         });
 
-        const request = getRepositoriesByUsername({
-            username: id,
-            "per_page": 50
-        });
+        const request = getRepositoriesByUsername(
+            username,
+            {
+                "per_page": 50
+            }
+        );
 
         request.then(
             (result) => {
@@ -45,11 +47,13 @@ export function fetchMoreRepositories(username: string, page: number) {
             type: PROFILE_REPOSITORIES_MORE_REQUEST
         });
 
-        const request = getRepositoriesByUsername({
+        const request = getRepositoriesByUsername(
             username,
-            page,
-            "per_page": 50
-        });
+            {
+                page,
+                "per_page": 50
+            }
+        );
 
         request.then(
             (result) => {

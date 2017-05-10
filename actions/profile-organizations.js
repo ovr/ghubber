@@ -14,11 +14,7 @@ export function fetchOrganizations(id: string) {
             type: PROFILE_ORGANIZATIONS_REQUEST
         });
 
-        const request = getOrganizationsByUsername({
-            username: id
-        });
-
-        request.then(
+        getOrganizationsByUsername(id, {}).then(
             (result) => {
                 dispatch({
                     type: PROFILE_ORGANIZATIONS_REQUEST_SUCCESS,

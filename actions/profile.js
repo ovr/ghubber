@@ -16,11 +16,7 @@ export function fetchProfile(id: string) {
             type: PROFILE_REQUEST
         });
 
-        const request = getUserById({
-            id
-        });
-
-        request.then(
+        getUserById(id, {}).then(
             (user) => {
                 dispatch({
                     type: PROFILE_REQUEST_SUCCESS,

@@ -49,7 +49,7 @@ class LoginScreen extends PureComponent<State, Props, void> {
     render() {
         const { loading, error, twoFA } = this.props.login;
         const { makeLogin } = this.props;
-        const { username, password } = this.state;
+        const { username, password, code } = this.state;
 
         return (
             <Image resizeMode="cover" style={styles.background} source={images.background}>
@@ -73,7 +73,7 @@ class LoginScreen extends PureComponent<State, Props, void> {
                                 <InputField
                                     placeholder="TFA Code"
                                     style={styles.input}
-                                    onChangeText={(value) => this.setState({twoFA: value})}
+                                    onChangeText={(value) => this.setState({code: value})}
                                 />
                             ) : null
                         }
@@ -82,7 +82,7 @@ class LoginScreen extends PureComponent<State, Props, void> {
                     { error ? this.renderError() : null}
                     {
                         loading ? <Spinner/> :(
-                            <Button onPress={() => makeLogin(username, password)}>
+                            <Button onPress={() => makeLogin(username, password, code)}>
                                 Login
                             </Button>
                         )

@@ -23,11 +23,18 @@ export function makeLogin(username: string, password: string, code: string) {
             type: LOGIN_REQUEST
         })
 
-        const options = {
+        let options = {
             headers: {
                 Authorization: 'Basic ' + encode(username + ':' + password)
             }
         };
+
+        if (code) {
+            options.headers = {
+                ...options.headers,
+                "X-GitHub-OTP": code
+            }
+        }
 
         const now = new Date();
 

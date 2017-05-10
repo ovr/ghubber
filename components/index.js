@@ -11,3 +11,4 @@ export * from './OrganizationAvatar';
 export * from './ContributionsGraph';
 export * from './ProfileOrganizationsView';
 export * from './ProfileView';
+export * from './ErrorView';

@@ -9,6 +9,8 @@ import {
     LOGIN_REQUEST,
     LOGIN_REQUEST_FAIL,
     LOGIN_REQUEST_SUCCESS,
+    LOGIN_REQUEST_2FA_REQUIRED,
+    //
     APP_PROFILE_SUCCESS
 } from 'constants';
 
@@ -60,17 +62,27 @@ export function makeLogin(username: string, password: string, code: string) {
 
                         dispatch(showHome());
                     },
-                    (err) => {
-                        console.warn(err);
-
+                    (response) => {
                         dispatch({
                             type: LOGIN_REQUEST_FAIL
                         })
                     }
                 )
             },
-            (err) => {
-                console.warn(err);
+            (response) => {
+                console.warn(response);
+                
+                if (response && response.headers) {
+                    const headers: Headers = response.headers;
+
+                    if (headers.get("x-github-otp")) {
+                        dispatch({
+                            type: LOGIN_REQUEST_2FA_REQUIRED
+                        })
+
+                        return;
+                    }
+                }
 
                 dispatch({
                     type: LOGIN_REQUEST_FAIL

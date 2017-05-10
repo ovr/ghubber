@@ -16,6 +16,8 @@ import type { RepositoryEntity } from 'github-flow-js';
 
 type ProfileRepositoriesState = {
     repositories: Array<RepositoryEntity>,
+    // sort by field
+    sort: "created" | "updated" | "pushed" | "full_name",
     // first list fetch
     loading: boolean,
     // more repositories fetching
@@ -28,6 +30,7 @@ type ProfileRepositoriesState = {
 
 const initialState: ProfileRepositoriesState = {
     repositories: [],
+    sort: "updated",
     loading: false,
     moreLoading: false,
     page: 1,

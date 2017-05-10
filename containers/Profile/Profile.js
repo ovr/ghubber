@@ -5,7 +5,7 @@ import React, { PureComponent } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 
-import { Spinner, ProfileView, ProfileOrganizationsView, ContributionsGraph } from 'components';
+import { Spinner, ErrorView, ProfileView, ProfileOrganizationsView, ContributionsGraph } from 'components';
 import { fetchProfile, fetchOrganizations } from 'actions';
 
 // import flow types
@@ -49,7 +49,13 @@ class Profile extends PureComponent<void, Props, void> {
         if (error) {
             return (
                 <View style={styles.container}>
-                    <Text>Oops! Error...</Text>
+                    <ErrorView
+                        onPress={
+                            () => this.props.fetchProfile(this.props.navigation.params.id)
+                        }
+                        error={error}
+                        refreshable={true}
+                    />
                 </View>
             )
         }

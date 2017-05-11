@@ -14,7 +14,7 @@ import {
 // import flow types
 import type { RepositoryEntity } from 'github-flow-js';
 
-type ProfileRepositoriesState = {
+export type ProfileRepositoriesState = {
     repositories: Array<RepositoryEntity>,
     // sort by field
     sort: "created" | "updated" | "pushed" | "full_name",

@@ -10,7 +10,7 @@ import {
 // import flow types
 import type { OrganizationEntity } from 'github-flow-js';
 
-type ProfileOrganizationsState = {
+export type ProfileOrganizationsState = {
     loading: boolean,
     error: Object|null,
     organizations: Array<OrganizationEntity>|null

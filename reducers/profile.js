@@ -10,7 +10,7 @@ import {
 // import flow types
 import type { UserEntity } from 'github-flow-js';
 
-type ProfileState = {
+export type ProfileState = {
     loading: boolean,
     error: Object|null,
     user: UserEntity|null

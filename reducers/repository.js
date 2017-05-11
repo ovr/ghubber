@@ -10,7 +10,7 @@ import {
 // import flow types
 import type { RepositoryEntity } from 'github-flow-js';
 
-type RepositoryState = {
+export type RepositoryState = {
     loading: boolean,
     error: Object|null,
     repository: RepositoryEntity|null

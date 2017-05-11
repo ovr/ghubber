@@ -4,7 +4,7 @@
 import { AppNavigator } from '../Navigator';
 import { NAVIGATION_SET_TITLE, NAVIGATION_HOME, NAVIGATION_LOGIN } from 'constants';
 
-type NavigationState = {
+export type NavigationState = {
 
 }
 

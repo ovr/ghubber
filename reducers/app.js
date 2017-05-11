@@ -12,7 +12,7 @@ import {
 // flow import
 import type { UserEntity, AuthorizationEntity } from 'github-flow-js';
 
-type AppState = {
+export type AppState = {
     user: UserEntity|null,
     authorization: AuthorizationEntity|null
 }

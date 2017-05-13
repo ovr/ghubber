@@ -15,7 +15,7 @@ export function fetchCreatedIssues(username: string) {
         });
 
         searchIssues({
-            q: `user: ${username}`
+            q: `is:open is:issue author:${username}`
         }).then(
             (user) => {
                 dispatch({

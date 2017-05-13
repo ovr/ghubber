@@ -57,8 +57,6 @@ class App extends Component<State, void, void> {
                         Authorization: 'token ' + state.app.authorization.token
                     }
                 }
-
-                console.log(requestOptions);
             }
         )
 

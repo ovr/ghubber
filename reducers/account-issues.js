@@ -36,7 +36,7 @@ export default (state: AccountIssuesState = initialState, action: Object): Accou
             return {
                 ...state,
                 loading: false,
-                issues: action.payload
+                issues: action.payload.items
             }
         case ACCOUNT_ISSUES_CREATED_FAIL:
             return {

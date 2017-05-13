@@ -40,7 +40,13 @@ export function makeLogin(username: string, password: string, code: string) {
 
         const promise = createAuthorization(
             {
-                note: 'Ghubber ' + now
+                note: 'Ghubber ' + now,
+                scopes: [
+                    // user
+                    "user",
+                    "public_repo",
+                    "repo"
+                ]
             },
             options
         );
@@ -78,7 +84,8 @@ export function makeLogin(username: string, password: string, code: string) {
             },
             (response) => {
                 console.warn(response);
-                
+                console.warn(response.clone().json());
+
                 if (response && response.headers) {
                     const headers: Headers = response.headers;
 

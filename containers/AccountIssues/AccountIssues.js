@@ -46,28 +46,67 @@ class AccountIssues extends PureComponent<void, Props, void> {
         }
 
         return (
-            <FlatList
-                style={styles.list}
-                data={issues}
-                keyExtractor={(issue: IssueEntity) => issue.id}
-                renderItem={
-                    ({ item }) => (
-                        <IssueRow
-                            issue={item}
-                            onPress={() => null}
-                        />
-                    )
-                }
-            />
+            <View style={styles.root}>
+                <View style={styles.accountIssuesTypes}>
+                    <View style={[styles.accountIssuesType, styles.accountIssuesTypeActive]}>
+                        <Text style={[styles.accountIssuesTypeText, styles.accountIssuesTypeTextActive]}>Created</Text>
+                    </View>
+                    <View style={styles.accountIssuesType}>
+                        <Text style={styles.accountIssuesTypeText}>Assigned</Text>
+                    </View>
+                    <View style={styles.accountIssuesType}>
+                        <Text style={styles.accountIssuesTypeText}>Mentioned</Text>
+                    </View>
+                </View>
+                <FlatList
+                    style={styles.list}
+                    data={issues}
+                    keyExtractor={(issue: IssueEntity) => issue.id}
+                    renderItem={
+                        ({ item }) => (
+                            <IssueRow
+                                issue={item}
+                                onPress={() => null}
+                            />
+                        )
+                    }
+                />
+            </View>
         )
     }
 }
 
 const styles = StyleSheet.create({
+    root: {
+        flex: 1,
+        marginHorizontal: 15
+    },
+    accountIssuesTypes: {
+        flex: 0,
+        flexDirection: 'row',
+        marginTop: 10,
+    },
+    accountIssuesTypeActive: {
+        backgroundColor: '#0366d6',
+        borderColor: '#0366d6'
+    },
+    accountIssuesType: {
+        paddingVertical: 6,
+        paddingHorizontal: 14,
+        borderWidth: 1,
+        borderColor: '#e1e4e8'
+    },
+    accountIssuesTypeTextActive: {
+        color: '#fff',
+    },
+    accountIssuesTypeText: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        color: '#586069'
+    },
     list: {
         flex: 0,
         marginTop: 5,
-        marginHorizontal: 15
     },
     container: {
         flex: 1,

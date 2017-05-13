@@ -4,6 +4,7 @@
 import React, { Component } from 'react';
 import { AppRegistry } from 'react-native';
 import { Provider } from 'react-redux';
+import { before } from 'github-flow-js/Client';
 
 import { default as Navigator } from './Navigator'
 import { configureStore, getInitialState } from 'utils';
@@ -45,6 +46,21 @@ class App extends Component<State, void, void> {
         }
 
         const store = configureStore(this.state.preloadedState);
+
+        before(
+            (requestOptions) => {
+                const state = store.getState();
+
+                if (state.app.authorization) {
+                    requestOptions.headers = {
+                        ...requestOptions.headers,
+                        Authorization: 'token ' + state.app.authorization.token
+                    }
+                }
+
+                console.log(requestOptions);
+            }
+        )
 
         return (
             <Provider store={store}>

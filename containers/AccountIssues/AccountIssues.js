@@ -6,9 +6,10 @@ import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import { fetchCreatedIssues } from 'actions';
 
-import { Spinner } from 'components';
+import { IssueRow, Spinner } from 'components';
 
 // import flow types
+import type { IssueEntity } from 'github-flow-js';
 import type { AccountIssuesState } from 'reducers/account-issues';
 import type { AppState } from 'reducers/app';
 
@@ -44,7 +45,21 @@ class AccountIssues extends PureComponent<void, Props, void> {
             )
         }
 
-        return null;
+        return (
+            <FlatList
+                style={styles.list}
+                data={issues}
+                keyExtractor={(issue: IssueEntity) => issue.id}
+                renderItem={
+                    ({ item }) => (
+                        <IssueRow
+                            issue={item}
+                            onPress={() => null}
+                        />
+                    )
+                }
+            />
+        )
     }
 }
 

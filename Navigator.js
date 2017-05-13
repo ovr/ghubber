@@ -4,7 +4,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { addNavigationHelpers, StackNavigator } from 'react-navigation';
 
-import { Home, LoginScreen, ProfileScreen, RepositoryScreen } from 'containers';
+import { Home, LoginScreen, ProfileScreen, RepositoryScreen, AccountIssues } from 'containers';
 
 export const AppNavigator = StackNavigator(
     {
@@ -27,6 +27,12 @@ export const AppNavigator = StackNavigator(
             screen: RepositoryScreen,
             navigationOptions: {
                 title: 'Repository',
+            },
+        },
+        AccountIssues: {
+            screen: AccountIssues,
+            navigationOptions: {
+                title: 'Issues',
             },
         },
     },

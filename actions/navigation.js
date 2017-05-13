@@ -16,6 +16,12 @@ export function showAccount() {
     }
 }
 
+export function showAccountIssues() {
+    return NavigationActions.navigate({
+        routeName: 'AccountIssues',
+    })
+}
+
 export function showProfile(id: string) {
     return NavigationActions.navigate({
         routeName: 'Profile',

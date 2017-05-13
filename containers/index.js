@@ -4,6 +4,7 @@
 export * from './Home';
 export * from './LoginScreen';
 export * from './NavigationTitle';
+export * from './AccountIssues';
 export * from './ProfileRepositories';
 export * from './ProfileScreen';
 export * from './Profile';

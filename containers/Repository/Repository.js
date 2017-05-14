@@ -2,9 +2,10 @@
 // @flow
 
 import React, { PureComponent } from 'react';
-import { View, Text, StyleSheet, FlatList } from 'react-native';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import { fetchRepository } from 'actions';
+import { README } from 'components';
 
 // import flow types
 import type { RepositoryState } from 'reducers/repository';
@@ -46,7 +47,9 @@ class Repository extends PureComponent<void, Props, void> {
 
         return (
             <View style={styles.root}>
-                <Text>Test</Text>
+                <ScrollView>
+                    <README owner={repository.owner.login} repo={repository.name} />
+                </ScrollView>
             </View>
         )
     }

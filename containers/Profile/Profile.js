@@ -69,6 +69,7 @@ class Profile extends PureComponent<void, Props, void> {
                 <ProfileView user={user} />
                 {this.renderOrganizations()}
                 <ContributionsGraph user={user} />
+                <View style={styles.blank}/>
             </ScrollView>
         )
     }
@@ -83,6 +84,10 @@ const styles = StyleSheet.create({
     root: {
         flex: 1,
         padding: 10
+    },
+    blank: {
+        flex: 1,
+        height: 200
     }
 });
 

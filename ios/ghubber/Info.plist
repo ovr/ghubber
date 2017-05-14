@@ -45,6 +45,7 @@
 	<string>LaunchScreen</string>
 	<key>UIAppFonts</key>
 	<array>
+		<string>Octicons.ttf</string>
 		<string>FontAwesome.ttf</string>
 		<string>Entypo.ttf</string>
 	</array>

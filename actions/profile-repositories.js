@@ -21,6 +21,7 @@ export function fetchRepositories(username: string) {
         const request = getRepositoriesByUsername(
             username,
             {
+                sort: 'pushed',
                 "per_page": 50
             }
         );
@@ -51,6 +52,7 @@ export function fetchMoreRepositories(username: string, page: number) {
             username,
             {
                 page,
+                sort: 'pushed',
                 "per_page": 50
             }
         );

@@ -4,6 +4,7 @@
 import React, { PureComponent } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Avatar } from 'components';
+import Icon from 'react-native-vector-icons/Octicons';
 
 // import flow types
 import type { UserEntity } from 'github-flow-js';
@@ -60,7 +61,38 @@ export default class ProfileViewMobile extends PureComponent<void, Props, void> 
                         { user.name }
                         <Text style={styles.login} numberOfLines={1}> @{ user.login }</Text>
                     </Text>
-                    <Text>{ user.email }</Text>
+                    {
+                        user.company ? (
+                            <Text numberOfLines={1} style={styles.company}>
+                                <Icon name="organization" size={16} style={styles.icon} />
+                                { user.company }
+                            </Text>
+                        ) : null
+                    }
+                    {
+                        user.location ? (
+                            <Text numberOfLines={1} style={styles.location}>
+                                <Icon name="location" size={16} style={styles.icon} />
+                                { user.location }
+                            </Text>
+                        ) : null
+                    }
+                    {
+                        user.email ? (
+                            <Text numberOfLines={1} style={styles.mail}>
+                                <Icon name="mail" size={16} style={styles.icon} />
+                                { user.email }
+                            </Text>
+                        ) : null
+                    }
+                    {
+                        user.blog ? (
+                            <Text numberOfLines={1} style={styles.blog}>
+                                <Icon name="link" size={16} style={styles.icon} />
+                                { user.blog }
+                            </Text>
+                        ) : null
+                    }
                     <Text style={styles.bio}>{ user.bio }</Text>
                 </View>
             </View>
@@ -98,10 +130,30 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
     name: {
-        fontSize: 20
+        fontSize: 20,
+        marginBottom: 5
     },
     login: {
         fontSize: 18,
         fontWeight: 'bold'
-    }
+    },
+    company: {
+        fontSize: 14,
+        fontWeight: 'bold'
+    },
+    location: {
+        fontSize: 16,
+    },
+    blog: {
+        fontSize: 16,
+    },
+    mail: {
+        fontSize: 16,
+    },
+    icon: {
+    },
+    bio: {
+        fontSize: 16,
+        marginTop: 5
+    },
 })

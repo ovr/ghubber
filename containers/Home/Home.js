@@ -4,18 +4,19 @@
 import React, { PureComponent } from 'react';
 import { View, Button } from 'react-native';
 import { connect } from 'react-redux';
-import { showAccount, showAccountIssues, showProfile, logout } from 'actions';
+import { showAccount, showAccountIssues, showProfile, showAbout, logout } from 'actions';
 
 type Props = {
     showAccount: typeof showAccount,
     showAccountIssues: typeof showAccountIssues,
+    showAbout: typeof showAbout,
     showProfile: typeof showProfile,
     logout: typeof logout
 }
 
 class Home extends PureComponent<void, Props, void> {
     render() {
-        const { showAccount, showAccountIssues, showProfile, logout } = this.props;
+        const { showAccount, showAccountIssues, showProfile, showAbout, logout } = this.props;
 
         return (
             <View>
@@ -23,6 +24,7 @@ class Home extends PureComponent<void, Props, void> {
                 <Button title="Account Issues" onPress={() => showAccountIssues()} />
                 <Button title="Profile 1" onPress={() => showProfile('ovr')} />
                 <Button title="Profile 2" onPress={() => showProfile('idchlife')} />
+                <Button title="About" onPress={() => showAbout()} />
                 <Button title="Logout" onPress={logout} />
             </View>
         )
@@ -31,5 +33,5 @@ class Home extends PureComponent<void, Props, void> {
 
 export default connect(
     (state) => state,
-    { showProfile, logout, showAccount, showAccountIssues }
+    { showProfile, logout, showAccount, showAccountIssues, showAbout }
 )(Home);

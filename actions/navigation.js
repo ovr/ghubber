@@ -22,6 +22,12 @@ export function showAccountIssues() {
     })
 }
 
+export function showAbout() {
+    return NavigationActions.navigate({
+        routeName: 'AboutScreen',
+    })
+}
+
 export function showProfile(id: string) {
     return NavigationActions.navigate({
         routeName: 'Profile',

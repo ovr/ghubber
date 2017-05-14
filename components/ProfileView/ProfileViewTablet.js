@@ -33,14 +33,6 @@ export default class ProfileViewTablet extends PureComponent<void, Props, void> 
                     <View style={styles.statsWrapper}>
                         <View style={styles.statsBlock}>
                             <Text style={styles.statsBlockTitle}>
-                                Followers
-                            </Text>
-                            <Text>
-                                {user.followers}
-                            </Text>
-                        </View>
-                        <View style={styles.statsBlock}>
-                            <Text style={styles.statsBlockTitle}>
                                 Repos
                             </Text>
                             <Text>
@@ -53,6 +45,14 @@ export default class ProfileViewTablet extends PureComponent<void, Props, void> 
                             </Text>
                             <Text>
                                 {user.public_gists}
+                            </Text>
+                        </View>
+                        <View style={styles.statsBlock}>
+                            <Text style={styles.statsBlockTitle}>
+                                Followers
+                            </Text>
+                            <Text>
+                                {user.followers}
                             </Text>
                         </View>
                         <View style={styles.statsBlock}>

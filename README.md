@@ -134,6 +134,19 @@ npm run ios
     - [ ] Close/re-open
     - [ ] Add/remove/edit comment
 
+### We are hire
+
+Do you know JS and React and would like to code on react-native for $? Write an email to dmitry@interpals.net with your resume and join Interpals.net.
+
+### Sponsors
+
+Thanks to our sponsors and supporters:
+
+| JetBrains | Interpals                 |
+|-----------|---------------------------|
+| WebStorm  | Hosting App inside Itunes |
+
+
 ### LICENSE
 
 This project is open-sourced software licensed under the MIT License.

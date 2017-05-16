@@ -22,6 +22,7 @@ export default class InputField extends PureComponent<void, Props, void> {
                 placeholder={placeholder}
                 onChangeText={onChangeText}
                 secureTextEntry={secureTextEntry}
+                underlineColorAndroid="transparent"
             />
         )
     }

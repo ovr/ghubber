@@ -15,3 +15,4 @@ export * from './ProfileOrganizationsView';
 export * from './ProfileView';
 export * from './README';
 export * from './ErrorView';
+export * from './KeyboardAvoidingView';

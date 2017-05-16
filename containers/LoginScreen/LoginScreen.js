@@ -2,8 +2,8 @@
 // @flow
 
 import React, { PureComponent } from 'react';
-import { Image, View, StyleSheet, Text, Platform, KeyboardAvoidingView } from 'react-native';
-import { Button, InputField, Spinner } from 'components';
+import { Image, View, StyleSheet, Text, Platform } from 'react-native';
+import { Button, InputField, Spinner, KeyboardAvoidingView } from 'components';
 import { connect } from 'react-redux';
 import { makeLogin, showHome } from 'actions';
 import { images } from 'utils/images';

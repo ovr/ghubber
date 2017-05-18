@@ -23,10 +23,10 @@ class ProfileScreen extends PureComponent<void, Props, void> {
                     />
                 }
             >
-                <View style={{ flex: 1 }}>
+                <View style={styles.page}>
                     <Profile />
                 </View>
-                <View style={{ flex: 1 }}>
+                <View style={styles.page}>
                     <ProfileRepositories />
                 </View>
             </IndicatorViewPager>
@@ -38,6 +38,9 @@ const styles = StyleSheet.create({
     viewPager: {
         flex: 1,
         flexDirection: 'column-reverse'
+    },
+    page: {
+        flex: 1
     }
 });
 

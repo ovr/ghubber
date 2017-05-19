@@ -10,7 +10,30 @@ import { Profile, ProfileRepositories } from 'containers';
 type Props = {
 }
 
+const TITLE_REPOS_INDEX = 1;
+
 class ProfileScreen extends PureComponent<void, Props, void> {
+    renderTitle(index: number, title: string, isSelected: boolean): React.Element<any> {
+        if (index === TITLE_REPOS_INDEX) {
+            return (
+                <View style={styles.pageTitleWrapper}>
+                    <Text>
+                        {title}
+                    </Text>
+                    <Text style={styles.badge}>
+                        171
+                    </Text>
+                </View>
+            )
+        }
+
+        return (
+            <Text>
+                {title}
+            </Text>
+        )
+    }
+
     render() {
         return (
             <IndicatorViewPager
@@ -20,6 +43,7 @@ class ProfileScreen extends PureComponent<void, Props, void> {
                         titles={
                             ['Overview', 'Repos']
                         }
+                        renderTitle={this.renderTitle.bind(this)}
                     />
                 }
             >
@@ -41,6 +65,19 @@ const styles = StyleSheet.create({
     },
     page: {
         flex: 1
+    },
+    pageTitleWrapper: {
+        flex: 1,
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
+    badge: {
+        fontSize: 12,
+        marginLeft: 10,
+        backgroundColor: '#3498db',
+        color: '#fff',
+        paddingVertical: 3,
+        paddingHorizontal: 5
     }
 });
 

@@ -11,14 +11,15 @@ import {
 import type { IssueEntity } from 'github-flow-js';
 
 export type AccountIssuesState = {
-    issues: Array<IssueEntity>,
+    issues: Array<IssueEntity>|null,
     // first list fetch
     loading: boolean,
     error: Object|string|null,
 }
 
 const initialState: AccountIssuesState = {
-    issues: [],
+    // By default, it's null, because need to show "You don't have any issues :)"
+    issues: null,
     loading: false,
     error: null,
 }

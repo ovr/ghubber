@@ -29,7 +29,11 @@ class AccountIssues extends PureComponent<void, Props, void> {
     render() {
         const { loading, error, issues } = this.props.issues;
 
-        if (loading || !issues) {
+        if (issues === null) {
+            return null;
+        }
+
+        if (loading) {
             return (
                 <View style={styles.container}>
                     <Spinner />
@@ -43,6 +47,16 @@ class AccountIssues extends PureComponent<void, Props, void> {
                     <Text>Oops! Error...</Text>
                 </View>
             )
+        }
+
+        if (issues.length === 0) {
+            return (
+                <View style={styles.container}>
+                    <Text>
+                        You don't have any issues ;)
+                    </Text>
+                </View>
+            );
         }
 
         return (

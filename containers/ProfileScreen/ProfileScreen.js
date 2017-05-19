@@ -14,14 +14,20 @@ const TITLE_REPOS_INDEX = 1;
 
 class ProfileScreen extends PureComponent<void, Props, void> {
     renderTitle(index: number, title: string, isSelected: boolean): React.Element<any> {
+        const { profile } = this.props;
+
         if (index === TITLE_REPOS_INDEX) {
+            title = 'Repositories';
+        }
+
+        if (index === TITLE_REPOS_INDEX && profile.user && profile.user.public_repos) {
             return (
                 <View style={styles.pageTitleWrapper}>
                     <Text>
                         {title}
                     </Text>
                     <Text style={styles.badge}>
-                        171
+                        {profile.user.public_repos}
                     </Text>
                 </View>
             )
@@ -34,15 +40,28 @@ class ProfileScreen extends PureComponent<void, Props, void> {
         )
     }
 
+    getTitles() {
+        const { profile } = this.props;
+
+        return [
+            'Overview',
+            /**
+             * There are two hacks
+             * Fist, title should be string
+             * And We should update title to update show badge
+             */
+            profile.user ? `profile.user.public_repos` : '0'
+        ];
+    }
+
     render() {
+
         return (
             <IndicatorViewPager
                 style={ styles.viewPager }
                 indicator={
                     <PagerTitleIndicator
-                        titles={
-                            ['Overview', 'Repos']
-                        }
+                        titles={this.getTitles()}
                         renderTitle={this.renderTitle.bind(this)}
                     />
                 }
@@ -84,7 +103,8 @@ const styles = StyleSheet.create({
 export default connect(
     (state) => {
         return {
-            navigation: state.navigation
+            navigation: state.navigation,
+            profile: state.profile
         }
     }
 )(ProfileScreen);

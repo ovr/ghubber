@@ -36,9 +36,6 @@ class Home extends PureComponent<void, Props, void> {
                 <Button style={styles.button} onPress={() => showAbout()}>
                     About
                 </Button>
-                <Button style={styles.button} onPress={logout}>
-                    Logout
-                </Button>
             </View>
         )
     }

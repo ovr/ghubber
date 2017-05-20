@@ -3,19 +3,21 @@
 
 import React, { PureComponent } from 'react';
 import { Image, View, StyleSheet, Text, Platform } from 'react-native';
-import { Avatar } from 'components';
+import { Avatar, Button } from 'components';
 import { connect } from 'react-redux';
+import { logout } from 'actions';
 
 // import flow types
 import type { AppState } from 'reducers/app';
 
 type Props = {
     app: AppState,
+    logout: typeof logout
 }
 
 class SideMenu extends PureComponent<void, Props, void> {
     render() {
-        const { app } = this.props;
+        const { app, logout } = this.props;
 
         if (app.user === null) {
             return null;
@@ -30,6 +32,11 @@ class SideMenu extends PureComponent<void, Props, void> {
                         <Text style={styles.login} numberOfLines={1}>@{app.user.login}</Text>
                     </View>
                 </View>
+                <View style={styles.body}>
+                    <Button style={styles.button} onPress={logout}>
+                        Logout
+                    </Button>
+                </View>
             </View>
         )
     }
@@ -41,18 +48,22 @@ const styles = StyleSheet.create({
     root: {
         flex: 1,
         marginTop: Platform.OS === 'ios' ? 25 : 0,
-        paddingLeft: 10
+        paddingLeft: 10,
+        paddingRight: 5
     },
     header: {
-        flex: 1,
-        flexDirection: 'row'
+        flex: 0,
+        flexDirection: 'row',
+        paddingBottom: 15,
+        borderBottomWidth: 1,
+        borderBottomColor: '#586069'
     },
     avatar: {
         borderRadius: AVATAR_SIZE / 2,
         marginRight: 15
     },
     headerRight: {
-        width: 195
+        width: 190
     },
     name: {
         fontSize: 20,
@@ -61,6 +72,9 @@ const styles = StyleSheet.create({
     login: {
         fontSize: 18,
         color: '#586069',
+    },
+    body: {
+        marginTop: 15
     }
 });
 
@@ -70,5 +84,5 @@ export default connect(
             app: state.app
         }
     },
-    { }
+    { logout }
 )(SideMenu);

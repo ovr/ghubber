@@ -2,9 +2,9 @@
 // @flow
 
 import React, { PureComponent } from 'react';
-import { View, Text, StyleSheet, FlatList } from 'react-native';
+import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
-import { fetchCreatedIssues } from 'actions';
+import { fetchIssues } from 'actions';
 
 import { IssueRow, Spinner } from 'components';
 
@@ -16,14 +16,14 @@ import type { AppState } from 'reducers/app';
 type Props = {
     issues: AccountIssuesState,
     app: AppState,
-    fetchCreatedIssues: typeof fetchCreatedIssues
+    fetchIssues: typeof fetchIssues
 }
 
 class AccountIssues extends PureComponent<void, Props, void> {
     componentWillMount() {
-        const { app, fetchCreatedIssues } = this.props;
+        const { issues, app, fetchIssues } = this.props;
 
-        fetchCreatedIssues(app.user.login);
+        fetchIssues(app.user.login, 'created');
     }
 
     renderContent() : React.Element<any> {
@@ -73,18 +73,38 @@ class AccountIssues extends PureComponent<void, Props, void> {
     }
 
     render() {
+        const { app, fetchIssues, issues } = this.props;
+        const { type } = issues;
+
         return (
             <View style={styles.root}>
                 <View style={styles.accountIssuesTypes}>
-                    <View style={[styles.accountIssuesType, styles.accountIssuesTypeActive]}>
-                        <Text style={[styles.accountIssuesTypeText, styles.accountIssuesTypeTextActive]}>Created</Text>
-                    </View>
-                    <View style={styles.accountIssuesType}>
+                    {
+                        type === 'created' ? (
+                            <View style={[styles.accountIssuesType, styles.accountIssuesTypeActive]}>
+                                <Text style={[styles.accountIssuesTypeText, styles.accountIssuesTypeTextActive]}>Created</Text>
+                            </View>
+                        ) : (
+                            <TouchableOpacity
+                                style={styles.accountIssuesType}
+                                onPress={() => fetchIssues(app.user.login, 'created')}
+                            >
+                                <Text style={styles.accountIssuesTypeText}>Created</Text>
+                            </TouchableOpacity>
+                        )
+                    }
+                    <TouchableOpacity
+                        style={styles.accountIssuesType}
+                        onPress={() => fetchIssues(app.user.login, 'assigned')}
+                    >
                         <Text style={styles.accountIssuesTypeText}>Assigned</Text>
-                    </View>
-                    <View style={styles.accountIssuesType}>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={styles.accountIssuesType}
+                        onPress={() => fetchIssues(app.user.login, 'mentioned')}
+                    >
                         <Text style={styles.accountIssuesTypeText}>Mentioned</Text>
-                    </View>
+                    </TouchableOpacity>
                 </View>
                 {this.renderContent()}
             </View>
@@ -141,5 +161,5 @@ export default connect(
             app: state.app
         }
     },
-    { fetchCreatedIssues }
+    { fetchIssues }
 )(AccountIssues);

@@ -8,19 +8,38 @@ import {
     ACCOUNT_ISSUES_CREATED_FAIL
 } from 'constants';
 
-export function fetchCreatedIssues(username: string) {
+// import flow types
+import type { AccountIssuesType } from 'reducers/account-issues';
+
+
+function getSearchQByType(type: AccountIssuesType, username: string) {
+    switch (type) {
+        case 'created':
+            return `is:open is:issue author:${username}`;
+        case 'assigned':
+            return `is:open is:issue assignee:${username}`;
+        case 'mentioned':
+            return `is:open is:issue mentions:${username}`;
+    }
+}
+
+export function fetchIssues(username: string, type: AccountIssuesType) {
     return dispatch => {
         dispatch({
-            type: ACCOUNT_ISSUES_CREATED_REQUEST
+            type: ACCOUNT_ISSUES_CREATED_REQUEST,
+            payload: type
         });
 
         searchIssues({
             q: `is:open is:issue author:${username}`
         }).then(
-            (user) => {
+            (response) => {
                 dispatch({
                     type: ACCOUNT_ISSUES_CREATED_SUCCESS,
-                    payload: user
+                    payload: {
+                        type: type,
+                        data: response
+                    }
                 })
             },
             (error) => {

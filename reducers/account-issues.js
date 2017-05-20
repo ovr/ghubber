@@ -10,7 +10,10 @@ import {
 // import flow types
 import type { IssueEntity } from 'github-flow-js';
 
+export type AccountIssuesType = 'created' | 'assigned' | 'mentioned';
+
 export type AccountIssuesState = {
+    type: AccountIssuesType,
     issues: Array<IssueEntity>|null,
     // first list fetch
     loading: boolean,
@@ -18,6 +21,7 @@ export type AccountIssuesState = {
 }
 
 const initialState: AccountIssuesState = {
+    type: 'created',
     // By default, it's null, because need to show "You don't have any issues :)"
     issues: null,
     loading: false,
@@ -31,13 +35,15 @@ export default (state: AccountIssuesState = initialState, action: Object): Accou
                 ...state,
                 issues: [],
                 loading: true,
-                error: null
+                error: null,
+                type: action.payload
             }
         case ACCOUNT_ISSUES_CREATED_SUCCESS:
             return {
                 ...state,
                 loading: false,
-                issues: action.payload.items
+                issues: action.payload.data.items,
+                type: action.payload.type,
             }
         case ACCOUNT_ISSUES_CREATED_FAIL:
             return {

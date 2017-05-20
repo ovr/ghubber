@@ -21,9 +21,9 @@
     "react-native": "0.44.0",
     "react-native-device-info": "^0.10.2",
     "react-native-drawer-layout": "^1.3.0",
-    "react-native-sentry": "^0.8.5",
+    "react-native-sentry": "^0.9.1",
     "react-native-vector-icons": "^4.1.1",
-    "react-navigation": "^1.0.0-beta.9",
+    "react-navigation": "^1.0.0-beta.10",
     "react-redux": "^5.0.4",
     "redux": "^3.6.0",
     "redux-logger": "^3.0.1",
@@ -31,10 +31,10 @@
     "rn-viewpager": "^1.2.2"
   },
   "devDependencies": {
-    "babel-jest": "20.0.1",
+    "babel-jest": "20.0.3",
     "babel-preset-react-native": "1.9.2",
     "flow-bin": "^0.46.0",
-    "jest": "20.0.1",
+    "jest": "20.0.3",
     "react-native-version": "^2.3.1",
     "react-test-renderer": "16.0.0-alpha.6"
   },

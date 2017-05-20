@@ -11,3 +11,4 @@ export * from './ProfileScreen';
 export * from './Profile';
 export * from './Repository';
 export * from './RepositoryScreen';
+export * from './SideMenu';

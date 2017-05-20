@@ -2,9 +2,11 @@
 // @flow
 
 import React, { Component } from 'react';
-import { AppRegistry } from 'react-native';
+import { View, Text, AppRegistry } from 'react-native';
 import { Provider } from 'react-redux';
 import { before } from 'github-flow-js/Client';
+import DrawerLayout from 'react-native-drawer-layout';
+import { SideMenu } from 'containers';
 
 import { default as Navigator } from './Navigator'
 import { configureStore, getInitialState } from 'utils';
@@ -60,9 +62,20 @@ class App extends Component<State, void, void> {
             }
         )
 
+        const state = store.getState();
+
         return (
             <Provider store={store}>
-                <Navigator />
+                <DrawerLayout
+                    drawerBackgroundColor="#fff"
+                    drawerWidth={300}
+                    drawerLockMode="unlocked"
+                    keyboardDismissMode="on-drag"
+                    statusBarBackgroundColor="#fff"
+                    renderNavigationView={() => <SideMenu />}
+                >
+                    <Navigator />
+                </DrawerLayout>
             </Provider>
         );
     }

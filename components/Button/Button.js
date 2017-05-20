@@ -6,15 +6,16 @@ import { Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 type Props = {
     children: Object,
-    onPress: () => void
+    onPress: () => void,
+    style:? Object
 };
 
 export default class Button extends PureComponent<void, Props, void> {
     render() {
-        const { children, onPress } = this.props;
+        const { style, children, onPress } = this.props;
 
         return (
-            <TouchableOpacity onPress={onPress} style={styles.button}>
+            <TouchableOpacity onPress={onPress} style={[styles.button, style]}>
                 <Text style={styles.text}>
                     {children}
                 </Text>

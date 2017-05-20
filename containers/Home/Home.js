@@ -2,8 +2,9 @@
 // @flow
 
 import React, { PureComponent } from 'react';
-import { View, Button } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
+import { Button } from 'components';
 import { showAccount, showAccountIssues, showProfile, showAbout, logout } from 'actions';
 
 type Props = {
@@ -19,17 +20,41 @@ class Home extends PureComponent<void, Props, void> {
         const { showAccount, showAccountIssues, showProfile, showAbout, logout } = this.props;
 
         return (
-            <View>
-                <Button title="Account" onPress={() => showAccount()} />
-                <Button title="Account Issues" onPress={() => showAccountIssues()} />
-                <Button title="Profile 1" onPress={() => showProfile('ovr')} />
-                <Button title="Profile 2" onPress={() => showProfile('idchlife')} />
-                <Button title="About" onPress={() => showAbout()} />
-                <Button title="Logout" onPress={logout} />
+            <View style={styles.root}>
+                <Button style={styles.button} onPress={() => showAccount()}>
+                    Account
+                </Button>
+                <Button style={styles.button} onPress={() => showAccountIssues()}>
+                    Account Issues
+                </Button>
+                <Button style={styles.button} onPress={() => showProfile('ovr')}>
+                    Profile @ovr
+                </Button>
+                <Button style={styles.button} onPress={() => showProfile('idchlife')}>
+                    Profile @idchlife
+                </Button>
+                <Button style={styles.button} onPress={() => showAbout()}>
+                    About
+                </Button>
+                <Button style={styles.button} onPress={logout}>
+                    Logout
+                </Button>
             </View>
         )
     }
 }
+
+const styles = StyleSheet.create({
+    root: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    button: {
+        width: 200,
+        marginBottom: 10
+    }
+})
 
 export default connect(
     (state) => state,

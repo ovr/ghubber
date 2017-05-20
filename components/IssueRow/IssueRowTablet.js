@@ -61,7 +61,7 @@ export default class IssueRowTablet extends PureComponent<void, Props, void> {
                     <Text style={styles.repositoryName}>
                         {repositoryName}
                     </Text>
-                    <Text style={styles.title}>
+                    <Text style={styles.title} numberOfLines={1}>
                         {issue.title}
                     </Text>
                 </View>

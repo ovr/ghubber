@@ -26,14 +26,10 @@ class AccountIssues extends PureComponent<void, Props, void> {
         fetchCreatedIssues(app.user.login);
     }
 
-    render() {
+    renderContent() : React.Element<any> {
         const { loading, error, issues } = this.props.issues;
 
-        if (issues === null) {
-            return null;
-        }
-
-        if (loading) {
+        if (loading || issues === null) {
             return (
                 <View style={styles.container}>
                     <Spinner />
@@ -60,6 +56,24 @@ class AccountIssues extends PureComponent<void, Props, void> {
         }
 
         return (
+            <FlatList
+                style={styles.list}
+                data={issues}
+                keyExtractor={(issue: IssueEntity) => issue.id}
+                renderItem={
+                    ({ item }) => (
+                        <IssueRow
+                            issue={item}
+                            onPress={() => null}
+                        />
+                    )
+                }
+            />
+        );
+    }
+
+    render() {
+        return (
             <View style={styles.root}>
                 <View style={styles.accountIssuesTypes}>
                     <View style={[styles.accountIssuesType, styles.accountIssuesTypeActive]}>
@@ -72,19 +86,7 @@ class AccountIssues extends PureComponent<void, Props, void> {
                         <Text style={styles.accountIssuesTypeText}>Mentioned</Text>
                     </View>
                 </View>
-                <FlatList
-                    style={styles.list}
-                    data={issues}
-                    keyExtractor={(issue: IssueEntity) => issue.id}
-                    renderItem={
-                        ({ item }) => (
-                            <IssueRow
-                                issue={item}
-                                onPress={() => null}
-                            />
-                        )
-                    }
-                />
+                {this.renderContent()}
             </View>
         )
     }

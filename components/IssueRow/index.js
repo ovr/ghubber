@@ -1,4 +1,9 @@
 // @author Dmitry Patsura <talk@dmtry.me> https://github.com/ovr
 // @flow
 
-export { default as IssueRow } from './IssueRow';
+import { isTablet } from 'react-native-device-info';
+
+import IssueRowMobile from './IssueRowMobile';
+import IssueRowTablet from './IssueRowTablet';
+
+export const IssueRow = isTablet() ? IssueRowTablet : IssueRowMobile;

@@ -20,10 +20,6 @@ const styles = StyleSheet.create({
         paddingTop: 5,
         paddingBottom: 5,
     },
-    header: {
-        flex: 1,
-        flexDirection: 'row'
-    },
     repositoryName: {
         flex: 0,
         fontSize: 16,
@@ -42,7 +38,7 @@ const ForkBadge = <View style={styles.forkBadge}><Text>Fork</Text></View>;
 
 const RepositoryUrlPrefixLenght = 'https://api.github.com/repos/'.length;
 
-export default class IssueRow extends PureComponent<void, Props, void> {
+export default class IssueRowMobile extends PureComponent<void, Props, void> {
     render() {
         const { issue, onPress } = this.props;
 
@@ -50,14 +46,12 @@ export default class IssueRow extends PureComponent<void, Props, void> {
 
         return (
             <TouchableOpacity style={styles.row} onPress={onPress}>
-                <View style={styles.header}>
-                    <Text style={styles.repositoryName}>
-                        {repositoryName}
-                    </Text>
-                    <Text style={styles.title}>
-                        {issue.title}
-                    </Text>
-                </View>
+                <Text style={styles.repositoryName} numberOfLines={1}>
+                    {repositoryName}
+                </Text>
+                <Text style={styles.title} numberOfLines={1}>
+                    {issue.title}
+                </Text>
             </TouchableOpacity>
         )
     }

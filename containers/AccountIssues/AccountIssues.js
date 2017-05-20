@@ -2,11 +2,11 @@
 // @flow
 
 import React, { PureComponent } from 'react';
-import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import { fetchIssues } from 'actions';
 
-import { IssueRow, Spinner } from 'components';
+import { IssueRow, Spinner, FilterTabType } from 'components';
 
 // import flow types
 import type { IssueEntity } from 'github-flow-js';
@@ -79,32 +79,21 @@ class AccountIssues extends PureComponent<void, Props, void> {
         return (
             <View style={styles.root}>
                 <View style={styles.accountIssuesTypes}>
-                    {
-                        type === 'created' ? (
-                            <View style={[styles.accountIssuesType, styles.accountIssuesTypeActive]}>
-                                <Text style={[styles.accountIssuesTypeText, styles.accountIssuesTypeTextActive]}>Created</Text>
-                            </View>
-                        ) : (
-                            <TouchableOpacity
-                                style={styles.accountIssuesType}
-                                onPress={() => fetchIssues(app.user.login, 'created')}
-                            >
-                                <Text style={styles.accountIssuesTypeText}>Created</Text>
-                            </TouchableOpacity>
-                        )
-                    }
-                    <TouchableOpacity
-                        style={styles.accountIssuesType}
+                    <FilterTabType
+                        active={type === 'created'}
+                        onPress={() => fetchIssues(app.user.login, 'created')}
+                        title="Created"
+                    />
+                    <FilterTabType
+                        active={type === 'assigned'}
                         onPress={() => fetchIssues(app.user.login, 'assigned')}
-                    >
-                        <Text style={styles.accountIssuesTypeText}>Assigned</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={styles.accountIssuesType}
+                        title="Created"
+                    />
+                    <FilterTabType
+                        active={type === 'mentioned'}
                         onPress={() => fetchIssues(app.user.login, 'mentioned')}
-                    >
-                        <Text style={styles.accountIssuesTypeText}>Mentioned</Text>
-                    </TouchableOpacity>
+                        title="Mentioned"
+                    />
                 </View>
                 {this.renderContent()}
             </View>
@@ -121,24 +110,6 @@ const styles = StyleSheet.create({
         flex: 0,
         flexDirection: 'row',
         marginTop: 10,
-    },
-    accountIssuesTypeActive: {
-        backgroundColor: '#0366d6',
-        borderColor: '#0366d6'
-    },
-    accountIssuesType: {
-        paddingVertical: 6,
-        paddingHorizontal: 14,
-        borderWidth: 1,
-        borderColor: '#e1e4e8'
-    },
-    accountIssuesTypeTextActive: {
-        color: '#fff',
-    },
-    accountIssuesTypeText: {
-        fontSize: 16,
-        fontWeight: 'bold',
-        color: '#586069'
     },
     list: {
         flex: 0,

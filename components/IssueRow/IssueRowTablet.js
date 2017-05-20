@@ -24,6 +24,10 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row'
     },
+    body: {
+        flex: 1,
+        flexDirection: 'row'
+    },
     repositoryName: {
         flex: 0,
         fontSize: 16,
@@ -36,6 +40,9 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: 'bold',
     },
+    info: {
+        marginRight: 5
+    }
 });
 
 const ForkBadge = <View style={styles.forkBadge}><Text>Fork</Text></View>;
@@ -57,6 +64,18 @@ export default class IssueRowTablet extends PureComponent<void, Props, void> {
                     <Text style={styles.title}>
                         {issue.title}
                     </Text>
+                </View>
+                <View style={styles.body}>
+                    <Text style={styles.info}>
+                        #{issue.number} openeded {issue.created_at} by {issue.user.login}
+                    </Text>
+                    {
+                        issue.milestone ? (
+                            <Text>
+                                {issue.milestone.title}
+                            </Text>
+                        ) : null
+                    }
                 </View>
             </TouchableOpacity>
         )

@@ -2,8 +2,8 @@
 // @flow
 
 import React, { PureComponent } from 'react';
-import { Image, View, StyleSheet, Text, Platform } from 'react-native';
-import { Avatar, Button } from 'components';
+import { Image, View, StyleSheet, Text, ScrollView, Platform } from 'react-native';
+import { Avatar, OrganizationAvatar, Button } from 'components';
 import { connect } from 'react-redux';
 import { hideSideMenu, logout } from 'actions';
 
@@ -26,7 +26,7 @@ class SideMenu extends PureComponent<void, Props, void> {
         }
 
         return (
-            <View style={styles.root}>
+            <ScrollView style={styles.root}>
                 <View style={styles.header}>
                     <Avatar user={app.user} size={AVATAR_SIZE} style={styles.avatar} />
                     <View style={styles.headerRight}>
@@ -35,6 +35,20 @@ class SideMenu extends PureComponent<void, Props, void> {
                     </View>
                 </View>
                 <View style={styles.body}>
+                    {
+                        app.organizations && app.organizations.map(
+                            (entity) => (
+                                <View style={styles.organization}>
+                                    <OrganizationAvatar organization={entity} size={30} />
+                                    <Text style={styles.organizationLogin}>
+                                        {entity.login}
+                                    </Text>
+                                </View>
+                            )
+                        )
+                    }
+                </View>
+                <View style={styles.bottom}>
                     <Button style={styles.button} onPress={hideSideMenu}>
                         Close
                     </Button>
@@ -42,7 +56,7 @@ class SideMenu extends PureComponent<void, Props, void> {
                         Logout
                     </Button>
                 </View>
-            </View>
+            </ScrollView>
         )
     }
 }
@@ -78,11 +92,24 @@ const styles = StyleSheet.create({
         fontSize: 18,
         color: '#586069',
     },
+    bottom: {
+        marginTop: 15
+    },
     body: {
         marginTop: 15
     },
     button: {
         marginBottom: 10
+    },
+    organization: {
+        flex: 0,
+        flexDirection: 'row',
+        height: 30,
+        marginBottom: 2
+    },
+    organizationLogin: {
+        marginLeft: 10,
+        fontSize: 18
     }
 });
 

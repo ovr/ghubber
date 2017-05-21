@@ -3,7 +3,7 @@
 
 import { showHome } from './navigation';
 import { encode } from 'base-64';
-import { createAuthorization, getUser } from 'github-flow-js';
+import { createAuthorization, getUser, getOrganizationsByUsername } from 'github-flow-js';
 
 import {
     LOGIN_REQUEST,
@@ -11,7 +11,8 @@ import {
     LOGIN_REQUEST_SUCCESS,
     LOGIN_REQUEST_2FA_REQUIRED,
     //
-    APP_PROFILE_SUCCESS
+    APP_PROFILE_SUCCESS,
+    APP_ORGANIZATIONS_SUCCESS
 } from 'constants';
 
 // import flow types
@@ -64,9 +65,7 @@ export function makeLogin(username: string, password: string, code: string) {
                     }
                 };
 
-                const promise = getUser({}, options);
-
-                promise.then(
+                getUser({}, options).then(
                     (response) => {
                         dispatch({
                             type: APP_PROFILE_SUCCESS,
@@ -74,6 +73,18 @@ export function makeLogin(username: string, password: string, code: string) {
                         });
 
                         dispatch(showHome());
+
+                        getOrganizationsByUsername(response.login, {}, options).then(
+                            (response) => {
+                                dispatch({
+                                    type: APP_ORGANIZATIONS_SUCCESS,
+                                    payload: response
+                                });
+                            },
+                            (response) => {
+                                // @todo
+                            }
+                        )
                     },
                     (response) => {
                         dispatch({

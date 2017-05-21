@@ -1,15 +1,32 @@
 // @author Dmitry Patsura <talk@dmtry.me> https://github.com/ovr
 
 import React from 'react';
+import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
-import { addNavigationHelpers, StackNavigator } from 'react-navigation';
+import { SideMenuButton } from 'containers';
+import { addNavigationHelpers, StackNavigator, DrawerNavigator } from 'react-navigation';
 
-import { Home, LoginScreen, ProfileScreen, RepositoryScreen, AboutScreen, AccountIssues } from 'containers';
+import { Home, LoginScreen, ProfileScreen, RepositoryScreen, AboutScreen, AccountIssues, SideMenu } from 'containers';
+
+export const HomeScreeDrawer = DrawerNavigator({
+    Home: {
+        screen: Home
+    },
+}, {
+    drawerWidth: 300,
+    drawerPosition: 'left',
+    contentComponent: props => <SideMenu />,
+    initialRouteName: 'Home'
+})
+
 
 export const AppNavigator = StackNavigator(
     {
         Home: {
-            screen: Home
+            screen: HomeScreeDrawer,
+            navigationOptions: {
+                headerLeft: <SideMenuButton />
+            }
         },
         Login: {
             screen: LoginScreen,

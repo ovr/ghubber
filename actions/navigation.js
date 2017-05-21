@@ -16,6 +16,18 @@ export function showAccount() {
     }
 }
 
+export function showSideMenu() {
+    return NavigationActions.navigate({
+        routeName: 'DrawerOpen',
+    })
+}
+
+export function hideSideMenu() {
+    return NavigationActions.navigate({
+        routeName: 'DrawerClose',
+    })
+}
+
 export function showAccountIssues() {
     return NavigationActions.navigate({
         routeName: 'AccountIssues',
@@ -39,13 +51,23 @@ export function showProfile(id: string) {
 
 export function showLogin() {
     return {
-        type: NAVIGATION_LOGIN
+        type: 'Navigation/RESET',
+        index: 0,
+        actions: [{
+            type: 'Navigation/NAVIGATE',
+            routeName:'Login'
+        }]
     }
 }
 
 export function showHome() {
     return {
-        type: NAVIGATION_HOME
+        type: 'Navigation/RESET',
+        index: 0,
+        actions: [{
+            type: 'Navigation/NAVIGATE',
+            routeName:'Home'
+        }]
     }
 }
 

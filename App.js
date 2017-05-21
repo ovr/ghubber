@@ -5,8 +5,6 @@ import React, { Component } from 'react';
 import { View, Text, AppRegistry } from 'react-native';
 import { Provider } from 'react-redux';
 import { before } from 'github-flow-js/Client';
-import DrawerLayout from 'react-native-drawer-layout';
-import { SideMenu } from 'containers';
 
 import { default as Navigator } from './Navigator'
 import { configureStore, getInitialState } from 'utils';
@@ -66,16 +64,7 @@ class App extends Component<State, void, void> {
 
         return (
             <Provider store={store}>
-                <DrawerLayout
-                    drawerBackgroundColor="#fff"
-                    drawerWidth={300}
-                    drawerLockMode="unlocked"
-                    keyboardDismissMode="on-drag"
-                    statusBarBackgroundColor="#fff"
-                    renderNavigationView={() => <SideMenu />}
-                >
-                    <Navigator />
-                </DrawerLayout>
+                <Navigator />
             </Provider>
         );
     }

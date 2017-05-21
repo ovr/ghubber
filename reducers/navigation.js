@@ -5,7 +5,7 @@ import { AppNavigator } from '../Navigator';
 import { NAVIGATION_SET_TITLE, NAVIGATION_HOME, NAVIGATION_LOGIN } from 'constants';
 
 export type NavigationState = {
-
+    params?: any
 }
 
 const initialState = AppNavigator.router.getStateForAction(
@@ -14,16 +14,16 @@ const initialState = AppNavigator.router.getStateForAction(
 
 export default (state: NavigationState = initialState, action: Object): NavigationState => {
     switch (action.type) {
-        case NAVIGATION_LOGIN:
-            // Reset whole Stack by new State
-            return AppNavigator.router.getStateForAction(
-                AppNavigator.router.getActionForPathAndParams('Login')
-            );
-        case NAVIGATION_HOME:
-            // Reset whole Stack by new State
-            return AppNavigator.router.getStateForAction(
-                AppNavigator.router.getActionForPathAndParams('Home')
-            );
+        // case NAVIGATION_LOGIN:
+        //     // Reset whole Stack by new State
+        //     return AppNavigator.router.getStateForAction(
+        //         AppNavigator.router.getActionForPathAndParams('Login')
+        //     );
+        // case NAVIGATION_HOME:
+        //     // Reset whole Stack by new State
+        //     return AppNavigator.router.getStateForAction(
+        //         AppNavigator.router.getActionForPathAndParams('Home')
+        //     );
         case NAVIGATION_SET_TITLE:
             return {
                 ...state,

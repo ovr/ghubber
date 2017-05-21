@@ -12,3 +12,4 @@ export * from './Profile';
 export * from './Repository';
 export * from './RepositoryScreen';
 export * from './SideMenu';
+export * from './SideMenuButton';

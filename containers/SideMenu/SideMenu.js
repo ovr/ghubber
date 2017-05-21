@@ -5,19 +5,21 @@ import React, { PureComponent } from 'react';
 import { Image, View, StyleSheet, Text, Platform } from 'react-native';
 import { Avatar, Button } from 'components';
 import { connect } from 'react-redux';
-import { logout } from 'actions';
+import { hideSideMenu, logout } from 'actions';
 
 // import flow types
 import type { AppState } from 'reducers/app';
 
 type Props = {
     app: AppState,
-    logout: typeof logout
+    closeDrawer: () => null,
+    hideSideMenu: typeof hideSideMenu,
+    logout: typeof logout,
 }
 
 class SideMenu extends PureComponent<void, Props, void> {
     render() {
-        const { app, logout } = this.props;
+        const { hideSideMenu, app, logout } = this.props;
 
         if (app.user === null) {
             return null;
@@ -33,6 +35,9 @@ class SideMenu extends PureComponent<void, Props, void> {
                     </View>
                 </View>
                 <View style={styles.body}>
+                    <Button style={styles.button} onPress={hideSideMenu}>
+                        Close
+                    </Button>
                     <Button style={styles.button} onPress={logout}>
                         Logout
                     </Button>
@@ -75,6 +80,9 @@ const styles = StyleSheet.create({
     },
     body: {
         marginTop: 15
+    },
+    button: {
+        marginBottom: 10
     }
 });
 
@@ -84,5 +92,5 @@ export default connect(
             app: state.app
         }
     },
-    { logout }
+    { hideSideMenu, logout }
 )(SideMenu);

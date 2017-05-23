@@ -117,18 +117,36 @@ npm run ios
 
 > Will be continued // @todo
 
+- **AccountIssues**
+    - [X] Overview
+    - [X] Filter by types
+    - [ ] Infinity loading (will be in v0.5.0)
+- **Feed**
+    - [ ] Overview  (will be in v0.5.0)
 - **Profile**
     - [X] Overview
+        - [X] Information
+        - [X] Contributions Graph (Tablet only, for now)
+        - [X] Organizations
+        - [ ] Pinned Repositories (will be in v0.5.0)
     - [X] Repositories
     - [ ] Stars
     - [ ] Following
     - [ ] Followers
     - [ ] Gists
 - **Repository**
-    - [ ] Overview      
+    - [X] Overview      
     - [ ] Issues      
     - [ ] PRs      
     - [ ] Watchers
+- **Organization**
+    - [ ] Overview
+    - [ ] Teams
+    - [ ] Repositories
+- **Pull Request**
+    - [ ] Overview
+    - [ ] Close/re-open
+    - [ ] Add/remove/edit comment
 - **Issue**
     - [ ] Overview
     - [ ] Close/re-open

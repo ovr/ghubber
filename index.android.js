@@ -6,11 +6,10 @@ import { getVersion } from 'react-native-device-info';
 
 if (!__DEV__) {
     Sentry.config(
-        'https://8fbfb7692ed242409cabd35e88c8d95a:8dfccf8d35064d0ca147cb31e8064539@sentry.io/168788',
+        'https://d45a31c736c84fc7aca9533e32b6b39d:c562d63b1bc24ccdb89c71fa03717a99@sentry.io/171379',
         {
             release: getVersion()
         }
     ).install();
 }
 
-import './App';

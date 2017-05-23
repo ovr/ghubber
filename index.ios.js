@@ -6,7 +6,7 @@ import { getVersion } from 'react-native-device-info';
 
 if (!__DEV__) {
     Sentry.config(
-        'https://8fbfb7692ed242409cabd35e88c8d95a:8dfccf8d35064d0ca147cb31e8064539@sentry.io/168788',
+        'https://a8a0f9d5be7e4d03890935bdbd4c8332:04008163befb47cbbad5c094d4d18488@sentry.io/171376',
         {
             release: getVersion()
         }

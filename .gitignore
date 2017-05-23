@@ -1,3 +1,7 @@
+ios/sentry.properties
+android/sentry.properties
+
+
 # OSX
 #
 .DS_Store

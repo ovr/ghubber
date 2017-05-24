@@ -4,7 +4,7 @@
 import React, { PureComponent } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { connect } from 'react-redux';
-import { fetchIssues } from 'actions';
+import { fetchIssues, fetchMoreIssues } from 'actions';
 
 import { IssueRow, Spinner, FilterTabType } from 'components';
 
@@ -16,7 +16,8 @@ import type { AppState } from 'reducers/app';
 type Props = {
     issues: AccountIssuesState,
     app: AppState,
-    fetchIssues: typeof fetchIssues
+    fetchIssues: typeof fetchIssues,
+    fetchMoreIssues: typeof fetchMoreIssues
 }
 
 class AccountIssues extends PureComponent<void, Props, void> {
@@ -27,7 +28,7 @@ class AccountIssues extends PureComponent<void, Props, void> {
     }
 
     renderContent() : React.Element<any> {
-        const { loading, error, issues } = this.props.issues;
+        const { infinityLoading, type, hasMore, page, loading, error, issues } = this.props.issues;
 
         if (loading || issues === null) {
             return (
@@ -55,6 +56,10 @@ class AccountIssues extends PureComponent<void, Props, void> {
             );
         }
 
+        const { fetchMoreIssues, app } = this.props;
+
+        const isRefreshing = infinityLoading;
+
         return (
             <FlatList
                 style={styles.list}
@@ -67,6 +72,10 @@ class AccountIssues extends PureComponent<void, Props, void> {
                             onPress={() => null}
                         />
                     )
+                }
+                refreshing={isRefreshing}
+                onEndReached={
+                    () => !isRefreshing && hasMore ? fetchMoreIssues(app.user.login, page + 1, type) : null
                 }
             />
         );
@@ -132,5 +141,5 @@ export default connect(
             app: state.app
         }
     },
-    { fetchIssues }
+    { fetchIssues, fetchMoreIssues }
 )(AccountIssues);

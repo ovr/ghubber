@@ -74,9 +74,11 @@ class AccountIssues extends PureComponent<void, Props, void> {
                     )
                 }
                 refreshing={isRefreshing}
+                onEndReachedThreshold={0.5}
                 onEndReached={
                     () => !isRefreshing && hasMore ? fetchMoreIssues(app.user.login, page + 1, type) : null
                 }
+                ListFooterComponent={() => infinityLoading ? <Spinner style={styles.moreLoadingSpinner} /> : null}
             />
         );
     }

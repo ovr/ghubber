@@ -1,4 +1,9 @@
 
+## v0.5.0 (development)
+
+- [AccountIssues] NFR: Implement infinity loading
+- [AccountIssues] Hotfix: Change type was not working
+
 ## v0.4.0
 
 - Implement SideMenu (Drawer)

@@ -120,7 +120,7 @@ npm run ios
 - **AccountIssues**
     - [X] Overview
     - [X] Filter by types
-    - [ ] Infinity loading (will be in v0.5.0)
+    - [X] Infinity loading
 - **Feed**
     - [ ] Overview  (will be in v0.5.0)
 - **Profile**

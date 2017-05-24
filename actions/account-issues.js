@@ -36,7 +36,7 @@ export function fetchIssues(username: string, type: AccountIssuesType) {
         });
 
         searchIssues({
-            q: `is:open is:issue author:${username}`,
+            q: getSearchQByType(type, username),
             per_page: ACCOUNT_ISSUES_LIMIT
         }).then(
             (response) => {
@@ -65,10 +65,8 @@ export function fetchMoreIssues(username: string, page: string, type: AccountIss
             payload: type
         });
 
-        console.log('fetchMoreIssues', page);
-
         searchIssues({
-            q: `is:open is:issue author:${username}`,
+            q: getSearchQByType(type, username),
             per_page: ACCOUNT_ISSUES_LIMIT,
             page: page
         }).then(

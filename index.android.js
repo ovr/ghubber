@@ -13,3 +13,4 @@ if (!__DEV__) {
     ).install();
 }
 
+import './App';

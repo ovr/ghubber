@@ -1,8 +1,11 @@
 
 ## v0.5.0 (development)
 
+## v0.4.1
+
 - [AccountIssues] NFR: Implement infinity loading
 - [AccountIssues] Hotfix: Change type was not working
+- [Android] Fix epic broken build
 
 ## v0.4.0
 

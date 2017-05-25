@@ -38,7 +38,7 @@ class SideMenu extends PureComponent<void, Props, void> {
                     {
                         app.organizations && app.organizations.map(
                             (entity) => (
-                                <View style={styles.organization}>
+                                <View style={styles.organization} key={"sm-org-" + entity.id}>
                                     <OrganizationAvatar organization={entity} size={30} />
                                     <Text style={styles.organizationLogin}>
                                         {entity.login}

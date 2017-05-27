@@ -14,13 +14,55 @@ type Props = {
 };
 
 export default class EventRowTablet extends PureComponent<void, Props, void> {
+    renderPushEvent(event: PushEvent | PullRequestEvent): React.Element<any> {
+        return (
+            <View style={styles.event}>
+                <View style={styles.left}>
+                    <Icon name="git-commit" size={32} />
+                </View>
+                <View>
+                    <Text>
+                        <Text style={styles.login}>{event.actor.login + " "}</Text>
+                        pushed
+                    </Text>
+                </View>
+            </View>
+        )
+    }
+
+    renderIssuesEvent(event: PushEvent | PullRequestEvent): React.Element<any> {
+        return (
+            <View style={styles.event}>
+                <View style={styles.left}>
+                    <Icon name="issue-opened" size={32} />
+                </View>
+                <View>
+                    <Text>
+                        <Text style={styles.login}>{event.actor.login + " "}</Text>
+                        {event.payload.action} issue
+                        <Text style={styles.repoName}>{" " + event.repo.name}</Text>
+                    </Text>
+                </View>
+            </View>
+        )
+    }
+
     renderIssueCommentEvent(event: PushEvent | PullRequestEvent): React.Element<any> {
         return (
-            <View>
-                <Text>
-                    <Text>{event.actor.login}</Text>
-                    commented on pull request
-                </Text>
+            <View style={styles.event}>
+                <View style={styles.left}>
+                    <Icon name="comment-discussion" size={32} />
+                </View>
+                <View>
+                    <Text>
+                        <Text style={styles.login}>{event.actor.login + " "}</Text>
+                        commented on pull request
+                        <Text style={styles.repoName}>{" " + event.repo.name}</Text>
+                    </Text>
+                    <Text numberOfLines={1} style={styles.commentBody}>
+                        {event.payload.comment.body}
+                    </Text>
+                </View>
             </View>
         )
     }
@@ -29,8 +71,12 @@ export default class EventRowTablet extends PureComponent<void, Props, void> {
         const { event, onPress } = this.props;
 
         switch (event.type) {
+            case 'PushEvent':
+                return this.renderPushEvent(event);
             case 'IssueCommentEvent':
                 return this.renderIssueCommentEvent(event);
+            case 'IssuesEvent':
+                return this.renderIssuesEvent(event);
         }
 
         return (
@@ -42,5 +88,19 @@ export default class EventRowTablet extends PureComponent<void, Props, void> {
 }
 
 const styles = StyleSheet.create({
-
+    event: {
+        flex: 1,
+        flexDirection: 'row'
+    },
+    left: {
+        marginRight: 10
+    },
+    login: {
+        fontSize: 18,
+        color: '#0366d6'
+    },
+    repoName: {
+        fontSize: 18,
+        color: '#0366d6'
+    },
 });

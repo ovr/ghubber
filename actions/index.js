@@ -1,6 +1,7 @@
 // @author Dmitry Patsura <talk@dmtry.me> https://github.com/ovr
 // @flow
 
+export * from './account-feed';
 export * from './account-issues';
 export * from './app';
 export * from './login';

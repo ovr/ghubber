@@ -46,7 +46,8 @@ export function makeLogin(username: string, password: string, code: string) {
                     // user
                     "user",
                     "public_repo",
-                    "repo"
+                    "repo",
+                    "notifications"
                 ]
             },
             options

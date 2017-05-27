@@ -2,6 +2,7 @@
 // @flow
 
 export * from './Home';
+export * from './HomeHeaderRight';
 export * from './LoginScreen';
 export * from './NavigationTitle';
 export * from './AccountIssues';

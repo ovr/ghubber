@@ -6,11 +6,22 @@ import { connect } from 'react-redux';
 import { SideMenuButton } from 'containers';
 import { addNavigationHelpers, StackNavigator, DrawerNavigator } from 'react-navigation';
 
-import { Home, LoginScreen, ProfileScreen, RepositoryScreen, AboutScreen, AccountIssues, SideMenu } from 'containers';
+import {
+    Home,
+    FeedScreen,
+    LoginScreen,
+    ProfileScreen,
+    RepositoryScreen,
+    AboutScreen,
+    AccountIssues,
+    SideMenu,
+    HomeHeaderRight
+} from 'containers';
 
 export const HomeScreeDrawer = DrawerNavigator({
     Home: {
-        screen: Home
+        // screen: Home
+        screen: FeedScreen
     },
 }, {
     drawerWidth: 300,
@@ -25,7 +36,8 @@ export const AppNavigator = StackNavigator(
         Home: {
             screen: HomeScreeDrawer,
             navigationOptions: {
-                headerLeft: <SideMenuButton />
+                headerLeft: <SideMenuButton />,
+                headerRight: <HomeHeaderRight />
             }
         },
         Login: {

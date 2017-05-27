@@ -3,6 +3,7 @@
 
 import React, { PureComponent } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { Avatar } from 'components';
 import Icon from 'react-native-vector-icons/Octicons';
 
 // import flow types
@@ -23,8 +24,12 @@ export default class EventRowTablet extends PureComponent<void, Props, void> {
                 <View>
                     <Text>
                         <Text style={styles.login}>{event.actor.login + " "}</Text>
-                        pushed
+                        pushed to {event.payload.ref} at
+                        <Text style={styles.repoName}>{" " + event.repo.name}</Text>
                     </Text>
+                    <View style={styles.rightBottom}>
+                        <Avatar user={event.actor} size={24} style={styles.avatar} />
+                    </View>
                 </View>
             </View>
         )
@@ -59,9 +64,12 @@ export default class EventRowTablet extends PureComponent<void, Props, void> {
                         commented on pull request
                         <Text style={styles.repoName}>{" " + event.repo.name}</Text>
                     </Text>
-                    <Text numberOfLines={1} style={styles.commentBody}>
-                        {event.payload.comment.body}
-                    </Text>
+                    <View style={styles.rightBottom}>
+                        <Avatar user={event.actor} size={24} style={styles.avatar} />
+                        <Text numberOfLines={1} style={styles.commentBody}>
+                            {event.payload.comment.body}
+                        </Text>
+                    </View>
                 </View>
             </View>
         )
@@ -80,7 +88,7 @@ export default class EventRowTablet extends PureComponent<void, Props, void> {
         }
 
         return (
-            <View>
+            <View style={styles.event}>
                 <Text>This type of event ({event.type}) is unsupported inside this version</Text>
             </View>
         )
@@ -90,9 +98,20 @@ export default class EventRowTablet extends PureComponent<void, Props, void> {
 const styles = StyleSheet.create({
     event: {
         flex: 1,
-        flexDirection: 'row'
+        flexDirection: 'row',
+        borderBottomWidth: 1,
+        borderColor: '#eff3f6',
+        paddingBottom: 10,
+        marginBottom: 10
     },
     left: {
+        marginRight: 10
+    },
+    rightBottom: {
+        flex: 1,
+        flexDirection: 'row'
+    },
+    avatar: {
         marginRight: 10
     },
     login: {

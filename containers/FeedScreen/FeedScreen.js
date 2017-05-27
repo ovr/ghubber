@@ -2,9 +2,9 @@
 // @flow
 
 import React, { PureComponent } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { connect } from 'react-redux';
-import { Spinner } from 'components';
+import { Spinner, EventRow } from 'components';
 import { fetchAccountFeed } from 'actions';
 
 // import flow types
@@ -40,9 +40,19 @@ class FeedScreen extends PureComponent<void, Props, void> {
         }
 
         return (
-            <View>
-                <Text>Test</Text>
-            </View>
+            <FlatList
+                style={styles.list}
+                data={events}
+                keyExtractor={(repository) => repository.id}
+                renderItem={
+                    ({ item }) => (
+                        <EventRow
+                            event={item}
+                            onPress={() => null}
+                        />
+                    )
+                }
+            />
         )
     }
 }
@@ -52,6 +62,11 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center'
+    },
+    list: {
+        flex: 0,
+        marginTop: 5,
+        marginHorizontal: 15
     }
 })
 

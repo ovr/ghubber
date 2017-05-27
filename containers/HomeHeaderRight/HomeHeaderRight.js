@@ -6,7 +6,11 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { showAccountIssues } from 'actions';
 
-class HomeHeaderRight extends PureComponent<void, void, void> {
+type Props = {
+    showAccountIssues: typeof showAccountIssues
+}
+
+class HomeHeaderRight extends PureComponent<void, Props, void> {
     render() {
         const { showAccountIssues } = this.props;
 

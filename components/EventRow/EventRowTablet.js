@@ -14,6 +14,12 @@ type Props = {
     onPress: () => void
 };
 
+const RefsHeadPrefixLenght = 'refs/heads/'.length;
+
+function filterBranchName(refs: string): string {
+    return refs.substring(RefsHeadPrefixLenght);
+}
+
 export default class EventRowTablet extends PureComponent<void, Props, void> {
     renderPushEvent(event: PushEvent | PullRequestEvent): React.Element<any> {
         return (
@@ -24,7 +30,7 @@ export default class EventRowTablet extends PureComponent<void, Props, void> {
                 <View>
                     <Text>
                         <Text style={styles.login}>{event.actor.login + " "}</Text>
-                        pushed to {event.payload.ref} at
+                        pushed to <Text style={styles.branchName}>{filterBranchName(event.payload.ref)}</Text> at
                         <Text style={styles.repoName}>{" " + event.repo.name}</Text>
                     </Text>
                     <View style={styles.rightBottom}>
@@ -129,4 +135,7 @@ const styles = StyleSheet.create({
         fontSize: 18,
         color: '#0366d6'
     },
+    branchName: {
+        color: '#0366d6'
+    }
 });

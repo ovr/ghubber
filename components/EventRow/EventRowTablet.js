@@ -45,8 +45,14 @@ export default class EventRowTablet extends PureComponent<void, Props, void> {
                     <Text>
                         <Text style={styles.login}>{event.actor.login + " "}</Text>
                         {event.payload.action} issue
-                        <Text style={styles.repoName}>{" " + event.repo.name}</Text>
+                        <Text style={styles.repoName}>{" " + event.repo.name}{"#" + event.payload.issue.number}</Text>
                     </Text>
+                    <View style={styles.rightBottom}>
+                        <Avatar user={event.actor} size={24} style={styles.avatar} />
+                        <Text numberOfLines={1} style={styles.commentBody}>
+                            {event.payload.issue.title}
+                        </Text>
+                    </View>
                 </View>
             </View>
         )
@@ -61,8 +67,8 @@ export default class EventRowTablet extends PureComponent<void, Props, void> {
                 <View>
                     <Text>
                         <Text style={styles.login}>{event.actor.login + " "}</Text>
-                        commented on pull request
-                        <Text style={styles.repoName}>{" " + event.repo.name}</Text>
+                        commented on issue
+                        <Text style={styles.repoName}>{" " + event.repo.name}{"#" + event.payload.issue.number}</Text>
                     </Text>
                     <View style={styles.rightBottom}>
                         <Avatar user={event.actor} size={24} style={styles.avatar} />
@@ -108,8 +114,9 @@ const styles = StyleSheet.create({
         marginRight: 10
     },
     rightBottom: {
-        flex: 1,
-        flexDirection: 'row'
+        flex: 0,
+        flexDirection: 'row',
+        alignItems: 'center'
     },
     avatar: {
         marginRight: 10

@@ -2,10 +2,10 @@
 // @flow
 
 import React, { PureComponent } from 'react';
-import { Image, View, StyleSheet, Text, ScrollView, Platform } from 'react-native';
+import { Image, View, StyleSheet, Text, ScrollView, Platform, TouchableOpacity } from 'react-native';
 import { Avatar, OrganizationAvatar, Button } from 'components';
 import { connect } from 'react-redux';
-import { hideSideMenu, logout } from 'actions';
+import { hideSideMenu, logout, showAccount } from 'actions';
 
 // import flow types
 import type { AppState } from 'reducers/app';
@@ -15,11 +15,12 @@ type Props = {
     closeDrawer: () => null,
     hideSideMenu: typeof hideSideMenu,
     logout: typeof logout,
+    showAccount: typeof showAccount,
 }
 
 class SideMenu extends PureComponent<void, Props, void> {
     render() {
-        const { hideSideMenu, app, logout } = this.props;
+        const { hideSideMenu, app, logout, showAccount } = this.props;
 
         if (app.user === null) {
             return null;
@@ -27,13 +28,13 @@ class SideMenu extends PureComponent<void, Props, void> {
 
         return (
             <ScrollView style={styles.root}>
-                <View style={styles.header}>
+                <TouchableOpacity style={styles.header} onPress={showAccount}>
                     <Avatar user={app.user} size={AVATAR_SIZE} style={styles.avatar} />
                     <View style={styles.headerRight}>
                         <Text style={styles.name} numberOfLines={1}>{app.user.name}</Text>
                         <Text style={styles.login} numberOfLines={1}>@{app.user.login}</Text>
                     </View>
-                </View>
+                </TouchableOpacity>
                 <View style={styles.body}>
                     {
                         app.organizations && app.organizations.map(
@@ -119,5 +120,5 @@ export default connect(
             app: state.app
         }
     },
-    { hideSideMenu, logout }
+    { hideSideMenu, logout, showAccount }
 )(SideMenu);

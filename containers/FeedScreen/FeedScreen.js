@@ -21,7 +21,7 @@ class FeedScreen extends PureComponent<void, Props, void> {
     }
 
     render() {
-        const { loading, error, events } = this.props.feed;
+        const { loading, infinityLoading, error, events } = this.props.feed;
 
         if (loading || !events) {
             return (
@@ -44,6 +44,7 @@ class FeedScreen extends PureComponent<void, Props, void> {
                 style={styles.list}
                 data={events}
                 keyExtractor={(repository) => repository.id}
+                refreshing={loading || infinityLoading}
                 renderItem={
                     ({ item }) => (
                         <EventRow

@@ -6,8 +6,12 @@ import {
     ACCOUNT_FEED_SUCCESS,
     ACCOUNT_FEED_FAIL,
     //
+    APP_LOGOUT_SUCCESS,
+    //
     ACCOUNT_FEED_LIMIT
 } from 'constants';
+
+import { saveStoreKey } from 'utils';
 
 // import flow types
 import type { IssueEntity } from 'github-flow-js';
@@ -38,21 +42,24 @@ export default (state: AccountFeedState = initialState, action: Object): Account
     switch (action.type) {
         case ACCOUNT_FEED_REQUEST:
             return {
-                ...initialState,
-                events: [],
-                loading: true,
-                error: null,
-                type: action.payload
+                ...state,
+                // events: [],
+                // loading: true,
+                error: null
             }
         case ACCOUNT_FEED_SUCCESS: {
             const payload = action.payload;
 
-            return {
+            const nextState = {
                 ...state,
                 loading: false,
                 hasMore: payload.length === ACCOUNT_FEED_LIMIT,
                 events: payload
             }
+
+            saveStoreKey('state:account-feed', nextState);
+
+            return nextState;
         }
         case ACCOUNT_FEED_FAIL:
             return {
@@ -60,6 +67,12 @@ export default (state: AccountFeedState = initialState, action: Object): Account
                 loading: false,
                 error: 'Unknown error @todo'
             }
+        //
+        case APP_LOGOUT_SUCCESS: {
+            saveStoreKey('state:account-feed', initialState);
+
+            return initialState;
+        }
         default:
             return state;
     }

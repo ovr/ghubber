@@ -3,7 +3,8 @@
 
 import { showHome } from './navigation';
 import { encode } from 'base-64';
-import { createAuthorization, getUser, getOrganizationsByUsername } from 'github-flow-js';
+import { createAuthorization, getUser } from 'github-flow-js';
+import { initUser } from 'actions';
 
 import {
     LOGIN_REQUEST,
@@ -73,23 +74,13 @@ export function makeLogin(username: string, password: string, code: string) {
                             payload: response
                         });
 
+                        dispatch(initUser());
                         dispatch(showHome());
-
-                        getOrganizationsByUsername(response.login, {}, options).then(
-                            (response) => {
-                                dispatch({
-                                    type: APP_ORGANIZATIONS_SUCCESS,
-                                    payload: response
-                                });
-                            },
-                            (response) => {
-                                // @todo
-                            }
-                        )
                     },
-                    (response) => {
+                    (error) => {
                         dispatch({
-                            type: LOGIN_REQUEST_FAIL
+                            type: LOGIN_REQUEST_FAIL,
+                            error
                         })
                     }
                 )

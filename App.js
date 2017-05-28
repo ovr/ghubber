@@ -3,9 +3,9 @@
 
 import React, { Component } from 'react';
 import { View, Text, AppRegistry } from 'react-native';
-import { Sentry } from 'react-native-sentry';
 import { Provider } from 'react-redux';
 import { before } from 'github-flow-js/Client';
+import { initApp } from 'actions';
 
 import { default as Navigator } from './Navigator'
 import { configureStore, getInitialState } from 'utils';
@@ -64,12 +64,7 @@ class App extends Component<State, void, void> {
         const state = store.getState();
 
         if (state.app.user) {
-            const user = state.app.user;
-
-            Sentry.setUserContext({
-                id: user.id,
-                login: user.login
-            });
+            store.dispatch(initApp());
         }
 
         return (

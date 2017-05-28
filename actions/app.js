@@ -1,7 +1,7 @@
 // @author Dmitry Patsura <talk@dmtry.me> https://github.com/ovr
 // @flow
 
-import { deleteAuthorization, getOrganizationsByUsername } from 'github-flow-js';
+import { deleteAuthorization, getUserOrganizations } from 'github-flow-js';
 import { Sentry } from 'react-native-sentry';
 
 import { showLogin } from 'actions';
@@ -42,22 +42,22 @@ export function initUser() {
             login: user.login
         });
 
-        getOrganizationsByUsername(user.login, {}).then(
+        getUserOrganizations({}).then(
             (response) => {
                 dispatch({
                     type: APP_ORGANIZATIONS_SUCCESS,
                     payload: response
                 });
             },
-            (response) => {
-                // @todo
+            (error) => {
+                console.warn(error);
             }
         )
     }
 }
 
 export function initApp() {
-    return (dispatch, getState) => {
+    return dispatch => {
         dispatch(initUser());
     }
 }

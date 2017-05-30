@@ -16,6 +16,12 @@ export function showAccount() {
     }
 }
 
+export function showFeedSettings() {
+    return NavigationActions.navigate({
+        routeName: 'FeedSettings',
+    })
+}
+
 export function showSideMenu() {
     return NavigationActions.navigate({
         routeName: 'DrawerOpen',

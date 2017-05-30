@@ -2,9 +2,10 @@
 // @flow
 
 import React, { PureComponent } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { Avatar } from 'components';
+import { showFeedSettings } from 'actions';
 
 // import flow types
 import type { AccountFeedState } from 'reducers/account-feed';
@@ -17,16 +18,16 @@ type Props = {
 
 class FeedTopPanel extends PureComponent<void, Props, void> {
     render() {
-        const { app } = this.props;
+        const { app, showFeedSettings } = this.props;
 
         return (
             <View style={styles.root}>
-                <View style={styles.selectWrapper}>
+                <TouchableOpacity style={styles.selectWrapper} onPress={showFeedSettings}>
                     <Avatar user={app.user} size={20} style={styles.avatar}/>
                     <Text style={styles.selectText}>
                         ovr ▾
                     </Text>
-                </View>
+                </TouchableOpacity>
             </View>
         )
     }
@@ -66,5 +67,5 @@ export default connect(
         feed: state.accountFeed,
         app: state.app
     }),
-    { }
+    { showFeedSettings }
 )(FeedTopPanel);

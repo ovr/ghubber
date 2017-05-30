@@ -9,6 +9,7 @@ import { addNavigationHelpers, StackNavigator, DrawerNavigator } from 'react-nav
 import {
     Home,
     FeedScreen,
+    FeedSettingsScreen,
     LoginScreen,
     ProfileScreen,
     RepositoryScreen,
@@ -44,6 +45,12 @@ export const AppNavigator = StackNavigator(
             screen: LoginScreen,
             navigationOptions: {
                 header: null
+            }
+        },
+        FeedSettings: {
+            screen: FeedSettingsScreen,
+            navigationOptions: {
+                title: 'Feed Settings'
             }
         },
         Profile: {

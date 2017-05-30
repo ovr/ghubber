@@ -1,7 +1,7 @@
 // @author Dmitry Patsura <talk@dmtry.me> https://github.com/ovr
 // @flow
 
-import { getUserReceivedEvents } from 'github-flow-js';
+import { getUserReceivedEvents, getOrganizationUserEvents } from 'github-flow-js';
 import {
     ACCOUNT_FEED_REQUEST,
     ACCOUNT_FEED_SUCCESS,
@@ -19,26 +19,45 @@ export function fetchAccountFeed() {
         });
 
         const state = getState();
-        let login = getState().app.user.login;
 
-        if (state.accountFeed.login) {
-            login = state.accountFeed.login;
+        // login of the user, who use app
+        const identityLogin = state.app.user.login;
+
+        // selected "login", can be similar to identityLogin or any user's organization login
+        const selectedLogin = state.accountFeed.login;
+
+        if (selectedLogin && selectedLogin !== identityLogin) {
+            // This is needed to get private events for Organization
+            getOrganizationUserEvents(identityLogin, selectedLogin, { per_page: ACCOUNT_FEED_LIMIT }).then(
+                (response) => {
+                    dispatch({
+                        type: ACCOUNT_FEED_SUCCESS,
+                        payload: response
+                    })
+                },
+                (error) => {
+                    dispatch({
+                        type: ACCOUNT_FEED_FAIL,
+                        error: error
+                    })
+                }
+            )
+        } else {
+            getUserReceivedEvents(identityLogin, { per_page: ACCOUNT_FEED_LIMIT }).then(
+                (response) => {
+                    dispatch({
+                        type: ACCOUNT_FEED_SUCCESS,
+                        payload: response
+                    })
+                },
+                (error) => {
+                    dispatch({
+                        type: ACCOUNT_FEED_FAIL,
+                        error: error
+                    })
+                }
+            )
         }
-
-        getUserReceivedEvents(login, { per_page: ACCOUNT_FEED_LIMIT }).then(
-            (response) => {
-                dispatch({
-                    type: ACCOUNT_FEED_SUCCESS,
-                    payload: response
-                })
-            },
-            (error) => {
-                dispatch({
-                    type: ACCOUNT_FEED_FAIL,
-                    error: error
-                })
-            }
-        )
     }
 }
 

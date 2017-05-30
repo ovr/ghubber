@@ -83,7 +83,7 @@ export default class EventRowTablet extends PureComponent<void, Props, void> {
                 <View style={styles.left}>
                     <Icon name="issue-opened" size={32} />
                 </View>
-                <View>
+                <View style={styles.right}>
                     <Text>
                         <Text style={styles.login}>{event.actor.login + " "}</Text>
                         {event.payload.action} issue
@@ -106,7 +106,7 @@ export default class EventRowTablet extends PureComponent<void, Props, void> {
                 <View style={styles.left}>
                     <Icon name="comment-discussion" size={32} />
                 </View>
-                <View>
+                <View style={styles.right}>
                     <Text>
                         <Text style={styles.login}>{event.actor.login + " "}</Text>
                         commented on issue
@@ -159,9 +159,12 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     rightBottom: {
-        flex: 0,
+        flex: 1,
         flexDirection: 'row',
         alignItems: 'center'
+    },
+    commentBody: {
+        flex: 1,
     },
     avatar: {
         marginRight: 10,

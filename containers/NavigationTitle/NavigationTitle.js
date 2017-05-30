@@ -9,8 +9,6 @@ class NavigationTitle extends PureComponent<void, void, void> {
     render() {
         const { navigation } = this.props;
 
-        console.log(navigation.title);
-
         return (
             <Text>{navigation.title}</Text>
         )

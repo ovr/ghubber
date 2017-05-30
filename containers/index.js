@@ -7,6 +7,7 @@ export * from './LoginScreen';
 export * from './NavigationTitle';
 export * from './AccountIssues';
 export * from './FeedScreen';
+export * from './FeedTopPanel';
 export * from './AboutScreen';
 export * from './ProfileRepositories';
 export * from './ProfileScreen';

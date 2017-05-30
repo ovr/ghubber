@@ -4,7 +4,8 @@
 import React, { PureComponent } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { connect } from 'react-redux';
-import { Spinner, EventRow } from 'components';
+import { Spinner, EventRow, Avatar } from 'components';
+import { FeedTopPanel } from 'containers';
 import { fetchAccountFeed } from 'actions';
 
 // import flow types
@@ -40,20 +41,23 @@ class FeedScreen extends PureComponent<void, Props, void> {
         }
 
         return (
-            <FlatList
-                style={styles.list}
-                data={events}
-                keyExtractor={(repository) => repository.id}
-                refreshing={loading || infinityLoading}
-                renderItem={
-                    ({ item }) => (
-                        <EventRow
-                            event={item}
-                            onPress={() => null}
-                        />
-                    )
-                }
-            />
+            <View style={styles.root}>
+                <FeedTopPanel />
+                <FlatList
+                    style={styles.list}
+                    data={events}
+                    keyExtractor={(repository) => repository.id}
+                    refreshing={loading || infinityLoading}
+                    renderItem={
+                        ({ item }) => (
+                            <EventRow
+                                event={item}
+                                onPress={() => null}
+                            />
+                        )
+                    }
+                />
+            </View>
         )
     }
 }
@@ -64,10 +68,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     },
+    root: {
+        flex: 1,
+        marginHorizontal: 15
+    },
     list: {
         flex: 0,
-        marginTop: 5,
-        marginHorizontal: 15
     }
 })
 

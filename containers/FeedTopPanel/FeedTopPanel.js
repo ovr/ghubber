@@ -4,28 +4,51 @@
 import React, { PureComponent } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
-import { Avatar } from 'components';
+import { Avatar, OrganizationAvatar } from 'components';
 import { showFeedSettings } from 'actions';
 
 // import flow types
 import type { AccountFeedState } from 'reducers/account-feed';
-import type { AppState } from 'reducers/app';
+import type { AuthAppState } from 'reducers/app';
 
 type Props = {
     feed: AccountFeedState,
-    app: AppState,
+    app: AuthAppState,
+    showFeedSettings: typeof showFeedSettings
 }
 
 class FeedTopPanel extends PureComponent<void, Props, void> {
     render() {
-        const { app, showFeedSettings } = this.props;
+        const { app, feed, showFeedSettings } = this.props;
+
+        let isOrganization = false;
+        let selectedEntity = app.user;
+
+        if (feed.login !== null && feed.login !== app.user.login) {
+            const result = app.organizations.find(
+                (entity) => {
+                    return entity.login === feed.login
+                }
+            );
+
+            if (result) {
+                isOrganization = true;
+                selectedEntity = result;
+            }
+        }
 
         return (
             <View style={styles.root}>
                 <TouchableOpacity style={styles.selectWrapper} onPress={showFeedSettings}>
-                    <Avatar user={app.user} size={20} style={styles.avatar}/>
+                    {
+                        isOrganization ? (
+                            <OrganizationAvatar organization={selectedEntity} size={20} style={styles.avatar}/>
+                        ) : (
+                            <Avatar user={selectedEntity} size={20} style={styles.avatar}/>
+                        )
+                    }
                     <Text style={styles.selectText}>
-                        ovr ▾
+                        {selectedEntity.login} ▾
                     </Text>
                 </TouchableOpacity>
             </View>

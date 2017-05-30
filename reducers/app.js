@@ -19,6 +19,10 @@ export type AppState = {
     organizations: Array<OrganizationEntity>|null
 }
 
+export type AuthAppState = AppState & {
+    user: UserEntity
+}
+
 const initialState: AppState = {
     user: null,
     authorization: null,

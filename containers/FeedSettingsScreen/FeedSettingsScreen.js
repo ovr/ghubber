@@ -5,7 +5,7 @@ import React, { PureComponent } from 'react';
 import { View, Text, StyleSheet, Platform, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { Button, Avatar, OrganizationAvatar } from 'components';
-import { showHome } from 'actions';
+import { showHome, changeAccountFeedLogin } from 'actions';
 
 // import flow types
 import type { AccountFeedState } from 'reducers/account-feed';
@@ -14,19 +14,23 @@ import type { AppState } from 'reducers/app';
 type Props = {
     feed: AccountFeedState,
     app: AppState,
-    showHome: typeof showHome
+    showHome: typeof showHome,
+    changeAccountFeedLogin: typeof changeAccountFeedLogin,
 }
 
 class FeedSettingsScreen extends PureComponent<void, Props, void> {
     render() {
-        const { feed, app, showHome } = this.props;
+        const { feed, app, showHome, changeAccountFeedLogin } = this.props;
 
         return (
             <View style={styles.root}>
                 <View style={styles.list}>
                     <TouchableOpacity
                         style={styles.row}
-                        onPress={showHome}
+                        onPress={() => {
+                            changeAccountFeedLogin(app.user.login);
+                            showHome();
+                        }}
                     >
                         <Avatar user={app.user} size={24} style={styles.avatar} />
                         <Text>{app.user.login}</Text>
@@ -38,7 +42,10 @@ class FeedSettingsScreen extends PureComponent<void, Props, void> {
                                     <TouchableOpacity
                                         key={"organization" + entity.login}
                                         style={styles.row}
-                                        onPress={showHome}
+                                        onPress={() => {
+                                            changeAccountFeedLogin(entity.login);
+                                            showHome();
+                                        }}
                                     >
                                         <OrganizationAvatar organization={entity} size={24} style={styles.avatar} />
                                         <Text>{entity.login}</Text>
@@ -79,5 +86,5 @@ export default connect(
         feed: state.accountFeed,
         app: state.app,
     }),
-    { showHome }
+    { showHome, changeAccountFeedLogin }
 )(FeedSettingsScreen);

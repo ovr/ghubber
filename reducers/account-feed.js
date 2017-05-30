@@ -6,6 +6,8 @@ import {
     ACCOUNT_FEED_SUCCESS,
     ACCOUNT_FEED_FAIL,
     //
+    ACCOUNT_FEED_CHANGE_LOGIN,
+    //
     APP_LOGOUT_SUCCESS,
     //
     ACCOUNT_FEED_LIMIT
@@ -18,6 +20,7 @@ import type { IssueEntity } from 'github-flow-js';
 
 export type AccountFeedState = {
     events: Array<Object>|null,
+    login: string|null,
     // first list fetch
     loading: boolean,
     // is infinity loading?
@@ -31,6 +34,7 @@ export type AccountFeedState = {
 
 const initialState: AccountFeedState = {
     events: null,
+    login: null,
     loading: false,
     hasMore: false,
     page: 1,
@@ -40,6 +44,11 @@ const initialState: AccountFeedState = {
 
 export default (state: AccountFeedState = initialState, action: Object): AccountFeedState => {
     switch (action.type) {
+        case ACCOUNT_FEED_CHANGE_LOGIN:
+            return {
+                login: action.payload
+            }
+
         case ACCOUNT_FEED_REQUEST:
             return {
                 ...state,

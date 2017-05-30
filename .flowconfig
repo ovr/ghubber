@@ -37,6 +37,7 @@ module.name_mapper='reducers' -> '<PROJECT_ROOT>/reducers/'
 module.name_mapper='actions' -> '<PROJECT_ROOT>/actions/'
 module.name_mapper='constants' -> '<PROJECT_ROOT>/constants/'
 module.name_mapper='components' -> '<PROJECT_ROOT>/components/'
+module.name_mapper='containers' -> '<PROJECT_ROOT>/containers/'
 
 suppress_type=$FlowIssue
 suppress_type=$FlowFixMe

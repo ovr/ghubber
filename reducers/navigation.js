@@ -24,22 +24,24 @@ export default (state: NavigationState = initialState, action: Object): Navigati
         //     return AppNavigator.router.getStateForAction(
         //         AppNavigator.router.getActionForPathAndParams('Home')
         //     );
-        case NAVIGATION_SET_TITLE:
-            return {
-                ...state,
-                params: {
-                    ...state.params,
-                    title: action.payload
-                }
-            }
         default:
             let nextState = AppNavigator.router.getStateForAction(action, state);
 
-            // @todo Fix or ask related question inside app, because I cannot explain
-            if (nextState && action.params) {
-                nextState = {
-                    ...nextState,
-                    params: action.params
+            // @todo Fix or ask related question inside react-navigation project, because I cannot explain
+            // how to get route params inside state, not route
+            if (nextState && nextState.index) {
+                const route = nextState.routes[nextState.index];
+
+                if (route.params) {
+                    nextState = {
+                        ...nextState,
+                        params: route.params
+                    }
+                } else {
+                    nextState = {
+                        ...nextState,
+                        params: null
+                    }
                 }
             }
 

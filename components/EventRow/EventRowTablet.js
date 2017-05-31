@@ -123,6 +123,23 @@ export default class EventRowTablet extends PureComponent<void, Props, void> {
         )
     }
 
+    renderCreateEvent(event: PushEvent | PullRequestEvent): React.Element<any> {
+        return (
+            <View style={styles.event}>
+                <View style={styles.left}>
+                    <Icon name="tag" size={32} />
+                </View>
+                <View style={styles.right}>
+                    <Text>
+                        <Text style={styles.login}>{event.actor.login + " "}</Text>
+                        created {event.payload.ref_type} <Text style={styles.branchName}>{event.payload.ref}</Text>
+                        &nbsp;at <Text style={styles.branchName}>{event.repo.name}</Text>
+                    </Text>
+                </View>
+            </View>
+        )
+    }
+
     renderDeleteEvent(event: PushEvent | PullRequestEvent): React.Element<any> {
         return (
             <View style={styles.event}>
@@ -133,6 +150,7 @@ export default class EventRowTablet extends PureComponent<void, Props, void> {
                     <Text>
                         <Text style={styles.login}>{event.actor.login + " "}</Text>
                         delete {event.payload.ref_type} <Text style={styles.branchName}>{event.payload.ref}</Text>
+                        &nbsp;at <Text style={styles.branchName}>{event.repo.name}</Text>
                     </Text>
                 </View>
             </View>
@@ -143,6 +161,8 @@ export default class EventRowTablet extends PureComponent<void, Props, void> {
         const { event, onPress } = this.props;
 
         switch (event.type) {
+            case 'CreateEvent':
+                return this.renderCreateEvent(event);
             case 'DeleteEvent':
                 return this.renderDeleteEvent(event);
             case 'PushEvent':

@@ -167,6 +167,10 @@ Thanks to our sponsors and supporters:
 
 ### LICENSE
 
-This project is open-sourced software licensed under the MIT License.
+This project is open-sourced software licensed under the MIT License with Additions.
+
+* You are not able to edit About Page.
+* Delete any copyrights.
+* You are not able to fork/clone/rebuild repository to publish "YOU FORK NAME" to Play Market, ITunes or any app stores.
 
 See the [LICENSE](LICENSE) file for more information.

@@ -11,7 +11,6 @@ import type { PushEvent, PullRequestEvent } from 'github-flow-js';
 
 type Props = {
     event: PushEvent | PullRequestEvent,
-    onPress: () => void
 };
 
 const RefsHeadPrefixLenght = 'refs/heads/'.length;
@@ -56,12 +55,21 @@ export default class EventRowTablet extends PureComponent<void, Props, void> {
         )
     }
 
-    renderPushEvent(event: PushEvent | PullRequestEvent): React.Element<any> {
+    renderWrapper(iconName: string, content: React.Element<any>): React.Element<any> {
         return (
             <View style={styles.event}>
                 <View style={styles.left}>
-                    <Icon name="git-commit" size={32} />
+                    <Icon name={iconName} size={32} />
                 </View>
+                {content}
+            </View>
+        )
+    }
+
+    renderPushEvent(event: PushEvent | PullRequestEvent): React.Element<any> {
+        return this.renderWrapper(
+            'git-commit',
+            (
                 <View style={styles.right}>
                     <Text>
                         <Text style={styles.login}>{event.actor.login + " "}</Text>
@@ -73,16 +81,14 @@ export default class EventRowTablet extends PureComponent<void, Props, void> {
                         {this.renderCommitsList(event.payload)}
                     </View>
                 </View>
-            </View>
+            )
         )
     }
 
     renderIssuesEvent(event: PushEvent | PullRequestEvent): React.Element<any> {
-        return (
-            <View style={styles.event}>
-                <View style={styles.left}>
-                    <Icon name="issue-opened" size={32} />
-                </View>
+        return this.renderWrapper(
+            'issue-opened',
+            (
                 <View style={styles.right}>
                     <Text>
                         <Text style={styles.login}>{event.actor.login + " "}</Text>
@@ -96,16 +102,14 @@ export default class EventRowTablet extends PureComponent<void, Props, void> {
                         </Text>
                     </View>
                 </View>
-            </View>
+            )
         )
     }
 
     renderIssueCommentEvent(event: PushEvent | PullRequestEvent): React.Element<any> {
-        return (
-            <View style={styles.event}>
-                <View style={styles.left}>
-                    <Icon name="comment-discussion" size={32} />
-                </View>
+        return this.renderWrapper(
+            'comment-discussion',
+            (
                 <View style={styles.right}>
                     <Text>
                         <Text style={styles.login}>{event.actor.login + " "}</Text>
@@ -119,16 +123,14 @@ export default class EventRowTablet extends PureComponent<void, Props, void> {
                         </Text>
                     </View>
                 </View>
-            </View>
+            )
         )
     }
 
     renderCreateEvent(event: PushEvent | PullRequestEvent): React.Element<any> {
-        return (
-            <View style={styles.event}>
-                <View style={styles.left}>
-                    <Icon name="tag" size={32} />
-                </View>
+        return this.renderWrapper(
+            'tag',
+            (
                 <View style={styles.right}>
                     <Text>
                         <Text style={styles.login}>{event.actor.login + " "}</Text>
@@ -136,29 +138,27 @@ export default class EventRowTablet extends PureComponent<void, Props, void> {
                         &nbsp;at <Text style={styles.branchName}>{event.repo.name}</Text>
                     </Text>
                 </View>
-            </View>
+            )
         )
     }
 
     renderDeleteEvent(event: PushEvent | PullRequestEvent): React.Element<any> {
-        return (
-            <View style={styles.event}>
-                <View style={styles.left}>
-                    <Icon name="git-branch" size={32} />
-                </View>
+        return this.renderWrapper(
+            'git-branch',
+            (
                 <View style={styles.right}>
                     <Text>
                         <Text style={styles.login}>{event.actor.login + " "}</Text>
-                        delete {event.payload.ref_type} <Text style={styles.branchName}>{event.payload.ref}</Text>
+                        created {event.payload.ref_type} <Text style={styles.branchName}>{event.payload.ref}</Text>
                         &nbsp;at <Text style={styles.branchName}>{event.repo.name}</Text>
                     </Text>
                 </View>
-            </View>
+            )
         )
     }
 
     render(): React.Element<any> {
-        const { event, onPress } = this.props;
+        const { event } = this.props;
 
         switch (event.type) {
             case 'CreateEvent':

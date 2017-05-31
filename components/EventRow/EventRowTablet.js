@@ -123,10 +123,28 @@ export default class EventRowTablet extends PureComponent<void, Props, void> {
         )
     }
 
+    renderDeleteEvent(event: PushEvent | PullRequestEvent): React.Element<any> {
+        return (
+            <View style={styles.event}>
+                <View style={styles.left}>
+                    <Icon name="git-branch" size={32} />
+                </View>
+                <View style={styles.right}>
+                    <Text>
+                        <Text style={styles.login}>{event.actor.login + " "}</Text>
+                        delete {event.payload.ref_type} <Text style={styles.branchName}>{event.payload.ref}</Text>
+                    </Text>
+                </View>
+            </View>
+        )
+    }
+
     render(): React.Element<any> {
         const { event, onPress } = this.props;
 
         switch (event.type) {
+            case 'DeleteEvent':
+                return this.renderDeleteEvent(event);
             case 'PushEvent':
                 return this.renderPushEvent(event);
             case 'IssueCommentEvent':
@@ -153,7 +171,7 @@ const styles = StyleSheet.create({
         marginBottom: 10
     },
     left: {
-        marginRight: 10
+        marginRight: 10,
     },
     right: {
         flex: 1,

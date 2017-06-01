@@ -106,6 +106,22 @@ export default class EventRowTablet extends PureComponent<void, Props, void> {
         )
     }
 
+    renderReleaseEvent(event: PushEvent | PullRequestEvent): React.Element<any> {
+        return this.renderWrapper(
+            'tag',
+            (
+                <View style={styles.right}>
+                    <Text>
+                        <Text style={styles.login}>{event.actor.login + " "}</Text>
+                        {event.payload.action} release&nbsp;
+                        <Text style={styles.repoName}>{event.payload.release.tag_name}</Text> at
+                        &nbsp;<Text style={styles.repoName}>{event.repo.name}</Text>
+                    </Text>
+                </View>
+            )
+        )
+    }
+
     renderIssueCommentEvent(event: PushEvent | PullRequestEvent): React.Element<any> {
         return this.renderWrapper(
             'comment-discussion',
@@ -161,6 +177,8 @@ export default class EventRowTablet extends PureComponent<void, Props, void> {
         const { event } = this.props;
 
         switch (event.type) {
+            case 'ReleaseEvent':
+                return this.renderReleaseEvent(event);
             case 'CreateEvent':
                 return this.renderCreateEvent(event);
             case 'DeleteEvent':

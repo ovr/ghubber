@@ -77,7 +77,8 @@ export function showHome() {
     }
 }
 
-export function setTitle(title: Object) {
+// @todo Not working!
+export function setTitle(title: string) {
     return {
         type: NAVIGATION_SET_TITLE,
         payload: title

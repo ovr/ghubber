@@ -16,8 +16,8 @@ type State = {
     preloadedState: Object|null
 }
 
-class App extends Component<State, void, void> {
-    state = {
+class App extends Component<void, void, State> {
+    state: State = {
         initialized: false,
         error: false,
         preloadedState: null

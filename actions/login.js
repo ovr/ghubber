@@ -19,7 +19,7 @@ import {
 // import flow types
 import type { AuthorizationEntity } from 'github-flow-js';
 
-export function makeLogin(username: string, password: string, code: string) {
+export function makeLogin(username: string, password: string, code: string): ThunkAction {
     return dispatch => {
         dispatch({
             type: LOGIN_REQUEST

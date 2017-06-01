@@ -17,7 +17,7 @@ import {
 // import flow types
 import type { AccountIssuesType } from 'reducers/account-issues';
 
-function getSearchQByType(type: AccountIssuesType, username: string) {
+function getSearchQByType(type: AccountIssuesType, username: string): ThunkAction {
     switch (type) {
         case 'created':
             return `is:open is:issue author:${username}`;
@@ -28,7 +28,7 @@ function getSearchQByType(type: AccountIssuesType, username: string) {
     }
 }
 
-export function fetchIssues(username: string, type: AccountIssuesType) {
+export function fetchIssues(username: string, type: AccountIssuesType): ThunkAction {
     return dispatch => {
         dispatch({
             type: ACCOUNT_ISSUES_REQUEST,
@@ -58,7 +58,7 @@ export function fetchIssues(username: string, type: AccountIssuesType) {
     }
 }
 
-export function fetchMoreIssues(username: string, page: string, type: AccountIssuesType) {
+export function fetchMoreIssues(username: string, page: string, type: AccountIssuesType): ThunkAction {
     return dispatch => {
         dispatch({
             type: ACCOUNT_ISSUES_MORE_REQUEST,

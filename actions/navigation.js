@@ -8,7 +8,7 @@ import { setupRepository } from './repository';
 // import flow types
 import type { RepositoryEntity } from 'github-flow-js';
 
-export function showAccount() {
+export function showAccount(): ThunkAction {
     return (dispatch, getState) => {
         const app = getState().app;
 
@@ -94,7 +94,7 @@ export function showRepositoryByParams(owner: string, repo: string) {
     })
 }
 
-export function showRepository(repository: RepositoryEntity) {
+export function showRepository(repository: RepositoryEntity): ThunkAction {
     return dispatch => {
         dispatch(setupRepository(repository));
 

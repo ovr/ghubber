@@ -14,12 +14,15 @@
 .*/Libraries/react-native/React.js
 .*/Libraries/react-native/ReactNative.js
 
+/Users/ovr/projects/ovr/ghubber/node_modules/art/parsers/svg/text.js
+
 [include]
 
 [libs]
 node_modules/react-native/Libraries/react-native/react-native-interface.js
 node_modules/react-native/flow
 flow/
+actions/flow-types.js
 
 [options]
 emoji=true

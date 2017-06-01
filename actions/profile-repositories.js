@@ -12,7 +12,7 @@ import {
     PROFILE_REPOSITORIES_MORE_REQUEST_FAIL
 } from 'constants';
 
-export function fetchRepositories(username: string) {
+export function fetchRepositories(username: string): ThunkAction {
     return dispatch => {
         dispatch({
             type: PROFILE_REPOSITORIES_REQUEST
@@ -42,7 +42,7 @@ export function fetchRepositories(username: string) {
     }
 }
 
-export function fetchMoreRepositories(username: string, page: number) {
+export function fetchMoreRepositories(username: string, page: number): ThunkAction {
     return dispatch => {
         dispatch({
             type: PROFILE_REPOSITORIES_MORE_REQUEST

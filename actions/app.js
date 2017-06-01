@@ -13,7 +13,7 @@ import {
 // import flow types
 import type { AppState } from 'reducers/app';
 
-export function logout() {
+export function logout(): ThunkAction {
     return (dispatch, getState) => {
         const state: AppState = getState().app;
 
@@ -32,7 +32,7 @@ export function logout() {
     }
 }
 
-export function initUser() {
+export function initUser(): ThunkAction {
     return (dispatch, getState) => {
         const state = getState();
         const user = state.app.user;
@@ -56,7 +56,7 @@ export function initUser() {
     }
 }
 
-export function initApp() {
+export function initApp(): ThunkAction {
     return dispatch => {
         dispatch(initUser());
     }

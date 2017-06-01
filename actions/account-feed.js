@@ -12,7 +12,7 @@ import {
     ACCOUNT_FEED_LIMIT
 } from 'constants';
 
-export function fetchAccountFeed() {
+export function fetchAccountFeed(): ThunkAction {
     return (dispatch, getState) => {
         dispatch({
             type: ACCOUNT_FEED_REQUEST
@@ -61,7 +61,7 @@ export function fetchAccountFeed() {
     }
 }
 
-export function changeAccountFeedLogin(login: string) {
+export function changeAccountFeedLogin(login: string): ThunkAction {
     return (dispatch, getState) => {
         dispatch({
             type: ACCOUNT_FEED_CHANGE_LOGIN,

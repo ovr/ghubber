@@ -8,7 +8,7 @@ import {
     PROFILE_ORGANIZATIONS_REQUEST_FAIL,
 } from 'constants';
 
-export function fetchOrganizations(id: string) {
+export function fetchOrganizations(id: string): ThunkAction {
     return dispatch => {
         dispatch({
             type: PROFILE_ORGANIZATIONS_REQUEST

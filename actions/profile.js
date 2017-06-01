@@ -10,7 +10,7 @@ import {
 
 import { setTitle } from './navigation';
 
-export function fetchProfile(id: string) {
+export function fetchProfile(id: string): ThunkAction {
     return dispatch => {
         dispatch({
             type: PROFILE_REQUEST

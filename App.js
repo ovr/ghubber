@@ -13,7 +13,7 @@ import { configureStore, getInitialState } from 'utils';
 type State = {
     initialized: boolean,
     error: boolean,
-    preloadedState: Object|null
+    preloadedState:? Object
 }
 
 class App extends Component<void, void, State> {
@@ -42,7 +42,7 @@ class App extends Component<void, void, State> {
             return null;
         }
 
-        if (this.state.error) {
+        if (this.state.error || !this.state.preloadedState) {
             return null;
         }
 

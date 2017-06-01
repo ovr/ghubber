@@ -10,11 +10,18 @@ import type { ProfileRepositoriesState } from 'reducers/profile-repositories';
 import type { ProfileOrganizationsState } from 'reducers/profile-organizations';
 import type { RepositoryState } from 'reducers/repository';
 
-export type Action = {
+export type ActionWithPayload<P> = {
     type: string,
-    payload?: any,
-    error?: any
+    payload: P,
 }
+
+export type ActionWithError<E> = {
+    type: string,
+    error: E
+}
+
+export type Action = ActionWithPayload<any> | ActionWithError<any>;
+export type PromiseAction = Promise<Action>;
 
 export type State = {|
     accountFeed: AccountFeedState,
@@ -31,4 +38,3 @@ export type State = {|
 export type Dispatch = (action: Action | ThunkAction | PromiseAction) => any;
 export type GetState = () => Object;
 export type ThunkAction = (dispatch: Dispatch, getState: GetState) => any;
-export type PromiseAction = Promise<Action>;

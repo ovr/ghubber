@@ -10,10 +10,16 @@ type Props = {
     repo: string,
 }
 
+type State = {
+    loading: boolean,
+    error: boolean,
+    content: ''
+}
+
 const { height, width } = Dimensions.get('window');
 
-export default class README extends PureComponent<void, Props, void> {
-    state = {
+export default class README extends PureComponent<void, Props, State> {
+    state: State = {
         loading: true,
         error: false,
         content: ''
@@ -45,7 +51,7 @@ export default class README extends PureComponent<void, Props, void> {
             (error) => {
                 this.setState({
                     loading: false,
-                    error: 'Unexpected error'
+                    error: true
                 })
             }
         )

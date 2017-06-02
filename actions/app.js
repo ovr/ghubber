@@ -38,7 +38,7 @@ export function initUser(): ThunkAction {
         const user = state.app.user;
 
         Sentry.setUserContext({
-            userId: user.id,
+            userID: user.id,
             username: user.login,
             email: user.email
         });

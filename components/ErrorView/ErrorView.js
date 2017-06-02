@@ -8,7 +8,7 @@ import { Button } from 'components';
 type Props = {
     error: Object,
     refreshable: boolean,
-    onPress: () => null,
+    onPress: () => any,
 };
 
 export default class ErrorView extends PureComponent<void, Props, void> {

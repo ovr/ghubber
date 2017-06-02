@@ -5,7 +5,6 @@ import React, { PureComponent } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import { fetchIssues, fetchMoreIssues } from 'actions';
-
 import { IssueRow, Spinner, FilterTabType } from 'components';
 
 // import flow types

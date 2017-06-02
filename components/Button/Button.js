@@ -6,7 +6,7 @@ import { Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 type Props = {
     children: Object,
-    onPress: () => void,
+    onPress: () => any,
     style:? Object
 };
 

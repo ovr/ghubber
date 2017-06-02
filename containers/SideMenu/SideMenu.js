@@ -16,6 +16,7 @@ type Props = {
     hideSideMenu: typeof hideSideMenu,
     logout: typeof logout,
     showAccount: typeof showAccount,
+    showAbout: typeof showAbout,
 }
 
 class SideMenu extends PureComponent<void, Props, void> {

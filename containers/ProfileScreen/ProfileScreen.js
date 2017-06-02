@@ -7,7 +7,11 @@ import { IndicatorViewPager, PagerTitleIndicator } from 'rn-viewpager';
 import { connect } from 'react-redux';
 import { Profile, ProfileRepositories } from 'containers';
 
+// import flow types
+import type { ProfileState } from 'reducers/profile';
+
 type Props = {
+    profile: ProfileState
 }
 
 const TITLE_REPOS_INDEX = 1;

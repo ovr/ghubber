@@ -11,7 +11,7 @@ import type { IssueEntity } from 'github-flow-js';
 
 type Props = {
     issue: IssueEntity,
-    onPress: () => void
+    onPress: () => any
 };
 
 const styles = StyleSheet.create({

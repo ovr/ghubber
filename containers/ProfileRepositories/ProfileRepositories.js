@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
 });
 
 export default connect(
-    (state) => {
+    (state: State) => {
         return {
             state: state.profileRepositories,
             navigation: state.navigation

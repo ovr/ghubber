@@ -11,6 +11,7 @@ import type { RepositoryEntity } from 'github-flow-js';
 
 type Props = {
     repo: RepositoryEntity,
+    onPress?: () => any
 };
 
 const styles = StyleSheet.create({

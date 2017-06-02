@@ -11,10 +11,12 @@ import { fetchProfile, fetchOrganizations } from 'actions';
 // import flow types
 import type { ProfileState } from 'reducers/profile';
 import type { ProfileOrganizationsState } from 'reducers/profile-organizations';
+import type { NavigationState } from 'reducers/navigation';
 
 type Props = {
     profile: ProfileState,
     profileOrganizations: ProfileOrganizationsState,
+    navigation: NavigationState,
     fetchProfile: typeof fetchProfile,
     fetchOrganizations: typeof fetchOrganizations,
 }

@@ -3,7 +3,7 @@
 
 import { AsyncStorage } from 'react-native';
 
-export async function getInitialState() {
+export async function getInitialState(): Object {
     const app = await AsyncStorage.getItem('state:app');
     const accountFeed = await AsyncStorage.getItem('state:account-feed');
 

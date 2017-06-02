@@ -10,17 +10,29 @@ import type { ProfileRepositoriesState } from 'reducers/profile-repositories';
 import type { ProfileOrganizationsState } from 'reducers/profile-organizations';
 import type { RepositoryState } from 'reducers/repository';
 
-export type ActionWithPayload<P> = {
-    type: string,
+export type BaseAction<T> = {|
+    type: T
+|}
+
+export type ActionWithPayload<T, P> = {|
+    type: T,
     payload: P,
-}
+|}
 
-export type ActionWithError<E> = {
-    type: string,
+export type ActionWithError<T, E> = {|
+    type: T,
     error: E
-}
+|}
 
-export type Action = ActionWithPayload<any> | ActionWithError<any>;
+
+export type Action =
+      BaseAction<string>
+    | ActionWithPayload<string, any>
+    | ActionWithError<string, any>
+    | BaseAction<"ACCOUNT_FEED_REQUEST">
+    | ActionWithPayload<"ACCOUNT_FEED_SUCCESS", any>
+    | ActionWithError<"ACCOUNT_FEED_FAIL", any>;
+
 export type PromiseAction = Promise<Action>;
 
 export type State = {|

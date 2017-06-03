@@ -4,6 +4,7 @@
 import React, { PureComponent } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Avatar } from 'components';
+import { Sentry } from 'react-native-sentry';
 import Icon from 'react-native-vector-icons/Octicons';
 
 // import flow types
@@ -197,28 +198,38 @@ export default class EventRowTablet extends PureComponent<void, Props, void> {
     render(): React.Element<any> {
         const { event } = this.props;
 
-        switch (event.type) {
-            case 'PullRequestReviewCommentEvent':
-                return this.renderPullRequestReviewCommentEvent(event);
-            case 'ReleaseEvent':
-                return this.renderReleaseEvent(event);
-            case 'CreateEvent':
-                return this.renderCreateEvent(event);
-            case 'DeleteEvent':
-                return this.renderDeleteEvent(event);
-            case 'PushEvent':
-                return this.renderPushEvent(event);
-            case 'IssueCommentEvent':
-                return this.renderIssueCommentEvent(event);
-            case 'IssuesEvent':
-                return this.renderIssuesEvent(event);
-        }
+        try {
+            switch (event.type) {
+                case 'PullRequestReviewCommentEvent':
+                    return this.renderPullRequestReviewCommentEvent(event);
+                case 'ReleaseEvent':
+                    return this.renderReleaseEvent(event);
+                case 'CreateEvent':
+                    return this.renderCreateEvent(event);
+                case 'DeleteEvent':
+                    return this.renderDeleteEvent(event);
+                case 'PushEvent':
+                    return this.renderPushEvent(event);
+                case 'IssueCommentEvent':
+                    return this.renderIssueCommentEvent(event);
+                case 'IssuesEvent':
+                    return this.renderIssuesEvent(event);
+            }
 
-        return (
-            <View style={styles.event}>
-                <Text>This type of event ({event.type}) does not supported inside this version</Text>
-            </View>
-        )
+            return (
+                <View style={styles.event}>
+                    <Text>This type of event ({event.type}) does not supported inside this version</Text>
+                </View>
+            )
+        } catch (e) {
+            Sentry.captureException(e);
+
+            return (
+                <View style={styles.event}>
+                    <Text>Unexpected exception with Event's type ({event.type}) :(</Text>
+                </View>
+            )
+        }
     }
 }
 

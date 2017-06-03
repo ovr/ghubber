@@ -144,6 +144,29 @@ export default class EventRowTablet extends PureComponent<void, Props, void> {
         )
     }
 
+    renderPullRequestEvent(event: PushEvent | PullRequestEvent): React.Element<any> {
+        return this.renderWrapper(
+            'git-commit',
+            (
+                <View style={styles.right}>
+                    <Text>
+                        <Text style={styles.login}>{event.actor.login + " "}</Text>
+                        {event.payload.action === 'closed' ? 'merged' : event.payload.action} pull request
+                        &nbsp;<Text style={styles.repoName}>{event.repo.name}#{event.payload.pull_request.number}</Text>
+                    </Text>
+                    <View style={styles.rightBottom}>
+                        <Avatar user={event.actor} size={24} style={styles.avatar} />
+                        <Text numberOfLines={2} style={styles.commentBody}>
+                            {event.payload.pull_request.commits} commit(s) with&nbsp;
+                            {event.payload.pull_request.additions} additions and&nbsp;
+                            {event.payload.pull_request.deletions} deletions
+                        </Text>
+                    </View>
+                </View>
+            )
+        )
+    }
+
     renderIssueCommentEvent(event: PushEvent | PullRequestEvent): React.Element<any> {
         return this.renderWrapper(
             'comment-discussion',
@@ -200,6 +223,8 @@ export default class EventRowTablet extends PureComponent<void, Props, void> {
 
         try {
             switch (event.type) {
+                case 'PullRequestEvent':
+                    return this.renderPullRequestEvent(event);
                 case 'PullRequestReviewCommentEvent':
                     return this.renderPullRequestReviewCommentEvent(event);
                 case 'ReleaseEvent':

@@ -7,10 +7,29 @@ import {
     ACCOUNT_FEED_SUCCESS,
     ACCOUNT_FEED_FAIL,
     //
+    ACCOUNT_FEED_INFINITY_REQUEST,
+    ACCOUNT_FEED_INFINITY_SUCCESS,
+    ACCOUNT_FEED_INFINITY_FAIL,
+    //
     ACCOUNT_FEED_CHANGE_LOGIN,
     //
     ACCOUNT_FEED_LIMIT
 } from 'constants';
+
+function fetchFeed(state: State, page: number = 1): Promise<any> {
+    // login of the user, who use app
+    const identityLogin = state.app.user.login;
+
+    // selected "login", can be similar to identityLogin or any user's organization login
+    const selectedLogin = state.accountFeed.login;
+
+    if (selectedLogin && selectedLogin !== identityLogin) {
+        // This is needed to get private events for Organization
+        return getOrganizationUserEvents(identityLogin, selectedLogin, { page: page, per_page: ACCOUNT_FEED_LIMIT });
+    }
+
+    return getUserReceivedEvents(identityLogin, { page: page, per_page: ACCOUNT_FEED_LIMIT });
+}
 
 export function fetchAccountFeed(): ThunkAction {
     return (dispatch, getState) => {
@@ -18,51 +37,25 @@ export function fetchAccountFeed(): ThunkAction {
             type: ACCOUNT_FEED_REQUEST
         });
 
-        const state = getState();
-
-        // login of the user, who use app
-        const identityLogin = state.app.user.login;
-
-        // selected "login", can be similar to identityLogin or any user's organization login
-        const selectedLogin = state.accountFeed.login;
-
-        if (selectedLogin && selectedLogin !== identityLogin) {
-            // This is needed to get private events for Organization
-            getOrganizationUserEvents(identityLogin, selectedLogin, { per_page: ACCOUNT_FEED_LIMIT }).then(
-                (response) => {
-                    dispatch({
-                        type: ACCOUNT_FEED_SUCCESS,
-                        payload: response
-                    })
-                },
-                (error) => {
-                    dispatch({
-                        type: ACCOUNT_FEED_FAIL,
-                        error: error
-                    })
-                }
-            )
-        } else {
-            getUserReceivedEvents(identityLogin, { per_page: ACCOUNT_FEED_LIMIT }).then(
-                (response) => {
-                    dispatch({
-                        type: ACCOUNT_FEED_SUCCESS,
-                        payload: response
-                    })
-                },
-                (error) => {
-                    dispatch({
-                        type: ACCOUNT_FEED_FAIL,
-                        error: error
-                    })
-                }
-            )
-        }
+        fetchFeed(getState(), 1).then(
+            (response) => {
+                dispatch({
+                    type: ACCOUNT_FEED_SUCCESS,
+                    payload: response
+                })
+            },
+            (error) => {
+                dispatch({
+                    type: ACCOUNT_FEED_FAIL,
+                    error: error
+                })
+            }
+        )
     }
 }
 
 export function changeAccountFeedLogin(login: string): ThunkAction {
-    return (dispatch, getState) => {
+    return dispatch => {
         dispatch({
             type: ACCOUNT_FEED_CHANGE_LOGIN,
             payload: login

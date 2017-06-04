@@ -6,6 +6,10 @@ import {
     ACCOUNT_FEED_SUCCESS,
     ACCOUNT_FEED_FAIL,
     //
+    ACCOUNT_FEED_INFINITY_REQUEST,
+    ACCOUNT_FEED_INFINITY_SUCCESS,
+    ACCOUNT_FEED_INFINITY_FAIL,
+    //
     ACCOUNT_FEED_CHANGE_LOGIN,
     //
     APP_LOGOUT_SUCCESS,
@@ -14,9 +18,6 @@ import {
 } from 'constants';
 
 import { saveStoreKey } from 'utils';
-
-// import flow types
-import type { IssueEntity } from 'github-flow-js';
 
 export type AccountFeedState = {
     events: Array<Object>|null,
@@ -46,9 +47,9 @@ export default (state: AccountFeedState = initialState, action: Object): Account
     switch (action.type) {
         case ACCOUNT_FEED_CHANGE_LOGIN:
             return {
+                ...initialState,
                 login: action.payload
             }
-
         case ACCOUNT_FEED_REQUEST:
             return {
                 ...state,

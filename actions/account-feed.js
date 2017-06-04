@@ -54,6 +54,31 @@ export function fetchAccountFeed(): ThunkAction {
     }
 }
 
+export function fetchMoreAccountFeed(): ThunkAction {
+    return (dispatch, getState) => {
+        dispatch({
+            type: ACCOUNT_FEED_INFINITY_REQUEST
+        });
+
+        const page = getState().accountFeed.page + 1;
+
+        fetchFeed(getState(), page).then(
+            (response) => {
+                dispatch({
+                    type: ACCOUNT_FEED_INFINITY_SUCCESS,
+                    payload: response
+                })
+            },
+            (error) => {
+                dispatch({
+                    type: ACCOUNT_FEED_INFINITY_FAIL,
+                    error: error
+                })
+            }
+        )
+    }
+}
+
 export function changeAccountFeedLogin(login: string): ThunkAction {
     return dispatch => {
         dispatch({

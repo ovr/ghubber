@@ -25,7 +25,7 @@ export type AccountFeedState = {
     // first list fetch
     loading: boolean,
     // is infinity loading?
-    infinityLoading: boolean,
+    infinity: boolean,
     // should we try to load more issues?
     hasMore: boolean,
     // current page number
@@ -39,7 +39,7 @@ const initialState: AccountFeedState = {
     loading: false,
     hasMore: false,
     page: 1,
-    infinityLoading: false,
+    infinity: false,
     error: null,
 }
 
@@ -50,11 +50,40 @@ export default (state: AccountFeedState = initialState, action: Object): Account
                 ...initialState,
                 login: action.payload
             }
+        // Infinity
+        case ACCOUNT_FEED_INFINITY_REQUEST:
+            return {
+                ...state,
+                infinity: true
+            }
+        case ACCOUNT_FEED_INFINITY_SUCCESS: {
+            const payload = action.payload;
+
+            const nextState = {
+                ...state,
+                infinity: false,
+                hasMore: payload.length === ACCOUNT_FEED_LIMIT,
+                page: state.page + 1,
+                // Possible this can be null but...
+                events: state.events ? state.events.concat(payload) : state.events
+            }
+
+            saveStoreKey('state:account-feed', nextState);
+
+            return nextState;
+        }
+        case ACCOUNT_FEED_INFINITY_FAIL:
+            return {
+                ...state,
+                infinity: false
+            }
+        // Loading
         case ACCOUNT_FEED_REQUEST:
             return {
                 ...state,
                 // events: [],
                 // loading: true,
+                page: 1,
                 error: null
             }
         case ACCOUNT_FEED_SUCCESS: {

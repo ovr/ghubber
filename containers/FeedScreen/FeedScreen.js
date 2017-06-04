@@ -4,16 +4,17 @@
 import React, { PureComponent } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { connect } from 'react-redux';
-import { Spinner, EventRow, Avatar } from 'components';
+import { Spinner, EventRow } from 'components';
 import { FeedTopPanel } from 'containers';
-import { fetchAccountFeed } from 'actions';
+import { fetchAccountFeed, fetchMoreAccountFeed } from 'actions';
 
 // import flow types
 import type { AccountFeedState } from 'reducers/account-feed';
 
 type Props = {
     feed: AccountFeedState,
-    fetchAccountFeed: typeof fetchAccountFeed
+    fetchAccountFeed: typeof fetchAccountFeed,
+    fetchMoreAccountFeed: typeof fetchMoreAccountFeed,
 }
 
 class FeedScreen extends PureComponent<void, Props, void> {
@@ -22,7 +23,7 @@ class FeedScreen extends PureComponent<void, Props, void> {
     }
 
     render() {
-        const { loading, infinityLoading, error, events } = this.props.feed;
+        const { loading, infinity, hasMore, error, events } = this.props.feed;
 
         if (loading || !events) {
             return (
@@ -40,6 +41,8 @@ class FeedScreen extends PureComponent<void, Props, void> {
             )
         }
 
+        const { fetchMoreAccountFeed } = this.props;
+
         return (
             <View style={styles.root}>
                 <FeedTopPanel />
@@ -47,7 +50,7 @@ class FeedScreen extends PureComponent<void, Props, void> {
                     style={styles.list}
                     data={events}
                     keyExtractor={(repository) => repository.id}
-                    refreshing={loading || infinityLoading}
+                    refreshing={loading || infinity}
                     renderItem={
                         ({ item }) => (
                             <EventRow
@@ -56,6 +59,7 @@ class FeedScreen extends PureComponent<void, Props, void> {
                             />
                         )
                     }
+                    onEndReached={() => !infinity && hasMore ? fetchMoreAccountFeed() : null}
                 />
             </View>
         )
@@ -81,5 +85,5 @@ export default connect(
     (state) => ({
         feed: state.accountFeed
     }),
-    { fetchAccountFeed }
+    { fetchAccountFeed, fetchMoreAccountFeed }
 )(FeedScreen);

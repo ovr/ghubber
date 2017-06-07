@@ -29,5 +29,8 @@ export function filterConcat<T: Object>(current: Array<T>, next: Array<T>): Arra
         return current.concat(next);
     }
 
-    return current.concat(next.splice(splitIndex));
+    // Remove some part of repeated elements
+    next.splice(splitIndex)
+
+    return current.concat(next);
 }

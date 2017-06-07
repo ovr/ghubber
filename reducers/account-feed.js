@@ -17,7 +17,7 @@ import {
     ACCOUNT_FEED_LIMIT
 } from 'constants';
 
-import { saveStoreKey } from 'utils';
+import { saveStoreKey, filterConcat } from 'utils';
 
 export type AccountFeedState = {
     events: Array<Object>|null,
@@ -32,6 +32,10 @@ export type AccountFeedState = {
     page: number,
     error: Object|string|null,
 }
+
+export type LoadedAccountFeedState = AccountFeedState & {
+    events: Array<Object>,
+};
 
 const initialState: AccountFeedState = {
     events: null,
@@ -65,7 +69,7 @@ export default (state: AccountFeedState = initialState, action: Object): Account
                 hasMore: payload.length === ACCOUNT_FEED_LIMIT,
                 page: state.page + 1,
                 // Possible this can be null but...
-                events: state.events ? state.events.concat(payload) : state.events
+                events: state.events ? filterConcat(state.events, payload) : payload
             }
 
             saveStoreKey('state:account-feed', nextState);

@@ -146,7 +146,7 @@ export default class EventRowTablet extends PureComponent<void, Props, void> {
 
     renderPullRequestEvent(event: PushEvent | PullRequestEvent): React.Element<any> {
         return this.renderWrapper(
-            'git-commit',
+            'git-pull-request',
             (
                 <View style={styles.right}>
                     <Text>

@@ -28,3 +28,4 @@ export * from './FilterTabType';
 export * from './Badge';
 export * from './UIText';
 export * from './ModalPicker';
+export * from './TextIcon';

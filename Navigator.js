@@ -1,10 +1,10 @@
 // @author Dmitry Patsura <talk@dmtry.me> https://github.com/ovr
 
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, BackHandler } from 'react-native';
 import { connect } from 'react-redux';
 import { SideMenuButton } from 'containers';
-import { addNavigationHelpers, StackNavigator, DrawerNavigator } from 'react-navigation';
+import { addNavigationHelpers, StackNavigator, DrawerNavigator, NavigationActions } from 'react-navigation';
 
 import {
     Home,
@@ -85,9 +85,34 @@ export const AppNavigator = StackNavigator(
     }
 );
 
-const AppWithNavigationState = ({ dispatch, navigation }) => (
-    <AppNavigator navigation={addNavigationHelpers({ dispatch, state: navigation })} />
-);
+class AppWithNavigationState extends React.Component {
+    componentDidMount() {
+        BackHandler.addEventListener('hardwareBackPress', () => {
+            const { dispatch, navigation } = this.props;
+
+            if (navigation.index === 0) {
+                return false;
+            }
+                
+            dispatch(NavigationActions.back());
+
+            return true;
+        });
+    }
+
+    componentWillUnmount() {
+        BackHandler.removeEventListener('hardwareBackPress');
+    }
+
+    render() {
+        return (
+            <AppNavigator navigation={ addNavigationHelpers({
+                dispatch: this.props.dispatch,
+                state: this.props.navigation,
+            }) } />
+        );
+    }
+}
 
 const mapStateToProps = state => ({
     navigation: state.navigation,

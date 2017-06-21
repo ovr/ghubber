@@ -19,24 +19,24 @@
     "github-flow-js": "^0.11.2",
     "lodash": "^4.17.4",
     "react": "^16.0.0-alpha.12",
-    "react-native": "^0.45.0",
+    "react-native": "^0.45.1",
     "react-native-device-info": "^0.10.2",
-    "react-native-sentry": "^0.12.9",
+    "react-native-sentry": "^0.12.12",
     "react-native-vector-icons": "^4.2.0",
     "react-navigation": "^1.0.0-beta.11",
     "react-redux": "^5.0.5",
-    "redux": "^3.6.0",
+    "redux": "^3.7.0",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
     "rn-viewpager": "^1.2.3"
   },
   "devDependencies": {
     "babel-jest": "20.0.3",
-    "babel-preset-react-native": "1.9.2",
-    "flow-bin": "^0.47.0",
+    "babel-preset-react-native": "2.0.0",
+    "flow-bin": "^0.48.0",
     "jest": "20.0.4",
     "react-native-version": "^2.3.1",
-    "react-test-renderer": "16.0.0-alpha.6"
+    "react-test-renderer": "16.0.0-alpha.12"
   },
   "jest": {
     "preset": "react-native"

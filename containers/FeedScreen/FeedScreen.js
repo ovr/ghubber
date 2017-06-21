@@ -61,6 +61,7 @@ class FeedScreen extends PureComponent<void, Props, void> {
                         )
                     }
                     onEndReached={() => !infinity && hasMore ? fetchMoreAccountFeed() : null}
+                    ListFooterComponent={() => infinity ? <Spinner style={styles.moreLoadingSpinner} /> : null}
                 />
             </View>
         )
@@ -79,6 +80,9 @@ const styles = StyleSheet.create({
     },
     list: {
         flex: 0,
+    },
+    moreLoadingSpinner: {
+        marginVertical: 15
     }
 })
 

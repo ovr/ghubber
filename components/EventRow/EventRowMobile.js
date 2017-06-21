@@ -233,7 +233,7 @@ export default class EventRowMobile extends PureComponent<void, Props, void> {
                 <View style={styles.event}>
                     <View style={styles.left}>
                         <Icon name={iconName} size={26} />
-                        { showAvatar ? <Avatar user={event.actor} size={26} style={styles.avatar} /> : null}
+                        { showAvatar ? <Avatar user={event.actor} size={26} /> : null }
                     </View>
                     {content}
                 </View>
@@ -260,7 +260,7 @@ const styles = StyleSheet.create({
         marginBottom: 10
     },
     left: {
-        marginRight: 5,
+        marginRight: 6,
     },
     right: {
         flex: 1,
@@ -272,8 +272,6 @@ const styles = StyleSheet.create({
     },
     commentBody: {
         flex: 1,
-    },
-    avatar: {
     },
     login: {
         fontSize: 16,

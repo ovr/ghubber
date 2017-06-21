@@ -3,6 +3,7 @@
 
 import React, { PureComponent } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
+import { isTablet } from 'react-native-device-info';
 import { connect } from 'react-redux';
 import { Spinner, EventRow } from 'components';
 import { FeedTopPanel } from 'containers';
@@ -74,7 +75,7 @@ const styles = StyleSheet.create({
     },
     root: {
         flex: 1,
-        marginHorizontal: 15
+        marginHorizontal: isTablet() ? 15 : 5
     },
     list: {
         flex: 0,

@@ -56,165 +56,125 @@ export default class EventRowMobile extends PureComponent<void, Props, void> {
         )
     }
 
-    renderWrapper(iconName: string, content: React.Element<any>): React.Element<any> {
+    renderPushEvent(event: PushEvent | PullRequestEvent): React.Element<any> {
         return (
-            <View style={styles.event}>
-                <View style={styles.left}>
-                    <Icon name={iconName} size={32} />
+            <View style={styles.right}>
+                <Text>
+                    <Text style={styles.login}>{event.actor.login + " "}</Text>
+                    pushed to <Text style={styles.branchName}>{filterBranchName(event.payload.ref)}</Text> at
+                    <Text style={styles.repoName}>{" " + event.repo.name}</Text>
+                </Text>
+                <View style={styles.rightBottom}>
+                    {this.renderCommitsList(event.payload)}
                 </View>
-                {content}
             </View>
         )
     }
 
-    renderPushEvent(event: PushEvent | PullRequestEvent): React.Element<any> {
-        return this.renderWrapper(
-            'git-commit',
-            (
-                <View style={styles.right}>
-                    <Text>
-                        <Text style={styles.login}>{event.actor.login + " "}</Text>
-                        pushed to <Text style={styles.branchName}>{filterBranchName(event.payload.ref)}</Text> at
-                        <Text style={styles.repoName}>{" " + event.repo.name}</Text>
-                    </Text>
-                    <View style={styles.rightBottom}>
-                        <Avatar user={event.actor} size={24} style={styles.avatar} />
-                        {this.renderCommitsList(event.payload)}
-                    </View>
-                </View>
-            )
-        )
-    }
-
     renderIssuesEvent(event: PushEvent | PullRequestEvent): React.Element<any> {
-        return this.renderWrapper(
-            'issue-opened',
-            (
-                <View style={styles.right}>
-                    <Text>
-                        <Text style={styles.login}>{event.actor.login + " "}</Text>
-                        {event.payload.action} issue
-                        <Text style={styles.repoName}>{" " + event.repo.name}{"#" + event.payload.issue.number}</Text>
+        return (
+            <View style={styles.right}>
+                <Text>
+                    <Text style={styles.login}>{event.actor.login + " "}</Text>
+                    {event.payload.action} issue
+                    <Text style={styles.repoName}>{" " + event.repo.name}{"#" + event.payload.issue.number}</Text>
+                </Text>
+                <View style={styles.rightBottom}>
+                    <Text numberOfLines={1} style={styles.commentBody}>
+                        {event.payload.issue.title}
                     </Text>
-                    <View style={styles.rightBottom}>
-                        <Avatar user={event.actor} size={24} style={styles.avatar} />
-                        <Text numberOfLines={1} style={styles.commentBody}>
-                            {event.payload.issue.title}
-                        </Text>
-                    </View>
                 </View>
-            )
+            </View>
         )
     }
 
     renderReleaseEvent(event: PushEvent | PullRequestEvent): React.Element<any> {
-        return this.renderWrapper(
-            'tag',
-            (
-                <View style={styles.right}>
-                    <Text>
-                        <Text style={styles.login}>{event.actor.login + " "}</Text>
-                        {event.payload.action} release&nbsp;
-                        <Text style={styles.repoName}>{event.payload.release.tag_name}</Text> at
-                        &nbsp;<Text style={styles.repoName}>{event.repo.name}</Text>
-                    </Text>
-                </View>
-            )
+        return (
+            <View style={styles.right}>
+                <Text>
+                    <Text style={styles.login}>{event.actor.login + " "}</Text>
+                    {event.payload.action} release&nbsp;
+                    <Text style={styles.repoName}>{event.payload.release.tag_name}</Text> at
+                    &nbsp;<Text style={styles.repoName}>{event.repo.name}</Text>
+                </Text>
+            </View>
         )
     }
 
     renderPullRequestReviewCommentEvent(event: PushEvent | PullRequestEvent): React.Element<any> {
-        return this.renderWrapper(
-            'comment-discussion',
-            (
-                <View style={styles.right}>
-                    <Text>
-                        <Text style={styles.login}>{event.actor.login + " "}</Text>
-                        commented on pull request
-                        &nbsp;<Text style={styles.repoName}>{event.repo.name}#{event.payload.pull_request.number}</Text>
+        return (
+            <View style={styles.right}>
+                <Text>
+                    <Text style={styles.login}>{event.actor.login + " "}</Text>
+                    commented on pull request
+                    &nbsp;<Text style={styles.repoName}>{event.repo.name}#{event.payload.pull_request.number}</Text>
+                </Text>
+                <View style={styles.rightBottom}>
+                    <Text numberOfLines={1} style={styles.commentBody}>
+                        {event.payload.comment.body}
                     </Text>
-                    <View style={styles.rightBottom}>
-                        <Avatar user={event.actor} size={24} style={styles.avatar} />
-                        <Text numberOfLines={1} style={styles.commentBody}>
-                            {event.payload.comment.body}
-                        </Text>
-                    </View>
                 </View>
-            )
+            </View>
         )
     }
 
     renderPullRequestEvent(event: PushEvent | PullRequestEvent): React.Element<any> {
-        return this.renderWrapper(
-            'git-pull-request',
-            (
-                <View style={styles.right}>
-                    <Text>
-                        <Text style={styles.login}>{event.actor.login + " "}</Text>
-                        {event.payload.action === 'closed' ? 'merged' : event.payload.action} pull request
-                        &nbsp;<Text style={styles.repoName}>{event.repo.name}#{event.payload.pull_request.number}</Text>
+        return (
+            <View style={styles.right}>
+                <Text>
+                    <Text style={styles.login}>{event.actor.login + " "}</Text>
+                    {event.payload.action === 'closed' ? 'merged' : event.payload.action} pull request
+                    &nbsp;<Text style={styles.repoName}>{event.repo.name}#{event.payload.pull_request.number}</Text>
+                </Text>
+                <View style={styles.rightBottom}>
+                    <Text numberOfLines={2} style={styles.commentBody}>
+                        {event.payload.pull_request.commits} commit(s) with&nbsp;
+                        {event.payload.pull_request.additions} additions and&nbsp;
+                        {event.payload.pull_request.deletions} deletions
                     </Text>
-                    <View style={styles.rightBottom}>
-                        <Avatar user={event.actor} size={24} style={styles.avatar} />
-                        <Text numberOfLines={2} style={styles.commentBody}>
-                            {event.payload.pull_request.commits} commit(s) with&nbsp;
-                            {event.payload.pull_request.additions} additions and&nbsp;
-                            {event.payload.pull_request.deletions} deletions
-                        </Text>
-                    </View>
                 </View>
-            )
+            </View>
         )
     }
 
     renderIssueCommentEvent(event: PushEvent | PullRequestEvent): React.Element<any> {
-        return this.renderWrapper(
-            'comment-discussion',
-            (
-                <View style={styles.right}>
-                    <Text>
-                        <Text style={styles.login}>{event.actor.login + " "}</Text>
-                        commented on issue
-                        <Text style={styles.repoName}>{" " + event.repo.name}{"#" + event.payload.issue.number}</Text>
+        return (
+            <View style={styles.right}>
+                <Text>
+                    <Text style={styles.login}>{event.actor.login + " "}</Text>
+                    commented on issue
+                    <Text style={styles.repoName}>{" " + event.repo.name}{"#" + event.payload.issue.number}</Text>
+                </Text>
+                <View style={styles.rightBottom}>
+                    <Text numberOfLines={1} style={styles.commentBody}>
+                        {event.payload.comment.body}
                     </Text>
-                    <View style={styles.rightBottom}>
-                        <Avatar user={event.actor} size={24} style={styles.avatar} />
-                        <Text numberOfLines={1} style={styles.commentBody}>
-                            {event.payload.comment.body}
-                        </Text>
-                    </View>
                 </View>
-            )
+            </View>
         )
     }
 
     renderCreateEvent(event: PushEvent | PullRequestEvent): React.Element<any> {
-        return this.renderWrapper(
-            'tag',
-            (
-                <View style={styles.right}>
-                    <Text>
-                        <Text style={styles.login}>{event.actor.login + " "}</Text>
-                        created {event.payload.ref_type} <Text style={styles.branchName}>{event.payload.ref}</Text>
-                        &nbsp;at <Text style={styles.branchName}>{event.repo.name}</Text>
-                    </Text>
-                </View>
-            )
+        return (
+            <View style={styles.right}>
+                <Text>
+                    <Text style={styles.login}>{event.actor.login + " "}</Text>
+                    created {event.payload.ref_type} <Text style={styles.branchName}>{event.payload.ref}</Text>
+                    &nbsp;at <Text style={styles.branchName}>{event.repo.name}</Text>
+                </Text>
+            </View>
         )
     }
 
     renderDeleteEvent(event: PushEvent | PullRequestEvent): React.Element<any> {
-        return this.renderWrapper(
-            'git-branch',
-            (
-                <View style={styles.right}>
-                    <Text>
-                        <Text style={styles.login}>{event.actor.login + " "}</Text>
-                        created {event.payload.ref_type} <Text style={styles.branchName}>{event.payload.ref}</Text>
-                        &nbsp;at <Text style={styles.branchName}>{event.repo.name}</Text>
-                    </Text>
-                </View>
-            )
+        return (
+            <View style={styles.right}>
+                <Text>
+                    <Text style={styles.login}>{event.actor.login + " "}</Text>
+                    created {event.payload.ref_type} <Text style={styles.branchName}>{event.payload.ref}</Text>
+                    &nbsp;at <Text style={styles.branchName}>{event.repo.name}</Text>
+                </Text>
+            </View>
         )
     }
 
@@ -222,28 +182,60 @@ export default class EventRowMobile extends PureComponent<void, Props, void> {
         const { event } = this.props;
 
         try {
+            let iconName = null;
+            let showAvatar = true;
+            let content = null;
+
             switch (event.type) {
                 case 'PullRequestEvent':
-                    return this.renderPullRequestEvent(event);
+                    iconName = 'git-commit';
+                    content = this.renderPullRequestEvent(event);
+                    break;
                 case 'PullRequestReviewCommentEvent':
-                    return this.renderPullRequestReviewCommentEvent(event);
+                    iconName = 'comment-discussion';
+                    content = this.renderPullRequestReviewCommentEvent(event);
+                    break;
                 case 'ReleaseEvent':
-                    return this.renderReleaseEvent(event);
+                    iconName = 'tag';
+                    content = this.renderReleaseEvent(event);
+                    break;
                 case 'CreateEvent':
-                    return this.renderCreateEvent(event);
+                    iconName = 'tag';
+                    // because one line event
+                    showAvatar = false;
+                    content = this.renderCreateEvent(event);
+                    break;
                 case 'DeleteEvent':
-                    return this.renderDeleteEvent(event);
+                    iconName = 'git-branch';
+                    content = this.renderDeleteEvent(event);
+                    break;
                 case 'PushEvent':
-                    return this.renderPushEvent(event);
+                    iconName = 'git-commit';
+                    content = this.renderPushEvent(event);
+                    break;
                 case 'IssueCommentEvent':
-                    return this.renderIssueCommentEvent(event);
+                    iconName = 'comment-discussion';
+                    content = this.renderIssueCommentEvent(event);
+                    break;
                 case 'IssuesEvent':
-                    return this.renderIssuesEvent(event);
+                    iconName = 'issue-opened';
+                    content = this.renderIssuesEvent(event);
+                    break;
+                default:
+                    return (
+                        <View style={styles.event}>
+                            <Text>This type of event ({event.type}) does not supported inside this version</Text>
+                        </View>
+                    )
             }
 
             return (
                 <View style={styles.event}>
-                    <Text>This type of event ({event.type}) does not supported inside this version</Text>
+                    <View style={styles.left}>
+                        <Icon name={iconName} size={26} />
+                        { showAvatar ? <Avatar user={event.actor} size={26} style={styles.avatar} /> : null}
+                    </View>
+                    {content}
                 </View>
             )
         } catch (e) {
@@ -268,7 +260,7 @@ const styles = StyleSheet.create({
         marginBottom: 10
     },
     left: {
-        marginRight: 10,
+        marginRight: 5,
     },
     right: {
         flex: 1,
@@ -282,7 +274,6 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     avatar: {
-        marginRight: 10,
     },
     login: {
         fontSize: 16,

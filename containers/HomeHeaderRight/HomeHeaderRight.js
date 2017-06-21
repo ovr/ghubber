@@ -16,15 +16,15 @@ class HomeHeaderRight extends PureComponent<void, Props, void> {
 
         return (
             <View style={styles.root}>
-                <TouchableOpacity style={styles.button}>
-                    <Text style={styles.buttonText}>Pull Requests</Text>
-                </TouchableOpacity>
+                {/*<TouchableOpacity style={styles.button}>*/}
+                    {/*<Text style={styles.buttonText}>Pull Requests</Text>*/}
+                {/*</TouchableOpacity>*/}
                 <TouchableOpacity style={styles.button} onPress={showAccountIssues}>
                     <Text style={styles.buttonText}>Issues</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.button}>
-                    <Text style={styles.buttonText}>Notifications</Text>
-                </TouchableOpacity>
+                {/*<TouchableOpacity style={styles.button}>*/}
+                    {/*<Text style={styles.buttonText}>Notifications</Text>*/}
+                {/*</TouchableOpacity>*/}
             </View>
         )
     }

@@ -5,7 +5,7 @@ import React, { PureComponent } from 'react';
 import { TextInput, StyleSheet } from 'react-native';
 
 type Props = {
-    onChangeText: () => null,
+    onChangeText: (value: string) => any,
     placeholder: string,
     secureTextEntry?: boolean,
     style?: Object,

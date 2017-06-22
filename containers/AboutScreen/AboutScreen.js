@@ -2,13 +2,17 @@
 // @flow
 
 import React, { PureComponent } from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { connect } from 'react-redux';
 import { Avatar } from 'components';
 import { getVersion } from 'react-native-device-info';
 import { team, contributors } from 'utils/team';
+import { showProfile } from 'actions';
 
-export default class AboutScreen extends PureComponent<void, void, void> {
+class AboutScreen extends PureComponent<void, void, void> {
     render() {
+        const { showProfile } = this.props;
+
         const version = getVersion();
 
         return (
@@ -18,16 +22,19 @@ export default class AboutScreen extends PureComponent<void, void, void> {
                 </View>
                 <View style={styles.team}>
                     <Text style={styles.teamTitle}>Creator</Text>
-                    <View>
+                    <TouchableOpacity onPress={() => showProfile(team[0].login)} style={styles.member}>
                         <Avatar user={team[0]} size={250} />
-                    </View>
+                        <Text style={styles.teamMemberName}>{team[0].name}@{team[0].login}</Text>
+                    </TouchableOpacity>
                 </View>
                 <View style={styles.contributors}>
                     <Text style={styles.contributorsTitle}>Our Awesome Contributors</Text>
                     {
                         contributors.map(
                             (user) => (
-                                <Avatar key={user.id} user={user} size={50} />
+                                <TouchableOpacity onPress={() => showProfile(user.login)} key={user.id}>
+                                    <Avatar user={user} size={50} />
+                                </TouchableOpacity>
                             )
                         )
                     }
@@ -66,5 +73,14 @@ const styles = StyleSheet.create({
     },
     teamTitle: {
         fontSize: 24
-    }
+    },
+    teamMemberName: {
+        fontSize: 20,
+        textAlign: 'center'
+    },
 });
+
+export default connect(
+    null,
+    { showProfile }
+)(AboutScreen);

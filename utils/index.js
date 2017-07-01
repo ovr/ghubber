@@ -7,3 +7,4 @@ export * from './save-state-key';
 export * from './images';
 export * from './team';
 export * from './filter-concat';
+export * from './i18n';

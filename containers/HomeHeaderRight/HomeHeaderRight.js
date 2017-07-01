@@ -5,6 +5,7 @@ import React, { PureComponent } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { showAccountIssues } from 'actions';
+import I18n from 'utils/i18n';
 
 type Props = {
     showAccountIssues: typeof showAccountIssues
@@ -20,7 +21,7 @@ class HomeHeaderRight extends PureComponent<void, Props, void> {
                     {/*<Text style={styles.buttonText}>Pull Requests</Text>*/}
                 {/*</TouchableOpacity>*/}
                 <TouchableOpacity style={styles.button} onPress={showAccountIssues}>
-                    <Text style={styles.buttonText}>Issues</Text>
+                    <Text style={styles.buttonText}>{I18n.t('HomeHeaderRight.issueTitle')}</Text>
                 </TouchableOpacity>
                 {/*<TouchableOpacity style={styles.button}>*/}
                     {/*<Text style={styles.buttonText}>Notifications</Text>*/}

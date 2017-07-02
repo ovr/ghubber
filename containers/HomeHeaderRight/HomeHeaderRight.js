@@ -21,7 +21,7 @@ class HomeHeaderRight extends PureComponent<void, Props, void> {
                     {/*<Text style={styles.buttonText}>Pull Requests</Text>*/}
                 {/*</TouchableOpacity>*/}
                 <TouchableOpacity style={styles.button} onPress={showAccountIssues}>
-                    <Text style={styles.buttonText}>{I18n.t('HomeHeaderRight.issueTitle')}</Text>
+                    <Text style={styles.buttonText}>{I18n.t('HomeHeaderRight.IssuesTitle')}</Text>
                 </TouchableOpacity>
                 {/*<TouchableOpacity style={styles.button}>*/}
                     {/*<Text style={styles.buttonText}>Notifications</Text>*/}

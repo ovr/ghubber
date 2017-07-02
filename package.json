@@ -22,11 +22,11 @@
     "react": "16.0.0-alpha.12",
     "react-native": "0.45.1",
     "react-native-device-info": "^0.10.2",
-    "react-native-sentry": "^0.13.1",
+    "react-native-sentry": "^0.13.3",
     "react-native-vector-icons": "^4.2.0",
     "react-navigation": "^1.0.0-beta.11",
     "react-redux": "^5.0.5",
-    "redux": "^3.7.0",
+    "redux": "^3.7.1",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
     "rn-viewpager": "^1.2.3"

@@ -9,16 +9,12 @@ type Props = {
     backgroundColor?: string
 };
 
-export default class Avatar extends PureComponent<void, Props, void> {
-    props = {
-        backgroundColor: 'yellow',
-    }
-
+export default class Badge extends PureComponent<void, Props, void> {
     render() {
         const { backgroundColor, text } = this.props;
 
         return (
-            <View style={[{backgroundColor: backgroundColor}, styles.root]}>
+            <View style={[{backgroundColor: backgroundColor || 'yellow'}, styles.root]}>
                 <Text style={styles.text}>{text}</Text>
             </View>
         )
@@ -29,8 +25,8 @@ const styles = StyleSheet.create({
     root: {
         flex: 0,
         flexDirection: 'row',
-        paddingVertical: 5,
-        paddingHorizontal: 10,
+        paddingVertical: 1,
+        paddingHorizontal: 4,
         marginRight: 10,
     },
     text: {

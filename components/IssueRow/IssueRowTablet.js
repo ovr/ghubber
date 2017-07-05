@@ -5,6 +5,7 @@ import React, { PureComponent } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Entypo from 'react-native-vector-icons/Entypo';
+import { Badge } from 'components';
 
 // import flow types
 import type { IssueEntity } from 'github-flow-js';
@@ -42,10 +43,12 @@ const styles = StyleSheet.create({
     },
     info: {
         marginRight: 5
+    },
+    labels: {
+        flex: 1,
+        flexDirection: 'row',
     }
 });
-
-const ForkBadge = <View style={styles.forkBadge}><Text>Fork</Text></View>;
 
 const RepositoryUrlPrefixLenght = 'https://api.github.com/repos/'.length;
 
@@ -64,6 +67,19 @@ export default class IssueRowTablet extends PureComponent<void, Props, void> {
                     <Text style={styles.title} numberOfLines={1}>
                         {issue.title}
                     </Text>
+                </View>
+                <View style={styles.labels}>
+                    {
+                        issue.labels && issue.labels.map(
+                            (label) => (
+                                <Badge
+                                    key={label.id}
+                                    text={label.name}
+                                    backgroundColor={'#' + label.color}
+                                />
+                            )
+                        )
+                    }
                 </View>
                 <View style={styles.body}>
                     <Text style={styles.info}>

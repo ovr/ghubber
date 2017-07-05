@@ -18,3 +18,4 @@ export * from './ErrorView';
 export * from './EventRow';
 export * from './KeyboardAvoidingView';
 export * from './FilterTabType';
+export * from './Badge';

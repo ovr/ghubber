@@ -4,6 +4,7 @@
 import React, { Component } from 'react';
 import { View, Text, AppRegistry } from 'react-native';
 import { Provider } from 'react-redux';
+import { Sentry } from 'react-native-sentry';
 import { before } from 'github-flow-js/Client';
 import { initApp } from 'actions';
 
@@ -32,7 +33,12 @@ class App extends Component<void, void, State> {
                 })
             },
             (error) => {
+                Sentry.captureException(error);
 
+                this.setState({
+                    initialized: true,
+                    preloadedState: {}
+                })
             }
         )
     }

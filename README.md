@@ -121,8 +121,11 @@ npm run ios
     - [X] Overview
     - [X] Filter by types
     - [X] Infinity loading
+    - [ ] Refreshing
 - **Feed**
-    - [ ] Overview  (will be in v0.5.0)
+    - [X] Overview
+    - [X] Infinity loading
+    - [ ] Refreshing
 - **Profile**
     - [X] Overview
         - [X] Information

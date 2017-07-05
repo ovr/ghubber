@@ -5,7 +5,7 @@ import React, { PureComponent } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import { fetchIssues, fetchMoreIssues } from 'actions';
-import { IssueRow, Spinner, FilterTabType } from 'components';
+import { IssueRow, Spinner, FilterTabType, RowSeparator } from 'components';
 
 // import flow types
 import type { IssueEntity } from 'github-flow-js';
@@ -72,6 +72,7 @@ class AccountIssues extends PureComponent<void, Props, void> {
                         />
                     )
                 }
+                ItemSeparatorComponent={RowSeparator}
                 refreshing={isRefreshing}
                 onEndReachedThreshold={0.5}
                 onEndReached={

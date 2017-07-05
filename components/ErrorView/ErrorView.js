@@ -4,6 +4,7 @@
 import React, { PureComponent } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Button } from 'components';
+import I18n from 'utils/i18n';
 
 type Props = {
     error: Object,
@@ -19,13 +20,13 @@ export default class ErrorView extends PureComponent<void, Props, void> {
             return (
                 <View style={styles.root}>
                     <Text style={styles.title}>
-                        Sorry, but We are having {error.code} on response :(
+                        {I18n.t('ErrorView.Title', {errorCode: error.code})}
                     </Text>
                     <Text style={styles.message}>
                         {error.message}
                     </Text>
                     <Button onPress={onPress}>
-                        Refresh ;)
+                        {I18n.t('ErrorView.RefreshButton')}
                     </Button>
                 </View>
             )

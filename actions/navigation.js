@@ -40,6 +40,12 @@ export function showAccountIssues() {
     })
 }
 
+export function showAccountPullRequests() {
+    return NavigationActions.navigate({
+        routeName: 'AccountPullRequests',
+    })
+}
+
 export function showAbout() {
     return NavigationActions.navigate({
         routeName: 'AboutScreen',

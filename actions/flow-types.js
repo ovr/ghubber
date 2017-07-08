@@ -2,6 +2,7 @@
 
 import type { AccountFeedState } from 'reducers/account-feed';
 import type { AccountIssuesState } from 'reducers/account-issues';
+import type { AccountPullRequestsState } from 'reducers/account-pull-requests';
 import type { AppState } from 'reducers/app';
 import type { LoginState } from 'reducers/login';
 import type { NavigationState } from 'reducers/navigation';
@@ -38,6 +39,7 @@ export type PromiseAction = Promise<Action>;
 export type State = {|
     accountFeed: AccountFeedState,
     accountIssues: AccountIssuesState,
+    accountPullRequests: AccountPullRequestsState,
     app: AppState,
     login: LoginState,
     login: NavigationState,

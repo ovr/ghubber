@@ -19,7 +19,7 @@ export default class FilterTabType extends PureComponent<void, Props, void> {
             return (
                 <View style={[styles.accountIssuesType, styles.accountIssuesTypeActive]}>
                     <Text style={[styles.accountIssuesTypeText, styles.accountIssuesTypeTextActive]}>
-                        {title}
+                        {title.replace(/\s\s/g, '\n')}
                     </Text>
                 </View>
             )
@@ -30,7 +30,9 @@ export default class FilterTabType extends PureComponent<void, Props, void> {
                 style={styles.accountIssuesType}
                 onPress={onPress}
             >
-                <Text style={styles.accountIssuesTypeText}>{title}</Text>
+                <Text style={styles.accountIssuesTypeText}>
+                    {title.replace(/\s\s/g, '\n')}
+                </Text>
             </TouchableOpacity>
         )
     }
@@ -39,13 +41,14 @@ export default class FilterTabType extends PureComponent<void, Props, void> {
 const styles = StyleSheet.create({
     accountIssuesTypeActive: {
         backgroundColor: '#0366d6',
-        borderColor: '#0366d6'
+        borderColor: '#0366d6',
     },
     accountIssuesType: {
         paddingVertical: 6,
-        paddingHorizontal: 14,
         borderWidth: 1,
-        borderColor: '#e1e4e8'
+        borderColor: '#e1e4e8',
+        flex: 1,
+        justifyContent: 'center',
     },
     accountIssuesTypeTextActive: {
         color: '#fff',
@@ -53,6 +56,7 @@ const styles = StyleSheet.create({
     accountIssuesTypeText: {
         fontSize: 16,
         fontWeight: 'bold',
-        color: '#586069'
+        color: '#586069',
+        textAlign: 'center',
     },
 });

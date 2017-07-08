@@ -6,6 +6,7 @@ export * from './HomeHeaderRight';
 export * from './LoginScreen';
 export * from './NavigationTitle';
 export * from './AccountIssues';
+export * from './AccountPullRequests';
 export * from './FeedScreen';
 export * from './FeedSettingsScreen';
 export * from './FeedTopPanel';

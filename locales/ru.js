@@ -12,4 +12,15 @@ export default {
             Mentioned: 'Упомянутые',
         }
     },
+    AccountPullRequests: {
+        Title: 'Pull-запросы',
+        Error: 'Упс, возникла ошибка!',
+        EmptyResult: 'Нет pull-запросов ;)',
+        Filter: {
+            Created: 'По дате создания',
+            Assigned: 'Назначенные мне',
+            Mentioned: 'Упомянутые',
+            ReviewRequested: 'Требуют просмотра',
+        }
+    },
 }

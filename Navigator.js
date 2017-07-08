@@ -16,6 +16,7 @@ import {
     RepositoryScreen,
     AboutScreen,
     AccountIssues,
+    AccountPullRequests,
     SideMenu,
     HomeHeaderRight
 } from 'containers';
@@ -70,6 +71,12 @@ export const AppNavigator = StackNavigator(
             screen: AccountIssues,
             navigationOptions: {
                 title: I18n.t('AccountIssues.Title'),
+            },
+        },
+        AccountPullRequests: {
+            screen: AccountPullRequests,
+            navigationOptions: {
+                title: I18n.t('AccountPullRequests.Title'),
             },
         },
         AboutScreen: {

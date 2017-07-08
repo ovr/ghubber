@@ -178,6 +178,17 @@ export default class EventRowMobile extends PureComponent<void, Props, void> {
         )
     }
 
+    renderWatchEvent(event: PushEvent | PullRequestEvent): React.Element<any> {
+        return (
+            <View style={styles.right}>
+                <Text>
+                    <Text style={styles.login}>{event.actor.login + " "}</Text>
+                    starred <Text style={styles.branchName}>{event.repo.name}</Text>
+                </Text>
+            </View>
+        )
+    }
+
     render(): React.Element<any> {
         const { event } = this.props;
 
@@ -220,6 +231,11 @@ export default class EventRowMobile extends PureComponent<void, Props, void> {
                 case 'IssuesEvent':
                     iconName = 'issue-opened';
                     content = this.renderIssuesEvent(event);
+                    break;
+                case 'WatchEvent':
+                    iconName = 'star';
+                    showAvatar = false;
+                    content = this.renderWatchEvent(event);
                     break;
                 default:
                     return (

@@ -218,6 +218,20 @@ export default class EventRowTablet extends PureComponent<void, Props, void> {
         )
     }
 
+    renderWatchEvent(event: PushEvent | PullRequestEvent): React.Element<any> {
+        return this.renderWrapper(
+            'star',
+            (
+                <View style={styles.right}>
+                    <Text>
+                        <Text style={styles.login}>{event.actor.login + " "}</Text>
+                        starred <Text style={styles.branchName}>{event.repo.name}</Text>
+                    </Text>
+                </View>
+            )
+        )
+    }
+
     render(): React.Element<any> {
         const { event } = this.props;
 
@@ -239,6 +253,8 @@ export default class EventRowTablet extends PureComponent<void, Props, void> {
                     return this.renderIssueCommentEvent(event);
                 case 'IssuesEvent':
                     return this.renderIssuesEvent(event);
+                case 'WatchEvent':
+                    return this.renderWatchEvent(event);
             }
 
             return (

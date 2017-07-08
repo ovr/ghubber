@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start --reset-cache",
+    "start:ios": "concurrently -r 'react-native start' 'npm run ios && google-chrome http://localhost:8081/debugger-ui'",
+    "start:android": "concurrently -r 'react-native start' 'npm run android && google-chrome http://localhost:8081/debugger-ui'",
     "ios": "node node_modules/react-native/local-cli/cli.js run-ios",
     "android": "node node_modules/react-native/local-cli/cli.js run-android",
     "flow": "flow check",
@@ -44,7 +46,8 @@
     "jest": "20.0.4",
     "react-native-version": "^2.3.1",
     "react-test-renderer": "16.0.0-alpha.12",
-    "sentry-cli-binary": "^1.16.0"
+    "sentry-cli-binary": "^1.16.0",
+    "concurrently": "^3.5.0"
   },
   "jest": {
     "preset": "react-native"

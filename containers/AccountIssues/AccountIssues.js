@@ -55,7 +55,7 @@ class AccountIssues extends PureComponent<void, Props, void> {
             );
         }
 
-        const { fetchMoreIssues, app } = this.props;
+        const { fetchIssues, fetchMoreIssues, app } = this.props;
 
         const isRefreshing = infinityLoading;
 
@@ -79,6 +79,7 @@ class AccountIssues extends PureComponent<void, Props, void> {
                     () => !isRefreshing && hasMore ? fetchMoreIssues(app.user.login, page + 1, type) : null
                 }
                 ListFooterComponent={() => infinityLoading ? <Spinner style={styles.moreLoadingSpinner} /> : null}
+                onRefresh={() => fetchIssues(app.user.login, type)}
             />
         );
     }

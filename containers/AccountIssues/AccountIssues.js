@@ -6,6 +6,7 @@ import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import { fetchIssues, fetchMoreIssues } from 'actions';
 import { IssueRow, Spinner, FilterTabType, RowSeparator } from 'components';
+import I18n from 'utils/i18n';
 
 // import flow types
 import type { IssueEntity } from 'github-flow-js';
@@ -40,7 +41,7 @@ class AccountIssues extends PureComponent<void, Props, void> {
         if (error) {
             return (
                 <View style={styles.container}>
-                    <Text>Oops! Error...</Text>
+                    <Text>{I18n.t('AccountIssues.Error')}</Text>
                 </View>
             )
         }
@@ -48,9 +49,7 @@ class AccountIssues extends PureComponent<void, Props, void> {
         if (issues.length === 0) {
             return (
                 <View style={styles.container}>
-                    <Text>
-                        You don't have any issues ;)
-                    </Text>
+                    <Text>{I18n.t('AccountIssues.EmptyResult')}</Text>
                 </View>
             );
         }
@@ -94,17 +93,17 @@ class AccountIssues extends PureComponent<void, Props, void> {
                     <FilterTabType
                         active={type === 'created'}
                         onPress={() => fetchIssues(app.user.login, 'created')}
-                        title="Created"
+                        title={I18n.t('AccountIssues.Filter.Created')}
                     />
                     <FilterTabType
                         active={type === 'assigned'}
                         onPress={() => fetchIssues(app.user.login, 'assigned')}
-                        title="Created"
+                        title={I18n.t('AccountIssues.Filter.Assigned')}
                     />
                     <FilterTabType
                         active={type === 'mentioned'}
                         onPress={() => fetchIssues(app.user.login, 'mentioned')}
-                        title="Mentioned"
+                        title={I18n.t('AccountIssues.Filter.Mentioned')}
                     />
                 </View>
                 {this.renderContent()}
@@ -116,10 +115,10 @@ class AccountIssues extends PureComponent<void, Props, void> {
 const styles = StyleSheet.create({
     root: {
         flex: 1,
-        marginHorizontal: 15
+        marginHorizontal: 15,
     },
     accountIssuesTypes: {
-        flex: 0,
+        flexWrap: 'wrap',
         flexDirection: 'row',
         marginTop: 10,
     },
@@ -130,10 +129,10 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     moreLoadingSpinner: {
-        marginVertical: 15
+        marginVertical: 15,
     }
 });
 

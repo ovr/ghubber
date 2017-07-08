@@ -5,6 +5,7 @@ import { View, Text, BackHandler } from 'react-native';
 import { connect } from 'react-redux';
 import { SideMenuButton } from 'containers';
 import { addNavigationHelpers, StackNavigator, DrawerNavigator, NavigationActions } from 'react-navigation';
+import I18n from 'utils/i18n';
 
 import {
     Home,
@@ -68,7 +69,7 @@ export const AppNavigator = StackNavigator(
         AccountIssues: {
             screen: AccountIssues,
             navigationOptions: {
-                title: 'Issues',
+                title: I18n.t('AccountIssues.Title'),
             },
         },
         AboutScreen: {

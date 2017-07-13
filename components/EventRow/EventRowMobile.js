@@ -137,6 +137,23 @@ export default class EventRowMobile extends PureComponent<void, Props, void> {
         )
     }
 
+    renderCommitCommentEvent(event: PushEvent | PullRequestEvent): React.Element<any> {
+        return (
+            <View style={styles.right}>
+                <Text>
+                    <Text style={styles.login}>{event.actor.login + " "}</Text>
+                    commented on commit
+                    <Text style={styles.repoName}>{" " + event.repo.name}</Text>
+                </Text>
+                <View style={styles.rightBottom}>
+                    <Text numberOfLines={1} style={styles.commentBody}>
+                        {event.payload.comment.body}
+                    </Text>
+                </View>
+            </View>
+        )
+    }
+
     renderIssueCommentEvent(event: PushEvent | PullRequestEvent): React.Element<any> {
         return (
             <View style={styles.right}>
@@ -223,6 +240,10 @@ export default class EventRowMobile extends PureComponent<void, Props, void> {
                 case 'PushEvent':
                     iconName = 'git-commit';
                     content = this.renderPushEvent(event);
+                    break;
+                case 'CommitCommentEvent':
+                    iconName = 'comment-discussion';
+                    content = this.renderCommitCommentEvent(event);
                     break;
                 case 'IssueCommentEvent':
                     iconName = 'comment-discussion';

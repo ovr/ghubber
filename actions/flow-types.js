@@ -42,11 +42,11 @@ export type State = {|
     accountPullRequests: AccountPullRequestsState,
     app: AppState,
     login: LoginState,
-    login: NavigationState,
+    navigation: NavigationState,
     profile: ProfileState,
     profileOrganizations: ProfileRepositoriesState,
     profileRepositories: ProfileOrganizationsState,
-    repository: RepositoryState,
+    repository: RepositoryState
 |};
 
 export type Dispatch = (action: Action | ThunkAction | PromiseAction) => any;

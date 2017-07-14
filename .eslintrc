@@ -5,7 +5,8 @@
     },
     "plugins": [
         "react",
-        "react-native"
+        "react-native",
+        "flowtype"
     ],
     "extends": [
         "eslint:recommended",
@@ -15,6 +16,10 @@
         // overrides
     },
     "globals": {
-        "__DEV__": true
+        "__DEV__": true,
+        // @todo flow
+        "State": true,
+        "Promise": true,
+        "ThunkAction": true
     }
 }

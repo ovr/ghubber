@@ -2,7 +2,7 @@
 // @flow
 
 import React, { PureComponent } from 'react';
-import { Image, View, StyleSheet, Text, ScrollView, Platform, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Text, ScrollView, Platform, TouchableOpacity } from 'react-native';
 import { Avatar, OrganizationAvatar, Button } from 'components';
 import { connect } from 'react-redux';
 import { hideSideMenu, logout, showAccount, showAbout } from 'actions';
@@ -21,7 +21,7 @@ type Props = {
 
 class SideMenu extends PureComponent<void, Props, void> {
     render() {
-        const { hideSideMenu, app, logout, showAccount, showAbout } = this.props;
+        const { app, logout, showAccount, showAbout } = this.props;
 
         if (app.user === null) {
             return null;

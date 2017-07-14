@@ -1,14 +1,13 @@
 // @author Dmitry Patsura <talk@dmtry.me> https://github.com/ovr
 
 import React from 'react';
-import { View, Text, BackHandler } from 'react-native';
+import { BackHandler } from 'react-native';
 import { connect } from 'react-redux';
 import { SideMenuButton } from 'containers';
 import { addNavigationHelpers, StackNavigator, DrawerNavigator, NavigationActions } from 'react-navigation';
 import I18n from 'utils/i18n';
 
 import {
-    Home,
     FeedScreen,
     FeedSettingsScreen,
     LoginScreen,
@@ -29,7 +28,7 @@ export const HomeScreeDrawer = DrawerNavigator({
 }, {
     drawerWidth: 300,
     drawerPosition: 'left',
-    contentComponent: props => <SideMenu />,
+    contentComponent: () => <SideMenu />,
     initialRouteName: 'Home'
 })
 
@@ -101,7 +100,7 @@ class AppWithNavigationState extends React.Component {
             if (navigation.index === 0) {
                 return false;
             }
-                
+
             dispatch(NavigationActions.back());
 
             return true;

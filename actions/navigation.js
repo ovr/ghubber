@@ -2,7 +2,7 @@
 // @flow
 
 import { NavigationActions } from 'react-navigation';
-import { NAVIGATION_SET_TITLE, NAVIGATION_HOME, NAVIGATION_LOGIN } from 'constants';
+import { NAVIGATION_SET_TITLE } from 'constants';
 import { setupRepository } from './repository';
 
 // import flow types

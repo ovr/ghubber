@@ -1,6 +1,6 @@
 // @flow
 
-import { last } from 'lodash';
+// import { last } from 'lodash';
 
 /**
  * Why is it needed?

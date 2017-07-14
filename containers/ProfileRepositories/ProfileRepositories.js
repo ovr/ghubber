@@ -2,7 +2,7 @@
 // @flow
 
 import React, { PureComponent } from 'react';
-import { View, Text, StyleSheet, FlatList, RefreshControl } from 'react-native';
+import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import { RepositoryRow, RowSeparator } from 'components';
 import { fetchRepositories, fetchMoreRepositories, showRepository } from 'actions';
@@ -14,6 +14,8 @@ import type { RepositoryEntity } from 'github-flow-js';
 import type { ProfileRepositoriesState } from 'reducers/profile-repositories';
 
 type Props = {
+    // @todo
+    navigation: Object,
     state: ProfileRepositoriesState,
     fetchRepositories: typeof fetchRepositories,
     fetchMoreRepositories: typeof fetchMoreRepositories,

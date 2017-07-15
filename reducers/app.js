@@ -1,6 +1,7 @@
 // @author Dmitry Patsura <talk@dmtry.me> https://github.com/ovr
 // @flow
 
+import { getVersion } from 'react-native-device-info';
 import { saveStoreKey } from 'utils';
 import {
     LOGIN_REQUEST_SUCCESS,
@@ -13,7 +14,13 @@ import {
 // flow import
 import type { UserEntity, OrganizationEntity, AuthorizationEntity } from 'github-flow-js';
 
+// What method did we use on auth?
+export type AUTH_METHOD = 'plain' | 'oauth';
+
 export type AppState = {
+    // What version we are used on authorization, we should store it for migration
+    version: string,
+    authMethod: AUTH_METHOD,
     user: UserEntity|null,
     authorization: AuthorizationEntity|null,
     organizations: Array<OrganizationEntity>|null
@@ -24,6 +31,9 @@ export type AuthAppState = AppState & {
 }
 
 const initialState: AppState = {
+    version: getVersion(),
+    // let use plain as default
+    authMethod: 'plain',
     user: null,
     authorization: null,
     organizations: null

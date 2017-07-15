@@ -36,7 +36,7 @@ export default {
         Closed: 'closed',
         Merged: 'merged',
         PR: 'pull request',
-        CommitSummary: '{{commits}} commit(s) with\u{0009}{{additions}} additions and\u{0009}{{deletions}} deletions',
+        CommitSummary: '{{commits}} commit(s) with {{additions}} additions and {{deletions}} deletions',
         CommentedIssue: 'commented on issue',
         Created: 'created',
         TypeEventNotSupported: 'This type of event ({{eventType}}) does not supported inside this version',

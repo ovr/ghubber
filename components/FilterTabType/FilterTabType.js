@@ -8,7 +8,7 @@ import { Button } from 'components';
 type Props = {
     title: string,
     active: boolean,
-    onPress: () => null,
+    onPress: () => any,
 };
 
 export default class FilterTabType extends PureComponent<void, Props, void> {

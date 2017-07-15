@@ -40,6 +40,7 @@ module.name_mapper='actions' -> '<PROJECT_ROOT>/actions/'
 module.name_mapper='constants' -> '<PROJECT_ROOT>/constants/'
 module.name_mapper='components' -> '<PROJECT_ROOT>/components/'
 module.name_mapper='containers' -> '<PROJECT_ROOT>/containers/'
+module.name_mapper='locales' -> '<PROJECT_ROOT>/locales/'
 
 suppress_type=$FlowIssue
 suppress_type=$FlowFixMe

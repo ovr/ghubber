@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/ovr/ghubber.svg?branch=master)](https://travis-ci.org/ovr/ghubber)
 [![Greenkeeper badge](https://badges.greenkeeper.io/ovr/ghubber.svg)](https://greenkeeper.io/)
-
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
 Yet another Mobile :iphone: client for GitHub powered on react-native.
 
@@ -24,11 +24,11 @@ Please write me mail to `zaets28rus@gmail.com` with Subject: `Invite me to GHubb
 
 > Attention. Write you email that connected inside ITunes.
 
-# Installation 
+## Installation 
 
-Before We start to develop app your should configure your env:
+Before we start to develop app your should configure your env:
 
-## Common
+### Common
 
 1. You should install NodeJS with NPM
 
@@ -53,29 +53,29 @@ npm install
 
 [If you are having another OS](https://nodejs.org/en/download/package-manager/)
 
-## Android
+### Android
 
 1. You should download and [install Android Studio](https://developer.android.com/studio/install.html)
 2. Run Android Studio and download default SDKs, don't forget to configure path(s)
 
 ```
-export ANDROID_HOME=/Users/ovr/Library/Android/sdk
+export ANDROID_HOME=/Users/<user>/Library/Android/sdk
 export PATH=$ANDROID_HOME/platform-tools:$PATH
 ```
 
 3. Run emulator:
 
-### Way 1: Built-in Android emulator, use KVM on linux if it's installed for acceleration
+#### Way 1: Built-in Android emulator, use KVM on linux if it's installed for acceleration
 
 > Attentation, KVM and VirtualBox supposedly cannot coexist, or rather, VirtualBox won't run while the KVM modules are loaded in memory
 
 The easy way will be to create a new device inside Android Studio, press run
 
-### Way 2: [Genymotion](https://www.genymotion.com/) is a cool emulator, it runs on VirtualBox
+#### Way 2: [Genymotion](https://www.genymotion.com/) is a cool emulator, it runs on VirtualBox
 
 Run it, you will see ;)
 
-### Way 3: Run on real device (I didn't use this method for development, and I didn't recommend it)
+#### Way 3: Run on real device (I didn't use this method for development, and I didn't recommend it)
 
 First you should enable Developer menu on Android, read in the Internet or try
  
@@ -83,13 +83,15 @@ First you should enable Developer menu on Android, read in the Internet or try
 2. Scroll down to the bottom again, where you see "Build number." (Your build number may vary from ours here.)
 3. Tap it seven (7) times. After the third tap, you'll see a playful dialog that says you're four taps away from being a developer. (If only it were that simple, eh?) Keep on tapping, and *poof*, you've got the developer settings back.
 
-## iOS
+### iOS
 
 > Attention: Sorry, but for build `iOS` you should have `macOS`
 
 It's pretty easy, you should install XCode by AppStore :+1:
 
 ## Lets run ;)
+
+### Way 1
 
 You should open 2 terminals
 
@@ -113,7 +115,11 @@ iOS:
 npm run ios
 ```
 
-### Roadmap
+### Way 2
+
+Or just run `npm run start:android` or `npm run start:ios` depending on the platform :smile:
+
+## Roadmap
 
 > Will be continued // @todo
 
@@ -121,7 +127,7 @@ npm run ios
     - [X] Overview
     - [X] Filter by types
     - [X] Infinity loading
-    - [ ] Refreshing
+    - [X] Refreshing
 - **Feed**
     - [X] Overview
     - [X] Infinity loading
@@ -155,11 +161,11 @@ npm run ios
     - [ ] Close/re-open
     - [ ] Add/remove/edit comment
 
-### We are hire
+## We are hire
 
 Do you know JS and React and would like to code on react-native for $? Write an email to dmitry@interpals.net with your resume and join Interpals.net.
 
-### Sponsors
+## Sponsors
 
 Thanks to our sponsors and supporters:
 
@@ -168,7 +174,7 @@ Thanks to our sponsors and supporters:
 | WebStorm  | Hosting App inside Itunes |
 
 
-### LICENSE
+## LICENSE
 
 This project is open-sourced software licensed under the MIT License with Additions.
 

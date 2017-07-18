@@ -11,6 +11,8 @@ import type { ProfileRepositoriesState } from 'reducers/profile-repositories';
 import type { ProfileOrganizationsState } from 'reducers/profile-organizations';
 import type { RepositoryState } from 'reducers/repository';
 
+export var SENTRY_ENABLED: boolean;
+
 export type BaseAction<T> = {|
     type: T
 |}

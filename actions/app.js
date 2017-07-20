@@ -17,12 +17,16 @@ export function logout(): ThunkAction {
     return (dispatch, getState) => {
         const state: AppState = getState().app;
 
-        deleteAuthorization(state.authorization.id, {}).then(
-            () => {
-                // @todo
-            },
-            (err) => console.warn(err)
-        );
+        const authType = state.authMethod || 'plain';
+
+        if (authType === 'plain') {
+            deleteAuthorization(state.authorization.id, {}).then(
+                () => {
+                    // @todo
+                },
+                (err) => console.warn(err)
+            );
+        }
 
         dispatch({
             type: APP_LOGOUT_SUCCESS

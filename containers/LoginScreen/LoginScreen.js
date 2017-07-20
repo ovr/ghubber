@@ -71,9 +71,13 @@ class LoginScreen extends PureComponent<void, Props, State> {
                 <KeyboardAvoidingView style={styles.root} behavior="padding">
                     <Text style={styles.title}>GHubber</Text>
 
-                    <Button onPress={() => this.oauthLogin()}>
-                        Login using OAuth
-                    </Button>
+                    {
+                        loading ? null : (
+                            <Button onPress={() => this.oauthLogin()}>
+                                Login using OAuth
+                            </Button>
+                        )
+                    }
 
                     <View style={styles.card}>
                         <InputField

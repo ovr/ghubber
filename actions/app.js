@@ -37,11 +37,14 @@ export function initUser(): ThunkAction {
         const state = getState();
         const user = state.app.user;
 
-        Sentry.setUserContext({
-            userID: user.id + "",
-            username: user.login,
-            email: user.email
-        });
+        // eslint-disable-next-line no-undef
+        if (SENTRY_ENABLED) {
+            Sentry.setUserContext({
+                userID: user.id + "",
+                username: user.login,
+                email: user.email
+            });
+        }
 
         getUserOrganizations({}).then(
             (response) => {

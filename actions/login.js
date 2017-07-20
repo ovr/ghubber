@@ -12,19 +12,21 @@ import {
     LOGIN_REQUEST_SUCCESS,
     LOGIN_REQUEST_2FA_REQUIRED,
     //
-    APP_PROFILE_SUCCESS,
-    APP_ORGANIZATIONS_SUCCESS
+    APP_PROFILE_SUCCESS
 } from 'constants';
 
 // import flow types
 import type { AuthorizationEntity } from 'github-flow-js';
 
-export function makeOAuthLogin(accessToken: string) {
+export function makeOAuthLogin(accessToken: string): ThunkAction {
     return dispatch => {
         dispatch({
             type: LOGIN_REQUEST_SUCCESS,
             payload: {
-                token: accessToken
+                authMethod: 'oauth',
+                authorization: {
+                    token: accessToken
+                }
             }
         });
 
@@ -96,7 +98,10 @@ export function makeLogin(username: string, password: string, code: string): Thu
             (response: AuthorizationEntity) => {
                 dispatch({
                     type: LOGIN_REQUEST_SUCCESS,
-                    payload: response
+                    payload: {
+                        authMethod: 'plain',
+                        authorization: response
+                    }
                 });
 
                 const options = {

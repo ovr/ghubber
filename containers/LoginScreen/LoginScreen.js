@@ -2,11 +2,12 @@
 // @flow
 
 import React, { PureComponent } from 'react';
-import { Image, View, StyleSheet, Text, Platform } from 'react-native';
+import { Image, View, StyleSheet, Text, Platform, Linking } from 'react-native';
 import { Button, InputField, Spinner, KeyboardAvoidingView } from 'components';
 import { connect } from 'react-redux';
-import { makeLogin, showHome } from 'actions';
+import { makeLogin, showHome, makeOAuthLogin } from 'actions';
 import { images } from 'utils/images';
+import queryString from 'query-string';
 
 // import flow types
 import type { AppState } from 'reducers/app';
@@ -17,6 +18,7 @@ type Props = {
     login: LoginState,
     showHome: typeof showHome,
     makeLogin: typeof makeLogin,
+    makeOAuthLogin: typeof makeOAuthLogin,
 }
 
 type State = {
@@ -37,13 +39,26 @@ class LoginScreen extends PureComponent<void, Props, State> {
 
         if (user && authorization) {
             this.props.showHome();
+        } else {
+            Linking.addEventListener('url', this.oauthCallback.bind(this));
         }
     }
 
-    renderError(error) {
+    renderError(): React.Element<any> {
         return (
             <Text style={styles.error}>Oops! We cannot auth you, possible password/username are wrong ;( </Text>
         )
+    }
+
+    oauthCallback({ url }) {
+        const query = url.substring('ghubber://login?' . length);
+
+        this.props.makeOAuthLogin(queryString.parse(query).access_token);
+    }
+
+    oauthLogin() {
+        // eslint-disable-next-line no-undef
+        Linking.openURL(GHUBBER_OAUTH);
     }
 
     render() {
@@ -55,6 +70,10 @@ class LoginScreen extends PureComponent<void, Props, State> {
             <Image resizeMode="cover" style={styles.background} source={images.background}>
                 <KeyboardAvoidingView style={styles.root} behavior="padding">
                     <Text style={styles.title}>GHubber</Text>
+
+                    <Button onPress={() => this.oauthLogin()}>
+                        Login using OAuth
+                    </Button>
 
                     <View style={styles.card}>
                         <InputField
@@ -131,5 +150,5 @@ export default connect(
             app: state.app
         }
     },
-    { makeLogin, showHome }
+    { makeLogin, makeOAuthLogin, showHome }
 )(LoginScreen);

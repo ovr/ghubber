@@ -14,7 +14,8 @@
                 [
                     "transform-define",
                     {
-                        "SENTRY_ENABLED": false
+                        "SENTRY_ENABLED": false,
+                        "GHUBBER_OAUTH": "http://ghub.lowl.io/v1/oauth/github"
                     }
                 ]
             ]
@@ -24,7 +25,8 @@
                 [
                     "transform-define",
                     {
-                        "SENTRY_ENABLED": true
+                        "SENTRY_ENABLED": true,
+                        "GHUBBER_OAUTH": "http://ghub.lowl.io/v1/oauth/github"
                     }
                 ],
                 "transform-remove-console"

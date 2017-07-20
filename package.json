@@ -22,6 +22,7 @@
     "github-flow-js": "^0.13.1",
     "i18n-js": "^1.0.0",
     "lodash": "^4.17.4",
+    "query-string": "^4.3.4",
     "react": "16.0.0-alpha.12",
     "react-native": "0.46.3",
     "react-native-device-info": "^0.10.2",

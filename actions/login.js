@@ -19,6 +19,44 @@ import {
 // import flow types
 import type { AuthorizationEntity } from 'github-flow-js';
 
+export function makeOAuthLogin(accessToken: string) {
+    return dispatch => {
+        dispatch({
+            type: LOGIN_REQUEST_SUCCESS,
+            payload: {
+                token: accessToken
+            }
+        });
+
+        const options = {
+            headers: {
+                Authorization: 'Token ' + accessToken
+            }
+        };
+
+        getUser({}, options).then(
+            (response) => {
+                dispatch({
+                    type: APP_PROFILE_SUCCESS,
+                    payload: response
+                });
+
+                dispatch(initUser());
+                dispatch(showHome());
+            },
+            (error) => {
+                dispatch({
+                    type: LOGIN_REQUEST_FAIL,
+                    error
+                })
+
+                console.warn(error);
+                console.warn(error.clone().text());
+            }
+        )
+    }
+}
+
 export function makeLogin(username: string, password: string, code: string): ThunkAction {
     return dispatch => {
         dispatch({

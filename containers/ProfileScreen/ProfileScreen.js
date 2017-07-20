@@ -17,7 +17,7 @@ type Props = {
 const TITLE_REPOS_INDEX = 1;
 
 class ProfileScreen extends PureComponent<void, Props, void> {
-    renderTitle(index: number, title: string, isSelected: boolean): React.Element<any> {
+    renderTitle(index: number, title: string): React.Element<any> {
         const { profile } = this.props;
 
         if (index === TITLE_REPOS_INDEX) {

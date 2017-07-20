@@ -2,7 +2,7 @@
 // @flow
 
 import React, { PureComponent } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { Avatar } from 'components';
 import { Sentry } from 'react-native-sentry';
 import Icon from 'react-native-vector-icons/Octicons';

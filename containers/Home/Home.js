@@ -17,7 +17,7 @@ type Props = {
 
 class Home extends PureComponent<void, Props, void> {
     render() {
-        const { showAccount, showAccountIssues, showProfile, showAbout, logout } = this.props;
+        const { showAccount, showAccountIssues, showProfile, showAbout } = this.props;
 
         return (
             <View style={styles.root}>

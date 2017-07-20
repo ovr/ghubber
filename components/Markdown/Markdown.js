@@ -2,9 +2,9 @@
 // @flow
 
 import React, { PureComponent } from 'react';
-import CommonMark, { Parser } from 'commonmark';
+import { Parser } from 'commonmark';
 import ReactNativeRenderer from 'commonmark-react-renderer';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, Image } from 'react-native';
 
 type Props = {
     content: string

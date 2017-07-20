@@ -48,7 +48,7 @@ export default class README extends PureComponent<void, Props, State> {
                     }
                 )
             },
-            (error) => {
+            () => {
                 this.setState({
                     loading: false,
                     error: true
@@ -58,6 +58,7 @@ export default class README extends PureComponent<void, Props, State> {
     }
 
     render() {
+        // eslint-disable-next-line no-unused-vars
         const { loading, error, content } = this.state;
 
         if (content) {
@@ -85,7 +86,8 @@ export default class README extends PureComponent<void, Props, State> {
     }
 }
 
-const markdownStyles = {
+// eslint-disable-next-line no-unused-vars
+const markdownStyles = StyleSheet.create({
     heading1: {
         fontSize: 24,
         color: 'purple',
@@ -99,4 +101,4 @@ const markdownStyles = {
     text: {
         color: '#555555',
     },
-}
+});

@@ -13,11 +13,13 @@
         "plugin:react/recommended"
     ],
     "rules": {
-        // overrides
+        // disabled for now, anyway will be removed in production build automaticaly
+        "no-console": "off"
     },
     "globals": {
         "__DEV__": true,
         // @todo flow
+        "Action": true,
         "State": true,
         "Promise": true,
         "ThunkAction": true

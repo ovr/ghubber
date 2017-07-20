@@ -2,7 +2,7 @@
 // @flow
 
 import React, { PureComponent } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { Avatar } from 'components';
 import { Sentry } from 'react-native-sentry';
 import Icon from 'react-native-vector-icons/Octicons';
@@ -267,7 +267,7 @@ export default class EventRowTablet extends PureComponent<void, Props, void> {
 
             return (
                 <View style={styles.event}>
-                    <Text>Unexpected exception with Event's type ({event.type}) :(</Text>
+                    <Text>Unexpected exception with Event`s type ({event.type}) :(</Text>
                 </View>
             )
         }

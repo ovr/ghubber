@@ -12,7 +12,10 @@ import type { RepositoryState } from 'reducers/repository';
 
 type Props = {
     state: RepositoryState,
-    fetchRepository: typeof fetchRepository
+    fetchRepository: typeof fetchRepository,
+    navigation: {
+        params: Object
+    }
 }
 
 class Repository extends PureComponent<void, Props, void> {
@@ -56,18 +59,8 @@ class Repository extends PureComponent<void, Props, void> {
 }
 
 const styles = StyleSheet.create({
-    list: {
-        flex: 0,
-        marginTop: 5,
-        marginHorizontal: 15
-    },
-    row: {
-        flex: 1
-    },
-    name: {
-        flex: 1,
-        fontSize: 16,
-        fontWeight: 'bold'
+    root: {
+
     }
 });
 

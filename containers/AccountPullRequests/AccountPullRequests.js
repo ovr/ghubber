@@ -22,7 +22,7 @@ type Props = {
 
 class AccountPullRequests extends PureComponent<void, Props, void> {
     componentWillMount() {
-        const { pullRequests, app, fetchPullRequests } = this.props;
+        const { app, fetchPullRequests } = this.props;
 
         fetchPullRequests(app.user.login, 'created');
     }
@@ -56,7 +56,7 @@ class AccountPullRequests extends PureComponent<void, Props, void> {
             );
         }
 
-        const { fetchPullRequests, app } = this.props;
+        const { app } = this.props;
 
         const isRefreshing = infinityLoading;
 

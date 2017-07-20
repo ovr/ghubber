@@ -22,7 +22,7 @@ type Props = {
 
 class AccountIssues extends PureComponent<void, Props, void> {
     componentWillMount() {
-        const { issues, app, fetchIssues } = this.props;
+        const { app, fetchIssues } = this.props;
 
         fetchIssues(app.user.login, 'created');
     }

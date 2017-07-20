@@ -8,7 +8,8 @@ import { showAccountIssues, showAccountPullRequests } from 'actions';
 import I18n from 'utils/i18n';
 
 type Props = {
-    showAccountIssues: typeof showAccountIssues
+    showAccountIssues: typeof showAccountIssues,
+    showAccountPullRequests: typeof showAccountPullRequests
 }
 
 class HomeHeaderRight extends PureComponent<void, Props, void> {

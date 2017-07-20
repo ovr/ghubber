@@ -2,7 +2,7 @@
 // @flow
 
 import React, { PureComponent } from 'react';
-import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import { View, StyleSheet, Dimensions } from 'react-native';
 import { isTablet } from 'react-native-device-info';
 import { OrganizationAvatar } from 'components';
 
@@ -13,6 +13,7 @@ type Props = {
     organizations: Array<OrganizationEntity>
 };
 
+// eslint-disable-next-line no-unused-vars
 const { height, width } = Dimensions.get('window');
 
 export default class ProfileOrganizationsView extends PureComponent<void, Props, void> {

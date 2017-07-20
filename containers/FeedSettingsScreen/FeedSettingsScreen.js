@@ -4,7 +4,7 @@
 import React, { PureComponent } from 'react';
 import { View, Text, StyleSheet, Platform, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
-import { Button, Avatar, OrganizationAvatar } from 'components';
+import { Avatar, OrganizationAvatar } from 'components';
 import { showHome, changeAccountFeedLogin } from 'actions';
 
 // import flow types
@@ -20,7 +20,7 @@ type Props = {
 
 class FeedSettingsScreen extends PureComponent<void, Props, void> {
     render() {
-        const { feed, app, showHome, changeAccountFeedLogin } = this.props;
+        const { app, showHome, changeAccountFeedLogin } = this.props;
 
         return (
             <View style={styles.root}>

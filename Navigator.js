@@ -28,6 +28,7 @@ export const HomeScreeDrawer = DrawerNavigator({
 }, {
     drawerWidth: 300,
     drawerPosition: 'left',
+    // eslint-disable-next-line react/display-name
     contentComponent: () => <SideMenu />,
     initialRouteName: 'Home'
 })
@@ -92,7 +93,14 @@ export const AppNavigator = StackNavigator(
     }
 );
 
-class AppWithNavigationState extends React.Component {
+type AppWithNavigationStateProps = {
+    navigation: {
+        index: number
+    },
+    dispatch: Function
+};
+
+class AppWithNavigationState extends React.Component<void, AppWithNavigationStateProps, void> {
     componentDidMount() {
         BackHandler.addEventListener('hardwareBackPress', () => {
             const { dispatch, navigation } = this.props;

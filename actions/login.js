@@ -23,10 +23,8 @@ export function makeOAuthLogin(accessToken: string): ThunkAction {
         dispatch({
             type: LOGIN_REQUEST_SUCCESS,
             payload: {
-                authMethod: 'oauth',
-                authorization: {
-                    token: accessToken
-                }
+                method: 'oauth',
+                token: accessToken
             }
         });
 
@@ -99,8 +97,8 @@ export function makeLogin(username: string, password: string, code: string): Thu
                 dispatch({
                     type: LOGIN_REQUEST_SUCCESS,
                     payload: {
-                        authMethod: 'plain',
-                        authorization: response
+                        ...response,
+                        method: 'plain'
                     }
                 });
 

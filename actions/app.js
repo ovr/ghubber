@@ -17,15 +17,15 @@ export function logout(): ThunkAction {
     return (dispatch, getState) => {
         const state: AppState = getState().app;
 
-        const authType = state.authMethod || 'plain';
-
-        if (authType === 'plain') {
-            deleteAuthorization(state.authorization.id, {}).then(
-                () => {
-                    // @todo
-                },
-                (err) => console.warn(err)
-            );
+        if (state.authorization) {
+            if (state.authorization.method === 'plain') {
+                deleteAuthorization(state.authorization.id, {}).then(
+                    () => {
+                        // @todo
+                    },
+                    (err) => console.warn(err)
+                );
+            }
         }
 
         dispatch({

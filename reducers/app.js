@@ -17,16 +17,20 @@ import type { UserEntity, OrganizationEntity, AuthorizationEntity } from 'github
 // What method did we use on auth?
 export type AUTH_METHOD = 'plain' | 'oauth';
 
+export type PlainAuthorizationEntity = AuthorizationEntity & {
+    method: 'plain',
+};
+
 export type OAuthAuthorizationEntity = {
+    method: 'oauth',
     token: string,
 };
 
 export type AppState = {
     // What version we are used on authorization, we should store it for migration
     version: string,
-    authMethod: AUTH_METHOD,
     user: UserEntity|null,
-    authorization: AuthorizationEntity|OAuthAuthorizationEntity|null,
+    authorization: PlainAuthorizationEntity|OAuthAuthorizationEntity|null,
     organizations: Array<OrganizationEntity>|null
 }
 
@@ -36,20 +40,17 @@ export type AuthAppState = AppState & {
 
 const initialState: AppState = {
     version: getVersion(),
-    // let use plain as default
-    authMethod: 'plain',
     user: null,
     authorization: null,
     organizations: null
 }
 
-export default (state: AppState = initialState, action: Object): AppState => {
+export default (state: AppState = initialState, action: Action): AppState => {
     switch (action.type) {
         case LOGIN_REQUEST_SUCCESS: {
             const nextState = {
                 ...state,
-                authorization: action.payload.authorization,
-                authMethod: action.payload.authMethod
+                authorization: action.payload
             };
 
             saveStoreKey('state:app', nextState);

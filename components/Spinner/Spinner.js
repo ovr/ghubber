@@ -5,7 +5,7 @@ import React, { PureComponent } from 'react';
 import { ActivityIndicator } from 'react-native';
 
 type Props = {
-    style?: Object
+    style?: ComponentStyles
 };
 
 export default class Spinner extends PureComponent<void, Props, void> {

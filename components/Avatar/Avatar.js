@@ -10,7 +10,7 @@ import type { UserEntity } from 'github-flow-js';
 type Props = {
     user: UserEntity,
     size: number,
-    style?: Object
+    style?: ComponentStyles
 };
 
 export default class Avatar extends PureComponent<void, Props, void> {

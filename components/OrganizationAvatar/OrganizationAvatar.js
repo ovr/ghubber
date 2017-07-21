@@ -10,7 +10,7 @@ import type { OrganizationEntity } from 'github-flow-js';
 type Props = {
     organization: OrganizationEntity,
     size: number,
-    style?: Object
+    style?: ComponentStyles
 };
 
 export default class OrganizationAvatar extends PureComponent<void, Props, void> {

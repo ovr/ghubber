@@ -7,7 +7,7 @@ import { Text, TouchableOpacity, StyleSheet } from 'react-native';
 type Props = {
     children: Object,
     onPress: () => any,
-    style:? Object
+    style?: ComponentStyles
 };
 
 export default class Button extends PureComponent<void, Props, void> {

@@ -99,8 +99,8 @@ android {
         applicationId "com.ghubber"
         minSdkVersion 16
         targetSdkVersion 22
-        versionCode 10
-        versionName "0.6.1"
+        versionCode 11
+        versionName "0.7.0"
 
         ndk {
             abiFilters "armeabi-v7a", "x86"

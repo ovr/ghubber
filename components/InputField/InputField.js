@@ -8,7 +8,7 @@ type Props = {
     onChangeText: (value: string) => any,
     placeholder: string,
     secureTextEntry?: boolean,
-    style?: Object,
+    style?: ComponentStyles
 };
 
 export default class InputField extends PureComponent<void, Props, void> {

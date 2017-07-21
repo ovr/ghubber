@@ -20,6 +20,7 @@
         "__DEV__": true,
         // @todo flow
         "Action": true,
+        "ComponentStyles": true,
         "State": true,
         "Promise": true,
         "ThunkAction": true

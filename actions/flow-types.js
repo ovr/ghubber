@@ -1,5 +1,7 @@
 // @flow
 
+import type { StyleSheet } from 'react-native';
+
 import type { AccountFeedState } from 'reducers/account-feed';
 import type { AccountIssuesState } from 'reducers/account-issues';
 import type { AccountPullRequestsState } from 'reducers/account-pull-requests';
@@ -13,6 +15,8 @@ import type { RepositoryState } from 'reducers/repository';
 
 export var SENTRY_ENABLED: boolean;
 export var GHUBBER_OAUTH: string;
+
+export type ComponentStyles = StyleSheet.Styles | Array<StyleSheet.Styles>;
 
 export type BaseAction<T> = {|
     type: T

@@ -14,7 +14,7 @@ Code:
 - `ESLint` fixes, green CI :smiley_cat:
 - Better `Flow` support
 
-Full diff: https://github.com/ovr/ghubber/compare/0.5.1...master
+Full diff: https://github.com/ovr/ghubber/compare/0.5.1...0.6.0
 
 ## v0.5.1
 

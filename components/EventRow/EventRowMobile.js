@@ -9,7 +9,12 @@ import Icon from 'react-native-vector-icons/Octicons';
 import I18n from 'utils/i18n';
 
 // import flow types
-import type { PushEvent, PullRequestEvent } from 'github-flow-js';
+import type {
+    PushEvent,
+    PullRequestEvent,
+    PullRequestReviewCommentEvent,
+    CommitCommentEvent
+} from 'github-flow-js';
 
 type Props = {
     event: PushEvent | PullRequestEvent,
@@ -104,7 +109,7 @@ export default class EventRowMobile extends PureComponent<void, Props, void> {
         )
     }
 
-    renderPullRequestReviewCommentEvent(event: PushEvent | PullRequestEvent): React.Element<any> {
+    renderPullRequestReviewCommentEvent(event: PullRequestReviewCommentEvent): React.Element<any> {
         return (
             <View style={styles.right}>
                 <Text>
@@ -142,7 +147,7 @@ export default class EventRowMobile extends PureComponent<void, Props, void> {
         )
     }
 
-    renderCommitCommentEvent(event: PushEvent | PullRequestEvent): React.Element<any> {
+    renderCommitCommentEvent(event: CommitCommentEvent): React.Element<any> {
         return (
             <View style={styles.right}>
                 <Text>

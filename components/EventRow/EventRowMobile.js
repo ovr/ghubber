@@ -176,6 +176,18 @@ export default class EventRowMobile extends PureComponent<void, Props, void> {
         )
     }
 
+    renderForkEvent(event: PushEvent | PullRequestEvent): React.Element<any> {
+        return (
+            <View style={styles.right}>
+                <Text>
+                    <Text style={styles.login}>{event.actor.login + " "}</Text>
+                    {I18n.t('EventRow.Forked')} <Text style={styles.branchName}>{event.repo.name}</Text>
+                    &nbsp;{I18n.t('EventRow.To')} <Text style={styles.branchName}>{event.payload.forkee.full_name}</Text>
+                </Text>
+            </View>
+        )
+    }
+
     renderCreateEvent(event: PushEvent | PullRequestEvent): React.Element<any> {
         return (
             <View style={styles.right}>
@@ -231,6 +243,12 @@ export default class EventRowMobile extends PureComponent<void, Props, void> {
                 case 'ReleaseEvent':
                     iconName = 'tag';
                     content = this.renderReleaseEvent(event);
+                    break;
+                case 'ForkEvent':
+                    iconName = 'git-branch';
+                    // because one line event
+                    showAvatar = false;
+                    content = this.renderForkEvent(event);
                     break;
                 case 'CreateEvent':
                     iconName = 'tag';

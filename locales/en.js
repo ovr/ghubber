@@ -32,6 +32,8 @@ export default {
         At: 'at',
         Issue: 'issue',
         Release: 'release',
+        Forked: 'forked',
+        To: 'to',
         CommentedPR: 'commented on pull request',
         Closed: 'closed',
         Merged: 'merged',

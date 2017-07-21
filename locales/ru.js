@@ -32,6 +32,8 @@ export default {
         At: 'на',
         Issue: 'задача',
         Release: 'релиз',
+        Forked: 'клонировал',
+        To: 'в',
         Created: 'создал',
         CommentedPR: 'прокомментировал pull-запрос',
         Closed: 'закрыл',

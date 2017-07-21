@@ -40,6 +40,15 @@ class LoginScreen extends PureComponent<void, Props, State> {
         if (user && authorization) {
             this.props.showHome();
         } else {
+            // Mostly for Android
+            Linking.getInitialURL().then(
+                (url) => {
+                    if (url) {
+                        this.oauthCallback({ url });
+                    }
+                }
+            );
+
             Linking.addEventListener('url', this.oauthCallback.bind(this));
         }
     }

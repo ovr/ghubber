@@ -1,4 +1,12 @@
 
+## v0.6.1
+
+Fixes:
+
+- [Login] Fix `ImageBackground` for tablets
+- [Android] Support Deep linking
+- [Android] Fixes for OAuth
+
 ## v0.6.0
 
 Features:

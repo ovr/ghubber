@@ -67,8 +67,13 @@ class LoginScreen extends PureComponent<void, Props, State> {
         const { username, password, code } = this.state;
 
         return (
-            <ImageBackground resizeMode="cover" style={styles.background} source={images.background}>
-                <KeyboardAvoidingView style={styles.root} behavior="padding">
+            <ImageBackground
+                resizeMode="cover"
+                style={styles.root}
+                imageStyle={styles.background}
+                source={images.background}
+            >
+                <KeyboardAvoidingView style={styles.wrapper} behavior="padding">
                     <Text style={styles.title}>GHubber</Text>
 
                     {
@@ -117,13 +122,15 @@ class LoginScreen extends PureComponent<void, Props, State> {
 }
 
 const styles = StyleSheet.create({
-    background: {
+    root: {
         flex: 1,
-        width: null,
-        height: null,
         marginTop: Platform.OS === 'ios' ? 20 : 0,
     },
-    root: {
+    background: {
+        flex: 1,
+        width: null
+    },
+    wrapper: {
         flex: 1,
         padding: 20,
         justifyContent: 'center',

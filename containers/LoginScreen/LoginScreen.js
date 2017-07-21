@@ -2,7 +2,7 @@
 // @flow
 
 import React, { PureComponent } from 'react';
-import { Image, View, StyleSheet, Text, Platform, Linking } from 'react-native';
+import { ImageBackground, View, StyleSheet, Text, Platform, Linking } from 'react-native';
 import { Button, InputField, Spinner, KeyboardAvoidingView } from 'components';
 import { connect } from 'react-redux';
 import { makeLogin, showHome, makeOAuthLogin } from 'actions';
@@ -67,7 +67,7 @@ class LoginScreen extends PureComponent<void, Props, State> {
         const { username, password, code } = this.state;
 
         return (
-            <Image resizeMode="cover" style={styles.background} source={images.background}>
+            <ImageBackground resizeMode="cover" style={styles.background} source={images.background}>
                 <KeyboardAvoidingView style={styles.root} behavior="padding">
                     <Text style={styles.title}>GHubber</Text>
 
@@ -111,7 +111,7 @@ class LoginScreen extends PureComponent<void, Props, State> {
                         )
                     }
                 </KeyboardAvoidingView>
-            </Image>
+            </ImageBackground>
         )
     }
 }

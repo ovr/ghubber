@@ -17,22 +17,27 @@ export function logout(): ThunkAction {
     return (dispatch, getState) => {
         const state: AppState = getState().app;
 
-        if (state.authorization) {
-            if (state.authorization.method === 'plain') {
-                deleteAuthorization(state.authorization.id, {}).then(
-                    () => {
-                        // @todo
-                    },
-                    (err) => console.warn(err)
-                );
-            }
+        const finishCB = () => {
+            dispatch({
+                type: APP_LOGOUT_SUCCESS
+            });
+
+            dispatch(showLogin());
         }
 
-        dispatch({
-            type: APP_LOGOUT_SUCCESS
-        });
-
-        dispatch(showLogin());
+        if (state.authorization) {
+            if (state.authorization.method && state.authorization.method === 'plain') {
+                deleteAuthorization(state.authorization.id, {}).then(
+                    () => finishCB(),
+                    (err) => console.warn(err)
+                );
+            } else {
+                // @todo Implement deletion of OAuth token?
+                finishCB();
+            }
+        } else {
+            finishCB();
+        }
     }
 }
 

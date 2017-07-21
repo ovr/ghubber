@@ -73,7 +73,7 @@ class LoginScreen extends PureComponent<void, Props, State> {
 
                     {
                         loading ? null : (
-                            <Button onPress={() => this.oauthLogin()}>
+                            <Button onPress={() => this.oauthLogin()} style={styles.oauthBtn}>
                                 Login using OAuth
                             </Button>
                         )
@@ -144,6 +144,9 @@ const styles = StyleSheet.create({
     },
     error: {
         marginBottom: 15
+    },
+    oauthBtn: {
+        backgroundColor: '#639DFF'
     }
 });
 

@@ -69,7 +69,11 @@ class EventRowMobile extends PureComponent<void, Props, void> {
                     )
                 }
                 {
-                    moreCommits ? <UIText style={styles.moreCommits}>({moreCommits}) commit(s) was hidden</UIText> : null
+                    moreCommits ? (
+                        <UIText style={styles.moreCommits}>
+                            {__('EventRow.HiddenCommits', { commits: __('EventRow.Commits', { count: moreCommits }) })}
+                        </UIText>
+                    ) : null
                 }
             </View>
         )
@@ -144,6 +148,8 @@ class EventRowMobile extends PureComponent<void, Props, void> {
     }
 
     renderPullRequestEvent(event: PushEvent | PullRequestEvent): React.Element<any> {
+        const { commits, additions, deletions } = event.payload.pull_request;
+
         return (
             <View style={styles.right}>
                 <UIText>
@@ -158,10 +164,10 @@ class EventRowMobile extends PureComponent<void, Props, void> {
                 </UIText>
                 <View style={styles.rightBottom}>
                     <UIText numberOfLines={2} style={styles.commentBody}>
-                        {__('EventRow.CommitSummary', {
-                            commits: event.payload.pull_request.commits,
-                            additions: event.payload.pull_request.additions,
-                            deletions: event.payload.pull_request.deletions
+                        {__('EventRow.CommitSummary.Text', {
+                            commits: __('EventRow.Commits', { count: commits }),
+                            additions: __('EventRow.CommitSummary.Additions', { count: additions }),
+                            deletions: __('EventRow.CommitSummary.Deletions', { count: deletions })
                         })}
                     </UIText>
                 </View>

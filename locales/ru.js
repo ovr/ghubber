@@ -33,7 +33,25 @@ export default {
         Issue: 'задачу',
         PR: 'pull-запрос',
         Release: 'релиз',
-        CommitSummary: '{{commits}} коммит(ов) с {{additions}} добавлениями и {{deletions}} удалениями',
+        HiddenCommits: '{{commits}} было скрыто',
+        Commits: {
+            one: '1 коммит',
+            few: '{{count}} коммита',
+            many: '{{count}} коммитов',
+        },
+        CommitSummary: {
+            Text: '{{commits}} с {{additions}} и {{deletions}}',
+            Additions: {
+                one: '1 добавлением',
+                few: '{{count}} добавлениями',
+                many: '{{count}} добавлениями',
+            },
+            Deletions: {
+                one: '1 удалением',
+                few: '{{count}} удалениями',
+                many: '{{count}} удалениями',
+            },
+        },
         TypeEventNotSupported: 'Данный тип события ({{eventType}}) не поддерживается в этой версии',
         UnexpectedException: 'Неожиданное исключение в типе события ({{eventType}}) :(',
         Actions: {

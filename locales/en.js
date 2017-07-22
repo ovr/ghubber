@@ -33,7 +33,22 @@ export default {
         Issue: 'issue',
         PR: 'pull request',
         Release: 'release',
-        CommitSummary: '{{commits}} commit(s) with {{additions}} additions and {{deletions}} deletions',
+        HiddenCommits: '{{commits}} was hidden',
+        Commits: {
+            one: '1 commit',
+            other: '{{count}} commits',
+        },
+        CommitSummary: {
+            Text: '{{commits}} with {{additions}} and {{deletions}}',
+            Additions: {
+                one: '1 addition',
+                other: '{{count}} additions',
+            },
+            Deletions: {
+                one: '1 deletion',
+                other: '{{count}} deletions',
+            },
+        },
         TypeEventNotSupported: 'This type of event ({{eventType}}) does not supported inside this version',
         UnexpectedException: 'Unexpected exception with Event\'s type ({{eventType}}) :(',
         Actions: {

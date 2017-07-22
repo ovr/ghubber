@@ -2,10 +2,12 @@
 // @flow
 
 import React, { PureComponent } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { connect } from 'react-redux';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Avatar } from 'components';
 import Icon from 'react-native-vector-icons/Octicons';
 
+import { showRepositoryByParams } from 'actions';
 import { captureException } from 'utils/errors';
 import { filterBranchNameFromRefs } from 'utils/filters';
 import { normalizeFont } from 'utils/helpers';
@@ -21,9 +23,10 @@ import type {
 
 type Props = {
     event: PushEvent | PullRequestEvent,
+    showRepositoryByParams: typeof showRepositoryByParams
 };
 
-export default class EventRowMobile extends PureComponent<void, Props, void> {
+class EventRowMobile extends PureComponent<void, Props, void> {
     renderCommitsList(payload: Object): React.Element<any> | null {
         if (!payload.commits) {
             return null;
@@ -235,6 +238,15 @@ export default class EventRowMobile extends PureComponent<void, Props, void> {
         )
     }
 
+    navigateEvent(event: PushEvent | PullRequestEvent): void {
+        switch (event.type) {
+            case 'WatchEvent':
+                const parts = event.repo.name.split('/');
+                this.props.showRepositoryByParams(parts[0], parts[1]);
+                break;
+        }
+    }
+
     render(): React.Element<any> {
         const { event } = this.props;
 
@@ -302,13 +314,13 @@ export default class EventRowMobile extends PureComponent<void, Props, void> {
             }
 
             return (
-                <View style={styles.event}>
+                <TouchableOpacity style={styles.event} onPress={() => this.navigateEvent(event)}>
                     <View style={styles.left}>
                         <Icon name={iconName} size={26} />
                         { showAvatar ? <Avatar user={event.actor} size={26} /> : null }
                     </View>
                     {content}
-                </View>
+                </TouchableOpacity>
             )
         } catch (e) {
             captureException(e);
@@ -321,6 +333,11 @@ export default class EventRowMobile extends PureComponent<void, Props, void> {
         }
     }
 }
+
+export default connect(
+    null,
+    { showRepositoryByParams }
+)(EventRowMobile);
 
 const styles = StyleSheet.create({
     event: {

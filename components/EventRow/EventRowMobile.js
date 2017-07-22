@@ -7,7 +7,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Avatar } from 'components';
 import Icon from 'react-native-vector-icons/Octicons';
 
-import { showRepositoryByParams } from 'actions';
+import { showRepositoryByParams, showRepositoryCommit } from 'actions';
 import { captureException } from 'utils/errors';
 import { filterBranchNameFromRefs } from 'utils/filters';
 import { normalizeFont } from 'utils/helpers';
@@ -23,12 +23,14 @@ import type {
 
 type Props = {
     event: PushEvent | PullRequestEvent,
-    showRepositoryByParams: typeof showRepositoryByParams
+    showRepositoryByParams: typeof showRepositoryByParams,
+    showRepositoryCommit: typeof showRepositoryCommit,
 };
 
 // @todo Remove when we will support all events navigation
 function isNavigationSupported(event: PushEvent | PullRequestEvent): boolean {
     switch (event.type) {
+        case 'PushEvent':
         case 'WatchEvent':
             return true;
     }
@@ -250,10 +252,16 @@ class EventRowMobile extends PureComponent<void, Props, void> {
 
     navigateEvent(event: PushEvent | PullRequestEvent): void {
         switch (event.type) {
-            case 'WatchEvent':
+            case 'PushEvent': {
+                const parts = event.repo.name.split('/');
+                this.props.showRepositoryCommit(parts[0], parts[1], event.payload.head);
+                break;
+            }
+            case 'WatchEvent': {
                 const parts = event.repo.name.split('/');
                 this.props.showRepositoryByParams(parts[0], parts[1]);
                 break;
+            }
         }
     }
 
@@ -346,10 +354,6 @@ class EventRowMobile extends PureComponent<void, Props, void> {
     }
 }
 
-export default connect(
-    null,
-    { showRepositoryByParams }
-)(EventRowMobile);
 
 const styles = StyleSheet.create({
     event: {
@@ -396,3 +400,8 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     }
 });
+
+export default connect(
+    null,
+    { showRepositoryByParams, showRepositoryCommit }
+)(EventRowMobile);

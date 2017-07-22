@@ -14,7 +14,7 @@
 .*/Libraries/react-native/React.js
 .*/Libraries/react-native/ReactNative.js
 
-/Users/ovr/projects/ovr/ghubber/node_modules/art/parsers/svg/text.js
+node_modules/art/parsers/svg/text.js
 
 [include]
 
@@ -54,4 +54,4 @@ suppress_comment=\\(.\\|\n\\)*\\$FlowExpectedError
 unsafe.enable_getters_and_setters=true
 
 [version]
-^0.50.0
+^0.51.0

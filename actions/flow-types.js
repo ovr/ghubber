@@ -1,5 +1,11 @@
 // @flow
 
+import type {
+    OrganizationEntity,
+    RepositoryEntity,
+    UserEntity
+} from 'github-flow-js';
+
 import type { StyleSheet } from 'react-native';
 
 import type { AccountFeedState } from 'reducers/account-feed';
@@ -75,23 +81,23 @@ export type Action =
     | ActionWithError<"ACCOUNT_PULL_REQUESTS_MORE_FAIL", any>
     //
     | BaseAction<"PROFILE_REQUEST">
-    | ActionWithPayload<"PROFILE_REQUEST_FAIL", any>
-    | ActionWithError<"PROFILE_REQUEST_SUCCESS", any>
+    | ActionWithPayload<"PROFILE_REQUEST_SUCCESS", UserEntity>
+    | ActionWithError<"PROFILE_REQUEST_FAIL", any>
     //
     | BaseAction<"PROFILE_ORGANIZATIONS_REQUEST">
-    | ActionWithPayload<"PROFILE_ORGANIZATIONS_REQUEST_FAIL", any>
-    | ActionWithError<"PROFILE_ORGANIZATIONS_REQUEST_SUCCESS", any>
+    | ActionWithPayload<"PROFILE_ORGANIZATIONS_REQUEST_SUCCESS", Array<OrganizationEntity>>
+    | ActionWithError<"PROFILE_ORGANIZATIONS_REQUEST_FAIL", any>
     //
     | BaseAction<"PROFILE_REPOSITORIES_REQUEST">
-    | ActionWithPayload<"PROFILE_REPOSITORIES_REQUEST_FAIL", any>
-    | ActionWithError<"PROFILE_REPOSITORIES_REQUEST_SUCCESS", any>
+    | ActionWithPayload<"PROFILE_REPOSITORIES_REQUEST_SUCCESS", RepositoryEntity>
+    | ActionWithError<"PROFILE_REPOSITORIES_REQUEST_FAIL", any>
     //
     | BaseAction<"PROFILE_REPOSITORIES_MORE_REQUEST">
-    | ActionWithPayload<"PROFILE_REPOSITORIES_MORE_REQUEST_FAIL", any>
-    | ActionWithError<"PROFILE_REPOSITORIES_MORE_REQUEST_SUCCESS", any>
+    | ActionWithPayload<"PROFILE_REPOSITORIES_MORE_REQUEST_SUCCESS", {repositories: Array<RepositoryEntity>, page: number}>
+    | ActionWithError<"PROFILE_REPOSITORIES_MORE_REQUEST_FAIL", any>
     //
     | BaseAction<"REPOSITORY_REQUEST">
-    | ActionWithPayload<"REPOSITORY_REQUEST_SUCCESS", any>
+    | ActionWithPayload<'REPOSITORY_REQUEST_SUCCESS', RepositoryEntity>
     | ActionWithError<"REPOSITORY_REQUEST_FAIL", any>
     //
     | ActionWithError<"LOGIN_REQUEST_FAIL", any>

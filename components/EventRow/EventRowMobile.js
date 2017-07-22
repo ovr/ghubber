@@ -26,6 +26,16 @@ type Props = {
     showRepositoryByParams: typeof showRepositoryByParams
 };
 
+// @todo Remove when we will support all events navigation
+function isNavigationSupported(event: PushEvent | PullRequestEvent): boolean {
+    switch (event.type) {
+        case 'WatchEvent':
+            return true;
+    }
+
+    return false;
+}
+
 class EventRowMobile extends PureComponent<void, Props, void> {
     renderCommitsList(payload: Object): React.Element<any> | null {
         if (!payload.commits) {
@@ -313,14 +323,16 @@ class EventRowMobile extends PureComponent<void, Props, void> {
                     )
             }
 
+            const EventWrapper = isNavigationSupported(event) ? TouchableOpacity : View;
+
             return (
-                <TouchableOpacity style={styles.event} onPress={() => this.navigateEvent(event)}>
+                <EventWrapper style={styles.event} onPress={() => this.navigateEvent(event)}>
                     <View style={styles.left}>
                         <Icon name={iconName} size={26} />
                         { showAvatar ? <Avatar user={event.actor} size={26} /> : null }
                     </View>
                     {content}
-                </TouchableOpacity>
+                </EventWrapper>
             )
         } catch (e) {
             captureException(e);

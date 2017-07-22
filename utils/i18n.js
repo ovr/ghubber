@@ -13,4 +13,6 @@ I18n.translations = {
     ru
 };
 
+export const __ = I18n.t.bind(I18n);
+
 export default I18n;

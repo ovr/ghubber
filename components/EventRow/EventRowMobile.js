@@ -6,7 +6,8 @@ import { View, Text, StyleSheet } from 'react-native';
 import { Avatar } from 'components';
 import Icon from 'react-native-vector-icons/Octicons';
 import { captureException } from 'utils/errors';
-import I18n from 'utils/i18n';
+import { filterBranchNameFromRefs } from 'utils/filters';
+import { __ } from 'utils/i18n';
 
 // import flow types
 import type {
@@ -19,12 +20,6 @@ import type {
 type Props = {
     event: PushEvent | PullRequestEvent,
 };
-
-const RefsHeadPrefixLenght = 'refs/heads/'.length;
-
-function filterBranchName(refs: string): string {
-    return refs.substring(RefsHeadPrefixLenght);
-}
 
 export default class EventRowMobile extends PureComponent<void, Props, void> {
     renderCommitsList(payload: Object): React.Element<any> | null {
@@ -67,9 +62,9 @@ export default class EventRowMobile extends PureComponent<void, Props, void> {
             <View style={styles.right}>
                 <Text>
                     <Text style={styles.login}>{event.actor.login + " "}</Text>
-                    {I18n.t('EventRow.Actions.PushedTo')}&nbsp;
-                    <Text style={styles.branchName}>{filterBranchName(event.payload.ref)}</Text>&nbsp;
-                    {I18n.t('EventRow.At')}
+                    {__('EventRow.Actions.PushedTo')}&nbsp;
+                    <Text style={styles.branchName}>{filterBranchNameFromRefs(event.payload.ref)}</Text>&nbsp;
+                    {__('EventRow.At')}
                     <Text style={styles.repoName}>{" " + event.repo.name}</Text>
                 </Text>
                 <View style={styles.rightBottom}>
@@ -84,7 +79,7 @@ export default class EventRowMobile extends PureComponent<void, Props, void> {
             <View style={styles.right}>
                 <Text>
                     <Text style={styles.login}>{event.actor.login + " "}</Text>
-                    {I18n.t(`EventRow.IssuesActions.${event.payload.action}`)} {I18n.t('EventRow.Issue')}&nbsp;
+                    {__(`EventRow.IssuesActions.${event.payload.action}`)} {__('EventRow.Issue')}&nbsp;
                     <Text style={styles.repoName}>{" " + event.repo.name}{"#" + event.payload.issue.number}</Text>
                 </Text>
                 <View style={styles.rightBottom}>
@@ -101,8 +96,8 @@ export default class EventRowMobile extends PureComponent<void, Props, void> {
             <View style={styles.right}>
                 <Text>
                     <Text style={styles.login}>{event.actor.login + " "}</Text>
-                    {I18n.t(`EventRow.ReleaseActions.${event.payload.action}`)} {I18n.t('EventRow.Release')}&nbsp;
-                    <Text style={styles.repoName}>{event.payload.release.tag_name}</Text> {I18n.t('EventRow.At')}&nbsp;
+                    {__(`EventRow.ReleaseActions.${event.payload.action}`)} {__('EventRow.Release')}&nbsp;
+                    <Text style={styles.repoName}>{event.payload.release.tag_name}</Text> {__('EventRow.At')}&nbsp;
                     <Text style={styles.repoName}>{event.repo.name}</Text>
                 </Text>
             </View>
@@ -114,7 +109,7 @@ export default class EventRowMobile extends PureComponent<void, Props, void> {
             <View style={styles.right}>
                 <Text>
                     <Text style={styles.login}>{event.actor.login + " "}</Text>
-                    {I18n.t('EventRow.Actions.CommentedPR')}&nbsp;
+                    {__('EventRow.Actions.CommentedPR')}&nbsp;
                     <Text style={styles.repoName}>{event.repo.name}#{event.payload.pull_request.number}</Text>
                 </Text>
                 <View style={styles.rightBottom}>
@@ -133,15 +128,15 @@ export default class EventRowMobile extends PureComponent<void, Props, void> {
                     <Text style={styles.login}>{event.actor.login + " "}</Text>
                     {
                         event.payload.action === 'closed' ?
-                        I18n.t('EventRow.Actions.Merged') :
-                        I18n.t(`EventRow.PullRequestActions.${event.payload.action}`)
+                        __('EventRow.Actions.Merged') :
+                        __(`EventRow.PullRequestActions.${event.payload.action}`)
                     }&nbsp;
-                    {I18n.t('EventRow.PR')}&nbsp;
+                    {__('EventRow.PR')}&nbsp;
                     <Text style={styles.repoName}>{event.repo.name}#{event.payload.pull_request.number}</Text>
                 </Text>
                 <View style={styles.rightBottom}>
                     <Text numberOfLines={2} style={styles.commentBody}>
-                        {I18n.t('EventRow.CommitSummary', {
+                        {__('EventRow.CommitSummary', {
                             commits: event.payload.pull_request.commits,
                             additions: event.payload.pull_request.additions,
                             deletions: event.payload.pull_request.deletions
@@ -157,7 +152,7 @@ export default class EventRowMobile extends PureComponent<void, Props, void> {
             <View style={styles.right}>
                 <Text>
                     <Text style={styles.login}>{event.actor.login + " "}</Text>
-                    {I18n.t('EventRow.Actions.CommentedCommit')}&nbsp;
+                    {__('EventRow.Actions.CommentedCommit')}&nbsp;
                     <Text style={styles.repoName}>{" " + event.repo.name}</Text>
                 </Text>
                 <View style={styles.rightBottom}>
@@ -174,7 +169,7 @@ export default class EventRowMobile extends PureComponent<void, Props, void> {
             <View style={styles.right}>
                 <Text>
                     <Text style={styles.login}>{event.actor.login + " "}</Text>
-                    {I18n.t('EventRow.Actions.CommentedIssue')}&nbsp;
+                    {__('EventRow.Actions.CommentedIssue')}&nbsp;
                     <Text style={styles.repoName}>{" " + event.repo.name}{"#" + event.payload.issue.number}</Text>
                 </Text>
                 <View style={styles.rightBottom}>
@@ -191,8 +186,8 @@ export default class EventRowMobile extends PureComponent<void, Props, void> {
             <View style={styles.right}>
                 <Text>
                     <Text style={styles.login}>{event.actor.login + " "}</Text>
-                    {I18n.t('EventRow.Actions.Forked')} <Text style={styles.branchName}>{event.repo.name}</Text>&nbsp;
-                    {I18n.t('EventRow.To')} <Text style={styles.branchName}>{event.payload.forkee.full_name}</Text>
+                    {__('EventRow.Actions.Forked')} <Text style={styles.branchName}>{event.repo.name}</Text>&nbsp;
+                    {__('EventRow.To')} <Text style={styles.branchName}>{event.payload.forkee.full_name}</Text>
                 </Text>
             </View>
         )
@@ -203,10 +198,10 @@ export default class EventRowMobile extends PureComponent<void, Props, void> {
             <View style={styles.right}>
                 <Text>
                     <Text style={styles.login}>{event.actor.login + " "}</Text>
-                    {I18n.t('EventRow.Actions.Created')}&nbsp;
-                    {I18n.t(`EventRow.CreateTypes.${event.payload.ref_type}`)}&nbsp;
+                    {__('EventRow.Actions.Created')}&nbsp;
+                    {__(`EventRow.CreateTypes.${event.payload.ref_type}`)}&nbsp;
                     <Text style={styles.branchName}>{event.payload.ref}</Text>&nbsp;
-                    {I18n.t('EventRow.At')} <Text style={styles.branchName}>{event.repo.name}</Text>
+                    {__('EventRow.At')} <Text style={styles.branchName}>{event.repo.name}</Text>
                 </Text>
             </View>
         )
@@ -217,10 +212,10 @@ export default class EventRowMobile extends PureComponent<void, Props, void> {
             <View style={styles.right}>
                 <Text>
                     <Text style={styles.login}>{event.actor.login + " "}</Text>
-                    {I18n.t('EventRow.Actions.Created')}&nbsp;
-                    {I18n.t(`EventRow.CreateTypes.${event.payload.ref_type}`)}&nbsp;
+                    {__('EventRow.Actions.Created')}&nbsp;
+                    {__(`EventRow.CreateTypes.${event.payload.ref_type}`)}&nbsp;
                     <Text style={styles.branchName}>{event.payload.ref}</Text>&nbsp;
-                    {I18n.t('EventRow.At')} <Text style={styles.branchName}>{event.repo.name}</Text>
+                    {__('EventRow.At')} <Text style={styles.branchName}>{event.repo.name}</Text>
                 </Text>
             </View>
         )
@@ -231,7 +226,7 @@ export default class EventRowMobile extends PureComponent<void, Props, void> {
             <View style={styles.right}>
                 <Text>
                     <Text style={styles.login}>{event.actor.login + " "}</Text>
-                    {I18n.t('EventRow.Actions.Starred')}&nbsp;
+                    {__('EventRow.Actions.Starred')}&nbsp;
                     <Text style={styles.branchName}>{event.repo.name}</Text>
                 </Text>
             </View>
@@ -299,7 +294,7 @@ export default class EventRowMobile extends PureComponent<void, Props, void> {
                 default:
                     return (
                         <View style={styles.event}>
-                            <Text>{I18n.t('EventRow.TypeEventNotSupported', {eventType: event.type})}</Text>
+                            <Text>{__('EventRow.TypeEventNotSupported', {eventType: event.type})}</Text>
                         </View>
                     )
             }
@@ -318,7 +313,7 @@ export default class EventRowMobile extends PureComponent<void, Props, void> {
 
             return (
                 <View style={styles.event}>
-                    <Text>{I18n.t('EventRow.UnexpectedException', {eventType: event.type })}</Text>
+                    <Text>{__('EventRow.UnexpectedException', {eventType: event.type })}</Text>
                 </View>
             )
         }

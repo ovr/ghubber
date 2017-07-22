@@ -18,10 +18,10 @@ export function fetchRepository(owner: string, repo: string): ThunkAction {
         });
 
         getRepository(owner, repo, {}).then(
-            (user) => {
+            (repository) => {
                 dispatch({
                     type: REPOSITORY_REQUEST_SUCCESS,
-                    payload: user
+                    payload: repository
                 });
             },
             () => {

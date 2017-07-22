@@ -4,12 +4,12 @@
 import React, { Component } from 'react';
 import { AppRegistry } from 'react-native';
 import { Provider } from 'react-redux';
-import { Sentry } from 'react-native-sentry';
 import { before } from 'github-flow-js/Client';
 import { initApp } from 'actions';
 
 import { default as Navigator } from './Navigator'
 import { configureStore, getInitialState } from 'utils';
+import { captureException } from 'utils/errors';
 
 type State = {
     initialized: boolean,
@@ -31,7 +31,7 @@ class App extends Component<void, void, State> {
                 })
             },
             (error) => {
-                Sentry.captureException(error);
+                captureException(error);
 
                 this.setState({
                     initialized: true,

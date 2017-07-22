@@ -13,6 +13,7 @@ import { default as profileRepositories } from './profile-repositories';
 import { default as profileOrganizations } from './profile-organizations';
 import { default as navigation } from './navigation';
 import { default as repository } from './repository';
+import { default as repositoryCommit } from './repository-commit';
 
 export default combineReducers({
     accountFeed,
@@ -24,5 +25,6 @@ export default combineReducers({
     profileRepositories,
     profileOrganizations,
     navigation,
-    repository
+    repository,
+    repositoryCommit
 })

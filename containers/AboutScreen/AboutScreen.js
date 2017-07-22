@@ -9,7 +9,11 @@ import { getVersion } from 'react-native-device-info';
 import { team, contributors } from 'utils/team';
 import { showProfile } from 'actions';
 
-class AboutScreen extends PureComponent<void, void, void> {
+type Props = {
+    showProfile: typeof showProfile,
+}
+
+class AboutScreen extends PureComponent<void, Props, void> {
     render() {
         const { showProfile } = this.props;
 

@@ -91,6 +91,17 @@ export function setTitle(title: string) {
     };
 }
 
+export function showRepositoryCommit(owner: string, repo: string, sha: string) {
+    return NavigationActions.navigate({
+        routeName: 'Commit',
+        params: {
+            owner,
+            repo,
+            sha
+        }
+    })
+}
+
 export function showRepositoryByParams(owner: string, repo: string) {
     return NavigationActions.navigate({
         routeName: 'Repository',

@@ -11,13 +11,14 @@ import {
     FeedScreen,
     FeedSettingsScreen,
     LoginScreen,
+    CommitScreen,
     ProfileScreen,
     RepositoryScreen,
     AboutScreen,
     AccountIssues,
     AccountPullRequests,
     SideMenu,
-    HomeHeaderRight
+    HomeHeaderRight,
 } from 'containers';
 
 export const HomeScreeDrawer = DrawerNavigator({
@@ -47,6 +48,12 @@ export const AppNavigator = StackNavigator(
             screen: LoginScreen,
             navigationOptions: {
                 header: null
+            }
+        },
+        Commit: {
+            screen: CommitScreen,
+            navigationOptions: {
+                title: 'Commit overview'
             }
         },
         FeedSettings: {

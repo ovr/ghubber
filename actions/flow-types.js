@@ -18,6 +18,7 @@ import type { ProfileState } from 'reducers/profile';
 import type { ProfileRepositoriesState } from 'reducers/profile-repositories';
 import type { ProfileOrganizationsState } from 'reducers/profile-organizations';
 import type { RepositoryState } from 'reducers/repository';
+import type { RepositoryCommitState } from 'reducers/repository-commit';
 
 export var SENTRY_ENABLED: boolean;
 export var GHUBBER_OAUTH: string;
@@ -117,7 +118,8 @@ export type State = {|
     profile: ProfileState,
     profileOrganizations: ProfileRepositoriesState,
     profileRepositories: ProfileOrganizationsState,
-    repository: RepositoryState
+    repository: RepositoryState,
+    repositoryCommit: RepositoryCommitState
 |};
 
 export type Dispatch = (action: Action | ThunkAction | PromiseAction) => any;

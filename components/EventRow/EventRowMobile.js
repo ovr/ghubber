@@ -5,8 +5,10 @@ import React, { PureComponent } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Avatar } from 'components';
 import Icon from 'react-native-vector-icons/Octicons';
+
 import { captureException } from 'utils/errors';
 import { filterBranchNameFromRefs } from 'utils/filters';
+import { normalizeFont } from 'utils/helpers';
 import { __ } from 'utils/i18n';
 
 // import flow types
@@ -344,11 +346,11 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     login: {
-        fontSize: 16,
+        fontSize: normalizeFont(16),
         color: '#0366d6'
     },
     repoName: {
-        fontSize: 17,
+        fontSize: normalizeFont(17),
         color: '#0366d6'
     },
     branchName: {
@@ -361,7 +363,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     moreCommits: {
-        fontSize: 15,
+        fontSize: normalizeFont(15),
         fontWeight: 'bold'
     }
 });

@@ -12,6 +12,7 @@ import { captureException } from 'utils/errors';
 import { filterBranchNameFromRefs } from 'utils/filters';
 import { normalizeFont } from 'utils/helpers';
 import { __ } from 'utils/i18n';
+import moment from 'utils/moment';
 
 // import flow types
 import type {
@@ -87,6 +88,7 @@ class EventRowMobile extends PureComponent<void, Props, void> {
                 <View style={styles.rightBottom}>
                     {this.renderCommitsList(event.payload)}
                 </View>
+                <Text style={styles.eventDate}>{moment(event.created_at).fromNow()}</Text>
             </View>
         )
     }
@@ -104,6 +106,7 @@ class EventRowMobile extends PureComponent<void, Props, void> {
                         {event.payload.issue.title}
                     </Text>
                 </View>
+                <Text style={styles.eventDate}>{moment(event.created_at).fromNow()}</Text>
             </View>
         )
     }
@@ -116,6 +119,7 @@ class EventRowMobile extends PureComponent<void, Props, void> {
                     {__(`EventRow.ReleaseActions.${event.payload.action}`)} {__('EventRow.Release')}&nbsp;
                     <Text style={styles.repoName}>{event.payload.release.tag_name}</Text> {__('EventRow.At')}&nbsp;
                     <Text style={styles.repoName}>{event.repo.name}</Text>
+                    <Text style={styles.eventDate}>{moment(event.created_at).fromNow()}</Text>
                 </Text>
             </View>
         )
@@ -134,6 +138,7 @@ class EventRowMobile extends PureComponent<void, Props, void> {
                         {event.payload.comment.body}
                     </Text>
                 </View>
+                <Text style={styles.eventDate}>{moment(event.created_at).fromNow()}</Text>
             </View>
         )
     }
@@ -160,6 +165,7 @@ class EventRowMobile extends PureComponent<void, Props, void> {
                         })}
                     </Text>
                 </View>
+                <Text style={styles.eventDate}>{moment(event.created_at).fromNow()}</Text>
             </View>
         )
     }
@@ -177,6 +183,7 @@ class EventRowMobile extends PureComponent<void, Props, void> {
                         {event.payload.comment.body}
                     </Text>
                 </View>
+                <Text style={styles.eventDate}>{moment(event.created_at).fromNow()}</Text>
             </View>
         )
     }
@@ -194,6 +201,7 @@ class EventRowMobile extends PureComponent<void, Props, void> {
                         {event.payload.comment.body}
                     </Text>
                 </View>
+                <Text style={styles.eventDate}>{moment(event.created_at).fromNow()}</Text>
             </View>
         )
     }
@@ -206,6 +214,7 @@ class EventRowMobile extends PureComponent<void, Props, void> {
                     {__('EventRow.Actions.Forked')} <Text style={styles.branchName}>{event.repo.name}</Text>&nbsp;
                     {__('EventRow.To')} <Text style={styles.branchName}>{event.payload.forkee.full_name}</Text>
                 </Text>
+                <Text style={styles.eventDate}>{moment(event.created_at).fromNow()}</Text>
             </View>
         )
     }
@@ -220,6 +229,7 @@ class EventRowMobile extends PureComponent<void, Props, void> {
                     <Text style={styles.branchName}>{event.payload.ref}</Text>&nbsp;
                     {__('EventRow.At')} <Text style={styles.branchName}>{event.repo.name}</Text>
                 </Text>
+                <Text style={styles.eventDate}>{moment(event.created_at).fromNow()}</Text>
             </View>
         )
     }
@@ -234,6 +244,7 @@ class EventRowMobile extends PureComponent<void, Props, void> {
                     <Text style={styles.branchName}>{event.payload.ref}</Text>&nbsp;
                     {__('EventRow.At')} <Text style={styles.branchName}>{event.repo.name}</Text>
                 </Text>
+                <Text style={styles.eventDate}>{moment(event.created_at).fromNow()}</Text>
             </View>
         )
     }
@@ -246,6 +257,7 @@ class EventRowMobile extends PureComponent<void, Props, void> {
                     {__('EventRow.Actions.Starred')}&nbsp;
                     <Text style={styles.branchName}>{event.repo.name}</Text>
                 </Text>
+                <Text style={styles.eventDate}>{moment(event.created_at).fromNow()}</Text>
             </View>
         )
     }
@@ -364,6 +376,11 @@ const styles = StyleSheet.create({
         paddingBottom: 10,
         marginBottom: 10
     },
+    eventDate: {
+        paddingTop: 5,
+        fontSize: 13,
+        color: '#8e8e8e',
+    },
     left: {
         marginRight: 6,
     },
@@ -398,7 +415,7 @@ const styles = StyleSheet.create({
     moreCommits: {
         fontSize: normalizeFont(15),
         fontWeight: 'bold'
-    }
+    },
 });
 
 export default connect(

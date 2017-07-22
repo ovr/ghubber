@@ -4,7 +4,7 @@
 import React, { PureComponent } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Avatar } from 'components';
-import { Sentry } from 'react-native-sentry';
+import { captureException } from 'utils/errors';
 import Icon from 'react-native-vector-icons/Octicons';
 
 // import flow types
@@ -263,7 +263,7 @@ export default class EventRowTablet extends PureComponent<void, Props, void> {
                 </View>
             )
         } catch (e) {
-            Sentry.captureException(e);
+            captureException(e);
 
             return (
                 <View style={styles.event}>

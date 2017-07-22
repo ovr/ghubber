@@ -4,8 +4,8 @@
 import React, { PureComponent } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Avatar } from 'components';
-import { Sentry } from 'react-native-sentry';
 import Icon from 'react-native-vector-icons/Octicons';
+import { captureException } from 'utils/errors';
 import I18n from 'utils/i18n';
 
 // import flow types
@@ -304,7 +304,7 @@ export default class EventRowMobile extends PureComponent<void, Props, void> {
                 </View>
             )
         } catch (e) {
-            Sentry.captureException(e);
+            captureException(e);
 
             return (
                 <View style={styles.event}>

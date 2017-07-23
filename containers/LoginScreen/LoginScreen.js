@@ -2,12 +2,13 @@
 // @flow
 
 import React, { PureComponent } from 'react';
-import { ImageBackground, View, StyleSheet, Text, Platform, Linking } from 'react-native';
+import { ImageBackground, View, StyleSheet, Text, Platform, Linking, TouchableOpacity } from 'react-native';
 import { Button, InputField, Spinner, KeyboardAvoidingView } from 'components';
 import { connect } from 'react-redux';
 import { makeLogin, showHome, makeOAuthLogin } from 'actions';
 import { images } from 'utils/images';
 import queryString from 'query-string';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 // import flow types
 import type { AppState } from 'reducers/app';
@@ -87,11 +88,22 @@ class LoginScreen extends PureComponent<void, Props, State> {
 
                     {
                         loading ? null : (
-                            <Button onPress={() => this.oauthLogin()} style={styles.oauthBtn}>
-                                Login using OAuth
-                            </Button>
+                            <TouchableOpacity activeOpacity={0.5} onPress={() => this.oauthLogin()}>
+                                <View style={styles.oauthBtn}>
+                                    <Icon name="github" size={30} style={styles.oauthBtnIcon} />
+                                    <Text style={styles.oauthBtnText}> Login with GitHub</Text>
+                                </View>
+                            </TouchableOpacity>
                         )
                     }
+
+                    <View style={styles.hr}>
+                        <View style={styles.hrLine} />
+                        <View >
+                            <Text style={styles.hrText}>OR</Text>
+                        </View>
+                        <View style={styles.hrLine} />
+                    </View>
 
                     <View style={styles.card}>
                         <InputField
@@ -162,8 +174,40 @@ const styles = StyleSheet.create({
         marginBottom: 15
     },
     oauthBtn: {
-        backgroundColor: '#639DFF'
-    }
+        backgroundColor: '#444',
+        borderRadius: 5,
+        justifyContent: 'center',
+        flexDirection: 'row',
+        padding: 10,
+        marginTop: 20,
+        marginBottom: 15,
+        alignItems: 'center'
+    },
+    oauthBtnIcon: {
+        color: '#fff',
+        marginRight: 5,
+    },
+    oauthBtnText: {
+        color: '#fff',
+        fontSize: 16,
+    },
+    hr: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: 5,
+    },
+    hrLine: {
+        flex: 1,
+        height: 1,
+        backgroundColor: '#000',
+    },
+    hrText: {
+        textAlign: 'center',
+        marginLeft: 15,
+        marginRight: 15,
+        fontSize: 20,
+        color: '#000',
+    },
 });
 
 export default connect(

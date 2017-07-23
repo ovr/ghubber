@@ -2,7 +2,8 @@
 // @flow
 
 import React, { PureComponent } from 'react';
-import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { View, TouchableOpacity, StyleSheet } from 'react-native';
+import { Text } from 'components';
 
 type Props = {
     title: string,

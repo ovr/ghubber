@@ -3,8 +3,8 @@
 
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { Avatar } from 'components';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import { Avatar, Text } from 'components';
 import Icon from 'react-native-vector-icons/Octicons';
 
 import { showRepositoryByParams, showRepositoryCommit } from 'actions';

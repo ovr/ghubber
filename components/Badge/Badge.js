@@ -2,7 +2,8 @@
 // @flow
 
 import React, { PureComponent } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
+import { Text } from 'components';
 
 type Props = {
     text: string,

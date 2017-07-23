@@ -2,7 +2,8 @@
 // @flow
 
 import React, { PureComponent } from 'react';
-import { Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { TouchableOpacity, StyleSheet } from 'react-native';
+import { Text } from 'components';
 
 type Props = {
     children: Object,

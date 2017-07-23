@@ -2,8 +2,8 @@
 // @flow
 
 import React, { PureComponent } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { Avatar } from 'components';
+import { View, StyleSheet } from 'react-native';
+import { Avatar, Text } from 'components';
 import Icon from 'react-native-vector-icons/Octicons';
 
 // import flow types

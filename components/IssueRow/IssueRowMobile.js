@@ -2,8 +2,8 @@
 // @flow
 
 import React, { PureComponent } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { Badge } from 'components';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import { Badge, Text } from 'components';
 
 // import flow types
 import type { IssueEntity } from 'github-flow-js';

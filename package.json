@@ -11,7 +11,11 @@
         "flow": "flow check",
         "test": "jest",
         "lint": "eslint --cache .",
+        "lint:staged": "staged-files '**/*.js' -- $(npm bin)/eslint",
         "postversion": "react-native-version"
+    },
+    "pre-commit": {
+        "run": "lint:staged"
     },
     "dependencies": {
         "babel-plugin-module-resolver": "^2.7.1",
@@ -50,7 +54,9 @@
         "react-native-version": "^2.3.1",
         "react-test-renderer": "16.0.0-alpha.12",
         "sentry-cli-binary": "^1.17.0",
-        "concurrently": "^3.5.0"
+        "concurrently": "^3.5.0",
+        "pre-commit": "^1.2.2",
+        "staged-files": "^0.1.2"
     },
     "jest": {
         "preset": "react-native"

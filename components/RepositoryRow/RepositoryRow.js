@@ -3,7 +3,7 @@
 
 import React, { PureComponent } from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
-import { UIText } from 'components';
+import { UIText, Badge } from 'components';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Entypo from 'react-native-vector-icons/Entypo';
 
@@ -55,8 +55,6 @@ const styles = StyleSheet.create({
     }
 });
 
-const ForkBadge = <View style={styles.forkBadge}><UIText>Fork</UIText></View>;
-
 export default class RepositoryRow extends PureComponent<void, Props, void> {
     render() {
         const { repo, onPress } = this.props;
@@ -64,7 +62,7 @@ export default class RepositoryRow extends PureComponent<void, Props, void> {
         return (
             <TouchableOpacity style={styles.row} onPress={onPress}>
                 <View style={styles.header}>
-                    {repo.fork ? ForkBadge : null}
+                    {repo.fork ? <Badge text="Fork" />: null}
                     <UIText style={styles.name} numberOfLines={1}>
                         {repo.name}
                     </UIText>

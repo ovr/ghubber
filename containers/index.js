@@ -16,6 +16,7 @@ export * from './ProfileScreen';
 export * from './Profile';
 export * from './Repository';
 export * from './RepositoryScreen';
+export * from './RepositoryIssueScreen';
 export * from './SideMenu';
 export * from './SideMenuButton';
 export * from './CommitScreen';

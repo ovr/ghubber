@@ -14,8 +14,11 @@ import type { RepositoryEntity } from 'github-flow-js';
 import type { ProfileRepositoriesState } from 'reducers/profile-repositories';
 
 type Props = {
-    // @todo
-    navigation: Object,
+    navigation: {
+        params: {
+            id: string
+        }
+    },
     state: ProfileRepositoriesState,
     fetchRepositories: typeof fetchRepositories,
     fetchMoreRepositories: typeof fetchMoreRepositories,

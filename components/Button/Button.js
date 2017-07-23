@@ -3,7 +3,7 @@
 
 import React, { PureComponent } from 'react';
 import { TouchableOpacity, StyleSheet } from 'react-native';
-import { Text } from 'components';
+import { UIText } from 'components';
 
 type Props = {
     children: Object,
@@ -17,9 +17,9 @@ export default class Button extends PureComponent<void, Props, void> {
 
         return (
             <TouchableOpacity onPress={onPress} style={[styles.button, style]}>
-                <Text style={styles.text}>
+                <UIText style={styles.text}>
                     {children}
-                </Text>
+                </UIText>
             </TouchableOpacity>
         )
     }

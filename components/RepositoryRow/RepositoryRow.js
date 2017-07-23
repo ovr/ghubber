@@ -3,7 +3,7 @@
 
 import React, { PureComponent } from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
-import { Text } from 'components';
+import { UIText } from 'components';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Entypo from 'react-native-vector-icons/Entypo';
 
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     }
 });
 
-const ForkBadge = <View style={styles.forkBadge}><Text>Fork</Text></View>;
+const ForkBadge = <View style={styles.forkBadge}><UIText>Fork</UIText></View>;
 
 export default class RepositoryRow extends PureComponent<void, Props, void> {
     render() {
@@ -65,29 +65,29 @@ export default class RepositoryRow extends PureComponent<void, Props, void> {
             <TouchableOpacity style={styles.row} onPress={onPress}>
                 <View style={styles.header}>
                     {repo.fork ? ForkBadge : null}
-                    <Text style={styles.name} numberOfLines={1}>
+                    <UIText style={styles.name} numberOfLines={1}>
                         {repo.name}
-                    </Text>
+                    </UIText>
                 </View>
                 <View style={styles.bottom}>
-                    <Text style={styles.counter}>
+                    <UIText style={styles.counter}>
                         <Icon name="star" size={15} color="black" style={styles.counterIcon} />
                         {" Stars: "}
                         {repo.stargazers_count}
-                    </Text>
-                    <Text style={styles.counter}>
+                    </UIText>
+                    <UIText style={styles.counter}>
                         <Icon name="eye" size={15} color="black" style={styles.counterIcon} />
                         {" Watchers: "}
                         {repo.watchers_count}
-                    </Text>
-                    <Text style={styles.counter}>
+                    </UIText>
+                    <UIText style={styles.counter}>
                         <Entypo name="flow-branch" size={15} color="black" style={styles.counterIcon} />
                         {"Forks: "}
                         {repo.forks_count}
-                    </Text>
-                    <Text style={[styles.counter, styles.languageCounter]}>
+                    </UIText>
+                    <UIText style={[styles.counter, styles.languageCounter]}>
                         {repo.language}
-                    </Text>
+                    </UIText>
                 </View>
             </TouchableOpacity>
         )

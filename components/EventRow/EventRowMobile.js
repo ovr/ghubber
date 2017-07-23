@@ -4,7 +4,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
-import { Avatar, Text } from 'components';
+import { Avatar, UIText } from 'components';
 import Icon from 'react-native-vector-icons/Octicons';
 
 import { showRepositoryByParams, showRepositoryCommit } from 'actions';
@@ -60,16 +60,16 @@ class EventRowMobile extends PureComponent<void, Props, void> {
                         (item) => {
                             return (
                                 <View key={item.sha}>
-                                    <Text numberOfLines={1}>
-                                        <Text style={styles.commitSHA}>{item.sha.substring(0, 7)}</Text> {item.message}
-                                    </Text>
+                                    <UIText numberOfLines={1}>
+                                        <UIText style={styles.commitSHA}>{item.sha.substring(0, 7)}</UIText> {item.message}
+                                    </UIText>
                                 </View>
                             )
                         }
                     )
                 }
                 {
-                    moreCommits ? <Text style={styles.moreCommits}>({moreCommits}) commit(s) was hidden</Text> : null
+                    moreCommits ? <UIText style={styles.moreCommits}>({moreCommits}) commit(s) was hidden</UIText> : null
                 }
             </View>
         )
@@ -78,17 +78,17 @@ class EventRowMobile extends PureComponent<void, Props, void> {
     renderPushEvent(event: PushEvent | PullRequestEvent): React.Element<any> {
         return (
             <View style={styles.right}>
-                <Text>
-                    <Text style={styles.login}>{event.actor.login + " "}</Text>
+                <UIText>
+                    <UIText style={styles.login}>{event.actor.login + " "}</UIText>
                     {__('EventRow.Actions.PushedTo')}&nbsp;
-                    <Text style={styles.branchName}>{filterBranchNameFromRefs(event.payload.ref)}</Text>&nbsp;
+                    <UIText style={styles.branchName}>{filterBranchNameFromRefs(event.payload.ref)}</UIText>&nbsp;
                     {__('EventRow.At')}
-                    <Text style={styles.repoName}>{" " + event.repo.name}</Text>
-                </Text>
+                    <UIText style={styles.repoName}>{" " + event.repo.name}</UIText>
+                </UIText>
                 <View style={styles.rightBottom}>
                     {this.renderCommitsList(event.payload)}
                 </View>
-                <Text style={styles.eventDate}>{moment(event.created_at).fromNow()}</Text>
+                <UIText style={styles.eventDate}>{moment(event.created_at).fromNow()}</UIText>
             </View>
         )
     }
@@ -96,17 +96,17 @@ class EventRowMobile extends PureComponent<void, Props, void> {
     renderIssuesEvent(event: PushEvent | PullRequestEvent): React.Element<any> {
         return (
             <View style={styles.right}>
-                <Text>
-                    <Text style={styles.login}>{event.actor.login + " "}</Text>
+                <UIText>
+                    <UIText style={styles.login}>{event.actor.login + " "}</UIText>
                     {__(`EventRow.IssuesActions.${event.payload.action}`)} {__('EventRow.Issue')}&nbsp;
-                    <Text style={styles.repoName}>{" " + event.repo.name}{"#" + event.payload.issue.number}</Text>
-                </Text>
+                    <UIText style={styles.repoName}>{" " + event.repo.name}{"#" + event.payload.issue.number}</UIText>
+                </UIText>
                 <View style={styles.rightBottom}>
-                    <Text numberOfLines={1} style={styles.commentBody}>
+                    <UIText numberOfLines={1} style={styles.commentBody}>
                         {event.payload.issue.title}
-                    </Text>
+                    </UIText>
                 </View>
-                <Text style={styles.eventDate}>{moment(event.created_at).fromNow()}</Text>
+                <UIText style={styles.eventDate}>{moment(event.created_at).fromNow()}</UIText>
             </View>
         )
     }
@@ -114,13 +114,13 @@ class EventRowMobile extends PureComponent<void, Props, void> {
     renderReleaseEvent(event: PushEvent | PullRequestEvent): React.Element<any> {
         return (
             <View style={styles.right}>
-                <Text>
-                    <Text style={styles.login}>{event.actor.login + " "}</Text>
+                <UIText>
+                    <UIText style={styles.login}>{event.actor.login + " "}</UIText>
                     {__(`EventRow.ReleaseActions.${event.payload.action}`)} {__('EventRow.Release')}&nbsp;
-                    <Text style={styles.repoName}>{event.payload.release.tag_name}</Text> {__('EventRow.At')}&nbsp;
-                    <Text style={styles.repoName}>{event.repo.name}</Text>
-                    <Text style={styles.eventDate}>{moment(event.created_at).fromNow()}</Text>
-                </Text>
+                    <UIText style={styles.repoName}>{event.payload.release.tag_name}</UIText> {__('EventRow.At')}&nbsp;
+                    <UIText style={styles.repoName}>{event.repo.name}</UIText>
+                    <UIText style={styles.eventDate}>{moment(event.created_at).fromNow()}</UIText>
+                </UIText>
             </View>
         )
     }
@@ -128,17 +128,17 @@ class EventRowMobile extends PureComponent<void, Props, void> {
     renderPullRequestReviewCommentEvent(event: PullRequestReviewCommentEvent): React.Element<any> {
         return (
             <View style={styles.right}>
-                <Text>
-                    <Text style={styles.login}>{event.actor.login + " "}</Text>
+                <UIText>
+                    <UIText style={styles.login}>{event.actor.login + " "}</UIText>
                     {__('EventRow.Actions.CommentedPR')}&nbsp;
-                    <Text style={styles.repoName}>{event.repo.name}#{event.payload.pull_request.number}</Text>
-                </Text>
+                    <UIText style={styles.repoName}>{event.repo.name}#{event.payload.pull_request.number}</UIText>
+                </UIText>
                 <View style={styles.rightBottom}>
-                    <Text numberOfLines={1} style={styles.commentBody}>
+                    <UIText numberOfLines={1} style={styles.commentBody}>
                         {event.payload.comment.body}
-                    </Text>
+                    </UIText>
                 </View>
-                <Text style={styles.eventDate}>{moment(event.created_at).fromNow()}</Text>
+                <UIText style={styles.eventDate}>{moment(event.created_at).fromNow()}</UIText>
             </View>
         )
     }
@@ -146,26 +146,26 @@ class EventRowMobile extends PureComponent<void, Props, void> {
     renderPullRequestEvent(event: PushEvent | PullRequestEvent): React.Element<any> {
         return (
             <View style={styles.right}>
-                <Text>
-                    <Text style={styles.login}>{event.actor.login + " "}</Text>
+                <UIText>
+                    <UIText style={styles.login}>{event.actor.login + " "}</UIText>
                     {
                         event.payload.action === 'closed' ?
                         __('EventRow.Actions.Merged') :
                         __(`EventRow.PullRequestActions.${event.payload.action}`)
                     }&nbsp;
                     {__('EventRow.PR')}&nbsp;
-                    <Text style={styles.repoName}>{event.repo.name}#{event.payload.pull_request.number}</Text>
-                </Text>
+                    <UIText style={styles.repoName}>{event.repo.name}#{event.payload.pull_request.number}</UIText>
+                </UIText>
                 <View style={styles.rightBottom}>
-                    <Text numberOfLines={2} style={styles.commentBody}>
+                    <UIText numberOfLines={2} style={styles.commentBody}>
                         {__('EventRow.CommitSummary', {
                             commits: event.payload.pull_request.commits,
                             additions: event.payload.pull_request.additions,
                             deletions: event.payload.pull_request.deletions
                         })}
-                    </Text>
+                    </UIText>
                 </View>
-                <Text style={styles.eventDate}>{moment(event.created_at).fromNow()}</Text>
+                <UIText style={styles.eventDate}>{moment(event.created_at).fromNow()}</UIText>
             </View>
         )
     }
@@ -173,17 +173,17 @@ class EventRowMobile extends PureComponent<void, Props, void> {
     renderCommitCommentEvent(event: CommitCommentEvent): React.Element<any> {
         return (
             <View style={styles.right}>
-                <Text>
-                    <Text style={styles.login}>{event.actor.login + " "}</Text>
+                <UIText>
+                    <UIText style={styles.login}>{event.actor.login + " "}</UIText>
                     {__('EventRow.Actions.CommentedCommit')}&nbsp;
-                    <Text style={styles.repoName}>{" " + event.repo.name}</Text>
-                </Text>
+                    <UIText style={styles.repoName}>{" " + event.repo.name}</UIText>
+                </UIText>
                 <View style={styles.rightBottom}>
-                    <Text numberOfLines={1} style={styles.commentBody}>
+                    <UIText numberOfLines={1} style={styles.commentBody}>
                         {event.payload.comment.body}
-                    </Text>
+                    </UIText>
                 </View>
-                <Text style={styles.eventDate}>{moment(event.created_at).fromNow()}</Text>
+                <UIText style={styles.eventDate}>{moment(event.created_at).fromNow()}</UIText>
             </View>
         )
     }
@@ -191,17 +191,17 @@ class EventRowMobile extends PureComponent<void, Props, void> {
     renderIssueCommentEvent(event: PushEvent | PullRequestEvent): React.Element<any> {
         return (
             <View style={styles.right}>
-                <Text>
-                    <Text style={styles.login}>{event.actor.login + " "}</Text>
+                <UIText>
+                    <UIText style={styles.login}>{event.actor.login + " "}</UIText>
                     {__('EventRow.Actions.CommentedIssue')}&nbsp;
-                    <Text style={styles.repoName}>{" " + event.repo.name}{"#" + event.payload.issue.number}</Text>
-                </Text>
+                    <UIText style={styles.repoName}>{" " + event.repo.name}{"#" + event.payload.issue.number}</UIText>
+                </UIText>
                 <View style={styles.rightBottom}>
-                    <Text numberOfLines={1} style={styles.commentBody}>
+                    <UIText numberOfLines={1} style={styles.commentBody}>
                         {event.payload.comment.body}
-                    </Text>
+                    </UIText>
                 </View>
-                <Text style={styles.eventDate}>{moment(event.created_at).fromNow()}</Text>
+                <UIText style={styles.eventDate}>{moment(event.created_at).fromNow()}</UIText>
             </View>
         )
     }
@@ -209,12 +209,12 @@ class EventRowMobile extends PureComponent<void, Props, void> {
     renderForkEvent(event: PushEvent | PullRequestEvent): React.Element<any> {
         return (
             <View style={styles.right}>
-                <Text>
-                    <Text style={styles.login}>{event.actor.login + " "}</Text>
-                    {__('EventRow.Actions.Forked')} <Text style={styles.branchName}>{event.repo.name}</Text>&nbsp;
-                    {__('EventRow.To')} <Text style={styles.branchName}>{event.payload.forkee.full_name}</Text>
-                </Text>
-                <Text style={styles.eventDate}>{moment(event.created_at).fromNow()}</Text>
+                <UIText>
+                    <UIText style={styles.login}>{event.actor.login + " "}</UIText>
+                    {__('EventRow.Actions.Forked')} <UIText style={styles.branchName}>{event.repo.name}</UIText>&nbsp;
+                    {__('EventRow.To')} <UIText style={styles.branchName}>{event.payload.forkee.full_name}</UIText>
+                </UIText>
+                <UIText style={styles.eventDate}>{moment(event.created_at).fromNow()}</UIText>
             </View>
         )
     }
@@ -222,14 +222,14 @@ class EventRowMobile extends PureComponent<void, Props, void> {
     renderCreateEvent(event: PushEvent | PullRequestEvent): React.Element<any> {
         return (
             <View style={styles.right}>
-                <Text>
-                    <Text style={styles.login}>{event.actor.login + " "}</Text>
+                <UIText>
+                    <UIText style={styles.login}>{event.actor.login + " "}</UIText>
                     {__('EventRow.Actions.Created')}&nbsp;
                     {__(`EventRow.CreateTypes.${event.payload.ref_type}`)}&nbsp;
-                    <Text style={styles.branchName}>{event.payload.ref}</Text>&nbsp;
-                    {__('EventRow.At')} <Text style={styles.branchName}>{event.repo.name}</Text>
-                </Text>
-                <Text style={styles.eventDate}>{moment(event.created_at).fromNow()}</Text>
+                    <UIText style={styles.branchName}>{event.payload.ref}</UIText>&nbsp;
+                    {__('EventRow.At')} <UIText style={styles.branchName}>{event.repo.name}</UIText>
+                </UIText>
+                <UIText style={styles.eventDate}>{moment(event.created_at).fromNow()}</UIText>
             </View>
         )
     }
@@ -237,14 +237,14 @@ class EventRowMobile extends PureComponent<void, Props, void> {
     renderDeleteEvent(event: PushEvent | PullRequestEvent): React.Element<any> {
         return (
             <View style={styles.right}>
-                <Text>
-                    <Text style={styles.login}>{event.actor.login + " "}</Text>
+                <UIText>
+                    <UIText style={styles.login}>{event.actor.login + " "}</UIText>
                     {__('EventRow.Actions.Created')}&nbsp;
                     {__(`EventRow.CreateTypes.${event.payload.ref_type}`)}&nbsp;
-                    <Text style={styles.branchName}>{event.payload.ref}</Text>&nbsp;
-                    {__('EventRow.At')} <Text style={styles.branchName}>{event.repo.name}</Text>
-                </Text>
-                <Text style={styles.eventDate}>{moment(event.created_at).fromNow()}</Text>
+                    <UIText style={styles.branchName}>{event.payload.ref}</UIText>&nbsp;
+                    {__('EventRow.At')} <UIText style={styles.branchName}>{event.repo.name}</UIText>
+                </UIText>
+                <UIText style={styles.eventDate}>{moment(event.created_at).fromNow()}</UIText>
             </View>
         )
     }
@@ -252,12 +252,12 @@ class EventRowMobile extends PureComponent<void, Props, void> {
     renderWatchEvent(event: PushEvent | PullRequestEvent): React.Element<any> {
         return (
             <View style={styles.right}>
-                <Text>
-                    <Text style={styles.login}>{event.actor.login + " "}</Text>
+                <UIText>
+                    <UIText style={styles.login}>{event.actor.login + " "}</UIText>
                     {__('EventRow.Actions.Starred')}&nbsp;
-                    <Text style={styles.branchName}>{event.repo.name}</Text>
-                </Text>
-                <Text style={styles.eventDate}>{moment(event.created_at).fromNow()}</Text>
+                    <UIText style={styles.branchName}>{event.repo.name}</UIText>
+                </UIText>
+                <UIText style={styles.eventDate}>{moment(event.created_at).fromNow()}</UIText>
             </View>
         )
     }
@@ -338,7 +338,7 @@ class EventRowMobile extends PureComponent<void, Props, void> {
                 default:
                     return (
                         <View style={styles.event}>
-                            <Text>{__('EventRow.TypeEventNotSupported', {eventType: event.type})}</Text>
+                            <UIText>{__('EventRow.TypeEventNotSupported', {eventType: event.type})}</UIText>
                         </View>
                     )
             }
@@ -359,7 +359,7 @@ class EventRowMobile extends PureComponent<void, Props, void> {
 
             return (
                 <View style={styles.event}>
-                    <Text>{__('EventRow.UnexpectedException', {eventType: event.type })}</Text>
+                    <UIText>{__('EventRow.UnexpectedException', {eventType: event.type })}</UIText>
                 </View>
             )
         }

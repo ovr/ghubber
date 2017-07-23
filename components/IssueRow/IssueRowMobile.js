@@ -3,7 +3,7 @@
 
 import React, { PureComponent } from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
-import { Badge, Text } from 'components';
+import { Badge, UIText } from 'components';
 
 // import flow types
 import type { IssueEntity } from 'github-flow-js';
@@ -47,9 +47,9 @@ export default class IssueRowMobile extends PureComponent<void, Props, void> {
 
         return (
             <TouchableOpacity style={styles.row} onPress={onPress}>
-                <Text style={styles.repositoryName} numberOfLines={1}>
+                <UIText style={styles.repositoryName} numberOfLines={1}>
                     {repositoryName}
-                </Text>
+                </UIText>
                 <View style={styles.labels}>
                     {
                         issue.labels && issue.labels.map(
@@ -63,9 +63,9 @@ export default class IssueRowMobile extends PureComponent<void, Props, void> {
                         )
                     }
                 </View>
-                <Text style={styles.title} numberOfLines={1}>
+                <UIText style={styles.title} numberOfLines={1}>
                     {issue.title}
-                </Text>
+                </UIText>
             </TouchableOpacity>
         )
     }

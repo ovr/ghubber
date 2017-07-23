@@ -19,4 +19,4 @@ export * from './EventRow';
 export * from './KeyboardAvoidingView';
 export * from './FilterTabType';
 export * from './Badge';
-export * from './Text';
+export * from './UIText';

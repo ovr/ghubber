@@ -2,19 +2,20 @@
 // @flow
 
 import React, { PureComponent } from 'react';
-import ReactNative, { StyleSheet, Platform } from 'react-native';
+import { StyleSheet, Platform, Text } from 'react-native';
 
-export default class Text extends PureComponent<void, any, void> {
+export default class UIText extends PureComponent<void, any, void> {
     render() {
-        let {
+        const {
             style,
             children,
+            ...props
         } = this.props;
 
         return (
-            <ReactNative.Text style={[style, styles.text]}>
+            <Text style={[style, styles.text]} {...props}>
                 {children}
-            </ReactNative.Text>
+            </Text>
         );
     }
 }

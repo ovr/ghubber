@@ -3,7 +3,7 @@
 
 import React, { PureComponent } from 'react';
 import { View, StyleSheet } from 'react-native';
-import { Avatar, Text } from 'components';
+import { Avatar, UIText } from 'components';
 import Icon from 'react-native-vector-icons/Octicons';
 
 // import flow types
@@ -24,76 +24,76 @@ export default class ProfileViewMobile extends PureComponent<void, Props, void> 
                 </View>
                 <View style={styles.statsWrapper}>
                     <View style={styles.statsBlock}>
-                        <Text style={styles.statsBlockTitle}>
+                        <UIText style={styles.statsBlockTitle}>
                             Repos
-                        </Text>
-                        <Text>
+                        </UIText>
+                        <UIText>
                             {user.public_repos}
-                        </Text>
+                        </UIText>
                     </View>
                     <View style={styles.statsBlock}>
-                        <Text style={styles.statsBlockTitle}>
+                        <UIText style={styles.statsBlockTitle}>
                             Gists
-                        </Text>
-                        <Text>
+                        </UIText>
+                        <UIText>
                             {user.public_gists}
-                        </Text>
+                        </UIText>
                     </View>
                     <View style={styles.statsBlock}>
-                        <Text style={styles.statsBlockTitle}>
+                        <UIText style={styles.statsBlockTitle}>
                             Followers
-                        </Text>
-                        <Text>
+                        </UIText>
+                        <UIText>
                             {user.followers}
-                        </Text>
+                        </UIText>
                     </View>
                     <View style={styles.statsBlock}>
-                        <Text style={styles.statsBlockTitle}>
+                        <UIText style={styles.statsBlockTitle}>
                             Following
-                        </Text>
-                        <Text>
+                        </UIText>
+                        <UIText>
                             {user.following}
-                        </Text>
+                        </UIText>
                     </View>
                 </View>
                 <View style={styles.info}>
-                    <Text style={styles.name} numberOfLines={1}>
+                    <UIText style={styles.name} numberOfLines={1}>
                         { user.name }
-                        <Text style={styles.login} numberOfLines={1}> @{ user.login }</Text>
-                    </Text>
+                        <UIText style={styles.login} numberOfLines={1}> @{ user.login }</UIText>
+                    </UIText>
                     {
                         user.company ? (
-                            <Text numberOfLines={1} style={styles.company}>
+                            <UIText numberOfLines={1} style={styles.company}>
                                 <Icon name="organization" size={16} style={styles.icon} />
                                 { user.company }
-                            </Text>
+                            </UIText>
                         ) : null
                     }
                     {
                         user.location ? (
-                            <Text numberOfLines={1} style={styles.location}>
+                            <UIText numberOfLines={1} style={styles.location}>
                                 <Icon name="location" size={16} style={styles.icon} />
                                 { user.location }
-                            </Text>
+                            </UIText>
                         ) : null
                     }
                     {
                         user.email ? (
-                            <Text numberOfLines={1} style={styles.mail}>
+                            <UIText numberOfLines={1} style={styles.mail}>
                                 <Icon name="mail" size={16} style={styles.icon} />
                                 { user.email }
-                            </Text>
+                            </UIText>
                         ) : null
                     }
                     {
                         user.blog ? (
-                            <Text numberOfLines={1} style={styles.blog}>
+                            <UIText numberOfLines={1} style={styles.blog}>
                                 <Icon name="link" size={16} style={styles.icon} />
                                 { user.blog }
-                            </Text>
+                            </UIText>
                         ) : null
                     }
-                    <Text style={styles.bio}>{ user.bio }</Text>
+                    <UIText style={styles.bio}>{ user.bio }</UIText>
                 </View>
             </View>
         )

@@ -3,7 +3,7 @@
 
 import React, { PureComponent } from 'react';
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
-import { Text } from 'components';
+import { UIText } from 'components';
 
 type Props = {
     title: string,
@@ -18,9 +18,9 @@ export default class FilterTabType extends PureComponent<void, Props, void> {
         if (active) {
             return (
                 <View style={[styles.accountIssuesType, styles.accountIssuesTypeActive]}>
-                    <Text style={[styles.accountIssuesTypeText, styles.accountIssuesTypeTextActive]}>
+                    <UIText style={[styles.accountIssuesTypeText, styles.accountIssuesTypeTextActive]}>
                         {title.replace(/\s\s/g, '\n')}
-                    </Text>
+                    </UIText>
                 </View>
             )
         }
@@ -30,9 +30,9 @@ export default class FilterTabType extends PureComponent<void, Props, void> {
                 style={styles.accountIssuesType}
                 onPress={onPress}
             >
-                <Text style={styles.accountIssuesTypeText}>
+                <UIText style={styles.accountIssuesTypeText}>
                     {title.replace(/\s\s/g, '\n')}
-                </Text>
+                </UIText>
             </TouchableOpacity>
         )
     }

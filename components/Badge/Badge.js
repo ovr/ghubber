@@ -3,7 +3,7 @@
 
 import React, { PureComponent } from 'react';
 import { View, StyleSheet } from 'react-native';
-import { Text } from 'components';
+import { UIText } from 'components';
 
 type Props = {
     text: string,
@@ -16,7 +16,7 @@ export default class Badge extends PureComponent<void, Props, void> {
 
         return (
             <View style={[{backgroundColor: backgroundColor || 'yellow'}, styles.root]}>
-                <Text style={styles.text}>{text}</Text>
+                <UIText style={styles.text}>{text}</UIText>
             </View>
         )
     }

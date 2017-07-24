@@ -12,6 +12,7 @@ import {
     FeedSettingsScreen,
     LoginScreen,
     CommitScreen,
+    RepositoryIssueScreen,
     ProfileScreen,
     RepositoryScreen,
     AboutScreen,
@@ -48,6 +49,12 @@ export const AppNavigator = StackNavigator(
             screen: LoginScreen,
             navigationOptions: {
                 header: null
+            }
+        },
+        Issue: {
+            screen: RepositoryIssueScreen,
+            navigationOptions: {
+                title: 'Issue overview'
             }
         },
         Commit: {

@@ -5,36 +5,38 @@ import React, { PureComponent } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import { ErrorView, Spinner } from 'components';
 import { connect } from 'react-redux';
-import { fetchCommit } from 'actions';
+import { fetchIssue } from 'actions';
 
 // import flow types
-import type { RepositoryCommitState } from 'reducers/repository-commit';
+import type { RepositoryIssueState } from 'reducers/repository-issue';
 
 type Props = {
-    state: RepositoryCommitState,
+    state: RepositoryIssueState,
     navigation: {
         params: {
             owner: string,
             repo: string,
-            sha: string
+            id: number
         }
     },
-    fetchCommit: typeof fetchCommit
+    fetchIssue: typeof fetchIssue
 }
 
 class RepositoryIssueScreen extends PureComponent<void, Props, void> {
     componentWillMount() {
         const params = this.props.navigation.params;
 
-        this.props.fetchCommit(
+        console.log(params);
+
+        this.props.fetchIssue(
             params.owner,
             params.repo,
-            params.sha,
+            params.id,
         );
     }
 
     render() {
-        const { loading, error, commit } = this.props.state;
+        const { loading, error, issue } = this.props.state;
 
         if (loading) {
             return (
@@ -43,6 +45,8 @@ class RepositoryIssueScreen extends PureComponent<void, Props, void> {
                 </View>
             )
         }
+
+        console.log(error);
 
         if (error) {
             return (
@@ -55,7 +59,7 @@ class RepositoryIssueScreen extends PureComponent<void, Props, void> {
             )
         }
 
-        if (!commit) {
+        if (!issue) {
             return null;
         }
 
@@ -83,8 +87,8 @@ export default connect(
     (state) => {
         return {
             navigation: state.navigation,
-            state: state.repositoryCommit
+            state: state.repositoryIssue
         }
     },
-    { fetchCommit }
+    { fetchIssue }
 )(RepositoryIssueScreen);

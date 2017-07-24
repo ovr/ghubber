@@ -3,7 +3,7 @@
 
 import React, { PureComponent } from 'react';
 import { View, StyleSheet } from 'react-native';
-import { Button, Text } from 'components';
+import { Button, UIText } from 'components';
 import { __ } from 'utils/i18n';
 
 type Props = {
@@ -19,12 +19,12 @@ export default class ErrorView extends PureComponent<void, Props, void> {
         if (refreshable) {
             return (
                 <View style={styles.root}>
-                    <Text style={styles.title}>
+                    <UIText style={styles.title}>
                         {__('ErrorView.Title', {errorCode: error.code})}
-                    </Text>
-                    <Text style={styles.message}>
+                    </UIText>
+                    <UIText style={styles.message}>
                         {error.message}
-                    </Text>
+                    </UIText>
                     <Button onPress={onPress}>
                         {__('ErrorView.RefreshButton')}
                     </Button>
@@ -34,9 +34,9 @@ export default class ErrorView extends PureComponent<void, Props, void> {
 
         return (
             <View style={styles.root}>
-                <Text style={styles.message}>
+                <UIText style={styles.message}>
                     {error.message}
-                </Text>
+                </UIText>
             </View>
         )
     }

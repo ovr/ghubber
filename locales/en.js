@@ -25,7 +25,7 @@ export default {
     },
     ErrorView: {
         Title: 'Sorry, but We are having {{errorCode}} on response :(',
-        ButtonRefresh: 'Refresh ;)',
+        RefreshButton: 'Refresh ;)',
     },
     EventRow: {
         At: 'at',

@@ -25,7 +25,7 @@ export default {
     },
     ErrorView: {
         Title: 'Извините, возникла ошибка с кодом {{errorCode}} в ответе :(',
-        ButtonRefresh: 'Обновить ;)',
+        RefreshButton: 'Обновить ;)',
     },
     EventRow: {
         At: 'на',

@@ -2,31 +2,12 @@
 // @flow
 
 import { getRepositoryIssue } from 'github-flow-js';
-import {
-    REPOSITORY_ISSUE_REQUEST,
-    REPOSITORY_ISSUE_REQUEST_FAIL,
-    REPOSITORY_ISSUE_REQUEST_SUCCESS
-} from 'constants';
+import { REPOSITORY_ISSUE_REQUEST } from 'constants';
+import { makeThunk } from 'utils/action-helper';
 
-export function fetchIssue(owner: string, repo: string, number: number): ThunkAction {
-    return async dispatch => {
-        dispatch({
-            type: REPOSITORY_ISSUE_REQUEST
-        });
-
-        try {
-            const commit = await getRepositoryIssue(owner, repo, number, {});
-
-            dispatch({
-                type: REPOSITORY_ISSUE_REQUEST_FAIL,
-                payload: commit
-            });
-        } catch (e) {
-            dispatch({
-                type: REPOSITORY_ISSUE_REQUEST_SUCCESS
-            })
-
-            console.warn(e);
-        }
-    }
+export function fetchIssue(owner: string, repo: string, id: number): ThunkAction {
+    return makeThunk(
+        () => getRepositoryIssue(owner, repo, id, {}),
+        REPOSITORY_ISSUE_REQUEST
+    );
 }

@@ -4,32 +4,18 @@
 import { getRepository } from 'github-flow-js';
 import {
     REPOSITORY_REQUEST,
-    REPOSITORY_REQUEST_SUCCESS,
-    REPOSITORY_REQUEST_FAIL
+    REPOSITORY_REQUEST_SUCCESS
 } from 'constants';
+import { makeThunk } from 'utils/action-helper';
 
 // import flow types
 import type { RepositoryEntity } from 'github-flow-js';
 
 export function fetchRepository(owner: string, repo: string): ThunkAction {
-    return async dispatch => {
-        dispatch({
-            type: REPOSITORY_REQUEST
-        });
-
-        try {
-            const repository = await getRepository(owner, repo, {});
-
-            dispatch({
-                type: REPOSITORY_REQUEST_SUCCESS,
-                payload: repository
-            });
-        } catch (e) {
-            dispatch({
-                type: REPOSITORY_REQUEST_FAIL
-            })
-        }
-    }
+    return makeThunk(
+        () => getRepository(owner, repo, {}),
+        REPOSITORY_REQUEST
+    );
 }
 
 export function setupRepository(repository: RepositoryEntity): Action {

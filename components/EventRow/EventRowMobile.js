@@ -7,7 +7,12 @@ import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { Avatar, UIText } from 'components';
 import Icon from 'react-native-vector-icons/Octicons';
 
-import { showRepositoryByParams, showRepositoryCommit } from 'actions';
+import {
+    showRepositoryByParams,
+    showRepositoryCommit,
+    showRepositoryIssue
+} from 'actions';
+
 import { captureException } from 'utils/errors';
 import { filterBranchNameFromRefs } from 'utils/filters';
 import { normalizeFont } from 'utils/helpers';
@@ -26,6 +31,7 @@ type Props = {
     event: PushEvent | PullRequestEvent,
     showRepositoryByParams: typeof showRepositoryByParams,
     showRepositoryCommit: typeof showRepositoryCommit,
+    showRepositoryIssue: typeof showRepositoryIssue,
 };
 
 // @todo Remove when we will support all events navigation
@@ -33,6 +39,7 @@ function isNavigationSupported(event: PushEvent | PullRequestEvent): boolean {
     switch (event.type) {
         case 'PushEvent':
         case 'WatchEvent':
+        case 'IssueCommentEvent':
             return true;
     }
 
@@ -270,6 +277,16 @@ class EventRowMobile extends PureComponent<void, Props, void> {
 
     navigateEvent(event: PushEvent | PullRequestEvent): void {
         switch (event.type) {
+            case 'IssueCommentEvent': {
+                const parts = event.repo.name.split('/');
+
+                this.props.showRepositoryIssue(
+                    parts[0],
+                    parts[1],
+                    event.payload.issue.id
+                );
+                break;
+            }
             case 'PushEvent': {
                 const parts = event.repo.name.split('/');
                 this.props.showRepositoryCommit(parts[0], parts[1], event.payload.head);
@@ -426,5 +443,5 @@ const styles = StyleSheet.create({
 
 export default connect(
     null,
-    { showRepositoryByParams, showRepositoryCommit }
+    { showRepositoryByParams, showRepositoryCommit, showRepositoryIssue }
 )(EventRowMobile);

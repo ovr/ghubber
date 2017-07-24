@@ -91,6 +91,17 @@ export function setTitle(title: string) {
     };
 }
 
+export function showRepositoryIssue(owner: string, repo: string, id: number) {
+    return NavigationActions.navigate({
+        routeName: 'Issue',
+        params: {
+            owner,
+            repo,
+            id
+        }
+    })
+}
+
 export function showRepositoryCommit(owner: string, repo: string, sha: string) {
     return NavigationActions.navigate({
         routeName: 'Commit',

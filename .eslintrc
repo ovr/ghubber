@@ -23,6 +23,7 @@
         "ComponentStyles": true,
         "State": true,
         "Promise": true,
-        "ThunkAction": true
+        "ThunkAction": true,
+        "ActionType": true
     }
 }

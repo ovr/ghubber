@@ -14,7 +14,10 @@
                 [
                     "transform-define",
                     {
-                        "SENTRY_ENABLED": false,
+                        // Please disable it, if you dont need Sentry for local development or it brokens backtrace for you
+                        // It's enabled because We needed to test Sentry compatiblity for local development
+                        // to protect bugs in release build
+                        "SENTRY_ENABLED": true,
                         "GHUBBER_OAUTH": "http://ghub.lowl.io/v1/oauth/github"
                     }
                 ]

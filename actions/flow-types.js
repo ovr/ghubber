@@ -3,6 +3,8 @@
 import type {
     OrganizationEntity,
     RepositoryEntity,
+    IssueEntity,
+    CommitEntity,
     UserEntity
 } from 'github-flow-js';
 
@@ -100,6 +102,14 @@ export type Action =
     | BaseAction<"REPOSITORY_REQUEST">
     | ActionWithPayload<'REPOSITORY_REQUEST_SUCCESS', RepositoryEntity>
     | ActionWithError<"REPOSITORY_REQUEST_FAIL", any>
+    //
+    | BaseAction<'REPOSITORY_ISSUE_REQUEST'>
+    | ActionWithPayload<'REPOSITORY_ISSUE_REQUEST_SUCCESS', IssueEntity>
+    | ActionWithError<'REPOSITORY_ISSUE_REQUEST_FAIL', any>
+    //
+    | BaseAction<'REPOSITORY_COMMIT_REQUEST'>
+    | ActionWithPayload<'REPOSITORY_COMMIT_REQUEST_SUCCESS', CommitEntity>
+    | ActionWithError<'REPOSITORY_COMMIT_REQUEST_FAIL', any>
     //
     | ActionWithError<"LOGIN_REQUEST_FAIL", any>
     //

@@ -14,6 +14,7 @@ import { default as profileOrganizations } from './profile-organizations';
 import { default as navigation } from './navigation';
 import { default as repository } from './repository';
 import { default as repositoryCommit } from './repository-commit';
+import { default as repositoryIssue } from './repository-issue';
 
 export default combineReducers({
     accountFeed,
@@ -26,5 +27,6 @@ export default combineReducers({
     profileOrganizations,
     navigation,
     repository,
-    repositoryCommit
+    repositoryCommit,
+    repositoryIssue
 })

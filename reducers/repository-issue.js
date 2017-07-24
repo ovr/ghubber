@@ -2,42 +2,42 @@
 // @flow
 
 import {
-    REPOSITORY_COMMIT_REQUEST,
-    REPOSITORY_COMMIT_REQUEST_SUCCESS,
-    REPOSITORY_COMMIT_REQUEST_FAIL
+    REPOSITORY_ISSUE_REQUEST,
+    REPOSITORY_ISSUE_REQUEST_FAIL,
+    REPOSITORY_ISSUE_REQUEST_SUCCESS
 } from 'constants';
 
 // import flow types
-import type { CommitEntity } from 'github-flow-js';
+import type { IssueEntity } from 'github-flow-js';
 
-export type RepositoryCommitState = {
+export type RepositoryIssueState = {
     loading: boolean,
     error:? Error,
-    commit:? CommitEntity
+    issue:? IssueEntity
 }
 
-const initialState: RepositoryCommitState = {
+const initialState: RepositoryIssueState = {
     loading: false,
     error: null,
-    commit: null
+    issue: null
 }
 
-export default (state: RepositoryCommitState = initialState, action: Action): RepositoryCommitState => {
+export default (state: RepositoryIssueState = initialState, action: Action): RepositoryIssueState => {
     switch (action.type) {
-        case REPOSITORY_COMMIT_REQUEST:
+        case REPOSITORY_ISSUE_REQUEST:
             return {
                 ...state,
-                commit: null,
+                issue: null,
                 loading: true,
                 error: null
             }
-        case REPOSITORY_COMMIT_REQUEST_SUCCESS:
+        case REPOSITORY_ISSUE_REQUEST_FAIL:
             return {
                 ...state,
                 loading: false,
-                commit: action.payload
+                issue: action.payload
             }
-        case REPOSITORY_COMMIT_REQUEST_FAIL:
+        case REPOSITORY_ISSUE_REQUEST_SUCCESS:
             return {
                 ...state,
                 loading: false,

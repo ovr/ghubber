@@ -24,9 +24,10 @@
         "base-64": "^0.1.0",
         "commonmark": "^0.27.0",
         "commonmark-react-renderer": "^4.3.3",
-        "github-flow-js": "^0.15.0",
+        "github-flow-js": "^0.16.0",
         "i18n-js": "^1.0.0",
         "lodash": "^4.17.4",
+        "moment": "^2.18.1",
         "query-string": "^5.0.0",
         "react": "16.0.0-alpha.12",
         "react-native": "0.46.4",
@@ -38,8 +39,7 @@
         "redux": "^3.7.2",
         "redux-logger": "^3.0.6",
         "redux-thunk": "^2.2.0",
-        "rn-viewpager": "^1.2.3",
-        "moment": "^2.18.1"
+        "rn-viewpager": "^1.2.3"
     },
     "devDependencies": {
         "babel-eslint": "^7.2.3",

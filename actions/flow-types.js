@@ -21,6 +21,7 @@ import type { ProfileRepositoriesState } from 'reducers/profile-repositories';
 import type { ProfileOrganizationsState } from 'reducers/profile-organizations';
 import type { RepositoryState } from 'reducers/repository';
 import type { RepositoryCommitState } from 'reducers/repository-commit';
+import type { RepositoryIssueState } from 'reducers/repository-issue';
 
 export var SENTRY_ENABLED: boolean;
 export var GHUBBER_OAUTH: string;
@@ -49,11 +50,6 @@ export type Action =
     | ActionWithPayload<"APP_PROFILE_SUCCESS", any>
     | ActionWithPayload<"APP_ORGANIZATIONS_SUCCESS", any>
     | ActionWithPayload<"APP_LOGOUT_SUCCESS", any>
-    //
-    | BaseAction<"LOGIN_REQUEST">
-    | BaseAction<"LOGIN_REQUEST_2FA_REQUIRED">
-    | ActionWithPayload<"LOGIN_REQUEST_SUCCESS", any>
-    | ActionWithError<"LOGIN_REQUEST_FAIL", any>
     //
     | BaseAction<"ACCOUNT_FEED_REQUEST">
     | ActionWithPayload<"ACCOUNT_FEED_SUCCESS", any>
@@ -111,9 +107,29 @@ export type Action =
     | ActionWithPayload<'REPOSITORY_COMMIT_REQUEST_SUCCESS', CommitEntity>
     | ActionWithError<'REPOSITORY_COMMIT_REQUEST_FAIL', any>
     //
-    | ActionWithError<"LOGIN_REQUEST_FAIL", any>
-    //
+    | BaseAction<"LOGIN_REQUEST">
+    | BaseAction<"LOGIN_REQUEST_2FA_REQUIRED">
     | ActionWithPayload<"LOGIN_REQUEST_SUCCESS", PlainAuthorizationEntity | OAuthAuthorizationEntity>
+    | ActionWithError<"LOGIN_REQUEST_FAIL", any>
+;
+
+export type ActionType =
+      'REPOSITORY_COMMIT_REQUEST'
+    | 'REPOSITORY_COMMIT_REQUEST_SUCCESS'
+    | 'REPOSITORY_COMMIT_REQUEST_FAIL'
+    //
+    | 'REPOSITORY_ISSUE_REQUEST'
+    | 'REPOSITORY_ISSUE_REQUEST_SUCCESS'
+    | 'REPOSITORY_ISSUE_REQUEST_FAIL'
+    //
+    | 'REPOSITORY_REQUEST'
+    | 'REPOSITORY_REQUEST_SUCCESS'
+    | 'REPOSITORY_REQUEST_FAIL'
+    //
+    | 'LOGIN_REQUEST'
+    | 'LOGIN_REQUEST_2FA_REQUIRED'
+    | 'LOGIN_REQUEST_SUCCESS'
+    | 'LOGIN_REQUEST_FAIL'
 ;
 
 export type PromiseAction = Promise<Action>;
@@ -129,7 +145,8 @@ export type State = {|
     profileOrganizations: ProfileRepositoriesState,
     profileRepositories: ProfileOrganizationsState,
     repository: RepositoryState,
-    repositoryCommit: RepositoryCommitState
+    repositoryCommit: RepositoryCommitState,
+    repositoryIssue: RepositoryIssueState,
 |};
 
 export type Dispatch = (action: Action | ThunkAction | PromiseAction) => any;

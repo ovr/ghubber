@@ -12,3 +12,4 @@ export * from './profile-repositories';
 export * from './profile-organizations';
 export * from './repository';
 export * from './repository-commit';
+export * from './repository-issue';

@@ -37,7 +37,10 @@ class FeedScreen extends PureComponent<void, Props, void> {
         if (error) {
             return (
                 <View style={styles.container}>
-                    <ErrorView error={error} />
+                    <ErrorView
+                        error={error}
+                        onPress={() => this.props.fetchAccountFeed()}
+                    />
                 </View>
             )
         }

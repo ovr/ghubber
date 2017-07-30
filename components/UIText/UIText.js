@@ -23,6 +23,8 @@ export default class UIText extends PureComponent<void, any, void> {
 const styles = StyleSheet.create({
     text: {
         // @todo think about it
-        fontFamily: Platform.OS === 'ios' ? 'system font': 'system font'
+        fontFamily: Platform.OS === 'ios' ? 'system font': 'system font',
+        // Default font size, if someone forget to declare it
+        fontSize: 14
     }
 });

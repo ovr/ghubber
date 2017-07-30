@@ -6,21 +6,29 @@ import { View, StyleSheet } from 'react-native';
 import { Button, UIText } from 'components';
 import { __ } from 'utils/i18n';
 
+type DefaultProps = {
+    refreshable: boolean
+}
+
 type Props = {
-    error: Object,
+    error: Response,
     refreshable: boolean,
     onPress: () => any,
 };
 
-export default class ErrorView extends PureComponent<void, Props, void> {
+export default class ErrorView extends PureComponent<DefaultProps, Props, void> {
+    static defaultProps = {
+        refreshable: true,
+    };
+
     render() {
         const { error, refreshable, onPress } = this.props;
 
-        if (refreshable) {
+        if (refreshable && onPress) {
             return (
                 <View style={styles.root}>
                     <UIText style={styles.title}>
-                        {__('ErrorView.Title', {errorCode: error.code})}
+                        {__('ErrorView.Title', {errorCode: error.status})}
                     </UIText>
                     <UIText style={styles.message}>
                         {error.message}

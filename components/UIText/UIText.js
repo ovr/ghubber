@@ -13,7 +13,7 @@ export default class UIText extends PureComponent<void, any, void> {
         } = this.props;
 
         return (
-            <Text style={[style, styles.text]} {...props}>
+            <Text style={[styles.text, style]} {...props}>
                 {children}
             </Text>
         );

@@ -2,8 +2,8 @@
 // @flow
 
 import React, { PureComponent } from 'react';
-import { View, StyleSheet, Text } from 'react-native';
-import { ErrorView, Spinner, Badge } from 'components';
+import { View, StyleSheet, ScrollView } from 'react-native';
+import { ErrorView, Spinner, Badge, UIText } from 'components';
 import { connect } from 'react-redux';
 import { fetchIssue } from 'actions';
 import { normalizeFont } from 'utils/helpers';
@@ -26,8 +26,6 @@ type Props = {
 class RepositoryIssueScreen extends PureComponent<void, Props, void> {
     componentWillMount() {
         const params = this.props.navigation.params;
-
-        console.log(params);
 
         this.props.fetchIssue(
             params.owner,
@@ -64,22 +62,19 @@ class RepositoryIssueScreen extends PureComponent<void, Props, void> {
             return null;
         }
 
-        console.log(issue);
-        console.log(issue.state);
-
         return (
-            <View style={styles.root}>
+            <ScrollView style={styles.root}>
                 <View style={styles.header}>
-                    <Text style={styles.title}>{issue.title}</Text>
+                    <UIText style={styles.title}>{issue.title}</UIText>
                     <View style={styles.issueInfo}>
                         <Badge
                             text={issue.state}
-                            backgroundColor={issue.state == 'open' ? '#2cbe4e' : '#cb2431'}
+                            backgroundColor={issue.state === 'open' ? '#2cbe4e' : '#cb2431'}
                         />
                     </View>
                 </View>
-                <Text style={styles.body}>{issue.body}</Text>
-            </View>
+                <UIText style={styles.body}>{issue.body}</UIText>
+            </ScrollView>
         )
     }
 }
@@ -100,13 +95,12 @@ const styles = StyleSheet.create({
     issueInfo: {
         flex: 1,
         flexDirection: 'row',
-        height: 40,
         marginVertical: 10,
-        backgroundColor: 'red'
     },
     title: {
         fontSize: normalizeFont(18),
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        flex: 1
     },
     body: {
         fontSize: normalizeFont(14)

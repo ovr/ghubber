@@ -20,7 +20,7 @@ const initialState: RepositoryIssueState = {
     loading: false,
     error: null,
     issue: null
-}
+};
 
 export default (state: RepositoryIssueState = initialState, action: Action): RepositoryIssueState => {
     switch (action.type) {
@@ -30,19 +30,19 @@ export default (state: RepositoryIssueState = initialState, action: Action): Rep
                 issue: null,
                 loading: true,
                 error: null
-            }
-        case REPOSITORY_ISSUE_REQUEST_FAIL:
-            return {
-                ...state,
-                loading: false,
-                issue: action.payload
-            }
+            };
         case REPOSITORY_ISSUE_REQUEST_SUCCESS:
             return {
                 ...state,
                 loading: false,
-                error: new Error('Unknown error @todo')
-            }
+                issue: action.payload
+            };
+        case REPOSITORY_ISSUE_REQUEST_FAIL:
+            return {
+                ...state,
+                loading: false,
+                error: action.error
+            };
         default:
             return state;
     }

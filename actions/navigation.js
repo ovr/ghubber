@@ -91,13 +91,13 @@ export function setTitle(title: string) {
     };
 }
 
-export function showRepositoryIssue(owner: string, repo: string, id: number) {
+export function showRepositoryIssue(owner: string, repo: string, number: number) {
     return NavigationActions.navigate({
         routeName: 'Issue',
         params: {
             owner,
             repo,
-            id
+            number
         }
     })
 }

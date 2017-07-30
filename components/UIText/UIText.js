@@ -25,4 +25,4 @@ const styles = StyleSheet.create({
         // @todo think about it
         fontFamily: Platform.OS === 'ios' ? 'system font': 'system font'
     }
-})
+});

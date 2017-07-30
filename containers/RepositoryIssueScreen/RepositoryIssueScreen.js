@@ -3,9 +3,10 @@
 
 import React, { PureComponent } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
-import { ErrorView, Spinner } from 'components';
+import { ErrorView, Spinner, Badge } from 'components';
 import { connect } from 'react-redux';
 import { fetchIssue } from 'actions';
+import { normalizeFont } from 'utils/helpers';
 
 // import flow types
 import type { RepositoryIssueState } from 'reducers/repository-issue';
@@ -16,7 +17,7 @@ type Props = {
         params: {
             owner: string,
             repo: string,
-            id: number
+            number: number
         }
     },
     fetchIssue: typeof fetchIssue
@@ -31,7 +32,7 @@ class RepositoryIssueScreen extends PureComponent<void, Props, void> {
         this.props.fetchIssue(
             params.owner,
             params.repo,
-            params.id,
+            params.number,
         );
     }
 
@@ -63,9 +64,21 @@ class RepositoryIssueScreen extends PureComponent<void, Props, void> {
             return null;
         }
 
+        console.log(issue);
+        console.log(issue.state);
+
         return (
-            <View>
-                <Text>Text</Text>
+            <View style={styles.root}>
+                <View style={styles.header}>
+                    <Text style={styles.title}>{issue.title}</Text>
+                    <View style={styles.issueInfo}>
+                        <Badge
+                            text={issue.state}
+                            backgroundColor={issue.state == 'open' ? '#2cbe4e' : '#cb2431'}
+                        />
+                    </View>
+                </View>
+                <Text style={styles.body}>{issue.body}</Text>
             </View>
         )
     }
@@ -80,6 +93,23 @@ const styles = StyleSheet.create({
     root: {
         flex: 1,
         padding: 10
+    },
+    header: {
+        flex: 1,
+    },
+    issueInfo: {
+        flex: 1,
+        flexDirection: 'row',
+        height: 40,
+        marginVertical: 10,
+        backgroundColor: 'red'
+    },
+    title: {
+        fontSize: normalizeFont(18),
+        fontWeight: 'bold'
+    },
+    body: {
+        fontSize: normalizeFont(14)
     },
 });
 

@@ -284,7 +284,7 @@ class EventRowMobile extends PureComponent<void, Props, void> {
                 this.props.showRepositoryIssue(
                     parts[0],
                     parts[1],
-                    event.payload.issue.id
+                    event.payload.issue.number
                 );
                 break;
             }
@@ -295,7 +295,7 @@ class EventRowMobile extends PureComponent<void, Props, void> {
                 this.props.showRepositoryIssue(
                     parts[0],
                     parts[1],
-                    event.payload.issue.id
+                    event.payload.issue.number
                 );
                 break;
             }

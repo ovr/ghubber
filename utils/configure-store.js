@@ -6,7 +6,7 @@ import reducers from 'reducers';
 import logger from 'redux-logger';
 import thunk from 'redux-thunk';
 
-export function configureStore(preloadedState: Object) {
+export function configureStore(preloadedState: Object): Store {
     const enhancer = compose(
         __DEV__
             ? applyMiddleware(thunk, logger)

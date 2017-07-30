@@ -22,6 +22,7 @@
         "Action": true,
         "ComponentStyles": true,
         "State": true,
+        "Store": true,
         "Promise": true,
         "ThunkAction": true,
         "ActionType": true

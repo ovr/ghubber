@@ -37,6 +37,7 @@ type Props = {
 // @todo Remove when we will support all events navigation
 function isNavigationSupported(event: PushEvent | PullRequestEvent): boolean {
     switch (event.type) {
+        case 'IssuesEvent':
         case 'IssueEvent':
         case 'PushEvent':
         case 'WatchEvent':
@@ -278,6 +279,7 @@ class EventRowMobile extends PureComponent<void, Props, void> {
 
     navigateEvent(event: PushEvent | PullRequestEvent): void {
         switch (event.type) {
+            case 'IssuesEvent':
             case 'IssueEvent': {
                 const parts = event.repo.name.split('/');
 

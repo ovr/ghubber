@@ -2,10 +2,10 @@
 // @flow
 
 import React, { PureComponent } from 'react';
-import { View, Text, StyleSheet, FlatList } from 'react-native';
+import { View, StyleSheet, FlatList } from 'react-native';
 import { isTablet } from 'react-native-device-info';
 import { connect } from 'react-redux';
-import { Spinner, EventRow } from 'components';
+import { Spinner, EventRow, ErrorView } from 'components';
 import { FeedTopPanel } from 'containers';
 import { fetchAccountFeed, fetchMoreAccountFeed } from 'actions';
 
@@ -37,7 +37,7 @@ class FeedScreen extends PureComponent<void, Props, void> {
         if (error) {
             return (
                 <View style={styles.container}>
-                    <Text>Oops! Error...</Text>
+                    <ErrorView error={error} />
                 </View>
             )
         }

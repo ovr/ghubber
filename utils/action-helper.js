@@ -5,14 +5,14 @@
  * ST is success type for Promise | Dispatch success
  */
 
-export function makeThunk<S>(cb: () => Promise<S>, type: ActionType): ThunkAction {
-    return async dispatch => {
+export function makeThunk<S>(cb: (state: State) => Promise<S>, type: ActionType): ThunkAction {
+    return async (dispatch, getState) => {
         dispatch({
             type
         });
 
         try {
-            const commit: S = await cb();
+            const commit: S = await cb(getState());
 
             dispatch({
                 type: `${type}_SUCCESS`,

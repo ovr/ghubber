@@ -3,7 +3,7 @@
 
 import React, { PureComponent } from 'react';
 import { View, StyleSheet, ScrollView } from 'react-native';
-import { ErrorView, Spinner, Badge, UIText } from 'components';
+import { ErrorView, Spinner, Badge, UIText, ReactionGroup, Blank } from 'components';
 import { connect } from 'react-redux';
 import { fetchIssue } from 'actions';
 import { normalizeFont } from 'utils/helpers';
@@ -69,11 +69,13 @@ class RepositoryIssueScreen extends PureComponent<void, Props, void> {
                     <View style={styles.issueInfo}>
                         <Badge
                             text={issue.state}
-                            backgroundColor={issue.state === 'open' ? '#2cbe4e' : '#cb2431'}
+                            backgroundColor={issue.state.toLowerCase() === 'open' ? '#2cbe4e' : '#cb2431'}
                         />
                     </View>
                 </View>
                 <UIText style={styles.body}>{issue.body}</UIText>
+                <ReactionGroup reactions={issue.reactionGroups} />
+                <Blank />
             </ScrollView>
         )
     }
@@ -104,7 +106,7 @@ const styles = StyleSheet.create({
     },
     body: {
         fontSize: normalizeFont(14)
-    },
+    }
 });
 
 export default connect(

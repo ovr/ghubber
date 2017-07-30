@@ -8,6 +8,7 @@ import type {
     UserEntity
 } from 'github-flow-js';
 
+import type { Store as ReduxStore } from 'redux';
 import type { StyleSheet } from 'react-native';
 
 import type { AccountFeedState } from 'reducers/account-feed';
@@ -148,11 +149,10 @@ export type State = {|
     repositoryIssue: RepositoryIssueState,
 |};
 
-export type Dispatch = (action: Action | ThunkAction | PromiseAction) => any;
+type ActionUnion = Action | ThunkAction | PromiseAction;
+
+export type Dispatch = (action: ActionUnion) => any;
 export type GetState = () => State;
 export type ThunkAction = (dispatch: Dispatch, getState: GetState) => any;
 
-export type Store = {|
-    getState: GetState,
-    dispatch: Dispatch
-|}
+export type Store = ReduxStore<State, ActionUnion>

@@ -20,8 +20,9 @@ export function makeThunk<S>(cb: () => Promise<S>, type: ActionType): ThunkActio
             });
         } catch (e) {
             dispatch({
-                type: `${type}_FAIL`
-            })
+                type: `${type}_FAIL`,
+                error: e
+            });
 
             console.warn(e);
         }

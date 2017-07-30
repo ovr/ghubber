@@ -53,9 +53,13 @@ export const AppNavigator = StackNavigator(
         },
         Issue: {
             screen: RepositoryIssueScreen,
-            navigationOptions: {
-                title: 'Issue overview'
-            }
+            navigationOptions: ({ navigation }) => {
+                const params = navigation.state.params;
+
+                return {
+                    title: `${params.repo}#${params.number}`
+                }
+            },
         },
         Commit: {
             screen: CommitScreen,

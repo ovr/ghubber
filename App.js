@@ -1,7 +1,7 @@
 // @author Dmitry Patsura <talk@dmtry.me> https://github.com/ovr
 // @flow
 
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { AppRegistry } from 'react-native';
 import { Provider } from 'react-redux';
 import { before } from 'github-flow-js/Client';
@@ -11,23 +11,30 @@ import { default as Navigator } from './Navigator'
 import { configureStore, getInitialState } from 'utils';
 import { captureException } from 'utils/errors';
 
-type State = {
-    initialized: boolean,
-    preloadedState:? Object
+type ApplicationStateNotInitialized = {
+    initialized: false,
+    store: null
 }
 
-class App extends Component<void, void, State> {
-    state: State = {
+type ApplicationStateInitialized = {
+    initialized: true,
+    store: Store
+}
+
+type ApplicationState = ApplicationStateNotInitialized | ApplicationStateInitialized;
+
+class App extends PureComponent<void, void, ApplicationState> {
+    state: ApplicationState = {
         initialized: false,
-        preloadedState: null
-    }
+        store: null
+    };
 
     componentWillMount() {
         getInitialState().then(
-            (state) => {
+            (initialState: Object) => {
                 this.setState({
                     initialized: true,
-                    preloadedState: state
+                    store: configureStore(initialState)
                 })
             },
             (error) => {
@@ -35,7 +42,7 @@ class App extends Component<void, void, State> {
 
                 this.setState({
                     initialized: true,
-                    preloadedState: {}
+                    store: configureStore({})
                 })
             }
         )
@@ -46,11 +53,7 @@ class App extends Component<void, void, State> {
             return null;
         }
 
-        if (!this.state.preloadedState) {
-            return null;
-        }
-
-        const store = configureStore(this.state.preloadedState);
+        const store = this.state.store;
 
         before(
             (requestOptions) => {
@@ -63,7 +66,7 @@ class App extends Component<void, void, State> {
                     }
                 }
             }
-        )
+        );
 
         const state = store.getState();
 

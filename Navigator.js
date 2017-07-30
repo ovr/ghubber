@@ -75,14 +75,22 @@ export const AppNavigator = StackNavigator(
         },
         Profile: {
             screen: ProfileScreen,
-            navigationOptions: {
-                title: 'Profile'
+            navigationOptions: ({ navigation }) => {
+                const params = navigation.state.params;
+
+                return {
+                    title: params.id ? params.id : 'Profile'
+                }
             },
         },
         Repository: {
             screen: RepositoryScreen,
-            navigationOptions: {
-                title: 'Repository',
+            navigationOptions: ({ navigation }) => {
+                const params = navigation.state.params;
+
+                return {
+                    title: params.repo ? params.repo : 'Repository'
+                }
             },
         },
         AccountIssues: {

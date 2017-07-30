@@ -4,17 +4,14 @@
 import { getUserReceivedEvents, getOrganizationUserEvents } from 'github-flow-js';
 import {
     ACCOUNT_FEED_REQUEST,
-    ACCOUNT_FEED_SUCCESS,
-    ACCOUNT_FEED_FAIL,
     //
     ACCOUNT_FEED_INFINITY_REQUEST,
-    ACCOUNT_FEED_INFINITY_SUCCESS,
-    ACCOUNT_FEED_INFINITY_FAIL,
     //
     ACCOUNT_FEED_CHANGE_LOGIN,
     //
     ACCOUNT_FEED_LIMIT
 } from 'constants';
+import { makeThunk } from 'utils/action-helper';
 
 function fetchFeed(state: State, page: number = 1): Promise<any> {
     // login of the user, who use app
@@ -32,51 +29,17 @@ function fetchFeed(state: State, page: number = 1): Promise<any> {
 }
 
 export function fetchAccountFeed(): ThunkAction {
-    return (dispatch, getState) => {
-        dispatch({
-            type: ACCOUNT_FEED_REQUEST
-        });
-
-        fetchFeed(getState(), 1).then(
-            (response) => {
-                dispatch({
-                    type: ACCOUNT_FEED_SUCCESS,
-                    payload: response
-                })
-            },
-            (error) => {
-                dispatch({
-                    type: ACCOUNT_FEED_FAIL,
-                    error: error
-                })
-            }
-        )
-    }
+    return makeThunk(
+        (state) => fetchFeed(state, 1),
+        ACCOUNT_FEED_REQUEST
+    );
 }
 
 export function fetchMoreAccountFeed(): ThunkAction {
-    return (dispatch, getState) => {
-        dispatch({
-            type: ACCOUNT_FEED_INFINITY_REQUEST
-        });
-
-        const page = getState().accountFeed.page + 1;
-
-        fetchFeed(getState(), page).then(
-            (response) => {
-                dispatch({
-                    type: ACCOUNT_FEED_INFINITY_SUCCESS,
-                    payload: response
-                })
-            },
-            (error) => {
-                dispatch({
-                    type: ACCOUNT_FEED_INFINITY_FAIL,
-                    error: error
-                })
-            }
-        )
-    }
+    return makeThunk(
+        (state) => fetchFeed(state, state.accountFeed.page + 1),
+        ACCOUNT_FEED_INFINITY_REQUEST
+    );
 }
 
 export function changeAccountFeedLogin(login: string): ThunkAction {

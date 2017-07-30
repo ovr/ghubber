@@ -52,16 +52,12 @@ export type Action =
     | ActionWithPayload<"APP_LOGOUT_SUCCESS", any>
     //
     | BaseAction<"ACCOUNT_FEED_REQUEST">
-    | ActionWithPayload<"ACCOUNT_FEED_SUCCESS", any>
-    | ActionWithError<"ACCOUNT_FEED_FAIL", any>
-    //
-    | BaseAction<"ACCOUNT_FEED_REQUEST">
-    | ActionWithPayload<"ACCOUNT_FEED_SUCCESS", any>
-    | ActionWithError<"ACCOUNT_FEED_FAIL", any>
+    | ActionWithPayload<"ACCOUNT_FEED_REQUEST_SUCCESS", any>
+    | ActionWithError<"ACCOUNT_FEED_REQUEST_FAIL", any>
     //
     | BaseAction<"ACCOUNT_FEED_INFINITY_REQUEST">
-    | ActionWithPayload<"ACCOUNT_FEED_INFINITY_SUCCESS", any>
-    | ActionWithError<"ACCOUNT_FEED_INFINITY_FAIL", any>
+    | ActionWithPayload<"ACCOUNT_FEED_INFINITY_REQUEST_SUCCESS", any>
+    | ActionWithError<"ACCOUNT_FEED_INFINITY_REQUEST_FAIL", any>
     //
     | BaseAction<"ACCOUNT_ISSUES_REQUEST">
     | ActionWithPayload<"ACCOUNT_ISSUES_SUCCESS", any>
@@ -125,6 +121,9 @@ export type ActionType =
     | 'REPOSITORY_REQUEST'
     | 'REPOSITORY_REQUEST_SUCCESS'
     | 'REPOSITORY_REQUEST_FAIL'
+    //
+    | 'ACCOUNT_FEED_REQUEST'
+    | 'ACCOUNT_FEED_INFINITY_REQUEST'
     //
     | 'LOGIN_REQUEST'
     | 'LOGIN_REQUEST_2FA_REQUIRED'

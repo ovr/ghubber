@@ -3,12 +3,12 @@
 
 import {
     ACCOUNT_FEED_REQUEST,
-    ACCOUNT_FEED_SUCCESS,
-    ACCOUNT_FEED_FAIL,
+    ACCOUNT_FEED_REQUEST_SUCCESS,
+    ACCOUNT_FEED_REQUEST_FAIL,
     //
     ACCOUNT_FEED_INFINITY_REQUEST,
-    ACCOUNT_FEED_INFINITY_SUCCESS,
-    ACCOUNT_FEED_INFINITY_FAIL,
+    ACCOUNT_FEED_INFINITY_REQUEST_SUCCESS,
+    ACCOUNT_FEED_INFINITY_REQUEST_FAIL,
     //
     ACCOUNT_FEED_CHANGE_LOGIN,
     //
@@ -45,7 +45,7 @@ const initialState: AccountFeedState = {
     page: 1,
     infinity: false,
     error: null,
-}
+};
 
 export default (state: AccountFeedState = initialState, action: Object): AccountFeedState => {
     switch (action.type) {
@@ -53,14 +53,14 @@ export default (state: AccountFeedState = initialState, action: Object): Account
             return {
                 ...initialState,
                 login: action.payload
-            }
+            };
         // Infinity
         case ACCOUNT_FEED_INFINITY_REQUEST:
             return {
                 ...state,
                 infinity: true
-            }
-        case ACCOUNT_FEED_INFINITY_SUCCESS: {
+            };
+        case ACCOUNT_FEED_INFINITY_REQUEST_SUCCESS: {
             const payload = action.payload;
 
             const nextState = {
@@ -70,17 +70,17 @@ export default (state: AccountFeedState = initialState, action: Object): Account
                 page: state.page + 1,
                 // Possible this can be null but...
                 events: state.events ? filterConcat(state.events, payload) : payload
-            }
+            };
 
             saveStoreKey('state:account-feed', nextState);
 
             return nextState;
         }
-        case ACCOUNT_FEED_INFINITY_FAIL:
+        case ACCOUNT_FEED_INFINITY_REQUEST_FAIL:
             return {
                 ...state,
                 infinity: false
-            }
+            };
         // Loading
         case ACCOUNT_FEED_REQUEST:
             return {
@@ -89,27 +89,27 @@ export default (state: AccountFeedState = initialState, action: Object): Account
                 // loading: true,
                 page: 1,
                 error: null
-            }
-        case ACCOUNT_FEED_SUCCESS: {
+            };
+        case ACCOUNT_FEED_REQUEST_SUCCESS: {
             const payload = action.payload;
 
             const nextState = {
-                ...state,
+                ...initialState,
                 loading: false,
                 hasMore: payload.length === ACCOUNT_FEED_LIMIT,
                 events: payload
-            }
+            };
 
             saveStoreKey('state:account-feed', nextState);
 
             return nextState;
         }
-        case ACCOUNT_FEED_FAIL:
+        case ACCOUNT_FEED_REQUEST_FAIL:
             return {
                 ...state,
                 loading: false,
-                error: 'Unknown error @todo'
-            }
+                error: action.error
+            };
         //
         case APP_LOGOUT_SUCCESS: {
             saveStoreKey('state:account-feed', initialState);

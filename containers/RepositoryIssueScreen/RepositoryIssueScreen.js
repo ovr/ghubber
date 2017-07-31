@@ -25,6 +25,10 @@ type Props = {
 
 class RepositoryIssueScreen extends PureComponent<void, Props, void> {
     componentWillMount() {
+        this.fetchIssue();
+    }
+
+    fetchIssue() {
         const params = this.props.navigation.params;
 
         this.props.fetchIssue(
@@ -45,14 +49,13 @@ class RepositoryIssueScreen extends PureComponent<void, Props, void> {
             )
         }
 
-        console.log(error);
-
         if (error) {
             return (
                 <View style={styles.container}>
                     <ErrorView
                         error={error}
                         refreshable={true}
+                        onPress={() => this.fetchIssue()}
                     />
                 </View>
             )

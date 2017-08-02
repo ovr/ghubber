@@ -204,11 +204,15 @@ class EventRowMobile extends PureComponent<void, Props, void> {
     }
 
     renderIssueCommentEvent(event: PushEvent | PullRequestEvent): React.Element<any> {
+        const key = event.payload.issue.pull_request
+            ? 'EventRow.Actions.CommentedPR'
+            : 'EventRow.Actions.CommentedIssue';
+
         return (
             <View style={styles.right}>
                 <UIText>
                     <UIText style={styles.login}>{event.actor.login + " "}</UIText>
-                    {__('EventRow.Actions.CommentedIssue')}&nbsp;
+                    {__(key)}&nbsp;
                     <UIText style={styles.repoName}>{" " + event.repo.name}{"#" + event.payload.issue.number}</UIText>
                 </UIText>
                 <View style={styles.rightBottom}>

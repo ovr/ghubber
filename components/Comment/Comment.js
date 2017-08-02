@@ -12,8 +12,24 @@ type Props = {
 const styles = StyleSheet.create({
     root: {
         flex: 1,
-        flexDirection: 'row'
-    }
+        borderColor: '#d1d5da',
+        borderWidth: 1,
+        marginBottom: 15
+    },
+    header: {
+        flex: 1,
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: '#f1f8ff',
+        borderColor: '#d1d5da',
+        borderBottomWidth: 1,
+    },
+    body: {
+        padding: 5
+    },
+    avatar: {
+        marginRight: 10,
+    },
 });
 
 export default class Comment extends PureComponent<void, Props, void> {
@@ -22,8 +38,11 @@ export default class Comment extends PureComponent<void, Props, void> {
 
         return (
             <View style={styles.root}>
-                <Avatar user={comment.author} />
-                <View>
+                <View style={styles.header}>
+                    <Avatar user={comment.author} size={40} style={styles.avatar} />
+                    <UIText>@{comment.author.login}</UIText>
+                </View>
+                <View style={styles.body}>
                     <UIText>{comment.body}</UIText>
                 </View>
             </View>

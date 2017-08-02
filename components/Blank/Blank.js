@@ -4,7 +4,11 @@
 import React, { PureComponent } from 'react';
 import { View, StyleSheet } from 'react-native';
 
-export default class Blank extends PureComponent<void, void, void> {
+type Props = {
+
+}
+
+export default class Blank extends PureComponent<void, Props, void> {
     render() {
         return (
             <View style={styles.blank} />

@@ -2,8 +2,9 @@
 // @flow
 
 import React, { PureComponent } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { Badge } from 'components';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import { UIText, Badge } from 'components';
+import moment from 'utils/moment';
 
 // import flow types
 import type { IssueEntity } from 'github-flow-js';
@@ -23,10 +24,6 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row'
     },
-    body: {
-        flex: 1,
-        flexDirection: 'row'
-    },
     repositoryName: {
         flex: 0,
         fontSize: 16,
@@ -38,6 +35,10 @@ const styles = StyleSheet.create({
         flex: 0,
         fontSize: 16,
         fontWeight: 'bold',
+    },
+    footer: {
+        flex: 1,
+        flexDirection: 'row'
     },
     info: {
         marginRight: 5
@@ -59,12 +60,12 @@ export default class IssueRowTablet extends PureComponent<void, Props, void> {
         return (
             <TouchableOpacity style={styles.row} onPress={onPress}>
                 <View style={styles.header}>
-                    <Text style={styles.repositoryName}>
+                    <UIText style={styles.repositoryName}>
                         {repositoryName}
-                    </Text>
-                    <Text style={styles.title} numberOfLines={1}>
+                    </UIText>
+                    <UIText style={styles.title} numberOfLines={1}>
                         {issue.title}
-                    </Text>
+                    </UIText>
                 </View>
                 <View style={styles.labels}>
                     {
@@ -79,15 +80,15 @@ export default class IssueRowTablet extends PureComponent<void, Props, void> {
                         )
                     }
                 </View>
-                <View style={styles.body}>
-                    <Text style={styles.info}>
-                        #{issue.number} openeded {issue.created_at} by {issue.user.login}
-                    </Text>
+                <View style={styles.footer}>
+                    <UIText style={styles.info}>
+                        #{issue.number} openeded {moment(issue.created_at).fromNow()} by {issue.user.login}
+                    </UIText>
                     {
                         issue.milestone ? (
-                            <Text>
+                            <UIText>
                                 {issue.milestone.title}
-                            </Text>
+                            </UIText>
                         ) : null
                     }
                 </View>

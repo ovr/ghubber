@@ -4,6 +4,7 @@
 import React, { PureComponent } from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { Badge, UIText } from 'components';
+import moment from 'utils/moment';
 
 // import flow types
 import type { IssueEntity } from 'github-flow-js';
@@ -30,6 +31,13 @@ const styles = StyleSheet.create({
         flex: 0,
         fontSize: 16,
         fontWeight: 'bold',
+    },
+    footer: {
+        flex: 1,
+        flexDirection: 'row'
+    },
+    info: {
+        marginRight: 5
     },
     labels: {
         flex: 1,
@@ -66,6 +74,18 @@ export default class IssueRowMobile extends PureComponent<void, Props, void> {
                 <UIText style={styles.title} numberOfLines={1}>
                     {issue.title}
                 </UIText>
+                <View style={styles.footer}>
+                    <UIText style={styles.info}>
+                        #{issue.number} openeded {moment(issue.created_at).fromNow()} by {issue.user.login}
+                    </UIText>
+                    {
+                        issue.milestone ? (
+                            <UIText>
+                                {issue.milestone.title}
+                            </UIText>
+                        ) : null
+                    }
+                </View>
             </TouchableOpacity>
         )
     }

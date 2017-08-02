@@ -17,19 +17,12 @@ export default class Avatar extends PureComponent<void, Props, void> {
     render() {
         const { user, size, style } = this.props;
 
-        if (user.avatarUrl) {
-            return (
-                <Image
-                    style={[{ width: size, height: size }, style]}
-                    source={{ uri: user.avatarUrl }}
-                />
-            )
-        }
+        let uri: string = user.avatarUrl ? user.avatarUrl : `https://avatars0.githubusercontent.com/u/${user.id}?v=3`;
 
         return (
             <Image
                 style={[{ width: size, height: size }, style]}
-                source={{ uri: `https://avatars0.githubusercontent.com/u/${user.id}?v=3` }}
+                source={{ uri: uri }}
             />
         )
     }

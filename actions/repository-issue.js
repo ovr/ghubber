@@ -19,17 +19,21 @@ query($owner: String!, $name: String!, $number: Int!) {
                 }
             },
             author {
-                login
+                login,
+                avatarUrl
             },
             comments(first: 30) {
                 totalCount,
                 nodes {
-                  body,
-                  viewerCanDelete,
-                  viewerCanReact,
-                  author {
-                      login
-                  }
+                    id,
+                    body,
+                    createdAt,
+                    viewerCanDelete,
+                    viewerCanReact,
+                    author {
+                        login,
+                        avatarUrl
+                    }
                 }
             }
         }

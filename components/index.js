@@ -15,6 +15,7 @@ export * from './ProfileOrganizationsView';
 export * from './ProfileView';
 export * from './ReactionGroup';
 export * from './Blank';
+export * from './Comment';
 export * from './README';
 export * from './ErrorView';
 export * from './EventRow';

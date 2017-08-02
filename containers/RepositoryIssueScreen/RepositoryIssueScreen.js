@@ -2,8 +2,8 @@
 // @flow
 
 import React, { PureComponent } from 'react';
-import { View, StyleSheet, ScrollView } from 'react-native';
-import { ErrorView, Spinner, Badge, UIText, ReactionGroup, Blank } from 'components';
+import { View, StyleSheet, ScrollView, FlatList } from 'react-native';
+import { ErrorView, Spinner, Badge, UIText, ReactionGroup, Blank, Comment } from 'components';
 import { connect } from 'react-redux';
 import { fetchIssue } from 'actions';
 import { normalizeFont } from 'utils/helpers';
@@ -65,6 +65,8 @@ class RepositoryIssueScreen extends PureComponent<void, Props, void> {
             return null;
         }
 
+        console.log(issue);
+
         return (
             <ScrollView style={styles.root}>
                 <View style={styles.header}>
@@ -78,6 +80,19 @@ class RepositoryIssueScreen extends PureComponent<void, Props, void> {
                 </View>
                 <UIText style={styles.body}>{issue.body}</UIText>
                 <ReactionGroup reactions={issue.reactionGroups} />
+                <FlatList
+                    style={{ flex: 1 }}
+                    data={issue.comments.nodes}
+                    keyExtractor={(repository: Object) => repository.id}
+                    renderItem={
+                        ({ item }) => (
+                            <Comment
+                                comment={item}
+                            />
+                        )
+                    }
+                    refreshing={false}
+                />
                 <Blank />
             </ScrollView>
         )
@@ -91,21 +106,19 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     root: {
-        flex: 1,
+        flex: 0,
         padding: 10
-    },
-    header: {
-        flex: 1,
     },
     issueInfo: {
         flex: 1,
         flexDirection: 'row',
         marginVertical: 10,
     },
+    header: {
+    },
     title: {
         fontSize: normalizeFont(18),
         fontWeight: 'bold',
-        flex: 1
     },
     body: {
         fontSize: normalizeFont(14)

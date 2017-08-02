@@ -54,8 +54,9 @@ export default class ReactionGroup extends PureComponent<void, Props, void> {
 
 const styles = StyleSheet.create({
     reactions: {
-        flex: 1,
-        flexDirection: 'row'
+        flex: 0,
+        flexDirection: 'row',
+        marginVertical: 10
     },
     reaction: {
         flex: 1,

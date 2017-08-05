@@ -312,12 +312,21 @@ class EventRowMobile extends PureComponent<void, Props, void> {
             case 'IssueCommentEvent': {
                 const parts = event.repo.name.split('/');
 
-                // @todo pass comment id
-                this.props.showRepositoryIssue(
-                    parts[0],
-                    parts[1],
-                    event.payload.issue.number
-                );
+                if (event.payload.issue.pull_request) {
+                    // @todo pass comment id
+                    this.props.showRepositoryPullRequest(
+                        parts[0],
+                        parts[1],
+                        event.payload.issue.number
+                    );
+                } else {
+                    // @todo pass comment id
+                    this.props.showRepositoryIssue(
+                        parts[0],
+                        parts[1],
+                        event.payload.issue.number
+                    );
+                }
                 break;
             }
             case 'PushEvent': {

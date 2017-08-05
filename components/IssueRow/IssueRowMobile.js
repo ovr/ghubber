@@ -3,7 +3,9 @@
 
 import React, { PureComponent } from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import { connect } from 'react-redux';
 import { Badge, UIText } from 'components';
+import { showRepositoryIssue, showRepositoryPullRequest } from 'actions';
 import moment from 'utils/moment';
 
 // import flow types
@@ -11,7 +13,8 @@ import type { IssueEntity } from 'github-flow-js';
 
 type Props = {
     issue: IssueEntity,
-    onPress: () => any
+    showRepositoryIssue: typeof showRepositoryIssue,
+    showRepositoryPullRequest: typeof showRepositoryPullRequest,
 };
 
 const styles = StyleSheet.create({
@@ -47,14 +50,37 @@ const styles = StyleSheet.create({
 
 const RepositoryUrlPrefixLenght = 'https://api.github.com/repos/'.length;
 
-export default class IssueRowMobile extends PureComponent<void, Props, void> {
+export class IssueRowMobile extends PureComponent<void, Props, void> {
+    onPress = () => {
+        const { issue, showRepositoryIssue, showRepositoryPullRequest } = this.props;
+
+        const repositoryName = issue.repository_url.substring(RepositoryUrlPrefixLenght);
+        const parts: Array<string> = repositoryName.split('/');
+
+        console.log('onPress');
+
+        if (issue.pull_request) {
+            showRepositoryPullRequest(
+                parts[0],
+                parts[1],
+                issue.number
+            );
+        } else {
+            showRepositoryIssue(
+                parts[0],
+                parts[1],
+                issue.number
+            );
+        }
+    };
+
     render() {
-        const { issue, onPress } = this.props;
+        const { issue } = this.props;
 
         const repositoryName = issue.repository_url.substring(RepositoryUrlPrefixLenght);
 
         return (
-            <TouchableOpacity style={styles.row} onPress={onPress}>
+            <TouchableOpacity style={styles.row} onPress={this.onPress}>
                 <UIText style={styles.repositoryName} numberOfLines={1}>
                     {repositoryName}
                 </UIText>
@@ -90,3 +116,8 @@ export default class IssueRowMobile extends PureComponent<void, Props, void> {
         )
     }
 }
+
+export default connect(
+    null,
+    { showRepositoryIssue, showRepositoryPullRequest }
+)(IssueRowMobile);

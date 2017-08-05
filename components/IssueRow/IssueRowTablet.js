@@ -1,17 +1,20 @@
 // @author Dmitry Patsura <talk@dmtry.me> https://github.com/ovr
 // @flow
 
-import React, { PureComponent } from 'react';
+import React from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import { connect } from 'react-redux';
 import { UIText, Badge } from 'components';
+import { showRepositoryIssue, showRepositoryPullRequest } from 'actions';
 import moment from 'utils/moment';
+
+import { IssueRowMobile } from './IssueRowMobile';
 
 // import flow types
 import type { IssueEntity } from 'github-flow-js';
 
 type Props = {
-    issue: IssueEntity,
-    onPress: () => any
+    issue: IssueEntity
 };
 
 const styles = StyleSheet.create({
@@ -51,14 +54,16 @@ const styles = StyleSheet.create({
 
 const RepositoryUrlPrefixLenght = 'https://api.github.com/repos/'.length;
 
-export default class IssueRowTablet extends PureComponent<void, Props, void> {
+class IssueRowTablet extends IssueRowMobile<void, Props, void> {
     render() {
-        const { issue, onPress } = this.props;
+        console.log(this);
+
+        const { issue } = this.props;
 
         const repositoryName = issue.repository_url.substring(RepositoryUrlPrefixLenght);
 
         return (
-            <TouchableOpacity style={styles.row} onPress={onPress}>
+            <TouchableOpacity style={styles.row} onPress={this.onPress}>
                 <View style={styles.header}>
                     <UIText style={styles.repositoryName}>
                         {repositoryName}
@@ -96,3 +101,10 @@ export default class IssueRowTablet extends PureComponent<void, Props, void> {
         )
     }
 }
+
+
+export default connect(
+    null,
+    { showRepositoryIssue, showRepositoryPullRequest }
+)(IssueRowTablet);
+

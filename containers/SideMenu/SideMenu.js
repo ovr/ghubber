@@ -63,7 +63,7 @@ class SideMenu extends PureComponent<void, Props, void> {
     }
 }
 
-const AVATAR_SIZE = 80;
+const AVATAR_SIZE = 50;
 
 const styles = StyleSheet.create({
     root: {

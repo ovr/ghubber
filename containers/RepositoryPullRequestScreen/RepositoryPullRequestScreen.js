@@ -5,14 +5,14 @@ import React, { PureComponent } from 'react';
 import { View, StyleSheet, ScrollView, FlatList } from 'react-native';
 import { ErrorView, Spinner, Badge, UIText, ReactionGroup, Blank, Comment } from 'components';
 import { connect } from 'react-redux';
-import { fetchIssue } from 'actions';
+import { fetchPullRequest } from 'actions';
 import { normalizeFont } from 'utils/helpers';
 
 // import flow types
-import type { RepositoryIssueState } from 'reducers/repository-issue';
+import type { RepositoryPullRequestState } from 'reducers/repository-pull-request';
 
 type Props = {
-    state: RepositoryIssueState,
+    state: RepositoryPullRequestState,
     navigation: {
         params: {
             owner: string,
@@ -20,18 +20,18 @@ type Props = {
             number: number
         }
     },
-    fetchIssue: typeof fetchIssue
+    fetchPullRequest: typeof fetchPullRequest
 }
 
-class RepositoryIssueScreen extends PureComponent<void, Props, void> {
+class RepositoryPullRequestScreen extends PureComponent<void, Props, void> {
     componentWillMount() {
-        this.fetchIssue();
+        this.fetchPullRequest();
     }
 
-    fetchIssue() {
+    fetchPullRequest() {
         const params = this.props.navigation.params;
 
-        this.props.fetchIssue(
+        this.props.fetchPullRequest(
             params.owner,
             params.repo,
             params.number,
@@ -39,7 +39,7 @@ class RepositoryIssueScreen extends PureComponent<void, Props, void> {
     }
 
     render() {
-        const { loading, error, issue } = this.props.state;
+        const { loading, error, pullRequest } = this.props.state;
 
         if (loading) {
             return (
@@ -55,32 +55,34 @@ class RepositoryIssueScreen extends PureComponent<void, Props, void> {
                     <ErrorView
                         error={error}
                         refreshable={true}
-                        onPress={() => this.fetchIssue()}
+                        onPress={() => this.fetchPullRequest()}
                     />
                 </View>
             )
         }
 
-        if (!issue) {
+        console.log(pullRequest);
+
+        if (!pullRequest) {
             return null;
         }
 
         return (
             <ScrollView style={styles.root}>
                 <View style={styles.header}>
-                    <UIText style={styles.title}>{issue.title}</UIText>
+                    <UIText style={styles.title}>{pullRequest.title}</UIText>
                     <View style={styles.issueInfo}>
                         <Badge
-                            text={issue.state}
-                            backgroundColor={issue.state.toLowerCase() === 'open' ? '#2cbe4e' : '#cb2431'}
+                            text={pullRequest.state}
+                            backgroundColor={pullRequest.state.toLowerCase() === 'open' ? '#2cbe4e' : '#cb2431'}
                         />
                     </View>
                 </View>
-                <UIText style={styles.body}>{issue.body}</UIText>
-                <ReactionGroup reactions={issue.reactionGroups} />
+                <UIText style={styles.body}>{pullRequest.body}</UIText>
+                <ReactionGroup reactions={pullRequest.reactionGroups} />
                 <FlatList
                     style={{ flex: 1 }}
-                    data={issue.comments.nodes}
+                    data={pullRequest.comments.nodes}
                     keyExtractor={(repository: Object) => repository.id}
                     renderItem={
                         ({ item }) => (
@@ -127,8 +129,8 @@ export default connect(
     (state) => {
         return {
             navigation: state.navigation,
-            state: state.repositoryIssue
+            state: state.repositoryPullRequest
         }
     },
-    { fetchIssue }
-)(RepositoryIssueScreen);
+    { fetchPullRequest }
+)(RepositoryPullRequestScreen);

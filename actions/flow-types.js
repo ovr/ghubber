@@ -23,6 +23,7 @@ import type { ProfileOrganizationsState } from 'reducers/profile-organizations';
 import type { RepositoryState } from 'reducers/repository';
 import type { RepositoryCommitState } from 'reducers/repository-commit';
 import type { RepositoryIssueState } from 'reducers/repository-issue';
+import type { RepositoryPullRequestState } from 'reducers/repository-pull-request';
 
 export var SENTRY_ENABLED: boolean;
 export var GHUBBER_OAUTH: string;
@@ -147,6 +148,7 @@ export type State = {|
     repository: RepositoryState,
     repositoryCommit: RepositoryCommitState,
     repositoryIssue: RepositoryIssueState,
+    repositoryPullRequest: RepositoryPullRequestState,
 |};
 
 type ActionUnion = Action | ThunkAction | PromiseAction;

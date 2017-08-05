@@ -13,3 +13,4 @@ export * from './profile-organizations';
 export * from './repository';
 export * from './repository-commit';
 export * from './repository-issue';
+export * from './repository-pull-request';

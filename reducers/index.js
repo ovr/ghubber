@@ -15,6 +15,7 @@ import { default as navigation } from './navigation';
 import { default as repository } from './repository';
 import { default as repositoryCommit } from './repository-commit';
 import { default as repositoryIssue } from './repository-issue';
+import { default as repositoryPullRequest } from './repository-pull-request';
 
 export default combineReducers({
     accountFeed,
@@ -28,5 +29,6 @@ export default combineReducers({
     navigation,
     repository,
     repositoryCommit,
-    repositoryIssue
+    repositoryIssue,
+    repositoryPullRequest
 })

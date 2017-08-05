@@ -13,6 +13,7 @@ import {
     LoginScreen,
     CommitScreen,
     RepositoryIssueScreen,
+    RepositoryPullRequestScreen,
     ProfileScreen,
     RepositoryScreen,
     AboutScreen,
@@ -53,6 +54,16 @@ export const AppNavigator = StackNavigator(
         },
         Issue: {
             screen: RepositoryIssueScreen,
+            navigationOptions: ({ navigation }) => {
+                const params = navigation.state.params;
+
+                return {
+                    title: `${params.repo}#${params.number}`
+                }
+            },
+        },
+        PullRequest: {
+            screen: RepositoryPullRequestScreen,
             navigationOptions: ({ navigation }) => {
                 const params = navigation.state.params;
 

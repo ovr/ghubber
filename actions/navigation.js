@@ -102,6 +102,17 @@ export function showRepositoryIssue(owner: string, repo: string, number: number)
     })
 }
 
+export function showRepositoryPullRequest(owner: string, repo: string, number: number) {
+    return NavigationActions.navigate({
+        routeName: 'PullRequest',
+        params: {
+            owner,
+            repo,
+            number
+        }
+    })
+}
+
 export function showRepositoryCommit(owner: string, repo: string, sha: string) {
     return NavigationActions.navigate({
         routeName: 'Commit',

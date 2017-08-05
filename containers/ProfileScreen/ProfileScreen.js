@@ -54,7 +54,7 @@ class ProfileScreen extends PureComponent<void, Props, void> {
              * Fist, title should be string
              * And We should update title to update show badge
              */
-            profile.user ? `profile.user.public_repos` : '0'
+            profile.user ? `${profile.user.public_repos}` : '0'
         ];
     }
 

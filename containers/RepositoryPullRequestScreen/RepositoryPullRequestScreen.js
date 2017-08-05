@@ -125,7 +125,6 @@ class RepositoryPullRequestScreen extends PureComponent<void, Props, void> {
                     ItemSeparatorComponent={RowSeparator}
                     refreshing={false}
                 />
-                <Blank />
             </View>
         )
     }

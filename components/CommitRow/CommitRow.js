@@ -2,12 +2,26 @@
 // @flow
 
 import React, { PureComponent } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { TouchableOpacity, StyleSheet } from 'react-native';
 import { UIText, Avatar } from 'components';
 
 type Props = {
     commit: Object,
+    onPress: (commit: Object) => any
 };
+
+export default class CommitRow extends PureComponent<void, Props, void> {
+    render() {
+        const { commit, onPress } = this.props;
+
+        return (
+            <TouchableOpacity style={styles.root} onPress={onPress}>
+                <Avatar user={commit.author} size={25} style={styles.avatar} />
+                <UIText numberOfLines={1} style={styles.message}>{commit.message}</UIText>
+            </TouchableOpacity>
+        )
+    }
+}
 
 const styles = StyleSheet.create({
     root: {
@@ -23,16 +37,3 @@ const styles = StyleSheet.create({
         flex: 1
     }
 });
-
-export default class CommitRow extends PureComponent<void, Props, void> {
-    render() {
-        const { commit } = this.props;
-
-        return (
-            <View style={styles.root}>
-                <Avatar user={commit.author} size={25} style={styles.avatar} />
-                <UIText numberOfLines={1} style={styles.message}>{commit.message}</UIText>
-            </View>
-        )
-    }
-}

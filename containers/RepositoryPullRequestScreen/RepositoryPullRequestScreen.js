@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { View, StyleSheet, ScrollView, FlatList } from 'react-native';
 import { ErrorView, Spinner, Badge, UIText, ReactionGroup, Blank, Comment, CommitRow, RowSeparator } from 'components';
 import { IndicatorViewPager, PagerTitleIndicator } from 'rn-viewpager';
-import { fetchPullRequest } from 'actions';
+import { fetchPullRequest, showRepositoryCommit } from 'actions';
 import { normalizeFont } from 'utils/helpers';
 
 // import flow types
@@ -21,7 +21,8 @@ type Props = {
             number: number
         }
     },
-    fetchPullRequest: typeof fetchPullRequest
+    fetchPullRequest: typeof fetchPullRequest,
+    showRepositoryCommit: typeof showRepositoryCommit,
 }
 
 const TITLE_COMMITS_INDEX = 1;
@@ -107,6 +108,16 @@ class RepositoryPullRequestScreen extends PureComponent<void, Props, void> {
         )
     }
 
+    onCommitPress = (item: Object) => {
+        const params = this.props.navigation.params;
+
+        this.props.showRepositoryCommit(
+            params.owner,
+            params.repo,
+            item.oid,
+        )
+    };
+
     renderCommits(pullRequest: Object): React.Element<any> {
         return (
             <View style={styles.wrapper}>
@@ -119,6 +130,7 @@ class RepositoryPullRequestScreen extends PureComponent<void, Props, void> {
                             <CommitRow
                                 key={"commit" + item.commit.id}
                                 commit={item.commit}
+                                onPress={() => this.onCommitPress(item.commit)}
                             />
                         )
                     }
@@ -234,5 +246,5 @@ export default connect(
             state: state.repositoryPullRequest
         }
     },
-    { fetchPullRequest }
+    { fetchPullRequest, showRepositoryCommit }
 )(RepositoryPullRequestScreen);

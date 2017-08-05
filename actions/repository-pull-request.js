@@ -26,7 +26,7 @@ query($owner: String!, $name: String!, $number: Int!) {
             	nodes {
                 commit {
                   message,
-                  id,
+                  oid,
                   author {
                     avatarUrl,
                   }

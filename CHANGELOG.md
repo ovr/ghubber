@@ -1,4 +1,18 @@
 
+## 0.7.0
+
+Features:
+
+- [Commit] screen - initial implementation
+- [RepositoryIssue] screen - initial implementation
+- [RepostioryPullRequest] screen - initial implementation
+- [Android] Upd buildToolsVersion to `26.0.1`
+- [Android] Upd gradle to `2.3.3`
+
+Fixes:
+
+- [Android] Fixed crash with Sentry
+
 ## v0.6.1
 
 Fixes:

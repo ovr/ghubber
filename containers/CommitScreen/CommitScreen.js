@@ -2,7 +2,7 @@
 // @flow
 
 import React, { PureComponent } from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, ScrollView } from 'react-native';
 import { ErrorView, Spinner } from 'components';
 import { connect } from 'react-redux';
 import { fetchCommit } from 'actions';
@@ -60,9 +60,11 @@ class CommitScreen extends PureComponent<void, Props, void> {
         }
 
         return (
-            <View>
-                <Text>{commit.commit.message}</Text>
-            </View>
+            <ScrollView>
+                <View style={styles.root}>
+                    <Text>{commit.commit.message}</Text>
+                </View>
+            </ScrollView>
         )
     }
 }

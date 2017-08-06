@@ -1,8 +1,11 @@
-# <img src="https://socialconnect.github.io/assets/icons/mark-github.svg" width="27"> GHubber (GitHub mobile client)
-
+[![GitHub release](https://img.shields.io/github/release/ovr/ghubber.svg)](https://github.com/ovr/ghubber/releases)
 [![Build Status](https://travis-ci.org/ovr/ghubber.svg?branch=master)](https://travis-ci.org/ovr/ghubber)
 [![Greenkeeper badge](https://badges.greenkeeper.io/ovr/ghubber.svg)](https://greenkeeper.io/)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+
+![Logo](/.github/assets/logo.jpg?raw=true "Logo")
+
+# <img src="https://socialconnect.github.io/assets/icons/mark-github.svg" width="27"> GHubber (GitHub mobile client)
 
 Yet another Mobile :iphone: client for GitHub powered on react-native.
 

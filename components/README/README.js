@@ -2,8 +2,7 @@
 // @flow
 
 import React, { PureComponent } from 'react';
-import { View, WebView, StyleSheet, Dimensions } from 'react-native';
-// import { Markdown } from 'components';
+import HTMLView from 'react-native-htmlview';
 
 type Props = {
     owner: string,
@@ -15,8 +14,6 @@ type State = {
     error: boolean,
     content: ''
 }
-
-const { height, width } = Dimensions.get('window');
 
 export default class README extends PureComponent<void, Props, State> {
     state: State = {
@@ -63,42 +60,13 @@ export default class README extends PureComponent<void, Props, State> {
 
         if (content) {
             return (
-                <WebView
-                    style={{ width, height }}
-                    source={{ html: content }}
+                <HTMLView
+                    value={content}
                 />
             )
-
-            // return (
-            //     <Markdown style={markdownStyles} blacklist={['image']}>
-            //         {content}
-            //     </Markdown>
-            // )
-
-            // return (
-            //     <Markdown content={content} />
-            // )
         }
 
-        return (
-            <View />
-        );
+        return null;
     }
 }
 
-// eslint-disable-next-line no-unused-vars
-const markdownStyles = StyleSheet.create({
-    heading1: {
-        fontSize: 24,
-        color: 'purple',
-    },
-    link: {
-        color: 'pink',
-    },
-    mailTo: {
-        color: 'orange',
-    },
-    text: {
-        color: '#555555',
-    },
-});

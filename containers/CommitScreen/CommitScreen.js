@@ -3,7 +3,7 @@
 
 import React, { PureComponent } from 'react';
 import { View, StyleSheet, ScrollView, FlatList } from 'react-native';
-import { ErrorView, Spinner, UIText, Patch } from 'components';
+import { ErrorView, Spinner, UIText, DiffBlock } from 'components';
 import { connect } from 'react-redux';
 import { fetchCommit } from 'actions';
 
@@ -33,7 +33,7 @@ class CommitScreen extends PureComponent<void, Props, void> {
         );
     }
 
-    renderFile = ({ item }) => <Patch patch={item.patch} />;
+    renderFile = ({ item }) => <DiffBlock file={item} />;
 
     render() {
         const { loading, error, commit } = this.props.state;

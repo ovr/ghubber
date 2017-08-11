@@ -5,7 +5,7 @@ export type LineDiff = {
     text: string,
 }
 
-export type Patch = {
+export type PatchType = {
     oldStart: number,
     oldLines: number,
     newStart: number,
@@ -13,7 +13,7 @@ export type Patch = {
     diff: Array<LineDiff>
 }
 
-export function parse(input: string): Patch {
+export function parse(input: string): PatchType {
     const lines: Array<string> = input.split('\n');
 
     const chunkLine: string = lines[0];
@@ -21,7 +21,7 @@ export function parse(input: string): Patch {
 
     lines.splice(0, 1);
 
-    let result: Patch = {
+    let result: PatchType = {
         oldStart: +chunkInfo[1],
         oldLines: +(chunkInfo[2] || 0),
         newStart: +chunkInfo[3],

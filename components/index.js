@@ -6,6 +6,7 @@ export * from './Button';
 export * from './RepositoryRow';
 export * from './RowSeparator';
 export * from './Spinner';
+export * from './Patch';
 export * from './InputField';
 export * from './IssueRow';
 export * from './Markdown';

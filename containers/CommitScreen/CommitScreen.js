@@ -6,60 +6,7 @@ import { View, StyleSheet, ScrollView, FlatList } from 'react-native';
 import { ErrorView, Spinner, UIText } from 'components';
 import { connect } from 'react-redux';
 import { fetchCommit } from 'actions';
-
-type LineDiff = {
-    type: 'delete' | 'add' | 'normal',
-    text: string,
-}
-
-type Patch = {
-    oldStart: number,
-    oldLines: number,
-    newStart: number,
-    newLines: number,
-    diff: Array<LineDiff>
-}
-
-function parse(input: string): Patch {
-    const lines: Array<string> = input.split('\n');
-
-    const chunkLine: string = lines[0];
-    let chunkInfo: Array<string>|null = chunkLine.match(/^@@\s+-(\d+),?(\d+)?\s+\+(\d+),?(\d+)?\s@@/);
-
-    lines.splice(0, 1);
-
-    let result: Patch = {
-        oldStart: +chunkInfo[1],
-        oldLines: +(chunkInfo[2] || 0),
-        newStart: +chunkInfo[3],
-        newLines: +(chunkInfo[4] || 0),
-        diff: []
-    };
-
-    for (let line of lines) {
-        switch (line[0]) {
-            case '-':
-                result.diff.push({
-                    type: 'delete',
-                    text: line.substr(1, line.length - 1)
-                });
-                break;
-            case '+':
-                result.diff.push({
-                    type: 'add',
-                    text: line.substr(1, line.length - 1)
-                });
-                break;
-            default:
-                result.diff.push({
-                    type: 'normal',
-                    text: line.substr(1, line.length - 1)
-                });
-        }
-    }
-
-    return result;
-}
+import { parse } from 'utils/patch-parse';
 
 // import flow types
 import type { RepositoryCommitState } from 'reducers/repository-commit';
@@ -88,16 +35,13 @@ class CommitScreen extends PureComponent<void, Props, void> {
     }
 
     renderFile = ({ item }) => {
-        console.log(item);
-
         const patch = parse(item.patch);
-        console.log(patch);
 
         return (
             <View>
                 {
                     patch.diff.map(
-                        (line: LineDiff, index) => {
+                        (line, index) => {
                             let lineNumberBackgroundColor: string;
                             let lineBackgroundColor: string;
 

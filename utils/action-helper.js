@@ -26,5 +26,5 @@ export function makeThunk<S>(cb: (state: State) => Promise<S>, type: ActionType)
 
             console.warn(e);
         }
-    }
+    };
 }

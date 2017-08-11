@@ -37,7 +37,7 @@ class Repository extends PureComponent<void, Props, void> {
                 <View>
                     <Text>Loading...</Text>
                 </View>
-            )
+            );
         }
 
         if (error) {
@@ -45,7 +45,7 @@ class Repository extends PureComponent<void, Props, void> {
                 <View>
                     <Text>Oops! Error...</Text>
                 </View>
-            )
+            );
         }
 
         return (
@@ -54,7 +54,7 @@ class Repository extends PureComponent<void, Props, void> {
                     <README owner={repository.owner.login} repo={repository.name} />
                 </ScrollView>
             </View>
-        )
+        );
     }
 }
 
@@ -69,7 +69,7 @@ export default connect(
         return {
             state: state.repository,
             navigation: state.navigation
-        }
+        };
     },
     { fetchRepository }
 )(Repository);

@@ -35,7 +35,7 @@ class AccountIssues extends PureComponent<void, Props, void> {
                 <View style={styles.container}>
                     <Spinner />
                 </View>
-            )
+            );
         }
 
         if (error) {
@@ -43,7 +43,7 @@ class AccountIssues extends PureComponent<void, Props, void> {
                 <View style={styles.container}>
                     <Text>{I18n.t('AccountIssues.Error')}</Text>
                 </View>
-            )
+            );
         }
 
         if (issues.length === 0) {
@@ -108,7 +108,7 @@ class AccountIssues extends PureComponent<void, Props, void> {
                 </View>
                 {this.renderContent()}
             </View>
-        )
+        );
     }
 }
 
@@ -141,7 +141,7 @@ export default connect(
         return {
             issues: state.accountIssues,
             app: state.app
-        }
+        };
     },
     { fetchIssues, fetchMoreIssues }
 )(AccountIssues);

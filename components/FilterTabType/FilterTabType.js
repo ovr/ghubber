@@ -22,7 +22,7 @@ export default class FilterTabType extends PureComponent<void, Props, void> {
                         {title.replace(/\s\s/g, '\n')}
                     </UIText>
                 </View>
-            )
+            );
         }
 
         return (
@@ -34,7 +34,7 @@ export default class FilterTabType extends PureComponent<void, Props, void> {
                     {title.replace(/\s\s/g, '\n')}
                 </UIText>
             </TouchableOpacity>
-        )
+        );
     }
 }
 

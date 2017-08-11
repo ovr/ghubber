@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import { before } from 'github-flow-js/Client';
 import { initApp } from 'actions';
 
-import { default as Navigator } from './Navigator'
+import { default as Navigator } from './Navigator';
 import { configureStore, getInitialState } from 'utils';
 import { captureException } from 'utils/errors';
 
@@ -35,7 +35,7 @@ class App extends PureComponent<void, void, ApplicationState> {
                 this.setState({
                     initialized: true,
                     store: configureStore(initialState)
-                })
+                });
             },
             (error) => {
                 captureException(error);
@@ -43,9 +43,9 @@ class App extends PureComponent<void, void, ApplicationState> {
                 this.setState({
                     initialized: true,
                     store: configureStore({})
-                })
+                });
             }
-        )
+        );
     }
 
     render() {
@@ -63,7 +63,7 @@ class App extends PureComponent<void, void, ApplicationState> {
                     requestOptions.headers = {
                         ...requestOptions.headers,
                         Authorization: 'token ' + state.app.authorization.token
-                    }
+                    };
                 }
             }
         );

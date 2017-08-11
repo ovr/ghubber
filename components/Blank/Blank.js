@@ -12,7 +12,7 @@ export default class Blank extends PureComponent<void, Props, void> {
     render() {
         return (
             <View style={styles.blank} />
-        )
+        );
     }
 }
 

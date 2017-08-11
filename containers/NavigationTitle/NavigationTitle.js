@@ -11,7 +11,7 @@ class NavigationTitle extends PureComponent<void, void, void> {
 
         return (
             <Text>{navigation.title}</Text>
-        )
+        );
     }
 }
 

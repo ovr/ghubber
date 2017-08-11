@@ -20,7 +20,7 @@ const initialState: ProfileState = {
     loading: false,
     error: null,
     user: null
-}
+};
 
 export default (state: ProfileState = initialState, action: Object): ProfileState => {
     switch (action.type) {
@@ -30,20 +30,20 @@ export default (state: ProfileState = initialState, action: Object): ProfileStat
                 user: null,
                 loading: true,
                 error: null
-            }
+            };
         case PROFILE_REQUEST_SUCCESS:
             return {
                 ...state,
                 loading: false,
                 user: action.payload
-            }
+            };
         case PROFILE_REQUEST_FAIL:
             return {
                 ...state,
                 loading: false,
                 error: action.error
-            }
+            };
         default:
             return state;
     }
-}
+};

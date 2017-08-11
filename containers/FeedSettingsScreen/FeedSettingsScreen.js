@@ -40,7 +40,7 @@ class FeedSettingsScreen extends PureComponent<void, Props, void> {
                             (entity) => {
                                 return (
                                     <TouchableOpacity
-                                        key={"organization" + entity.login}
+                                        key={'organization' + entity.login}
                                         style={styles.row}
                                         onPress={() => {
                                             changeAccountFeedLogin(entity.login);
@@ -50,14 +50,14 @@ class FeedSettingsScreen extends PureComponent<void, Props, void> {
                                         <OrganizationAvatar organization={entity} size={24} style={styles.avatar} />
                                         <Text>{entity.login}</Text>
                                     </TouchableOpacity>
-                                )
+                                );
                             }
                         )
                     }
                 </View>
                 {/*<Button>Apply</Button>*/}
             </View>
-        )
+        );
     }
 }
 
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     avatar: {
         marginRight: 10
     }
-})
+});
 
 export default connect(
     (state) => ({

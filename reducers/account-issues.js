@@ -41,7 +41,7 @@ const initialState: AccountIssuesState = {
     page: 1,
     infinityLoading: false,
     error: null,
-}
+};
 
 export default (state: AccountIssuesState = initialState, action: Object): AccountIssuesState => {
     switch (action.type) {
@@ -52,7 +52,7 @@ export default (state: AccountIssuesState = initialState, action: Object): Accou
                 loading: true,
                 error: null,
                 type: action.payload
-            }
+            };
         case ACCOUNT_ISSUES_SUCCESS: {
             const payload = action.payload;
 
@@ -62,21 +62,21 @@ export default (state: AccountIssuesState = initialState, action: Object): Accou
                 hasMore: payload.data.items.length === ACCOUNT_ISSUES_LIMIT,
                 issues: payload.data.items,
                 type: payload.type,
-            }
+            };
         }
         case ACCOUNT_ISSUES_FAIL:
             return {
                 ...state,
                 loading: false,
                 error: 'Unknown error @todo'
-            }
+            };
         //
         case ACCOUNT_ISSUES_MORE_REQUEST:
             return {
                 ...state,
                 infinityLoading: true,
                 type: action.payload
-            }
+            };
         case ACCOUNT_ISSUES_MORE_SUCCESS: {
             const payload = action.payload;
 
@@ -87,16 +87,16 @@ export default (state: AccountIssuesState = initialState, action: Object): Accou
                 hasMore: payload.data.items.length === ACCOUNT_ISSUES_LIMIT,
                 type: payload.type,
                 page: payload.page
-            }
+            };
         }
         case ACCOUNT_ISSUES_MORE_FAIL:
             return {
                 ...state,
                 infinityLoading: false,
                 error: 'Unknown error @todo'
-            }
+            };
         //
         default:
             return state;
     }
-}
+};

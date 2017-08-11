@@ -43,7 +43,7 @@ export default class Markdown extends PureComponent<void, Props, void> {
                 link: Text,
                 code_block: Text,
             },
-        })
+        });
 
         let ast = parser.parse(content || '');
         let children = rendered.render(ast);
@@ -51,9 +51,10 @@ export default class Markdown extends PureComponent<void, Props, void> {
         console.log(children);
 
         return (
+            // eslint-disable-next-line react-native/no-inline-styles
             <View style={{ flex: 1 }}>
                 {children}
             </View>
-        )
+        );
     }
 }

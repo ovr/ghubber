@@ -44,4 +44,4 @@ export default (state: RepositoryPullRequestState = initialState, action: Action
         default:
             return state;
     }
-}
+};

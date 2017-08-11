@@ -22,7 +22,7 @@ export function fetchRepositories(username: string): ThunkAction {
             username,
             {
                 sort: 'pushed',
-                "per_page": 50
+                'per_page': 50
             }
         );
 
@@ -31,15 +31,15 @@ export function fetchRepositories(username: string): ThunkAction {
                 dispatch({
                     type: PROFILE_REPOSITORIES_REQUEST_SUCCESS,
                     payload: result
-                })
+                });
             },
             () => {
                 dispatch({
                     type: PROFILE_REPOSITORIES_REQUEST_FAIL
-                })
+                });
             }
-        )
-    }
+        );
+    };
 }
 
 export function fetchMoreRepositories(username: string, page: number): ThunkAction {
@@ -53,7 +53,7 @@ export function fetchMoreRepositories(username: string, page: number): ThunkActi
             {
                 page,
                 sort: 'pushed',
-                "per_page": 50
+                'per_page': 50
             }
         );
 
@@ -65,13 +65,13 @@ export function fetchMoreRepositories(username: string, page: number): ThunkActi
                         page: page,
                         repositories: result
                     }
-                })
+                });
             },
             () => {
                 dispatch({
                     type: PROFILE_REPOSITORIES_MORE_REQUEST_FAIL
-                })
+                });
             }
-        )
-    }
+        );
+    };
 }

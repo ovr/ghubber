@@ -55,14 +55,14 @@ class RepositoryPullRequestScreen extends PureComponent<void, Props, void> {
                         {pullRequest.commits.nodes.length}
                     </UIText>
                 </View>
-            )
+            );
         }
 
         return (
             <UIText>
                 {title}
             </UIText>
-        )
+        );
     };
 
     getTitles() {
@@ -90,13 +90,13 @@ class RepositoryPullRequestScreen extends PureComponent<void, Props, void> {
                 <UIText style={styles.body}>{pullRequest.body}</UIText>
                 <ReactionGroup reactions={pullRequest.reactionGroups} />
                 <FlatList
-                    style={{ flex: 1 }}
+                    style={styles.wrapper}
                     data={pullRequest.comments.nodes}
                     keyExtractor={(comment: Object) => comment.id}
                     renderItem={
                         ({ item }) => (
                             <Comment
-                                key={"comment" + item.id}
+                                key={'comment' + item.id}
                                 comment={item}
                             />
                         )
@@ -105,7 +105,7 @@ class RepositoryPullRequestScreen extends PureComponent<void, Props, void> {
                 />
                 <Blank />
             </ScrollView>
-        )
+        );
     }
 
     onCommitPress = (item: Object) => {
@@ -115,7 +115,7 @@ class RepositoryPullRequestScreen extends PureComponent<void, Props, void> {
             params.owner,
             params.repo,
             item.oid,
-        )
+        );
     };
 
     renderCommits(pullRequest: Object): React.Element<any> {
@@ -128,7 +128,7 @@ class RepositoryPullRequestScreen extends PureComponent<void, Props, void> {
                     renderItem={
                         ({ item }) => (
                             <CommitRow
-                                key={"commit" + item.commit.id}
+                                key={'commit' + item.commit.id}
                                 commit={item.commit}
                                 onPress={() => this.onCommitPress(item.commit)}
                             />
@@ -138,7 +138,7 @@ class RepositoryPullRequestScreen extends PureComponent<void, Props, void> {
                     refreshing={false}
                 />
             </View>
-        )
+        );
     }
 
     render() {
@@ -149,7 +149,7 @@ class RepositoryPullRequestScreen extends PureComponent<void, Props, void> {
                 <View style={styles.container}>
                     <Spinner />
                 </View>
-            )
+            );
         }
 
         if (error) {
@@ -161,7 +161,7 @@ class RepositoryPullRequestScreen extends PureComponent<void, Props, void> {
                         onPress={() => this.fetchPullRequest()}
                     />
                 </View>
-            )
+            );
         }
 
         if (!pullRequest) {
@@ -244,7 +244,7 @@ export default connect(
         return {
             navigation: state.navigation,
             state: state.repositoryPullRequest
-        }
+        };
     },
     { fetchPullRequest, showRepositoryCommit }
 )(RepositoryPullRequestScreen);

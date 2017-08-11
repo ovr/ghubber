@@ -46,7 +46,7 @@ class RepositoryIssueScreen extends PureComponent<void, Props, void> {
                 <View style={styles.container}>
                     <Spinner />
                 </View>
-            )
+            );
         }
 
         if (error) {
@@ -58,7 +58,7 @@ class RepositoryIssueScreen extends PureComponent<void, Props, void> {
                         onPress={() => this.fetchIssue()}
                     />
                 </View>
-            )
+            );
         }
 
         if (!issue) {
@@ -79,7 +79,7 @@ class RepositoryIssueScreen extends PureComponent<void, Props, void> {
                 <UIText style={styles.body}>{issue.body}</UIText>
                 <ReactionGroup reactions={issue.reactionGroups} />
                 <FlatList
-                    style={{ flex: 1 }}
+                    style={styles.commentsList}
                     data={issue.comments.nodes}
                     keyExtractor={(repository: Object) => repository.id}
                     renderItem={
@@ -93,7 +93,7 @@ class RepositoryIssueScreen extends PureComponent<void, Props, void> {
                 />
                 <Blank />
             </ScrollView>
-        )
+        );
     }
 }
 
@@ -120,6 +120,9 @@ const styles = StyleSheet.create({
     },
     body: {
         fontSize: normalizeFont(14)
+    },
+    commentsList: {
+        flex: 1,
     }
 });
 
@@ -128,7 +131,7 @@ export default connect(
         return {
             navigation: state.navigation,
             state: state.repositoryIssue
-        }
+        };
     },
     { fetchIssue }
 )(RepositoryIssueScreen);

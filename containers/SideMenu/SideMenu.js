@@ -40,7 +40,7 @@ class SideMenu extends PureComponent<void, Props, void> {
                     {
                         app.organizations && app.organizations.map(
                             (entity) => (
-                                <View style={styles.organization} key={"sm-org-" + entity.id}>
+                                <View style={styles.organization} key={'sm-org-' + entity.id}>
                                     <OrganizationAvatar organization={entity} size={30} />
                                     <Text style={styles.organizationLogin}>
                                         {entity.login}
@@ -59,7 +59,7 @@ class SideMenu extends PureComponent<void, Props, void> {
                     </Button>
                 </View>
             </ScrollView>
-        )
+        );
     }
 }
 
@@ -119,7 +119,7 @@ export default connect(
     (state) => {
         return {
             app: state.app
-        }
+        };
     },
     { hideSideMenu, logout, showAccount, showAbout }
 )(SideMenu);

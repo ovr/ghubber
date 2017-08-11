@@ -23,7 +23,7 @@ export function logout(): ThunkAction {
             });
 
             dispatch(showLogin());
-        }
+        };
 
         if (state.authorization) {
             if (state.authorization.method && state.authorization.method === 'plain') {
@@ -38,7 +38,7 @@ export function logout(): ThunkAction {
         } else {
             finishCB();
         }
-    }
+    };
 }
 
 export function initUser(): ThunkAction {
@@ -49,7 +49,7 @@ export function initUser(): ThunkAction {
         // eslint-disable-next-line no-undef
         if (SENTRY_ENABLED) {
             Sentry.setUserContext({
-                userID: user.id + "",
+                userID: user.id + '',
                 username: user.login,
                 email: user.email
             });
@@ -65,12 +65,12 @@ export function initUser(): ThunkAction {
             (error) => {
                 console.warn(error);
             }
-        )
-    }
+        );
+    };
 }
 
 export function initApp(): ThunkAction {
     return dispatch => {
         dispatch(initUser());
-    }
+    };
 }

@@ -44,7 +44,7 @@ class AboutScreen extends PureComponent<void, Props, void> {
                     }
                 </View>
             </View>
-        )
+        );
     }
 }
 

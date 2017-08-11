@@ -19,7 +19,7 @@ const initialState: LoginState = {
     loading: false,
     twoFA: false,
     error: null
-}
+};
 
 export default (state: LoginState = initialState, action: Object): LoginState => {
     switch (action.type) {
@@ -42,9 +42,9 @@ export default (state: LoginState = initialState, action: Object): LoginState =>
             return {
                 ...state,
                 loading: false,
-                error: "Unknown"
+                error: 'Unknown'
             };
         default:
             return state;
     }
-}
+};

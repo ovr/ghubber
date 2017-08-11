@@ -37,7 +37,7 @@ class Home extends PureComponent<void, Props, void> {
                     About
                 </Button>
             </View>
-        )
+        );
     }
 }
 
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
         width: 200,
         marginBottom: 10
     }
-})
+});
 
 export default connect(
     (state) => state,

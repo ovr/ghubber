@@ -28,7 +28,7 @@ class HomeHeaderRight extends PureComponent<void, Props, void> {
                     {/*<Text style={styles.buttonText}>Notifications</Text>*/}
                 {/*</TouchableOpacity>*/}
             </View>
-        )
+        );
     }
 }
 

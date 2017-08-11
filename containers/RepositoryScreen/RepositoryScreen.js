@@ -23,14 +23,14 @@ class RepositoryScreen extends PureComponent<void, Props, void> {
                     />
                 }
             >
-                <View style={{ flex: 1 }}>
+                <View style={styles.page}>
                     <Repository />
                 </View>
-                <View>
+                <View style={styles.page}>
                     <Text>Commits</Text>
                 </View>
             </IndicatorViewPager>
-        )
+        );
     }
 }
 
@@ -38,6 +38,9 @@ const styles = StyleSheet.create({
     viewPager: {
         flex: 1,
         flexDirection: 'column-reverse'
+    },
+    page: {
+        flex: 1
     }
 });
 
@@ -45,6 +48,6 @@ export default connect(
     (state) => {
         return {
             navigation: state.navigation
-        }
+        };
     }
 )(RepositoryScreen);

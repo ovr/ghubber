@@ -100,7 +100,7 @@ export default class ProfileViewTablet extends PureComponent<void, Props, void> 
                     </View>
                 </View>
             </View>
-        )
+        );
     }
 }
 

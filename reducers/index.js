@@ -31,4 +31,4 @@ export default combineReducers({
     repositoryCommit,
     repositoryIssue,
     repositoryPullRequest
-})
+});

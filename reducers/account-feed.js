@@ -119,4 +119,4 @@ export default (state: AccountFeedState = initialState, action: Object): Account
         default:
             return state;
     }
-}
+};

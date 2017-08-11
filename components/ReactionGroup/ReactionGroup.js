@@ -43,12 +43,12 @@ export default class ReactionGroup extends PureComponent<void, Props, void> {
                         (reaction, index) => {
                             return (
                                 <UIText key={'reaction' + index} style={styles.reaction}>{mapReaction(reaction.content)} {reaction.users.totalCount}</UIText>
-                            )
+                            );
                         }
                     )
                 }
             </View>
-        )
+        );
     }
 }
 

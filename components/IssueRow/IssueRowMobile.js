@@ -113,7 +113,7 @@ export class IssueRowMobile extends PureComponent<void, Props, void> {
                     }
                 </View>
             </TouchableOpacity>
-        )
+        );
     }
 }
 

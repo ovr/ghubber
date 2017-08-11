@@ -70,17 +70,17 @@ export default class RepositoryRow extends PureComponent<void, Props, void> {
                 <View style={styles.bottom}>
                     <UIText style={styles.counter}>
                         <Icon name="star" size={15} color="black" style={styles.counterIcon} />
-                        {" Stars: "}
+                        {' Stars: '}
                         {repo.stargazers_count}
                     </UIText>
                     <UIText style={styles.counter}>
                         <Icon name="eye" size={15} color="black" style={styles.counterIcon} />
-                        {" Watchers: "}
+                        {' Watchers: '}
                         {repo.watchers_count}
                     </UIText>
                     <UIText style={styles.counter}>
                         <Entypo name="flow-branch" size={15} color="black" style={styles.counterIcon} />
-                        {"Forks: "}
+                        {'Forks: '}
                         {repo.forks_count}
                     </UIText>
                     <UIText style={[styles.counter, styles.languageCounter]}>
@@ -88,6 +88,6 @@ export default class RepositoryRow extends PureComponent<void, Props, void> {
                     </UIText>
                 </View>
             </TouchableOpacity>
-        )
+        );
     }
 }

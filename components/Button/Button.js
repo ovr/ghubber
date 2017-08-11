@@ -21,7 +21,7 @@ export default class Button extends PureComponent<void, Props, void> {
                     {children}
                 </UIText>
             </TouchableOpacity>
-        )
+        );
     }
 }
 

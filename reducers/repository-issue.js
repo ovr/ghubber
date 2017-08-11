@@ -46,4 +46,4 @@ export default (state: RepositoryIssueState = initialState, action: Action): Rep
         default:
             return state;
     }
-}
+};

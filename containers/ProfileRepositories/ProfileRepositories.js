@@ -38,7 +38,7 @@ class ProfileRepositories extends PureComponent<void, Props, void> {
                 <View style={styles.container}>
                     <Spinner />
                 </View>
-            )
+            );
         }
 
         if (error) {
@@ -46,7 +46,7 @@ class ProfileRepositories extends PureComponent<void, Props, void> {
                 <View style={styles.container}>
                     <Text>Oops! Error...</Text>
                 </View>
-            )
+            );
         }
 
         const { moreLoading, hasMore, page } = this.props.state;
@@ -72,7 +72,7 @@ class ProfileRepositories extends PureComponent<void, Props, void> {
                 ItemSeparatorComponent={RowSeparator}
                 ListFooterComponent={() => moreLoading ? <Spinner style={styles.moreLoadingSpinner} /> : null}
             />
-        )
+        );
     }
 }
 
@@ -97,7 +97,7 @@ export default connect(
         return {
             state: state.profileRepositories,
             navigation: state.navigation
-        }
+        };
     },
     { fetchRepositories, fetchMoreRepositories, showRepository }
 )(ProfileRepositories);

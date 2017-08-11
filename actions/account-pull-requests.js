@@ -50,16 +50,16 @@ export function fetchPullRequests(username: string, type: AccountPullRequestsTyp
                         type: type,
                         data: response
                     }
-                })
+                });
             },
             (error) => {
                 dispatch({
                     type: ACCOUNT_PULL_REQUESTS_FAIL,
                     error: error
-                })
+                });
             }
-        )
-    }
+        );
+    };
 }
 
 export function fetchMorePullRequests(username: string, page: number, type: AccountPullRequestsType): ThunkAction {
@@ -82,14 +82,14 @@ export function fetchMorePullRequests(username: string, page: number, type: Acco
                         page: page,
                         data: response
                     }
-                })
+                });
             },
             (error) => {
                 dispatch({
                     type: ACCOUNT_PULL_REQUESTS_MORE_FAIL,
                     error: error
-                })
+                });
             }
-        )
-    }
+        );
+    };
 }

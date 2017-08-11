@@ -35,9 +35,9 @@ export function filterConcat<T: Object>(current: Array<T>, next: Array<T>): Arra
 
     next = next.filter(
         (entity) => {
-            return current.findIndex((item) => item.id === entity.id) === -1
+            return current.findIndex((item) => item.id === entity.id) === -1;
         }
-    )
+    );
 
     return current.concat(next);
 }

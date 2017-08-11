@@ -15,10 +15,10 @@ export default class Badge extends PureComponent<void, Props, void> {
         const { backgroundColor, text } = this.props;
 
         return (
-            <View style={[{backgroundColor: backgroundColor || 'yellow'}, styles.root]}>
+            <View style={[{ backgroundColor: backgroundColor || 'yellow' }, styles.root]}>
                 <UIText style={styles.text}>{text}</UIText>
             </View>
-        )
+        );
     }
 }
 

@@ -34,7 +34,7 @@ export const HomeScreeDrawer = DrawerNavigator({
     // eslint-disable-next-line react/display-name
     contentComponent: () => <SideMenu />,
     initialRouteName: 'Home'
-})
+});
 
 
 export const AppNavigator = StackNavigator(
@@ -59,7 +59,7 @@ export const AppNavigator = StackNavigator(
 
                 return {
                     title: `${params.repo}#${params.number}`
-                }
+                };
             },
         },
         PullRequest: {
@@ -69,7 +69,7 @@ export const AppNavigator = StackNavigator(
 
                 return {
                     title: `${params.repo}#${params.number}`
-                }
+                };
             },
         },
         Commit: {
@@ -91,7 +91,7 @@ export const AppNavigator = StackNavigator(
 
                 return {
                     title: params.id ? params.id : 'Profile'
-                }
+                };
             },
         },
         Repository: {
@@ -101,7 +101,7 @@ export const AppNavigator = StackNavigator(
 
                 return {
                     title: params.repo ? params.repo : 'Repository'
-                }
+                };
             },
         },
         AccountIssues: {

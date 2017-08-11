@@ -14,6 +14,6 @@ export default class Spinner extends PureComponent<void, Props, void> {
 
         return (
             <ActivityIndicator size={'large'} style={style} />
-        )
+        );
     }
 }

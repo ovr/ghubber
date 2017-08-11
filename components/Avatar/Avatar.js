@@ -24,6 +24,6 @@ export default class Avatar extends PureComponent<void, Props, void> {
                 style={[{ width: size, height: size }, style]}
                 source={{ uri: uri }}
             />
-        )
+        );
     }
 }

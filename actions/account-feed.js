@@ -50,5 +50,5 @@ export function changeAccountFeedLogin(login: string): ThunkAction {
         });
 
         dispatch(fetchAccountFeed());
-    }
+    };
 }

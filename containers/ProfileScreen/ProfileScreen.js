@@ -34,14 +34,14 @@ class ProfileScreen extends PureComponent<void, Props, void> {
                         {profile.user.public_repos}
                     </Text>
                 </View>
-            )
+            );
         }
 
         return (
             <Text>
                 {title}
             </Text>
-        )
+        );
     }
 
     getTitles() {
@@ -77,7 +77,7 @@ class ProfileScreen extends PureComponent<void, Props, void> {
                     <ProfileRepositories />
                 </View>
             </IndicatorViewPager>
-        )
+        );
     }
 }
 
@@ -109,6 +109,6 @@ export default connect(
         return {
             navigation: state.navigation,
             profile: state.profile
-        }
+        };
     }
 )(ProfileScreen);

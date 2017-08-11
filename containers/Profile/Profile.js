@@ -34,7 +34,7 @@ class Profile extends PureComponent<void, Props, void> {
             return null;
         }
 
-        return <ProfileOrganizationsView organizations={organizations} />
+        return <ProfileOrganizationsView organizations={organizations} />;
     }
 
     render() {
@@ -45,7 +45,7 @@ class Profile extends PureComponent<void, Props, void> {
                 <View style={styles.container}>
                     <Spinner />
                 </View>
-            )
+            );
         }
 
         if (error) {
@@ -59,7 +59,7 @@ class Profile extends PureComponent<void, Props, void> {
                         refreshable={true}
                     />
                 </View>
-            )
+            );
         }
 
         if (!user) {
@@ -73,7 +73,7 @@ class Profile extends PureComponent<void, Props, void> {
                 <ContributionsGraph user={user} />
                 <Blank />
             </ScrollView>
-        )
+        );
     }
 }
 
@@ -95,7 +95,7 @@ export default connect(
             profile: state.profile,
             profileOrganizations: state.profileOrganizations,
             navigation: state.navigation
-        }
+        };
     },
     { fetchProfile, fetchOrganizations }
 )(Profile);

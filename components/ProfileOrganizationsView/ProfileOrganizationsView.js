@@ -45,7 +45,7 @@ export default class ProfileOrganizationsView extends PureComponent<void, Props,
                     )
                 }
             </View>
-        )
+        );
     }
 }
 
@@ -65,4 +65,4 @@ const styles = StyleSheet.create({
     organizationAvatar: {
         marginRight: ORG_AVATAR_MARGIN_RIGHT
     }
-})
+});

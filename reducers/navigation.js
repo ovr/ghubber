@@ -24,12 +24,12 @@ export default (state: NavigationState = initialState, action: Object): Navigati
             nextState = {
                 ...nextState,
                 params: route.params
-            }
+            };
         } else {
             nextState = {
                 ...nextState,
                 params: null
-            }
+            };
         }
     }
 
@@ -49,4 +49,4 @@ export default (state: NavigationState = initialState, action: Object): Navigati
         // default:
     //
     // }
-}
+};

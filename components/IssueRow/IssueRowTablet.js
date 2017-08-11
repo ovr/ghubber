@@ -98,7 +98,7 @@ class IssueRowTablet extends IssueRowMobile<void, Props, void> {
                     }
                 </View>
             </TouchableOpacity>
-        )
+        );
     }
 }
 

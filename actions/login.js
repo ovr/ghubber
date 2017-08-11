@@ -48,20 +48,20 @@ export function makeOAuthLogin(accessToken: string): ThunkAction {
                 dispatch({
                     type: LOGIN_REQUEST_FAIL,
                     error
-                })
+                });
 
                 console.warn(error);
                 console.warn(error.clone().text());
             }
-        )
-    }
+        );
+    };
 }
 
 export function makeLogin(username: string, password: string, code: string): ThunkAction {
     return dispatch => {
         dispatch({
             type: LOGIN_REQUEST
-        })
+        });
 
         let options = {
             headers: {
@@ -72,8 +72,8 @@ export function makeLogin(username: string, password: string, code: string): Thu
         if (code) {
             options.headers = {
                 ...options.headers,
-                "X-GitHub-OTP": code
-            }
+                'X-GitHub-OTP': code
+            };
         }
 
         const now = new Date();
@@ -83,10 +83,10 @@ export function makeLogin(username: string, password: string, code: string): Thu
                 note: 'Ghubber ' + now,
                 scopes: [
                     // user
-                    "user",
-                    "public_repo",
-                    "repo",
-                    "notifications"
+                    'user',
+                    'public_repo',
+                    'repo',
+                    'notifications'
                 ]
             },
             options
@@ -122,9 +122,9 @@ export function makeLogin(username: string, password: string, code: string): Thu
                         dispatch({
                             type: LOGIN_REQUEST_FAIL,
                             error
-                        })
+                        });
                     }
-                )
+                );
             },
             (response) => {
                 console.warn(response);
@@ -133,10 +133,10 @@ export function makeLogin(username: string, password: string, code: string): Thu
                 if (response && response.headers) {
                     const headers: Headers = response.headers;
 
-                    if (headers.get("x-github-otp")) {
+                    if (headers.get('x-github-otp')) {
                         dispatch({
                             type: LOGIN_REQUEST_2FA_REQUIRED
-                        })
+                        });
 
                         return;
                     }
@@ -144,9 +144,9 @@ export function makeLogin(username: string, password: string, code: string): Thu
 
                 dispatch({
                     type: LOGIN_REQUEST_FAIL
-                })
+                });
             }
-        )
-    }
+        );
+    };
 }
 

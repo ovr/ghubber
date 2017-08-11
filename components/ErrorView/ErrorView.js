@@ -28,7 +28,7 @@ export default class ErrorView extends PureComponent<DefaultProps, Props, void> 
             return (
                 <View style={styles.root}>
                     <UIText style={styles.title}>
-                        {__('ErrorView.Title', {errorCode: error.status})}
+                        {__('ErrorView.Title', { errorCode: error.status })}
                     </UIText>
                     <UIText style={styles.message}>
                         {error.message}
@@ -37,7 +37,7 @@ export default class ErrorView extends PureComponent<DefaultProps, Props, void> 
                         {__('ErrorView.RefreshButton')}
                     </Button>
                 </View>
-            )
+            );
         }
 
         return (
@@ -46,7 +46,7 @@ export default class ErrorView extends PureComponent<DefaultProps, Props, void> 
                     {error.message}
                 </UIText>
             </View>
-        )
+        );
     }
 }
 

@@ -19,13 +19,13 @@ export function fetchOrganizations(id: string): ThunkAction {
                 dispatch({
                     type: PROFILE_ORGANIZATIONS_REQUEST_SUCCESS,
                     payload: result
-                })
+                });
             },
             () => {
                 dispatch({
                     type: PROFILE_ORGANIZATIONS_REQUEST_FAIL
-                })
+                });
             }
-        )
-    }
+        );
+    };
 }

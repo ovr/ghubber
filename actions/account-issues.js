@@ -48,16 +48,16 @@ export function fetchIssues(username: string, type: AccountIssuesType): ThunkAct
                         type: type,
                         data: response
                     }
-                })
+                });
             },
             (error) => {
                 dispatch({
                     type: ACCOUNT_ISSUES_FAIL,
                     error: error
-                })
+                });
             }
-        )
-    }
+        );
+    };
 }
 
 export function fetchMoreIssues(username: string, page: number, type: AccountIssuesType): ThunkAction {
@@ -80,14 +80,14 @@ export function fetchMoreIssues(username: string, page: number, type: AccountIss
                         page: page,
                         data: response
                     }
-                })
+                });
             },
             (error) => {
                 dispatch({
                     type: ACCOUNT_ISSUES_MORE_FAIL,
                     error: error
-                })
+                });
             }
-        )
-    }
+        );
+    };
 }

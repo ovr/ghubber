@@ -96,7 +96,7 @@ export default class ProfileViewMobile extends PureComponent<void, Props, void> 
                     <UIText style={styles.bio}>{ user.bio }</UIText>
                 </View>
             </View>
-        )
+        );
     }
 }
 
@@ -156,4 +156,4 @@ const styles = StyleSheet.create({
         fontSize: 16,
         marginTop: 5
     },
-})
+});

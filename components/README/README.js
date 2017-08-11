@@ -41,17 +41,17 @@ export default class README extends PureComponent<void, Props, State> {
                         this.setState({
                             loading: false,
                             content: text
-                        })
+                        });
                     }
-                )
+                );
             },
             () => {
                 this.setState({
                     loading: false,
                     error: true
-                })
+                });
             }
-        )
+        );
     }
 
     render() {
@@ -63,7 +63,7 @@ export default class README extends PureComponent<void, Props, State> {
                 <HTMLView
                     value={content}
                 />
-            )
+            );
         }
 
         return null;

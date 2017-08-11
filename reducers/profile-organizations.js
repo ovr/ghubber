@@ -20,7 +20,7 @@ const initialState: ProfileOrganizationsState = {
     loading: false,
     error: null,
     organizations: []
-}
+};
 
 export default (state: ProfileOrganizationsState = initialState, action: Object): ProfileOrganizationsState => {
     switch (action.type) {
@@ -30,20 +30,20 @@ export default (state: ProfileOrganizationsState = initialState, action: Object)
                 organizations: null,
                 loading: true,
                 error: null
-            }
+            };
         case PROFILE_ORGANIZATIONS_REQUEST_SUCCESS:
             return {
                 ...state,
                 loading: false,
                 organizations: action.payload
-            }
+            };
         case PROFILE_ORGANIZATIONS_REQUEST_FAIL:
             return {
                 ...state,
                 loading: false,
                 error: 'Unknown error @todo'
-            }
+            };
         default:
             return state;
     }
-}
+};

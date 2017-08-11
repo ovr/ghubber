@@ -31,7 +31,7 @@ class FeedScreen extends PureComponent<void, Props, void> {
                 <View style={styles.container}>
                     <Spinner />
                 </View>
-            )
+            );
         }
 
         if (error) {
@@ -42,7 +42,7 @@ class FeedScreen extends PureComponent<void, Props, void> {
                         onPress={() => this.props.fetchAccountFeed()}
                     />
                 </View>
-            )
+            );
         }
 
         const { fetchMoreAccountFeed } = this.props;
@@ -67,7 +67,7 @@ class FeedScreen extends PureComponent<void, Props, void> {
                     ListFooterComponent={() => infinity ? <Spinner style={styles.moreLoadingSpinner} /> : null}
                 />
             </View>
-        )
+        );
     }
 }
 
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     moreLoadingSpinner: {
         marginVertical: 15
     }
-})
+});
 
 export default connect(
     (state) => ({

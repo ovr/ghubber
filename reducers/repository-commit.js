@@ -20,7 +20,7 @@ const initialState: RepositoryCommitState = {
     loading: false,
     error: null,
     commit: null
-}
+};
 
 export default (state: RepositoryCommitState = initialState, action: Action): RepositoryCommitState => {
     switch (action.type) {
@@ -30,20 +30,20 @@ export default (state: RepositoryCommitState = initialState, action: Action): Re
                 commit: null,
                 loading: true,
                 error: null
-            }
+            };
         case REPOSITORY_COMMIT_REQUEST_SUCCESS:
             return {
                 ...state,
                 loading: false,
                 commit: action.payload
-            }
+            };
         case REPOSITORY_COMMIT_REQUEST_FAIL:
             return {
                 ...state,
                 loading: false,
                 error: new Error('Unknown error @todo')
-            }
+            };
         default:
             return state;
     }
-}
+};

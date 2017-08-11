@@ -22,5 +22,5 @@ export function setupRepository(repository: RepositoryEntity): Action {
     return {
         type: REPOSITORY_REQUEST_SUCCESS,
         payload: repository
-    }
+    };
 }

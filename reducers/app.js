@@ -43,7 +43,7 @@ const initialState: AppState = {
     user: null,
     authorization: null,
     organizations: null
-}
+};
 
 export default (state: AppState = initialState, action: Action): AppState => {
     switch (action.type) {
@@ -85,4 +85,4 @@ export default (state: AppState = initialState, action: Action): AppState => {
         default:
             return state;
     }
-}
+};

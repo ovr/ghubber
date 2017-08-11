@@ -46,6 +46,6 @@ export default class Comment extends PureComponent<void, Props, void> {
                     <UIText>{comment.body}</UIText>
                 </View>
             </View>
-        )
+        );
     }
 }

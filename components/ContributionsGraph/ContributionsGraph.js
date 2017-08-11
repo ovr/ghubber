@@ -23,10 +23,10 @@ export default class ContributionsGraph extends PureComponent<void, Props, void>
 
         return (
             <WebView
-                source={{uri: `https://github.com/users/${user.login}/contributions`}}
+                source={{ uri: `https://github.com/users/${user.login}/contributions` }}
                 style={styles.webView}
             />
-        )
+        );
     }
 }
 

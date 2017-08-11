@@ -57,7 +57,7 @@ class LoginScreen extends PureComponent<void, Props, State> {
     renderError(): React.Element<any> {
         return (
             <Text style={styles.error}>Oops! We cannot auth you, possible password/username are wrong ;( </Text>
-        )
+        );
     }
 
     oauthCallback({ url }) {
@@ -109,12 +109,12 @@ class LoginScreen extends PureComponent<void, Props, State> {
                         <InputField
                             placeholder="email or login"
                             style={styles.input}
-                            onChangeText={(value) => this.setState({username: value})}
+                            onChangeText={(value) => this.setState({ username: value })}
                         />
                         <InputField
                             placeholder="password"
                             style={styles.input}
-                            onChangeText={(value) => this.setState({password: value})}
+                            onChangeText={(value) => this.setState({ password: value })}
                             secureTextEntry={true}
                         />
                         {
@@ -122,7 +122,7 @@ class LoginScreen extends PureComponent<void, Props, State> {
                                 <InputField
                                     placeholder="TFA Code"
                                     style={styles.input}
-                                    onChangeText={(value) => this.setState({code: value})}
+                                    onChangeText={(value) => this.setState({ code: value })}
                                 />
                             ) : null
                         }
@@ -138,7 +138,7 @@ class LoginScreen extends PureComponent<void, Props, State> {
                     }
                 </KeyboardAvoidingView>
             </ImageBackground>
-        )
+        );
     }
 }
 
@@ -215,7 +215,7 @@ export default connect(
         return {
             login: state.login,
             app: state.app
-        }
+        };
     },
     { makeLogin, makeOAuthLogin, showHome }
 )(LoginScreen);

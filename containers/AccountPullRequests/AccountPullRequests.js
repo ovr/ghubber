@@ -35,7 +35,7 @@ class AccountPullRequests extends PureComponent<void, Props, void> {
                 <View style={styles.container}>
                     <Spinner />
                 </View>
-            )
+            );
         }
 
         if (error) {
@@ -43,7 +43,7 @@ class AccountPullRequests extends PureComponent<void, Props, void> {
                 <View style={styles.container}>
                     <Text>{I18n.t('AccountPullRequests.Error')}</Text>
                 </View>
-            )
+            );
         }
 
         if (pullRequests.length === 0) {
@@ -114,7 +114,7 @@ class AccountPullRequests extends PureComponent<void, Props, void> {
                 </View>
                 {this.renderContent()}
             </View>
-        )
+        );
     }
 }
 
@@ -147,7 +147,7 @@ export default connect(
         return {
             pullRequests: state.accountPullRequests,
             app: state.app
-        }
+        };
     },
     { fetchPullRequests, fetchMorePullRequests }
 )(AccountPullRequests);

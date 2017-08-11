@@ -13,43 +13,43 @@ export function showAccount(): ThunkAction {
         const app = getState().app;
 
         dispatch(showProfile(app.user.login));
-    }
+    };
 }
 
 export function showFeedSettings() {
     return NavigationActions.navigate({
         routeName: 'FeedSettings',
-    })
+    });
 }
 
 export function showSideMenu() {
     return NavigationActions.navigate({
         routeName: 'DrawerOpen',
-    })
+    });
 }
 
 export function hideSideMenu() {
     return NavigationActions.navigate({
         routeName: 'DrawerClose',
-    })
+    });
 }
 
 export function showAccountIssues() {
     return NavigationActions.navigate({
         routeName: 'AccountIssues',
-    })
+    });
 }
 
 export function showAccountPullRequests() {
     return NavigationActions.navigate({
         routeName: 'AccountPullRequests',
-    })
+    });
 }
 
 export function showAbout() {
     return NavigationActions.navigate({
         routeName: 'AboutScreen',
-    })
+    });
 }
 
 export function showProfile(id: string) {
@@ -58,7 +58,7 @@ export function showProfile(id: string) {
         params: {
             id
         }
-    })
+    });
 }
 
 export function showLogin() {
@@ -69,7 +69,7 @@ export function showLogin() {
             type: 'Navigation/NAVIGATE',
             routeName:'Login'
         }]
-    }
+    };
 }
 
 export function showHome() {
@@ -80,7 +80,7 @@ export function showHome() {
             type: 'Navigation/NAVIGATE',
             routeName:'Home'
         }]
-    }
+    };
 }
 
 // @todo Not working!
@@ -99,7 +99,7 @@ export function showRepositoryIssue(owner: string, repo: string, number: number)
             repo,
             number
         }
-    })
+    });
 }
 
 export function showRepositoryPullRequest(owner: string, repo: string, number: number) {
@@ -110,7 +110,7 @@ export function showRepositoryPullRequest(owner: string, repo: string, number: n
             repo,
             number
         }
-    })
+    });
 }
 
 export function showRepositoryCommit(owner: string, repo: string, sha: string) {
@@ -121,7 +121,7 @@ export function showRepositoryCommit(owner: string, repo: string, sha: string) {
             repo,
             sha
         }
-    })
+    });
 }
 
 export function showRepositoryByParams(owner: string, repo: string) {
@@ -131,7 +131,7 @@ export function showRepositoryByParams(owner: string, repo: string) {
             owner,
             repo
         }
-    })
+    });
 }
 
 export function showRepository(repository: RepositoryEntity): ThunkAction {
@@ -146,6 +146,6 @@ export function showRepository(repository: RepositoryEntity): ThunkAction {
                     repo: repository.name
                 }
             })
-        )
-    }
+        );
+    };
 }

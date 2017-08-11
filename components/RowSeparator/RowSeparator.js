@@ -12,7 +12,7 @@ export default class RowSeparator extends Component<void, void, void> {
     render() {
         return (
             <View style={styles.row}/>
-        )
+        );
     }
 }
 
@@ -22,4 +22,4 @@ const styles = StyleSheet.create({
         height: 1,
         backgroundColor: '#dfe2e5'
     }
-})
+});

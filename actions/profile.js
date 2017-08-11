@@ -21,7 +21,7 @@ export function fetchProfile(id: string): ThunkAction {
                 dispatch({
                     type: PROFILE_REQUEST_SUCCESS,
                     payload: user
-                })
+                });
 
                 dispatch(setTitle(user.name));
             },
@@ -29,8 +29,8 @@ export function fetchProfile(id: string): ThunkAction {
                 dispatch({
                     type: PROFILE_REQUEST_FAIL,
                     error: error
-                })
+                });
             }
-        )
-    }
+        );
+    };
 }

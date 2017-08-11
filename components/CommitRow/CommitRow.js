@@ -19,7 +19,7 @@ export default class CommitRow extends PureComponent<void, Props, void> {
                 <Avatar user={commit.author} size={25} style={styles.avatar} />
                 <UIText numberOfLines={1} style={styles.message}>{commit.message}</UIText>
             </TouchableOpacity>
-        )
+        );
     }
 }
 

@@ -13,5 +13,5 @@ export function configureStore(preloadedState: Object): Store {
             : applyMiddleware(thunk)
     );
 
-    return createStore(reducers, preloadedState, enhancer)
+    return createStore(reducers, preloadedState, enhancer);
 }

@@ -27,7 +27,7 @@ class FeedTopPanel extends PureComponent<void, Props, void> {
         if (feed.login !== null && feed.login !== app.user.login) {
             const result = app.organizations.find(
                 (entity) => {
-                    return entity.login === feed.login
+                    return entity.login === feed.login;
                 }
             );
 
@@ -52,7 +52,7 @@ class FeedTopPanel extends PureComponent<void, Props, void> {
                     </Text>
                 </TouchableOpacity>
             </View>
-        )
+        );
     }
 }
 
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: 'bold'
     }
-})
+});
 
 export default connect(
     (state) => ({

@@ -11,6 +11,8 @@ type Props = {
     showSideMenu: typeof showSideMenu
 }
 
+const iconStyle = { marginLeft: 10 };
+
 class SideMenuButton extends PureComponent<void, Props, void> {
     render() {
         const { showSideMenu } = this.props;
@@ -19,10 +21,10 @@ class SideMenuButton extends PureComponent<void, Props, void> {
             <Icon
                 name="list"
                 size={24}
-                style={{ marginLeft: 10 }}
+                style={iconStyle}
                 onPress={showSideMenu}
             />
-        )
+        );
     }
 }
 

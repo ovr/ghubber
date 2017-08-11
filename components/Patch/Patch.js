@@ -5,7 +5,7 @@ import React, { PureComponent } from 'react';
 import { View } from 'react-native';
 import { UIText } from 'components';
 import { parse } from 'utils/patch-parse';
-import { captureException } from 'utils/errors'
+import { captureException } from 'utils/errors';
 
 import type { PatchType } from 'utils/patch-parse';
 
@@ -48,7 +48,7 @@ export default class Patch extends PureComponent<void, Props, PatchState> {
                 <View>
                     <UIText>We are having an exception on parsing, We cannot display it.</UIText>
                 </View>
-            )
+            );
         }
 
         if (!patch) {
@@ -76,17 +76,17 @@ export default class Patch extends PureComponent<void, Props, PatchState> {
                             }
 
                             return (
-                                <UIText style={{ backgroundColor: lineBackgroundColor }} key={"line" + index}>
-                                    <UIText style={{ backgroundColor: lineNumberBackgroundColor, width: 60 }}>
+                                <UIText style={{ backgroundColor: lineBackgroundColor }} key={'line' + index}>
+                                    <UIText style={{ backgroundColor: lineNumberBackgroundColor }}>
                                         {patch.newStart + index}
                                     </UIText>
                                     {line.text}
                                 </UIText>
-                            )
+                            );
                         }
                     )
                 }
             </View>
-        )
+        );
     }
 }

@@ -102,4 +102,4 @@ export default {
             tag: 'тег',
         },
     },
-}
+};

@@ -43,7 +43,7 @@ class CommitScreen extends PureComponent<void, Props, void> {
                 <View style={styles.container}>
                     <Spinner />
                 </View>
-            )
+            );
         }
 
         if (error) {
@@ -54,7 +54,7 @@ class CommitScreen extends PureComponent<void, Props, void> {
                         refreshable={true}
                     />
                 </View>
-            )
+            );
         }
 
         if (!commit) {
@@ -75,7 +75,7 @@ class CommitScreen extends PureComponent<void, Props, void> {
                     refreshing={false}
                 />
             </ScrollView>
-        )
+        );
     }
 }
 
@@ -96,7 +96,7 @@ export default connect(
         return {
             navigation: state.navigation,
             state: state.repositoryCommit
-        }
+        };
     },
     { fetchCommit }
 )(CommitScreen);

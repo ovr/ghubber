@@ -41,7 +41,7 @@ const initialState: AccountPullRequestsState = {
     page: 1,
     infinityLoading: false,
     error: null,
-}
+};
 
 export default (state: AccountPullRequestsState = initialState, action: Object): AccountPullRequestsState => {
     switch (action.type) {
@@ -52,7 +52,7 @@ export default (state: AccountPullRequestsState = initialState, action: Object):
                 loading: true,
                 error: null,
                 type: action.payload
-            }
+            };
         case ACCOUNT_PULL_REQUESTS_SUCCESS: {
             const payload = action.payload;
 
@@ -62,21 +62,21 @@ export default (state: AccountPullRequestsState = initialState, action: Object):
                 hasMore: payload.data.items.length === ACCOUNT_PULL_REQUESTS_LIMIT,
                 pullRequests: payload.data.items,
                 type: payload.type,
-            }
+            };
         }
         case ACCOUNT_PULL_REQUESTS_FAIL:
             return {
                 ...state,
                 loading: false,
                 error: 'Unknown error @todo'
-            }
+            };
         //
         case ACCOUNT_PULL_REQUESTS_MORE_REQUEST:
             return {
                 ...state,
                 infinityLoading: true,
                 type: action.payload
-            }
+            };
         case ACCOUNT_PULL_REQUESTS_MORE_SUCCESS: {
             const payload = action.payload;
 
@@ -87,16 +87,16 @@ export default (state: AccountPullRequestsState = initialState, action: Object):
                 hasMore: payload.data.items.length === ACCOUNT_PULL_REQUESTS_LIMIT,
                 type: payload.type,
                 page: payload.page
-            }
+            };
         }
         case ACCOUNT_PULL_REQUESTS_MORE_FAIL:
             return {
                 ...state,
                 infinityLoading: false,
                 error: 'Unknown error @todo'
-            }
+            };
         //
         default:
             return state;
     }
-}
+};

@@ -6,16 +6,17 @@ import { StyleSheet, View } from 'react-native';
 import { Patch, UIText } from 'components';
 
 type Props = {
-    file: Object
+    file: Object,
+    style: ComponentStyles
 }
 
 export default class DiffBlock extends PureComponent<void, Props, void> {
 
     render() {
-        const { file } = this.props;
+        const { file, style } = this.props;
 
         return (
-            <View style={styles.root}>
+            <View style={[styles.root, style]}>
                 <View style={styles.header}>
                     <UIText>{file.filename}</UIText>
                 </View>
@@ -28,15 +29,17 @@ export default class DiffBlock extends PureComponent<void, Props, void> {
 const styles = StyleSheet.create({
     root: {
         flex: 0,
-        // backgroundColor: '#fafbfc'
+        borderColor: '#ddd',
+        borderBottomWidth: 1,
     },
     header: {
         flex: 1,
         flexDirection: 'row',
-        paddingVertical: 5,
+        paddingVertical: 10,
         paddingHorizontal: 10,
         backgroundColor: '#fafbfc',
-        borderWidth: 1,
+        borderTopWidth: 1,
+        borderBottomWidth: 1,
         borderColor: '#ddd',
     }
 });

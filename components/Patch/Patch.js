@@ -2,7 +2,7 @@
 // @flow
 
 import React, { PureComponent } from 'react';
-import { View } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { UIText } from 'components';
 import { parse } from 'utils/patch-parse';
 import { captureException } from 'utils/errors';
@@ -60,7 +60,7 @@ export default class Patch extends PureComponent<void, Props, PatchState> {
         }
 
         return (
-            <View>
+            <View style={styles.root}>
                 {
                     patch.diff.map(
                         (line, index) => {
@@ -90,3 +90,8 @@ export default class Patch extends PureComponent<void, Props, PatchState> {
         );
     }
 }
+
+const styles = StyleSheet.create({
+    root: {
+    }
+});

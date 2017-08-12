@@ -33,7 +33,7 @@ class CommitScreen extends PureComponent<void, Props, void> {
         );
     }
 
-    renderFile = ({ item }) => <DiffBlock file={item} />;
+    renderFile = ({ item }) => <DiffBlock file={item} style={styles.diffBlock} />;
 
     render() {
         const { loading, error, commit } = this.props.state;
@@ -61,8 +61,6 @@ class CommitScreen extends PureComponent<void, Props, void> {
             return null;
         }
 
-        console.log(commit);
-
         return (
             <ScrollView>
                 <View style={styles.overviewBox}>
@@ -89,6 +87,10 @@ const styles = StyleSheet.create({
         flex: 0,
         padding: 10
     },
+    diffBlock: {
+        flex: 1,
+        marginBottom: 10
+    }
 });
 
 export default connect(

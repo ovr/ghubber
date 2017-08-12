@@ -39,7 +39,7 @@ export default class DiffBlock extends PureComponent<void, Props, void> {
                 <View style={styles.statsBlock} key={'statsBlock-another' + i} />
             );
         }
-        
+
         return (
             <View style={[styles.root, style]}>
                 <View style={styles.header}>

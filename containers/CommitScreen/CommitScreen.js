@@ -3,7 +3,7 @@
 
 import React, { PureComponent } from 'react';
 import { View, StyleSheet, ScrollView, FlatList } from 'react-native';
-import { ErrorView, Spinner, UIText, DiffBlock } from 'components';
+import { ErrorView, Spinner, UIText, DiffBlock, Avatar } from 'components';
 import { connect } from 'react-redux';
 import { fetchCommit } from 'actions';
 
@@ -64,7 +64,17 @@ class CommitScreen extends PureComponent<void, Props, void> {
         return (
             <ScrollView>
                 <View style={styles.overviewBox}>
-                    <UIText>{commit.commit.message}</UIText>
+                    <View style={styles.messageBox}>
+                        <UIText>{commit.commit.message}</UIText>
+                    </View>
+                    <View style={styles.commitInfoBox}>
+                        {
+                            commit.committer ? (
+                                <Avatar user={commit.committer} size={25} style={styles.avatar} />
+                            ) : null
+                        }
+                        <UIText style={styles.commiter}>{commit.committer ? commit.committer.login : commit.commit.committer.name}</UIText>
+                    </View>
                 </View>
                 <FlatList
                     data={commit.files}
@@ -85,11 +95,35 @@ const styles = StyleSheet.create({
     },
     overviewBox: {
         flex: 0,
-        padding: 10
+        margin: 6,
+        borderWidth: 1,
+        borderColor: 'rgba(27,31,35,0.15)'
+    },
+    messageBox: {
+        padding: 10,
+        backgroundColor: '#eaf5ff',
+        borderBottomWidth: 1,
+        borderColor: 'rgba(27,31,35,0.15)',
     },
     diffBlock: {
         flex: 1,
         marginBottom: 10
+    },
+    commitInfoBox: {
+        flex: 1,
+        flexDirection: 'row',
+        paddingVertical: 5,
+        paddingHorizontal: 10,
+        alignItems: 'center'
+    },
+    avatar: {
+        flex: 0,
+        flexDirection: 'row',
+        marginRight: 5
+    },
+    commiter: {
+        flex: 1,
+        flexDirection: 'row'
     }
 });
 

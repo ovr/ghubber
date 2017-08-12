@@ -39,6 +39,7 @@ type Props = {
 // @todo Remove when we will support all events navigation
 function isNavigationSupported(event: PushEvent | PullRequestEvent): boolean {
     switch (event.type) {
+        case 'ForkEvent':
         case 'PullRequestEvent':
         case 'IssuesEvent':
         case 'IssueEvent':
@@ -334,6 +335,7 @@ class EventRowMobile extends PureComponent<void, Props, void> {
                 this.props.showRepositoryCommit(parts[0], parts[1], event.payload.head);
                 break;
             }
+            case 'ForkEvent':
             case 'WatchEvent': {
                 const parts = event.repo.name.split('/');
                 this.props.showRepositoryByParams(parts[0], parts[1]);

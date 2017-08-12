@@ -11,6 +11,7 @@ Features:
 
 Fixes:
 
+- [Feed] Fix login change
 - [Android] Fixed crash with Sentry
 
 ## v0.6.1

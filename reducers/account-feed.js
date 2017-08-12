@@ -95,6 +95,7 @@ export default (state: AccountFeedState = initialState, action: Object): Account
 
             const nextState = {
                 ...initialState,
+                login: state.login,
                 loading: false,
                 hasMore: payload.length === ACCOUNT_FEED_LIMIT,
                 events: payload

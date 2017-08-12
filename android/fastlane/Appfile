@@ -1,0 +1,2 @@
+json_key_file "google-service-upload.json" # Path to the json secret file - Follow https://github.com/fastlane/supply#setup to get one
+package_name "com.ghubber" # e.g. com.krausefx.app

@@ -1,5 +1,8 @@
-ios/sentry.properties
+android/google-service-upload.json
 android/sentry.properties
+
+ios/sentry.properties
+
 .eslintcache
 
 # OSX

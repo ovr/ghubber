@@ -1,0 +1,5 @@
+GHubber is an open source crossplatform unofficial GitHub client app powered on React-Native.
+
+Client is under development, if you want to help or find a bug or want to ask for feature things, feel free to do it on: 
+
+https://github.com/ovr/ghubber

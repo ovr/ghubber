@@ -1,7 +1,11 @@
 android/google-service-upload.json
 android/sentry.properties
+android/fastlane/README.md
+android/fastlane/report.xml
 
 ios/sentry.properties
+ios/fastlane/README.md
+ios/fastlane/report.xml
 
 .eslintcache
 

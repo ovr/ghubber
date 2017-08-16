@@ -1,5 +1,5 @@
-// @author Dmitry Patsura <talk@dmtry.me> https://github.com/ovr
 // @flow
+// @author Dmitry Patsura <talk@dmtry.me> https://github.com/ovrå
 
 import React, { PureComponent } from 'react';
 import { AppRegistry } from 'react-native';

@@ -40,7 +40,6 @@ class SideMenu extends PureComponent<void, Props, void> {
                 <TouchableOpacity style={styles.header} onPress={() => makeNavigation(showAccount)}>
                     <Avatar user={app.user} size={AVATAR_SIZE} style={styles.avatar} />
                     <View style={styles.headerRight}>
-                        <Text style={styles.name} numberOfLines={1}>{app.user.name}</Text>
                         <Text style={styles.login} numberOfLines={1}>@{app.user.login}</Text>
                     </View>
                 </TouchableOpacity>
@@ -57,42 +56,65 @@ class SideMenu extends PureComponent<void, Props, void> {
                             )
                         )
                     }
-                </View>
-                <View style={styles.bottom}>
-                    <Button style={styles.button} onPress={() => makeNavigation(showAbout)}>
-                        About
-                    </Button>
-                    <Button style={styles.button} onPress={() => makeNavigation(logout)}>
-                        Logout
-                    </Button>
+                    <View style={styles.bottom}>
+                        <Button style={styles.button} onPress={() => makeNavigation(showAbout)}>
+                            About
+                        </Button>
+                        <Button style={styles.button} onPress={() => makeNavigation(logout)}>
+                            Logout
+                        </Button>
+                    </View>
                 </View>
             </ScrollView>
         );
     }
 }
 
-const AVATAR_SIZE = 50;
+const APPBAR_HEIGHT = Platform.OS === 'ios' ? 44 : 56;
+const STATUSBAR_HEIGHT = Platform.OS === 'ios' ? 20 : 0;
+const AVATAR_SIZE = APPBAR_HEIGHT * 0.65;
+
+let platformContainerStyles;
+
+if (Platform.OS === 'ios') {
+    platformContainerStyles = {
+        borderBottomWidth: StyleSheet.hairlineWidth,
+        borderBottomColor: 'rgba(0, 0, 0, .3)',
+    };
+} else {
+    platformContainerStyles = {
+        shadowColor: 'black',
+        shadowOpacity: 0.1,
+        shadowRadius: StyleSheet.hairlineWidth,
+        shadowOffset: {
+            height: StyleSheet.hairlineWidth,
+        },
+        elevation: 4,
+    };
+}
 
 const styles = StyleSheet.create({
     root: {
         flex: 1,
-        marginTop: Platform.OS === 'ios' ? 25 : 10,
-        paddingLeft: 10,
-        paddingRight: 5
+        paddingTop: STATUSBAR_HEIGHT,
+        // paddingLeft: 10,
+        // paddingRight: 5,
+        backgroundColor: Platform.OS === 'ios' ? '#F7F7F7' : '#FFF',
     },
     header: {
         flex: 0,
         flexDirection: 'row',
-        paddingBottom: 15,
-        borderBottomWidth: 1,
-        borderBottomColor: '#586069'
+        alignItems: 'center',
+        height: APPBAR_HEIGHT,
+        paddingHorizontal: 5,
+        ...platformContainerStyles,
     },
     avatar: {
-        borderRadius: AVATAR_SIZE / 2,
+        // borderRadius: AVATAR_SIZE / 2,
         marginRight: 15
     },
     headerRight: {
-        width: 190
+        flex: 1,
     },
     name: {
         fontSize: 20,
@@ -106,7 +128,10 @@ const styles = StyleSheet.create({
         marginTop: 15
     },
     body: {
-        marginTop: 15
+        flex: 1,
+        paddingTop: 15,
+        paddingHorizontal: 10,
+        backgroundColor: '#FFFFFF'
     },
     button: {
         marginBottom: 10

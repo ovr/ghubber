@@ -9,11 +9,13 @@ import { showSideMenu, hideSideMenu } from 'actions';
 import SideMenuRender from 'react-native-side-menu';
 
 import type { SideMenuState } from 'reducers/side-menu';
+import type { AppState } from 'reducers/app';
 
 type Props = {
+    sideMenu: SideMenuState,
+    app: AppState,
     showSideMenu: typeof showSideMenu,
     hideSideMenu: typeof hideSideMenu,
-    sideMenu: SideMenuState,
     children: React.Element<any>
 }
 
@@ -30,19 +32,24 @@ class SideMenuDrawer extends PureComponent<void, Props, void> {
     };
 
     render() {
-        const { children } = this.props;
+        const { app, children } = this.props;
 
-        return (
-            <SideMenuRender menu={<SideMenu />} isOpen={this.props.sideMenu.open} onChange={this.onChange}>
-                {children}
-            </SideMenuRender>
-        );
+        if (app.authorization) {
+            return (
+                <SideMenuRender menu={<SideMenu />} isOpen={this.props.sideMenu.open} onChange={this.onChange}>
+                    {children}
+                </SideMenuRender>
+            );
+        }
+
+        return children;
     }
 }
 
 export default connect(
     (state) => ({
-        sideMenu: state.sideMenu
+        sideMenu: state.sideMenu,
+        app: state.app
     }),
     { showSideMenu, hideSideMenu }
 )(SideMenuDrawer);

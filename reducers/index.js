@@ -4,6 +4,7 @@
 import { combineReducers } from 'redux';
 
 import { default as app } from './app';
+import { default as sideMenu } from './side-menu';
 import { default as login } from './login';
 import { default as profile } from './profile';
 import { default as accountIssues } from './account-issues';
@@ -22,6 +23,7 @@ export default combineReducers({
     accountIssues,
     accountPullRequests,
     app,
+    sideMenu,
     login,
     profile,
     profileRepositories,

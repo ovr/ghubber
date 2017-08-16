@@ -21,3 +21,4 @@ export * from './RepositoryPullRequestScreen';
 export * from './SideMenu';
 export * from './SideMenuButton';
 export * from './CommitScreen';
+export * from './SideMenuDrawer';

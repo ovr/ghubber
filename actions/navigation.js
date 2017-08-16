@@ -2,7 +2,7 @@
 // @flow
 
 import { NavigationActions } from 'react-navigation';
-import { NAVIGATION_SET_TITLE } from 'constants';
+import { NAVIGATION_SET_TITLE, SIDEMENU_OPEN, SIDEMENU_CLOSE } from 'constants';
 import { setupRepository } from './repository';
 
 // import flow types
@@ -23,15 +23,15 @@ export function showFeedSettings() {
 }
 
 export function showSideMenu() {
-    return NavigationActions.navigate({
-        routeName: 'DrawerOpen',
-    });
+    return {
+        type: SIDEMENU_OPEN
+    };
 }
 
 export function hideSideMenu() {
-    return NavigationActions.navigate({
-        routeName: 'DrawerClose',
-    });
+    return {
+        type: SIDEMENU_CLOSE
+    };
 }
 
 export function showAccountIssues() {

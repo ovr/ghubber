@@ -12,7 +12,6 @@ import type { AppState } from 'reducers/app';
 
 type Props = {
     app: AppState,
-    closeDrawer: () => null,
     hideSideMenu: typeof hideSideMenu,
     logout: typeof logout,
     showAccount: typeof showAccount,
@@ -21,15 +20,24 @@ type Props = {
 
 class SideMenu extends PureComponent<void, Props, void> {
     render() {
-        const { app, logout, showAccount, showAbout } = this.props;
+        const { app, logout, showAccount, showAbout, hideSideMenu } = this.props;
 
         if (app.user === null) {
             return null;
         }
 
+        const makeNavigation = (next: Function) => {
+            hideSideMenu();
+
+            setTimeout(
+                next,
+                250
+            );
+        };
+
         return (
             <ScrollView style={styles.root}>
-                <TouchableOpacity style={styles.header} onPress={showAccount}>
+                <TouchableOpacity style={styles.header} onPress={() => makeNavigation(showAccount)}>
                     <Avatar user={app.user} size={AVATAR_SIZE} style={styles.avatar} />
                     <View style={styles.headerRight}>
                         <Text style={styles.name} numberOfLines={1}>{app.user.name}</Text>
@@ -51,10 +59,10 @@ class SideMenu extends PureComponent<void, Props, void> {
                     }
                 </View>
                 <View style={styles.bottom}>
-                    <Button style={styles.button} onPress={showAbout}>
+                    <Button style={styles.button} onPress={() => makeNavigation(showAbout)}>
                         About
                     </Button>
-                    <Button style={styles.button} onPress={logout}>
+                    <Button style={styles.button} onPress={() => makeNavigation(logout)}>
                         Logout
                     </Button>
                 </View>
@@ -68,7 +76,7 @@ const AVATAR_SIZE = 50;
 const styles = StyleSheet.create({
     root: {
         flex: 1,
-        marginTop: Platform.OS === 'ios' ? 25 : 0,
+        marginTop: Platform.OS === 'ios' ? 25 : 10,
         paddingLeft: 10,
         paddingRight: 5
     },
@@ -106,6 +114,7 @@ const styles = StyleSheet.create({
     organization: {
         flex: 0,
         flexDirection: 'row',
+        alignItems: 'center',
         height: 30,
         marginBottom: 2
     },

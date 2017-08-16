@@ -4,6 +4,7 @@
 Features:
 
 - [Feed] Allow to specify commit on PushEvent (when commits > 1)
+- Implement new SideMenu
 
 
 ## 0.7.0

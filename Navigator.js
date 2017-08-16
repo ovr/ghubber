@@ -3,9 +3,11 @@
 import React from 'react';
 import { BackHandler } from 'react-native';
 import { connect } from 'react-redux';
-import { SideMenuButton } from 'containers';
-import { addNavigationHelpers, StackNavigator, DrawerNavigator, NavigationActions } from 'react-navigation';
+import { SideMenuButton, SideMenuDrawer } from 'containers';
+import { addNavigationHelpers, StackNavigator, NavigationActions } from 'react-navigation';
 import I18n from 'utils/i18n';
+
+import type { NavigationState } from 'reducers/navigation';
 
 import {
     FeedScreen,
@@ -19,28 +21,13 @@ import {
     AboutScreen,
     AccountIssues,
     AccountPullRequests,
-    SideMenu,
     HomeHeaderRight,
 } from 'containers';
-
-export const HomeScreeDrawer = DrawerNavigator({
-    Home: {
-        // screen: Home
-        screen: FeedScreen
-    },
-}, {
-    drawerWidth: 300,
-    drawerPosition: 'left',
-    // eslint-disable-next-line react/display-name
-    contentComponent: () => <SideMenu />,
-    initialRouteName: 'Home'
-});
-
 
 export const AppNavigator = StackNavigator(
     {
         Home: {
-            screen: HomeScreeDrawer,
+            screen: FeedScreen,
             navigationOptions: {
                 headerLeft: <SideMenuButton />,
                 headerRight: <HomeHeaderRight />
@@ -131,10 +118,8 @@ export const AppNavigator = StackNavigator(
 );
 
 type AppWithNavigationStateProps = {
-    navigation: {
-        index: number
-    },
-    dispatch: Function
+    navigation: NavigationState,
+    dispatch: Dispatch
 };
 
 class AppWithNavigationState extends React.Component<void, AppWithNavigationStateProps, void> {
@@ -158,16 +143,18 @@ class AppWithNavigationState extends React.Component<void, AppWithNavigationStat
 
     render() {
         return (
-            <AppNavigator navigation={ addNavigationHelpers({
-                dispatch: this.props.dispatch,
-                state: this.props.navigation,
-            }) } />
+            <SideMenuDrawer>
+                <AppNavigator navigation={ addNavigationHelpers({
+                    dispatch: this.props.dispatch,
+                    state: this.props.navigation,
+                }) } />
+            </SideMenuDrawer>
         );
     }
 }
 
 const mapStateToProps = state => ({
-    navigation: state.navigation,
+    navigation: state.navigation
 });
 
 export default connect(mapStateToProps)(AppWithNavigationState);

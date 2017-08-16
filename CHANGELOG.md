@@ -1,4 +1,11 @@
 
+## 0.8.0
+
+Features:
+
+- [Feed] Allow to specify commit on PushEvent (when commits > 1)
+
+
 ## 0.7.0
 
 Features:

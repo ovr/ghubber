@@ -3,7 +3,7 @@
 
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import { Avatar, UIText } from 'components';
 import Icon from 'react-native-vector-icons/Octicons';
 
@@ -332,7 +332,31 @@ class EventRowMobile extends PureComponent<void, Props, void> {
             }
             case 'PushEvent': {
                 const parts = event.repo.name.split('/');
-                this.props.showRepositoryCommit(parts[0], parts[1], event.payload.head);
+
+                if (event.payload.commits.length > 1) {
+                    Alert.alert(
+                        'Select to display',
+                        'Specify commit to display',
+                        event.payload.commits.map(
+                            (commit) => {
+                                return {
+                                    text: commit.sha.substring(0, 7) + ' ' + commit.message.substring(0, 50),
+                                    onPress: () => this.props.showRepositoryCommit(parts[0], parts[1], commit.sha)
+                                };
+                            }
+                        ).concat([
+                            {
+                                text: 'Close',
+                                onPress: () => {}
+                            }
+                        ]),
+                        {
+                            cancelable: true
+                        }
+                    );
+                } else {
+                    this.props.showRepositoryCommit(parts[0], parts[1], event.payload.head);
+                }
                 break;
             }
             case 'ForkEvent':

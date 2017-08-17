@@ -12,7 +12,7 @@ type Props = {
     showAccountPullRequests: typeof showAccountPullRequests
 }
 
-class HomeHeaderRight extends PureComponent<void, Props, void> {
+class HomeHeaderRight extends PureComponent<Props, void> {
     render() {
         const { showAccountIssues, showAccountPullRequests } = this.props;
 

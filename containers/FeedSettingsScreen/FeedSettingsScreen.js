@@ -18,7 +18,7 @@ type Props = {
     changeAccountFeedLogin: typeof changeAccountFeedLogin,
 }
 
-class FeedSettingsScreen extends PureComponent<void, Props, void> {
+class FeedSettingsScreen extends PureComponent<Props, void> {
     render() {
         const { app, showHome, changeAccountFeedLogin } = this.props;
 

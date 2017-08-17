@@ -13,7 +13,7 @@ type Props = {
     style?: ComponentStyles
 };
 
-export default class OrganizationAvatar extends PureComponent<void, Props, void> {
+export default class OrganizationAvatar extends PureComponent<Props, void> {
     render() {
         const { organization, size, style } = this.props;
 

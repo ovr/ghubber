@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
 
 const RepositoryUrlPrefixLenght = 'https://api.github.com/repos/'.length;
 
-class IssueRowTablet extends IssueRowMobile<void, Props, void> {
+class IssueRowTablet extends IssueRowMobile<Props, void> {
     render() {
         console.log(this);
 

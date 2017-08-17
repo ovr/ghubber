@@ -23,7 +23,7 @@ type Props = {
     fetchIssue: typeof fetchIssue
 }
 
-class RepositoryIssueScreen extends PureComponent<void, Props, void> {
+class RepositoryIssueScreen extends PureComponent<Props, void> {
     componentWillMount() {
         this.fetchIssue();
     }

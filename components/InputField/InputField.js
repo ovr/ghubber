@@ -11,7 +11,7 @@ type Props = {
     style?: ComponentStyles
 };
 
-export default class InputField extends PureComponent<void, Props, void> {
+export default class InputField extends PureComponent<Props, void> {
     render() {
         const { style, placeholder, onChangeText, secureTextEntry } = this.props;
 

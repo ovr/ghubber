@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
 
 const RepositoryUrlPrefixLenght = 'https://api.github.com/repos/'.length;
 
-export class IssueRowMobile extends PureComponent<void, Props, void> {
+export class IssueRowMobile extends PureComponent<Props, void> {
     onPress = () => {
         const { issue, showRepositoryIssue, showRepositoryPullRequest } = this.props;
 

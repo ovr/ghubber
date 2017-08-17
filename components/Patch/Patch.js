@@ -18,7 +18,7 @@ type PatchState = {
     exception: boolean
 }
 
-export default class Patch extends PureComponent<void, Props, PatchState> {
+export default class Patch extends PureComponent<Props, PatchState> {
     state = {
         patch: null,
         exception: false

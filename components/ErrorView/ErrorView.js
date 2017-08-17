@@ -6,17 +6,13 @@ import { View, StyleSheet } from 'react-native';
 import { Button, UIText } from 'components';
 import { __ } from 'utils/i18n';
 
-type DefaultProps = {
-    refreshable: boolean
-}
-
 type Props = {
     error: Response,
     refreshable: boolean,
     onPress: () => any,
 };
 
-export default class ErrorView extends PureComponent<DefaultProps, Props, void> {
+export default class ErrorView extends PureComponent<Props, void> {
     static defaultProps = {
         refreshable: true,
     };

@@ -5,7 +5,7 @@ import React, { PureComponent } from 'react';
 import { Text } from 'react-native';
 import { connect } from 'react-redux';
 
-class NavigationTitle extends PureComponent<void, void, void> {
+class NavigationTitle extends PureComponent<void, void> {
     render() {
         const { navigation } = this.props;
 

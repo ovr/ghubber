@@ -27,7 +27,7 @@ type Props = {
 
 const TITLE_COMMITS_INDEX = 1;
 
-class RepositoryPullRequestScreen extends PureComponent<void, Props, void> {
+class RepositoryPullRequestScreen extends PureComponent<Props, void> {
     componentWillMount() {
         this.fetchPullRequest();
     }

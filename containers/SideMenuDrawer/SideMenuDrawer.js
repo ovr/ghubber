@@ -19,7 +19,7 @@ type Props = {
     children: React.Element<any>
 }
 
-class SideMenuDrawer extends PureComponent<void, Props, void> {
+class SideMenuDrawer extends PureComponent<Props, void> {
     // This method is needed to sync open status, when user open side menu and click on the content inside Screen
     onChange = (open) => {
         const { showSideMenu, hideSideMenu } = this.props;

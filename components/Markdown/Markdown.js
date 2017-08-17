@@ -10,7 +10,7 @@ type Props = {
     content: string
 }
 
-export default class Markdown extends PureComponent<void, Props, void> {
+export default class Markdown extends PureComponent<Props, void> {
     render() {
         const { content } = this.props;
 

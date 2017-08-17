@@ -11,7 +11,7 @@ type Props = {
     style?: ComponentStyles
 };
 
-export default class Button extends PureComponent<void, Props, void> {
+export default class Button extends PureComponent<Props, void> {
     render() {
         const { style, children, onPress } = this.props;
 

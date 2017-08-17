@@ -10,7 +10,7 @@ type Props = {
     onPress: (commit: Object) => any
 };
 
-export default class CommitRow extends PureComponent<void, Props, void> {
+export default class CommitRow extends PureComponent<Props, void> {
     render() {
         const { commit, onPress } = this.props;
 

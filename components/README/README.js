@@ -9,13 +9,13 @@ type Props = {
     repo: string,
 }
 
-type State = {
+type READMEState = {
     loading: boolean,
     error: boolean,
     content: ''
 }
 
-export default class README extends PureComponent<void, Props, State> {
+export default class README extends PureComponent<Props, READMEState> {
     state: State = {
         loading: true,
         error: false,

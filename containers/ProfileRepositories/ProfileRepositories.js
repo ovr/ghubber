@@ -25,7 +25,7 @@ type Props = {
     showRepository: typeof showRepository,
 }
 
-class ProfileRepositories extends PureComponent<void, Props, void> {
+class ProfileRepositories extends PureComponent<Props, void> {
     componentWillMount() {
         this.props.fetchRepositories(this.props.navigation.params.id);
     }

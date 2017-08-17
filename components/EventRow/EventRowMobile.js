@@ -53,7 +53,7 @@ function isNavigationSupported(event: PushEvent | PullRequestEvent): boolean {
     return false;
 }
 
-class EventRowMobile extends PureComponent<void, Props, void> {
+class EventRowMobile extends PureComponent<Props, void> {
     renderCommitsList(payload: Object): React.Element<any> | null {
         if (!payload.commits) {
             return null;
@@ -368,7 +368,7 @@ class EventRowMobile extends PureComponent<void, Props, void> {
         }
     }
 
-    render(): React.Element<any> {
+    render(): React.Node {
         const { event } = this.props;
 
         try {

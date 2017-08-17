@@ -23,7 +23,7 @@ type ApplicationStateInitialized = {
 
 type ApplicationState = ApplicationStateNotInitialized | ApplicationStateInitialized;
 
-class App extends PureComponent<void, void, ApplicationState> {
+class App extends PureComponent<void, ApplicationState> {
     state: ApplicationState = {
         initialized: false,
         store: null

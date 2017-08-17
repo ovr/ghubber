@@ -18,7 +18,7 @@ type Props = {
     showAbout: typeof showAbout,
 }
 
-class SideMenu extends PureComponent<void, Props, void> {
+class SideMenu extends PureComponent<Props, void> {
     render() {
         const { app, logout, showAccount, showAbout, hideSideMenu } = this.props;
 

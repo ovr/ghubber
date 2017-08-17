@@ -18,7 +18,7 @@ type Props = {
     }
 }
 
-class Repository extends PureComponent<void, Props, void> {
+class Repository extends PureComponent<Props, void> {
     componentWillMount() {
         const { repository } = this.props.state;
 

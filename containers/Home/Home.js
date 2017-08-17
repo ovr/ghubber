@@ -15,7 +15,7 @@ type Props = {
     logout: typeof logout
 }
 
-class Home extends PureComponent<void, Props, void> {
+class Home extends PureComponent<Props, void> {
     render() {
         const { showAccount, showAccountIssues, showProfile, showAbout } = this.props;
 

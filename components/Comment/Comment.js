@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     },
 });
 
-export default class Comment extends PureComponent<void, Props, void> {
+export default class Comment extends PureComponent<Props, void> {
     render() {
         const { comment } = this.props;
 

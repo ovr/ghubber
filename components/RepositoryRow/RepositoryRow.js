@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     }
 });
 
-export default class RepositoryRow extends PureComponent<void, Props, void> {
+export default class RepositoryRow extends PureComponent<Props, void> {
     render() {
         const { repo, onPress } = this.props;
 

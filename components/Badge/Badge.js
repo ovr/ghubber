@@ -10,7 +10,7 @@ type Props = {
     backgroundColor?: string
 };
 
-export default class Badge extends PureComponent<void, Props, void> {
+export default class Badge extends PureComponent<Props, void> {
     render() {
         const { backgroundColor, text } = this.props;
 

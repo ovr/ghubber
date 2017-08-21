@@ -3,6 +3,8 @@
 
 import { AsyncStorage } from 'react-native';
 
-export function saveStoreKey(key: string, entity: Object) {
+export function saveStoreKey<S>(key: string, entity: S): S {
     AsyncStorage.setItem(key, JSON.stringify(entity));
+
+    return entity;
 }

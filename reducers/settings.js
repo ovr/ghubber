@@ -2,6 +2,7 @@
 // @flow
 
 import { SETTINGS_THEME_CHANGE } from 'constants';
+import { saveStoreKey } from 'utils/save-state-key';
 import { getThemeByName } from 'utils/themes';
 
 import type { ThemeName, Theme } from 'utils/themes';
@@ -21,10 +22,10 @@ const initialState: SettingsState = {
 export default (state: SettingsState = initialState, action: Action): SettingsState => {
     switch (action.type) {
         case SETTINGS_THEME_CHANGE:
-            return {
+            return saveStoreKey('state:settings', {
                 theme: action.payload,
                 ...getThemeByName(action.payload)
-            };
+            });
         default:
             return state;
     }

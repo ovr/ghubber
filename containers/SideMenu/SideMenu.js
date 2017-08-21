@@ -10,9 +10,11 @@ import { APPBAR_HEIGHT, STATUSBAR_HEIGHT } from 'utils/platform';
 
 // import flow types
 import type { AppState } from 'reducers/app';
+import type { SettingsState } from 'reducers/settings';
 
 type Props = {
     app: AppState,
+    settings: SettingsState,
     hideSideMenu: typeof hideSideMenu,
     logout: typeof logout,
     showAccount: typeof showAccount,
@@ -21,7 +23,7 @@ type Props = {
 
 class SideMenu extends PureComponent<Props, void> {
     render() {
-        const { app, logout, showAccount, showSettings, hideSideMenu } = this.props;
+        const { app, logout, showAccount, showSettings, hideSideMenu, settings } = this.props;
 
         if (app.user === null) {
             return null;
@@ -37,11 +39,11 @@ class SideMenu extends PureComponent<Props, void> {
         };
 
         return (
-            <View style={styles.root}>
+            <View style={[styles.root, { backgroundColor: settings.headerBackgroundColor }]}>
                 <TouchableOpacity style={styles.header} onPress={() => makeNavigation(showAccount)}>
                     <Avatar user={app.user} size={AVATAR_SIZE} style={styles.avatar} />
                     <View style={styles.headerRight}>
-                        <Text style={styles.login} numberOfLines={1}>@{app.user.login}</Text>
+                        <Text style={[styles.login, { color: settings.headerTitleColor }]} numberOfLines={1}>@{app.user.login}</Text>
                     </View>
                 </TouchableOpacity>
                 <ScrollView style={styles.body}>
@@ -151,10 +153,9 @@ const styles = StyleSheet.create({
 });
 
 export default connect(
-    (state) => {
-        return {
-            app: state.app
-        };
-    },
+    (state: State) => ({
+        app: state.app,
+        settings: state.settings,
+    }),
     { hideSideMenu, logout, showAccount, showSettings }
 )(SideMenu);

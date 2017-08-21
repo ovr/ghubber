@@ -3,7 +3,12 @@
 
 import React, { PureComponent } from 'react';
 import { View, StyleSheet } from 'react-native';
+import { UIText, Button } from 'components';
 import { connect } from 'react-redux';
+import { getThemes, getThemeByName } from 'utils/themes';
+import { APPBAR_HEIGHT, STATUSBAR_HEIGHT } from 'utils/platform';
+
+import Swiper from 'react-native-swiper';
 
 type Props = {
 }
@@ -11,21 +16,58 @@ type Props = {
 class SettingsScreen extends PureComponent<Props, void> {
     render() {
         return (
-            <View style={styles.root}>
-            </View>
+            <Swiper style={styles.wrapper} showsButtons={true}>
+                {
+                    getThemes().map(
+                        (themeName) => {
+                            const theme = getThemeByName(themeName);
+
+                            return (
+                                <View style={styles.theme} key={'theme' + themeName}>
+                                    <View style={[styles.header, { backgroundColor: theme.headerBackgroundColor }]}>
+                                        <UIText style={{ color: theme.headerTitleColor }}>Test Title</UIText>
+                                    </View>
+                                    <View style={styles.body}>
+                                        <Button style={styles.selectBtn}>
+                                            Select Theme
+                                        </Button>
+                                    </View>
+                                </View>
+                            );
+                        }
+                    )
+                }
+            </Swiper>
         );
     }
 }
 
 const styles = StyleSheet.create({
     root: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center'
+        flex: 0,
+        backgroundColor: '#fff',
     },
-    button: {
-        width: 200,
-        marginBottom: 10
+    theme: {
+        flex: 1,
+        paddingTop: STATUSBAR_HEIGHT,
+        justifyContent: 'flex-start',
+        backgroundColor: '#fff',
+    },
+    header: {
+        flex: 0,
+        flexDirection: 'row',
+        height: APPBAR_HEIGHT,
+        backgroundColor: '#000',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    body: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    selectBtn: {
+        flex: 0,
     }
 });
 

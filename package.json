@@ -35,6 +35,7 @@
         "react-native-htmlview": "^0.12.0",
         "react-native-sentry": "^0.17.1",
         "react-native-side-menu": "^1.0.2",
+        "react-native-swiper": "^1.5.10",
         "react-native-vector-icons": "^4.3.0",
         "react-navigation": "^1.0.0-beta.12",
         "react-redux": "^5.0.6",

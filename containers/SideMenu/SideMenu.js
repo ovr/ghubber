@@ -6,6 +6,7 @@ import { View, StyleSheet, Text, ScrollView, Platform, TouchableOpacity } from '
 import { Avatar, OrganizationAvatar, Button } from 'components';
 import { connect } from 'react-redux';
 import { hideSideMenu, logout, showAccount, showSettings } from 'actions';
+import { APPBAR_HEIGHT, STATUSBAR_HEIGHT } from 'utils/platform';
 
 // import flow types
 import type { AppState } from 'reducers/app';
@@ -70,8 +71,6 @@ class SideMenu extends PureComponent<Props, void> {
     }
 }
 
-const APPBAR_HEIGHT = Platform.OS === 'ios' ? 44 : 56;
-const STATUSBAR_HEIGHT = Platform.OS === 'ios' ? 20 : 0;
 const AVATAR_SIZE = APPBAR_HEIGHT * 0.65;
 
 let platformContainerStyles;

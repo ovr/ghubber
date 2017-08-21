@@ -44,7 +44,7 @@ export default (state: NavigationState = initialState, action: Object): Navigati
         // case NAVIGATION_HOME:
         //     // Reset whole Stack by new State
         //     return AppNavigator.router.getStateForAction(
-        //         AppNavigator.router.getActionForPathAndParams('Home')
+        //         AppNavigator.router.getActionForPathAndParams('SettingsScreen')
         //     );
         // default:
     //

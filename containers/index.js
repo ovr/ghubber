@@ -1,7 +1,8 @@
 // @author Dmitry Patsura <talk@dmtry.me> https://github.com/ovr
 // @flow
 
-export * from './Home';
+export * from './SettingsScreen';
+export * from './ThemeSelectScreen';
 export * from './HomeHeaderRight';
 export * from './LoginScreen';
 export * from './NavigationTitle';

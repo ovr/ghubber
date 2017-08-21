@@ -46,6 +46,18 @@ export function showAccountPullRequests() {
     });
 }
 
+export function showThemeSelect() {
+    return NavigationActions.navigate({
+        routeName: 'ThemeSelect',
+    });
+}
+
+export function showSettings() {
+    return NavigationActions.navigate({
+        routeName: 'Settings',
+    });
+}
+
 export function showAbout() {
     return NavigationActions.navigate({
         routeName: 'AboutScreen',

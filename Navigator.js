@@ -4,15 +4,20 @@
 import React from 'react';
 import { BackHandler } from 'react-native';
 import { connect } from 'react-redux';
-import { SideMenuButton, SideMenuDrawer } from 'containers';
 import { addNavigationHelpers, StackNavigator, NavigationActions, Header } from 'react-navigation';
 import I18n from 'utils/i18n';
 
 import type { NavigationState } from 'reducers/navigation';
 
 import {
+    SideMenuButton,
+    SideMenuDrawer,
+    HomeHeaderRight,
+    //
     FeedScreen,
     FeedSettingsScreen,
+    SettingsScreen,
+    ThemeSelectScreen,
     LoginScreen,
     CommitScreen,
     RepositoryIssueScreen,
@@ -22,7 +27,6 @@ import {
     AboutScreen,
     AccountIssues,
     AccountPullRequests,
-    HomeHeaderRight,
 } from 'containers';
 
 export const AppNavigator = StackNavigator(
@@ -59,6 +63,18 @@ export const AppNavigator = StackNavigator(
                     title: `${params.repo}#${params.number}`
                 };
             },
+        },
+        Settings: {
+            screen: SettingsScreen,
+            navigationOptions: {
+                title: 'Settings'
+            }
+        },
+        ThemeSelect: {
+            screen: ThemeSelectScreen,
+            navigationOptions: {
+                header: null
+            }
         },
         Commit: {
             screen: CommitScreen,

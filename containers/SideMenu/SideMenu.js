@@ -5,7 +5,7 @@ import React, { PureComponent } from 'react';
 import { View, StyleSheet, Text, ScrollView, Platform, TouchableOpacity } from 'react-native';
 import { Avatar, OrganizationAvatar, Button } from 'components';
 import { connect } from 'react-redux';
-import { hideSideMenu, logout, showAccount, showAbout } from 'actions';
+import { hideSideMenu, logout, showAccount, showSettings } from 'actions';
 
 // import flow types
 import type { AppState } from 'reducers/app';
@@ -15,12 +15,12 @@ type Props = {
     hideSideMenu: typeof hideSideMenu,
     logout: typeof logout,
     showAccount: typeof showAccount,
-    showAbout: typeof showAbout,
+    showSettings: typeof showSettings,
 }
 
 class SideMenu extends PureComponent<Props, void> {
     render() {
-        const { app, logout, showAccount, showAbout, hideSideMenu } = this.props;
+        const { app, logout, showAccount, showSettings, hideSideMenu } = this.props;
 
         if (app.user === null) {
             return null;
@@ -57,8 +57,8 @@ class SideMenu extends PureComponent<Props, void> {
                         )
                     }
                     <View style={styles.bottom}>
-                        <Button style={styles.button} onPress={() => makeNavigation(showAbout)}>
-                            About
+                        <Button style={styles.button} onPress={() => makeNavigation(showSettings)}>
+                            Settings
                         </Button>
                         <Button style={styles.button} onPress={() => makeNavigation(logout)}>
                             Logout
@@ -157,5 +157,5 @@ export default connect(
             app: state.app
         };
     },
-    { hideSideMenu, logout, showAccount, showAbout }
+    { hideSideMenu, logout, showAccount, showSettings }
 )(SideMenu);

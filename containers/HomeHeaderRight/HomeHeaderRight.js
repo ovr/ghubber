@@ -5,24 +5,28 @@ import React, { PureComponent } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { showAccountIssues, showAccountPullRequests } from 'actions';
+
 import I18n from 'utils/i18n';
 
+import type { SettingsState } from 'reducers/settings';
+
 type Props = {
+    settings: SettingsState,
     showAccountIssues: typeof showAccountIssues,
     showAccountPullRequests: typeof showAccountPullRequests
 }
 
 class HomeHeaderRight extends PureComponent<Props, void> {
     render() {
-        const { showAccountIssues, showAccountPullRequests } = this.props;
+        const { showAccountIssues, showAccountPullRequests, settings } = this.props;
 
         return (
             <View style={styles.root}>
                 <TouchableOpacity style={styles.button} onPress={showAccountPullRequests}>
-                    <Text style={styles.buttonText}>{I18n.t('AccountPullRequests.Title')}</Text>
+                    <Text style={[styles.buttonText, { color: settings.headerTitleColor }]}>{I18n.t('AccountPullRequests.Title')}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.button} onPress={showAccountIssues}>
-                    <Text style={styles.buttonText}>{I18n.t('HomeHeaderRight.IssuesTitle')}</Text>
+                    <Text style={[styles.buttonText, { color: settings.headerTitleColor }]}>{I18n.t('HomeHeaderRight.IssuesTitle')}</Text>
                 </TouchableOpacity>
                 {/*<TouchableOpacity style={styles.button}>*/}
                     {/*<Text style={styles.buttonText}>Notifications</Text>*/}
@@ -33,7 +37,9 @@ class HomeHeaderRight extends PureComponent<Props, void> {
 }
 
 export default connect(
-    (state) => state,
+    (state) => ({
+        settings: state.settings,
+    }),
     { showAccountIssues, showAccountPullRequests }
 )(HomeHeaderRight);
 

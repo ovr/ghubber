@@ -7,7 +7,10 @@ import { showSideMenu } from 'actions';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+import type { SettingsState } from 'reducers/settings';
+
 type Props = {
+    settings: SettingsState,
     showSideMenu: typeof showSideMenu
 }
 
@@ -15,13 +18,13 @@ const iconStyle = { marginLeft: 10 };
 
 class SideMenuButton extends PureComponent<Props, void> {
     render() {
-        const { showSideMenu } = this.props;
+        const { showSideMenu, settings } = this.props;
 
         return (
             <Icon
                 name="list"
                 size={24}
-                style={iconStyle}
+                style={[iconStyle, { color: settings.headerTitleColor }]}
                 onPress={showSideMenu}
             />
         );
@@ -29,6 +32,8 @@ class SideMenuButton extends PureComponent<Props, void> {
 }
 
 export default connect(
-    (state) => state,
+    (state) => ({
+        settings: state.settings
+    }),
     { showSideMenu }
 )(SideMenuButton);

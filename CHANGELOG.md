@@ -4,7 +4,9 @@
 Features:
 
 - [Feed] Allow to specify commit on PushEvent (when commits > 1)
-- Implement new SideMenu
+- [SideMenu] Rework
+- [Settings] Initial
+- Support themes inside App (initial)
 
 
 ## 0.7.0

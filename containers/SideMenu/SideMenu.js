@@ -97,8 +97,6 @@ const styles = StyleSheet.create({
     root: {
         flex: 1,
         paddingTop: STATUSBAR_HEIGHT,
-        // paddingLeft: 10,
-        // paddingRight: 5,
         backgroundColor: Platform.OS === 'ios' ? '#F7F7F7' : '#FFF',
     },
     header: {
@@ -107,6 +105,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         height: APPBAR_HEIGHT,
         paddingHorizontal: 5,
+        borderRightWidth: StyleSheet.hairlineWidth,
+        borderRightColor: 'rgba(0, 0, 0, .1)',
         ...platformContainerStyles,
     },
     avatar: {

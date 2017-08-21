@@ -1,10 +1,11 @@
+// @flow
 // @author Dmitry Patsura <talk@dmtry.me> https://github.com/ovr
 
 import React from 'react';
 import { BackHandler } from 'react-native';
 import { connect } from 'react-redux';
 import { SideMenuButton, SideMenuDrawer } from 'containers';
-import { addNavigationHelpers, StackNavigator, NavigationActions } from 'react-navigation';
+import { addNavigationHelpers, StackNavigator, NavigationActions, Header } from 'react-navigation';
 import I18n from 'utils/i18n';
 
 import type { NavigationState } from 'reducers/navigation';
@@ -113,9 +114,34 @@ export const AppNavigator = StackNavigator(
     {
         cardStyle: {
             backgroundColor: 'white'
+        },
+        navigationOptions: {
+            // eslint-disable-next-line react/display-name
+            header: (props) => <NavBar {...props} />,
         }
     }
 );
+
+const NavBar = connect(
+    (state: State, ownProps) => ({
+        getScreenDetails: (scene) => {
+            const details = ownProps.getScreenDetails(scene);
+
+            return {
+                ...details,
+                options: {
+                    headerTitleStyle: {
+                        color: state.settings.headerTitleColor,
+                    },
+                    headerStyle: {
+                        backgroundColor: state.settings.headerBackgroundColor
+                    },
+                    ...details.options,
+                }
+            };
+        },
+    })
+)(Header);
 
 type AppWithNavigationStateProps = {
     navigation: NavigationState,
@@ -144,17 +170,18 @@ class AppWithNavigationState extends React.Component<void, AppWithNavigationStat
     render() {
         return (
             <SideMenuDrawer>
-                <AppNavigator navigation={ addNavigationHelpers({
+                <AppNavigator navigation={addNavigationHelpers({
                     dispatch: this.props.dispatch,
                     state: this.props.navigation,
-                }) } />
+                })} />
             </SideMenuDrawer>
         );
     }
 }
 
 const mapStateToProps = state => ({
-    navigation: state.navigation
+    navigation: state.navigation,
+    settings: state.settings,
 });
 
 export default connect(mapStateToProps)(AppWithNavigationState);

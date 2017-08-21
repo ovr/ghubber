@@ -36,14 +36,14 @@ class SideMenu extends PureComponent<Props, void> {
         };
 
         return (
-            <ScrollView style={styles.root}>
+            <View style={styles.root}>
                 <TouchableOpacity style={styles.header} onPress={() => makeNavigation(showAccount)}>
                     <Avatar user={app.user} size={AVATAR_SIZE} style={styles.avatar} />
                     <View style={styles.headerRight}>
                         <Text style={styles.login} numberOfLines={1}>@{app.user.login}</Text>
                     </View>
                 </TouchableOpacity>
-                <View style={styles.body}>
+                <ScrollView style={styles.body}>
                     {
                         app.organizations && app.organizations.map(
                             (entity) => (
@@ -64,8 +64,8 @@ class SideMenu extends PureComponent<Props, void> {
                             Logout
                         </Button>
                     </View>
-                </View>
-            </ScrollView>
+                </ScrollView>
+            </View>
         );
     }
 }
@@ -131,7 +131,9 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingTop: 15,
         paddingHorizontal: 10,
-        backgroundColor: '#FFFFFF'
+        backgroundColor: '#FFFFFF',
+        borderRightWidth: StyleSheet.hairlineWidth,
+        borderRightColor: 'rgba(0, 0, 0, .1)',
     },
     button: {
         marginBottom: 10

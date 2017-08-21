@@ -50,6 +50,8 @@ export type Action =
       BaseAction<"SIDEMENU_OPEN">
     | BaseAction<"SIDEMENU_CLOSE">
     //
+    | ActionWithPayload<"SETTINGS_THEME_CHANGE", any>
+    //
     | ActionWithPayload<"APP_PROFILE_SUCCESS", any>
     | ActionWithPayload<"APP_ORGANIZATIONS_SUCCESS", any>
     | ActionWithPayload<"APP_LOGOUT_SUCCESS", any>

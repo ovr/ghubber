@@ -5,16 +5,21 @@ import React, { PureComponent } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { UIText, Button } from 'components';
 import { connect } from 'react-redux';
+import { themeChange, showHome } from 'actions';
 import { getThemes, getThemeByName } from 'utils/themes';
 import { APPBAR_HEIGHT, STATUSBAR_HEIGHT } from 'utils/platform';
 
 import Swiper from 'react-native-swiper';
 
 type Props = {
+    themeChange: typeof themeChange,
+    showHome: typeof showHome,
 }
 
 class SettingsScreen extends PureComponent<Props, void> {
     render() {
+        const { themeChange, showHome } = this.props;
+
         return (
             <Swiper style={styles.wrapper} showsButtons={true}>
                 {
@@ -28,7 +33,7 @@ class SettingsScreen extends PureComponent<Props, void> {
                                         <UIText style={{ color: theme.headerTitleColor }}>Test Title</UIText>
                                     </View>
                                     <View style={styles.body}>
-                                        <Button style={styles.selectBtn}>
+                                        <Button style={styles.selectBtn} onPress={() => { themeChange(themeName); showHome(); }}>
                                             Select Theme
                                         </Button>
                                     </View>
@@ -73,5 +78,5 @@ const styles = StyleSheet.create({
 
 export default connect(
     (state) => state,
-    { }
+    { themeChange, showHome }
 )(SettingsScreen);

@@ -4,8 +4,9 @@
 import React, { PureComponent } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
-import { Button } from 'components';
+import { Button, UIText } from 'components';
 import { showThemeSelect, showAbout } from 'actions';
+import { isTablet } from 'react-native-device-info';
 
 type Props = {
     showThemeSelect: typeof showThemeSelect,
@@ -18,6 +19,10 @@ class SettingsScreen extends PureComponent<Props, void> {
 
         return (
             <View style={styles.root}>
+                <View style={styles.info}>
+                    <UIText>Debug: {__DEV__ ? 'enabled' : 'disabled'}</UIText>
+                    <UIText>Optimized for tablet: {isTablet() ? 'enabled' : 'disabled'}</UIText>
+                </View>
                 <Button style={styles.button} onPress={() => showThemeSelect()}>
                     Select Theme
                 </Button>
@@ -34,6 +39,9 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center'
+    },
+    info: {
+      marginBottom: 30,
     },
     button: {
         width: 200,

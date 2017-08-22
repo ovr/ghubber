@@ -146,6 +146,7 @@ const NavBar = connect(
             return {
                 ...details,
                 options: {
+                    headerTintColor: state.settings.headerTitleColor,
                     headerTitleStyle: {
                         color: state.settings.headerTitleColor,
                     },

@@ -46,6 +46,12 @@ export function showAccountPullRequests() {
     });
 }
 
+export function showAccountNotifications() {
+    return NavigationActions.navigate({
+        routeName: 'AccountNotifications',
+    });
+}
+
 export function showThemeSelect() {
     return NavigationActions.navigate({
         routeName: 'ThemeSelect',

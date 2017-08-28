@@ -1,7 +1,4 @@
 export default {
-    HomeHeaderRight: {
-        IssuesTitle:  'Issues'
-    },
     AccountIssues: {
         Title: 'Issues',
         Error: 'Oops! Error...',
@@ -11,6 +8,9 @@ export default {
             Assigned: 'Assigned',
             Mentioned: 'Mentioned',
         }
+    },
+    AccountNotifications: {
+        Title: 'Notifications'
     },
     AccountPullRequests: {
         Title: 'Pull Requests',

@@ -1,7 +1,4 @@
 export default {
-    HomeHeaderRight: {
-        IssuesTitle:  'Задачи'
-    },
     AccountIssues: {
         Title: 'Задачи',
         Error: 'Упс, возникла ошибка!',
@@ -11,6 +8,9 @@ export default {
             Assigned: 'Назначенные мне',
             Mentioned: 'Упомянутые',
         }
+    },
+    AccountNotifications: {
+        Title: 'Нотификации'
     },
     AccountPullRequests: {
         Title: 'Pull-запросы',

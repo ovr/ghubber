@@ -1,45 +1,31 @@
 // @flow
 
-import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/Octicons';
-import merge from 'lodash/merge';
 
 type Props = {
-    text: Object,
-    icon: Object,
-};
+    text: string,
+    textStyle?: ComponentStyles,
+    iconName: string,
+    iconSize: number,
+    iconStyle?: ComponentStyles,
+}
 
-export default class TextIcon extends PureComponent<void, Props, void> {
-    static propTypes = {
-        text: PropTypes.shape({
-            content: PropTypes.any.isRequired,
-        }),
-        icon: PropTypes.shape({
-            name: PropTypes.any.isRequired,
-        })
-    };
-
+export default class TextIcon extends PureComponent<Props, void> {
     static defaultProps = {
-        text: {
-            style: {},
-        },
-        icon: {
-            size: 16,
-            style: {},
-        },
+        iconSize: 16,
     };
 
     render() {
-        const { text, icon } = merge(TextIcon.defaultProps, this.props);
+        const { text, textStyle, iconName, iconSize, iconStyle } = this.props;
 
         return (
             <View style={ styles.container }>
-                <Icon name={ icon.name } size={ icon.size } style={ [styles.icon, icon.style] } />
+                <Icon name={iconName} size={iconSize} style={[styles.icon, iconStyle]} />
 
-                <Text numberOfLines={ 1 } style={ [styles.text, text.style] }>
-                    { text.content }
+                <Text numberOfLines={1} style={[styles.text, textStyle]}>
+                    {text}
                 </Text>
             </View>
         );

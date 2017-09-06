@@ -32,24 +32,35 @@ export default class ProfileViewTablet extends PureComponent<Props> {
                         {
                             user.company ? (
                                 <TextIcon
-                                    text={{ content: user.company, style: styles.company }}
-                                    icon={{ name: 'organization' }}
+                                    text={user.company}
+                                    textStyle={styles.company}
+                                    iconName={'organization'}
                                 />
                             ) : null
                         }
                         {
                             user.location ? (
-                                <TextIcon text={{ content: user.location }} icon={{ name: 'location' }} />
+                                <TextIcon
+                                    text={user.location}
+                                    iconName={'location'}
+                                    textStyle={styles.company}
+                                />
                             ) : null
                         }
                         {
                             user.email ? (
-                                <TextIcon text={{ content: user.email }} icon={{ name: 'mail' }} />
+                                <TextIcon
+                                    text={user.email}
+                                    iconName={'mail'}
+                                />
                             ) : null
                         }
                         {
                             user.blog ? (
-                                <TextIcon text={{ content: user.blog }} icon={{ name: 'link' }} />
+                                <TextIcon
+                                    text={user.blog}
+                                    iconName={'link'}
+                                />
                             ) : null
                         }
                         <UIText style={styles.bio}>{ user.bio }</UIText>

@@ -20,7 +20,8 @@ type Props = {
     fetchMorePullRequests: typeof fetchMorePullRequests
 }
 
-class AccountPullRequests extends PureComponent<Props, void> {
+class AccountPullRequests extends PureComponent<void> {
+    static defaultProps: Props;
     componentWillMount() {
         const { app, fetchPullRequests } = this.props;
 

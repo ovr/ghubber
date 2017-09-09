@@ -23,7 +23,8 @@ type Props = {
     fetchIssue: typeof fetchIssue
 }
 
-class RepositoryIssueScreen extends PureComponent<Props, void> {
+class RepositoryIssueScreen extends PureComponent<void> {
+    static defaultProps: Props;
     componentWillMount() {
         this.fetchIssue();
     }

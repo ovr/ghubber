@@ -22,7 +22,8 @@ type Props = {
     fetchCommit: typeof fetchCommit
 }
 
-class CommitScreen extends PureComponent<Props, void> {
+class CommitScreen extends PureComponent<void> {
+    static defaultProps: Props;
     componentWillMount() {
         const params = this.props.navigation.params;
 

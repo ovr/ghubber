@@ -20,7 +20,8 @@ type Props = {
     fetchMoreIssues: typeof fetchMoreIssues
 }
 
-class AccountIssues extends PureComponent<Props, void> {
+class AccountIssues extends PureComponent<void> {
+    static defaultProps: Props;
     componentWillMount() {
         const { app, fetchIssues } = this.props;
 

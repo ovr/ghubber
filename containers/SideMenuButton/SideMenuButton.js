@@ -16,7 +16,8 @@ type Props = {
 
 const iconStyle = { marginLeft: 10 };
 
-class SideMenuButton extends PureComponent<Props, void> {
+class SideMenuButton extends PureComponent<void> {
+    static defaultProps: Props;
     render() {
         const { showSideMenu, settings } = this.props;
 

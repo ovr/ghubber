@@ -16,7 +16,8 @@ type Props = {
 
 const TITLE_REPOS_INDEX = 1;
 
-class ProfileScreen extends PureComponent<Props, void> {
+class ProfileScreen extends PureComponent<void> {
+    static defaultProps: Props;
     renderTitle(index: number, title: string): React.Element<any> {
         const { profile } = this.props;
 

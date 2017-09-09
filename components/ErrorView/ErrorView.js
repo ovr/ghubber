@@ -12,7 +12,7 @@ type Props = {
     onPress: () => any,
 };
 
-export default class ErrorView extends PureComponent<Props, void> {
+export default class ErrorView extends PureComponent<void> {
     static defaultProps = {
         refreshable: true,
     };

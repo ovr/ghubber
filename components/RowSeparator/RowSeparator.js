@@ -4,7 +4,7 @@
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 
-export default class RowSeparator extends Component<void, void> {
+export default class RowSeparator extends Component<void> {
     shouldComponentUpdate() {
         return false;
     }

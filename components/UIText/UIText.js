@@ -4,7 +4,8 @@
 import React, { PureComponent } from 'react';
 import { StyleSheet, Platform, Text } from 'react-native';
 
-export default class UIText extends PureComponent<any, void> {
+export default class UIText extends PureComponent<void> {
+    static defaultProps: any;
     render() {
         const {
             style,

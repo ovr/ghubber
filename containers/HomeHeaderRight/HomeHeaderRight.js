@@ -16,7 +16,8 @@ type Props = {
     showAccountNotifications: typeof showAccountNotifications,
 }
 
-class HomeHeaderRight extends PureComponent<Props, void> {
+class HomeHeaderRight extends PureComponent<void> {
+    static defaultProps: Props;
     render() {
         const { showAccountIssues, showAccountPullRequests, showAccountNotifications, settings } = this.props;
 

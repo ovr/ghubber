@@ -8,7 +8,8 @@ type Props = {
 
 }
 
-export default class Blank extends PureComponent<Props, void> {
+export default class Blank extends PureComponent<void> {
+    static defaultProps: Props;
     render() {
         return (
             <View style={styles.blank} />

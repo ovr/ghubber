@@ -18,7 +18,8 @@ type Props = {
     fetchMoreAccountFeed: typeof fetchMoreAccountFeed,
 }
 
-class FeedScreen extends PureComponent<Props, void> {
+class FeedScreen extends PureComponent<void> {
+    static defaultProps: Props;
     componentWillMount() {
         this.props.fetchAccountFeed();
     }

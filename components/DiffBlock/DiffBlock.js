@@ -10,7 +10,8 @@ type Props = {
     style: ComponentStyles
 }
 
-export default class DiffBlock extends PureComponent<Props, void> {
+export default class DiffBlock extends PureComponent<void> {
+    static defaultProps: Props;
 
     render() {
         const { file, style } = this.props;

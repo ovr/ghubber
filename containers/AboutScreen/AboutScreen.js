@@ -13,7 +13,8 @@ type Props = {
     showProfile: typeof showProfile,
 }
 
-class AboutScreen extends PureComponent<Props, void> {
+class AboutScreen extends PureComponent<void> {
+    static defaultProps: Props;
     render() {
         const { showProfile } = this.props;
 

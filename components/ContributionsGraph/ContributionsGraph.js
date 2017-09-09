@@ -12,7 +12,8 @@ type Props = {
     user: UserEntity,
 };
 
-export default class ContributionsGraph extends PureComponent<Props, void> {
+export default class ContributionsGraph extends PureComponent<void> {
+    static defaultProps: Props;
     render() {
         // Not supported now for mobile, because It's not optimized for it :(
         if (!isTablet()) {

@@ -17,7 +17,8 @@ type Props = {
     showFeedSettings: typeof showFeedSettings
 }
 
-class FeedTopPanel extends PureComponent<Props, void> {
+class FeedTopPanel extends PureComponent<void> {
+    static defaultProps: Props;
     render() {
         const { app, feed, showFeedSettings } = this.props;
 

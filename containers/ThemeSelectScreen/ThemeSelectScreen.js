@@ -16,7 +16,8 @@ type Props = {
     showHome: typeof showHome,
 }
 
-class SettingsScreen extends PureComponent<Props, void> {
+class SettingsScreen extends PureComponent<void> {
+    static defaultProps: Props;
     render() {
         const { themeChange, showHome } = this.props;
 

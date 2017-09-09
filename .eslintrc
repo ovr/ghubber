@@ -22,7 +22,10 @@
         //
         "semi": ["error", "always"],
         "object-curly-spacing": ["error", "always"],
-        "quotes": ["error", "single", { "allowTemplateLiterals": true }]
+        "quotes": ["error", "single", { "allowTemplateLiterals": true }],
+        //
+        "flowtype/define-flow-type": 1,
+        "flowtype/use-flow-type": 1
     },
     "globals": {
         "__DEV__": true,

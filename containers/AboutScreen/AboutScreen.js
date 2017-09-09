@@ -13,15 +13,14 @@ type Props = {
     showProfile: typeof showProfile,
 }
 
-class AboutScreen extends PureComponent<void> {
-    static defaultProps: Props;
+class AboutScreen extends PureComponent<Props> {
     render() {
         const { showProfile } = this.props;
 
         const version = getVersion();
 
         return (
-            <View>
+            <View style={styles.root}>
                 <View style={styles.header}>
                     <Text style={styles.title}>GHubber (v{version})</Text>
                 </View>
@@ -52,8 +51,6 @@ class AboutScreen extends PureComponent<void> {
 const styles = StyleSheet.create({
     root: {
         flex: 1,
-        paddingVertical: 10,
-        paddingHorizontal: 15,
     },
     title: {
         flex: 0,

@@ -28,12 +28,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignContent: 'center',
     },
-    forkBadge: {
-        paddingVertical: 5,
-        paddingHorizontal: 10,
-        marginRight: 10,
-        backgroundColor: 'yellow'
-    },
     header: {
         flex: 1,
         flexDirection: 'row',
@@ -55,8 +49,7 @@ const styles = StyleSheet.create({
     }
 });
 
-export default class RepositoryRow extends PureComponent<void> {
-    static defaultProps: Props;
+export default class RepositoryRow extends PureComponent<Props> {
     render() {
         const { repo, onPress } = this.props;
 

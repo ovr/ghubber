@@ -49,10 +49,6 @@ class SettingsScreen extends PureComponent<void> {
 }
 
 const styles = StyleSheet.create({
-    root: {
-        flex: 0,
-        backgroundColor: '#fff',
-    },
     theme: {
         flex: 1,
         paddingTop: STATUSBAR_HEIGHT,

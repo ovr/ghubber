@@ -118,10 +118,6 @@ const styles = StyleSheet.create({
     headerRight: {
         flex: 1,
     },
-    name: {
-        fontSize: 20,
-        fontWeight: 'bold'
-    },
     login: {
         fontSize: 18,
         color: '#586069',

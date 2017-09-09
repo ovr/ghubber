@@ -15,9 +15,8 @@ type READMEState = {
     content: ''
 }
 
-export default class README extends PureComponent<void, READMEState> {
-    static defaultProps: Props;
-    state: State = {
+export default class README extends PureComponent<Props, READMEState> {
+    state: READMEState = {
         loading: true,
         error: false,
         content: ''

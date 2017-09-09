@@ -10,8 +10,7 @@ import { Repository } from 'containers';
 type Props = {
 }
 
-class RepositoryScreen extends PureComponent<void> {
-    static defaultProps: Props;
+class RepositoryScreen extends PureComponent<Props> {
     render() {
         return (
             <IndicatorViewPager

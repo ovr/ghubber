@@ -8,8 +8,7 @@ type Props = {
     style?: ComponentStyles
 };
 
-export default class Spinner extends PureComponent<void> {
-    static defaultProps: Props;
+export default class Spinner extends PureComponent<Props> {
     render() {
         const { style } = this.props;
 

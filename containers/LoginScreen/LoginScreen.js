@@ -28,8 +28,7 @@ type State = {
     code: string
 }
 
-class LoginScreen extends PureComponent<void, State> {
-    static defaultProps: Props;
+class LoginScreen extends PureComponent<Props, State> {
     state: State = {
         username: '',
         password: '',

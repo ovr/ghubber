@@ -13,8 +13,7 @@ type Props = {
     user: UserEntity
 };
 
-export default class ProfileViewMobile extends PureComponent<void> {
-    static defaultProps: Props;
+export default class ProfileViewMobile extends PureComponent<Props> {
     render() {
         const { user } = this.props;
 

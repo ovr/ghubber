@@ -28,8 +28,7 @@ function mapReaction(name: string): string {
     return name;
 }
 
-export default class ReactionGroup extends PureComponent<void> {
-    static defaultProps: Props;
+export default class ReactionGroup extends PureComponent<Props> {
     render() {
         const { reactions } = this.props;
 

@@ -16,8 +16,7 @@ type Props = {
 // eslint-disable-next-line no-unused-vars
 const { height, width } = Dimensions.get('window');
 
-export default class ProfileOrganizationsView extends PureComponent<void> {
-    static defaultProps: Props;
+export default class ProfileOrganizationsView extends PureComponent<Props> {
     render() {
         const { organizations } = this.props;
 

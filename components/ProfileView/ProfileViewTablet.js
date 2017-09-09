@@ -13,8 +13,7 @@ type Props = {
     user: UserEntity
 };
 
-export default class ProfileViewTablet extends PureComponent<void> {
-    static defaultProps: Props;
+export default class ProfileViewTablet extends PureComponent<Props> {
     render() {
         const { user } = this.props;
 

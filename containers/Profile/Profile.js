@@ -21,8 +21,7 @@ type Props = {
     fetchOrganizations: typeof fetchOrganizations,
 }
 
-class Profile extends PureComponent<void> {
-    static defaultProps: Props;
+class Profile extends PureComponent<Props> {
     componentWillMount() {
         this.props.fetchProfile(this.props.navigation.params.id);
         this.props.fetchOrganizations(this.props.navigation.params.id);

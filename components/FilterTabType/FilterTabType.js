@@ -11,8 +11,7 @@ type Props = {
     onPress: () => any,
 };
 
-export default class FilterTabType extends PureComponent<void> {
-    static defaultProps: Props;
+export default class FilterTabType extends PureComponent<Props> {
     render() {
         const { active, title, onPress } = this.props;
 

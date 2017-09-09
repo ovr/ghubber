@@ -1,7 +1,7 @@
 // @author Dmitry Patsura <talk@dmtry.me> https://github.com/ovr
 // @flow
 
-import * as React from 'react';
+import React from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { UIText, Badge } from 'components';

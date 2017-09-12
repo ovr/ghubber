@@ -14,9 +14,9 @@ import {
 import { makeThunk } from 'utils/action-helper';
 
 // import flow types
-import type { AccountIssuesType } from 'reducers/account-issues';
+import type { AccountNotificationsType } from 'reducers/account-notifications';
 
-export function fetchNotifications(type: AccountIssuesType): ThunkAction {
+export function fetchNotifications(type: AccountNotificationsType): ThunkAction {
     return makeThunk(
         () => getNotifications({
             per_page: ACCOUNT_NOTIFICATIONS_LIMIT
@@ -32,7 +32,7 @@ export function fetchNotifications(type: AccountIssuesType): ThunkAction {
     );
 }
 
-export function fetchMoreNotifications(page: number, type: AccountIssuesType): ThunkAction {
+export function fetchMoreNotifications(page: number, type: AccountNotificationsType): ThunkAction {
     return makeThunk(
         () => getNotifications({
             per_page: ACCOUNT_NOTIFICATIONS_LIMIT,

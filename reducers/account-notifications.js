@@ -59,8 +59,8 @@ export default (state: AccountNotificationsState = initialState, action: Object)
             return {
                 ...state,
                 loading: false,
-                hasMore: payload.data.items.length === ACCOUNT_PULL_REQUESTS_LIMIT,
-                items: payload.data.items,
+                hasMore: payload.data.length === ACCOUNT_PULL_REQUESTS_LIMIT,
+                items: payload.data,
                 type: payload.type,
             };
         }
@@ -83,8 +83,8 @@ export default (state: AccountNotificationsState = initialState, action: Object)
             return {
                 ...state,
                 infinityLoading: false,
-                items: state.items.concat(payload.data.items),
-                hasMore: payload.data.items.length === ACCOUNT_PULL_REQUESTS_LIMIT,
+                items: state.items.concat(payload.data),
+                hasMore: payload.data.length === ACCOUNT_PULL_REQUESTS_LIMIT,
                 type: payload.type,
                 page: payload.page
             };

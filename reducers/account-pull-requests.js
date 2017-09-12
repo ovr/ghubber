@@ -43,12 +43,12 @@ const initialState: AccountPullRequestsState = {
     error: null,
 };
 
-export default (state: AccountPullRequestsState = initialState, action: Object): AccountPullRequestsState => {
+export default (state: AccountPullRequestsState = initialState, action: Action): AccountPullRequestsState => {
     switch (action.type) {
         case ACCOUNT_PULL_REQUESTS_REQUEST:
             return {
                 ...initialState,
-                issues: [],
+                pullRequests: [],
                 loading: true,
                 error: null,
                 type: action.payload

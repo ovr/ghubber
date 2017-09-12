@@ -123,6 +123,7 @@ const styles = StyleSheet.create({
     },
     commentsList: {
         flex: 1,
+        marginTop: 10
     }
 });
 

@@ -36,13 +36,30 @@ export default class ReactionGroup extends PureComponent<Props> {
             return null;
         }
 
+        let total = 0;
+
+        reactions.forEach(
+            (reaction) => {
+                total += reaction.users.totalCount;
+            }
+        );
+
+        if (total === 0) {
+            return null;
+        }
+
         return (
             <View style={styles.reactions}>
                 {
                     reactions.map(
                         (reaction, index) => {
                             return (
-                                <UIText key={'reaction' + index} style={styles.reaction}>{mapReaction(reaction.content)} {reaction.users.totalCount}</UIText>
+                                <UIText
+                                    key={'reaction' + index}
+                                    style={styles.reaction}
+                                >
+                                    {mapReaction(reaction.content)} {reaction.users.totalCount}
+                                </UIText>
                             );
                         }
                     )
@@ -56,7 +73,7 @@ const styles = StyleSheet.create({
     reactions: {
         flex: 0,
         flexDirection: 'row',
-        marginVertical: 10
+        marginTop: 10
     },
     reaction: {
         flex: 1,

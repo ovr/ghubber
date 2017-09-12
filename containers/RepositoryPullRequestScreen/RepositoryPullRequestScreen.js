@@ -103,7 +103,7 @@ class RepositoryPullRequestScreen extends PureComponent<Props> {
                 <UIText style={styles.body}>{pullRequest.body}</UIText>
                 <ReactionGroup reactions={pullRequest.reactionGroups} />
                 <FlatList
-                    style={styles.wrapper}
+                    style={styles.commentsList}
                     data={pullRequest.comments.nodes}
                     keyExtractor={(comment: Object) => comment.id}
                     renderItem={
@@ -249,6 +249,10 @@ const styles = StyleSheet.create({
         color: '#fff',
         paddingVertical: 3,
         paddingHorizontal: 5
+    },
+    commentsList: {
+        flex: 1,
+        marginTop: 10
     }
 });
 

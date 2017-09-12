@@ -1,11 +1,11 @@
 // @flow
 // @author Dmitry Patsura <talk@dmtry.me> https://github.com/ovr
 
-import React from 'react';
+import * as React from 'react';
 import { BackHandler } from 'react-native';
 import { connect } from 'react-redux';
 import { addNavigationHelpers, StackNavigator, NavigationActions, Header } from 'react-navigation';
-import I18n from 'utils/i18n';
+import { __ } from 'utils/i18n';
 
 import type { NavigationState } from 'reducers/navigation';
 
@@ -27,6 +27,7 @@ import {
     AboutScreen,
     AccountIssues,
     AccountPullRequests,
+    AccountNotifications,
 } from 'containers';
 
 export const AppNavigator = StackNavigator(
@@ -111,13 +112,19 @@ export const AppNavigator = StackNavigator(
         AccountIssues: {
             screen: AccountIssues,
             navigationOptions: {
-                title: I18n.t('AccountIssues.Title'),
+                title: __('AccountIssues.Title'),
             },
         },
         AccountPullRequests: {
             screen: AccountPullRequests,
             navigationOptions: {
-                title: I18n.t('AccountPullRequests.Title'),
+                title: __('AccountPullRequests.Title'),
+            },
+        },
+        AccountNotifications: {
+            screen: AccountNotifications,
+            navigationOptions: {
+                title: __('AccountNotifications.Title'),
             },
         },
         AboutScreen: {
@@ -165,7 +172,7 @@ type AppWithNavigationStateProps = {
     dispatch: Dispatch
 };
 
-class AppWithNavigationState extends React.Component<void, AppWithNavigationStateProps, void> {
+class AppWithNavigationState extends React.Component<AppWithNavigationStateProps, void> {
     componentDidMount() {
         BackHandler.addEventListener('hardwareBackPress', () => {
             const { dispatch, navigation } = this.props;

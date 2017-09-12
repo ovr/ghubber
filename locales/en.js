@@ -10,7 +10,13 @@ export default {
         }
     },
     AccountNotifications: {
-        Title: 'Notifications'
+        Title: 'Notifications',
+        EmptyResult: 'You don\'t have any notifications ;)',
+        Filter: {
+            Unread: 'Unread',
+            Participating: 'Participating',
+            All: 'All'
+        }
     },
     AccountPullRequests: {
         Title: 'Pull Requests',

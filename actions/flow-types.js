@@ -14,6 +14,7 @@ import type { StyleSheet } from 'react-native';
 import type { AccountFeedState } from 'reducers/account-feed';
 import type { AccountIssuesState } from 'reducers/account-issues';
 import type { AccountPullRequestsState } from 'reducers/account-pull-requests';
+import type { AccountNotificationsState } from 'reducers/account-notifications';
 import type { AppState, PlainAuthorizationEntity, OAuthAuthorizationEntity } from 'reducers/app';
 import type { LoginState } from 'reducers/login';
 import type { NavigationState } from 'reducers/navigation';
@@ -55,6 +56,14 @@ export type Action =
     | ActionWithPayload<"APP_PROFILE_SUCCESS", any>
     | ActionWithPayload<"APP_ORGANIZATIONS_SUCCESS", any>
     | ActionWithPayload<"APP_LOGOUT_SUCCESS", any>
+    //
+    | BaseAction<"ACCOUNT_NOTIFICATIONS_REQUEST">
+    | ActionWithPayload<"ACCOUNT_NOTIFICATIONS_REQUEST_SUCCESS", any>
+    | ActionWithError<"ACCOUNT_NOTIFICATIONS_REQUEST_FAIL", any>
+    //
+    | BaseAction<"ACCOUNT_PULL_REQUESTS_MORE_REQUEST">
+    | ActionWithPayload<"ACCOUNT_PULL_REQUESTS_MORE_SUCCESS", any>
+    | ActionWithError<"ACCOUNT_PULL_REQUESTS_MORE_FAIL", any>
     //
     | BaseAction<"ACCOUNT_FEED_REQUEST">
     | ActionWithPayload<"ACCOUNT_FEED_REQUEST_SUCCESS", any>
@@ -121,6 +130,8 @@ export type ActionType =
     | 'REPOSITORY_REQUEST'
     | 'ACCOUNT_FEED_REQUEST'
     | 'ACCOUNT_FEED_INFINITY_REQUEST'
+    | 'ACCOUNT_NOTIFICATIONS_REQUEST'
+    | 'ACCOUNT_NOTIFICATIONS_MORE_REQUEST'
     | 'LOGIN_REQUEST'
 ;
 
@@ -130,6 +141,7 @@ export type State = {|
     accountFeed: AccountFeedState,
     accountIssues: AccountIssuesState,
     accountPullRequests: AccountPullRequestsState,
+    accountNotifications: AccountNotificationsState,
     app: AppState,
     login: LoginState,
     navigation: NavigationState,

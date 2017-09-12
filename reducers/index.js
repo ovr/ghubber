@@ -9,6 +9,7 @@ import { default as login } from './login';
 import { default as profile } from './profile';
 import { default as accountIssues } from './account-issues';
 import { default as accountPullRequests } from './account-pull-requests';
+import { default as accountNotifications } from './account-notifications';
 import { default as accountFeed } from './account-feed';
 import { default as profileRepositories } from './profile-repositories';
 import { default as profileOrganizations } from './profile-organizations';
@@ -22,6 +23,7 @@ import { default as settings } from './settings';
 export default combineReducers({
     accountFeed,
     accountIssues,
+    accountNotifications,
     accountPullRequests,
     app,
     sideMenu,

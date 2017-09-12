@@ -10,7 +10,13 @@ export default {
         }
     },
     AccountNotifications: {
-        Title: 'Нотификации'
+        Title: 'Нотификации',
+        EmptyResult: 'Нет нотификаций ;)',
+        Filter: {
+            Unread: 'Непрочитанные',
+            Participating: 'Участие',
+            All: 'Все'
+        }
     },
     AccountPullRequests: {
         Title: 'Pull-запросы',

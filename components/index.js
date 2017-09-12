@@ -4,6 +4,7 @@
 export * from './Avatar';
 export * from './Button';
 export * from './RepositoryRow';
+export * from './NotificationRow';
 export * from './RowSeparator';
 export * from './Spinner';
 export * from './Patch';

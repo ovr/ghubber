@@ -5,7 +5,7 @@ import React, { PureComponent } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import { fetchNotifications, fetchMoreNotifications } from 'actions';
-import { IssueRow, Spinner, FilterTabType, RowSeparator } from 'components';
+import { NotificationRow, Spinner, FilterTabType, RowSeparator } from 'components';
 import I18n from 'utils/i18n';
 
 // import flow types
@@ -60,12 +60,11 @@ class AccountNotifications extends PureComponent<Props> {
             <FlatList
                 style={styles.list}
                 data={items}
-                keyExtractor={(issue: NotificationEntity) => issue.id}
+                keyExtractor={(entity: NotificationEntity) => entity.id}
                 renderItem={
                     ({ item }) => (
-                        <IssueRow
-                            issue={item}
-                            onPress={() => null}
+                        <NotificationRow
+                            notification={item}
                         />
                     )
                 }

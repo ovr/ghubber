@@ -27,6 +27,19 @@ type Props = {
 
 const TITLE_COMMITS_INDEX = 1;
 
+function getStateColor(state: string): string {
+    switch (state.toLowerCase()) {
+        case 'open':
+            return '#2cbe4e';
+        case 'merged':
+            return '#6f42c1';
+        case 'closed':
+            return '#cb2431';
+        default:
+            throw new Error(`Unknown state: ${state}`);
+    }
+}
+
 class RepositoryPullRequestScreen extends PureComponent<Props> {
     componentWillMount() {
         this.fetchPullRequest();
@@ -83,7 +96,7 @@ class RepositoryPullRequestScreen extends PureComponent<Props> {
                     <View style={styles.issueInfo}>
                         <Badge
                             text={pullRequest.state}
-                            backgroundColor={pullRequest.state.toLowerCase() === 'open' ? '#2cbe4e' : '#cb2431'}
+                            backgroundColor={getStateColor(pullRequest.state)}
                         />
                     </View>
                 </View>

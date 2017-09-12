@@ -49,7 +49,7 @@ export class NotificationRow extends PureComponent<Props> {
             showRepositoryIssue(
                 notification.repository.owner.login,
                 notification.repository.name,
-                last(parts)
+                parseInt(last(parts))
             );
         } else {
             const parts: Array<string> = notification.subject.url.split('/');
@@ -57,7 +57,7 @@ export class NotificationRow extends PureComponent<Props> {
             showRepositoryPullRequest(
                 notification.repository.owner.login,
                 notification.repository.name,
-                last(parts)
+                parseInt(last(parts))
             );
         }
     };

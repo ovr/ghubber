@@ -22,7 +22,7 @@ function mapReaction(name: string): string {
         case 'CONFUSED':
             return '😕';
         case 'HEART':
-            return '💜';
+            return '❤️';
     }
 
     return name;

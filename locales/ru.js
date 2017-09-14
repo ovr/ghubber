@@ -1,7 +1,6 @@
 export default {
     AccountIssues: {
         Title: 'Задачи',
-        Error: 'Упс, возникла ошибка!',
         EmptyResult: 'У вас нет задач ;)',
         Filter: {
             Created: 'По дате создания',
@@ -20,7 +19,6 @@ export default {
     },
     AccountPullRequests: {
         Title: 'Pull-запросы',
-        Error: 'Упс, возникла ошибка!',
         EmptyResult: 'Нет pull-запросов ;)',
         Filter: {
             Created: 'По дате создания',

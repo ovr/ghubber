@@ -1,7 +1,6 @@
 export default {
     AccountIssues: {
         Title: 'Issues',
-        Error: 'Oops! Error...',
         EmptyResult: 'You don\'t have any issues ;)',
         Filter: {
             Created: 'Created',
@@ -20,7 +19,6 @@ export default {
     },
     AccountPullRequests: {
         Title: 'Pull Requests',
-        Error: 'Oops! Error...',
         EmptyResult: 'You don\'t have any pull requests ;)',
         Filter: {
             Created: 'Created',

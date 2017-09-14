@@ -5,7 +5,7 @@ import React, { PureComponent } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import { fetchIssues, fetchMoreIssues } from 'actions';
-import { IssueRow, Spinner, FilterTabType, RowSeparator } from 'components';
+import { IssueRow, Spinner, FilterTabType, RowSeparator, ErrorView } from 'components';
 import I18n from 'utils/i18n';
 
 // import flow types
@@ -39,9 +39,19 @@ class AccountIssues extends PureComponent<Props> {
         }
 
         if (error) {
+            const { fetchIssues, app, issues } = this.props;
+
             return (
                 <View style={styles.container}>
-                    <Text>{I18n.t('AccountIssues.Error')}</Text>
+                    <ErrorView
+                        error={error}
+                        onClick={
+                            () => fetchIssues(
+                                app.user.login,
+                                issues.type
+                            )
+                        }
+                    />
                 </View>
             );
         }

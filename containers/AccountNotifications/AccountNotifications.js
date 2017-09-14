@@ -2,10 +2,10 @@
 // @flow
 
 import React, { PureComponent } from 'react';
-import { View, Text, StyleSheet, FlatList } from 'react-native';
+import { View, Text, StyleSheet, SectionList } from 'react-native';
 import { connect } from 'react-redux';
 import { fetchNotifications, fetchMoreNotifications } from 'actions';
-import { NotificationRow, Spinner, FilterTabType, RowSeparator, ErrorView } from 'components';
+import { NotificationRow, Spinner, FilterTabType, RowSeparator, ErrorView, UIText } from 'components';
 import I18n from 'utils/i18n';
 
 // import flow types
@@ -66,9 +66,14 @@ class AccountNotifications extends PureComponent<Props> {
         const isRefreshing = infinityLoading;
 
         return (
-            <FlatList
+            <SectionList
                 style={styles.list}
-                data={items}
+                sections={items}
+                renderSectionHeader={({ section }) => (
+                    <View style={styles.sectionHeader}>
+                        <UIText style={styles.sectionTitle}>{section.title}</UIText>
+                    </View>
+                )}
                 keyExtractor={(entity: NotificationEntity) => entity.id}
                 renderItem={
                     ({ item }) => (
@@ -138,6 +143,13 @@ const styles = StyleSheet.create({
     },
     moreLoadingSpinner: {
         marginVertical: 15,
+    },
+    sectionHeader: {
+        paddingVertical: 10,
+    },
+    sectionTitle: {
+        fontSize: 18,
+        color: '#0366d6',
     }
 });
 

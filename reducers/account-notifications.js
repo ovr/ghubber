@@ -43,6 +43,34 @@ const initialState: AccountNotificationsState = {
     error: null,
 };
 
+function groupForSectionList(input: Array<Object>): Array<{data: Array<any>}> {
+    const indexes: { [string]: number } = {};
+    const result: Array<{data: Array<any>}> = [];
+
+    input.forEach(
+        (element) => {
+            const key = element.repository.full_name;
+
+            if (indexes.hasOwnProperty(key)) {
+                const index: number = indexes[key];
+
+                result[index].data.push(element);
+            } else{
+                indexes[key] = result.length;
+
+                result.push({
+                    data: [
+                        element
+                    ],
+                    title: key
+                });
+            }
+        }
+    );
+
+    return result;
+}
+
 export default (state: AccountNotificationsState = initialState, action: Object): AccountNotificationsState => {
     switch (action.type) {
         case ACCOUNT_NOTIFICATIONS_REQUEST:
@@ -60,7 +88,7 @@ export default (state: AccountNotificationsState = initialState, action: Object)
                 ...state,
                 loading: false,
                 hasMore: payload.data.length === ACCOUNT_PULL_REQUESTS_LIMIT,
-                items: payload.data,
+                items: groupForSectionList(payload.data),
                 type: payload.type,
             };
         }

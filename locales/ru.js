@@ -106,4 +106,7 @@ export default {
             tag: 'тег',
         },
     },
+    ModalPicker: {
+        cancelButtonName: 'отмена',
+    },
 };

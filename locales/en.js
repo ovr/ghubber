@@ -103,4 +103,7 @@ export default {
             tag: 'tag',
         },
     },
+    ModalPicker: {
+        cancelButtonName: 'cancel',
+    },
 };

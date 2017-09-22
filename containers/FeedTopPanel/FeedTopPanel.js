@@ -4,8 +4,9 @@
 import React, { PureComponent } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
-import { Avatar, OrganizationAvatar } from 'components';
-import { showFeedSettings } from 'actions';
+
+import { Avatar, OrganizationAvatar, ModalPicker } from 'components';
+import { showHome, changeAccountFeedLogin } from 'actions';
 
 // import flow types
 import type { AccountFeedState } from 'reducers/account-feed';
@@ -14,12 +15,13 @@ import type { AuthAppState } from 'reducers/app';
 type Props = {
     feed: AccountFeedState,
     app: AuthAppState,
-    showFeedSettings: typeof showFeedSettings
+    showHome: typeof showHome,
+    changeAccountFeedLogin: typeof changeAccountFeedLogin,
 }
 
 class FeedTopPanel extends PureComponent<Props> {
     render() {
-        const { app, feed, showFeedSettings } = this.props;
+        const { app, feed, showHome, changeAccountFeedLogin } = this.props;
 
         let isOrganization = false;
         let selectedEntity = app.user;
@@ -39,18 +41,40 @@ class FeedTopPanel extends PureComponent<Props> {
 
         return (
             <View style={styles.root}>
-                <TouchableOpacity style={styles.selectWrapper} onPress={showFeedSettings}>
-                    {
-                        isOrganization ? (
-                            <OrganizationAvatar organization={selectedEntity} size={20} style={styles.avatar}/>
-                        ) : (
-                            <Avatar user={selectedEntity} size={20} style={styles.avatar}/>
-                        )
+                <ModalPicker
+                    data={[app.user, ...app.organizations]}
+                    renderOption={
+                        (entity) => {
+                            return (
+                                <TouchableOpacity
+                                    key={'organization' + Math.random() * (99999 - 1) + 1 + entity.login}
+                                    style={styles.option}
+                                    onPress={() => {
+                                        changeAccountFeedLogin(entity.login);
+                                        showHome();
+                                    }}
+                                >
+                                    <OrganizationAvatar organization={entity} size={24} style={styles.optionAvatar} />
+                                    <Text>{entity.login}</Text>
+                                </TouchableOpacity>
+                            );
+                        }
                     }
-                    <Text style={styles.selectText}>
-                        {selectedEntity.login} ▾
-                    </Text>
-                </TouchableOpacity>
+                >
+                    <View style={styles.selectWrapper}>
+                        {
+                            isOrganization ? (
+                                <OrganizationAvatar organization={selectedEntity} size={20} style={styles.avatar} />
+                            ) : (
+                                    <Avatar user={selectedEntity} size={20} style={styles.avatar} />
+                                )
+                        }
+                        <Text style={styles.selectText}>
+                            {selectedEntity.login} ▾
+                        </Text>
+                    </View>
+                </ModalPicker>
+
             </View>
         );
     }
@@ -60,8 +84,8 @@ const styles = StyleSheet.create({
     root: {
         flex: 0,
         flexDirection: 'row',
-        paddingVertical: 15,
-        marginBottom: 15,
+        paddingVertical: 10,
+        marginBottom: 10,
         borderBottomWidth: 1,
         borderBottomColor: '#e1e4e8'
     },
@@ -69,20 +93,29 @@ const styles = StyleSheet.create({
         borderColor: 'rgba(27, 31, 35, 0.2)',
         borderWidth: 1,
         backgroundColor: '#e6ebf1',
-        paddingVertical: 10,
-        paddingHorizontal: 20,
+        padding: 5,
         flex: 0,
         flexDirection: 'row',
         alignItems: 'center'
     },
     avatar: {
-        marginRight: 6
+        marginRight: 5,
     },
     selectText: {
         color: '#24292e',
-        fontSize: 18,
-        fontWeight: 'bold'
-    }
+        fontSize: 16,
+        fontWeight: 'bold',
+        flexDirection: 'row',
+    },
+    option: {
+        flex: 0,
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: 10,
+    },
+    optionAvatar: {
+        marginRight: 10,
+    },
 });
 
 export default connect(
@@ -90,5 +123,5 @@ export default connect(
         feed: state.accountFeed,
         app: state.app
     }),
-    { showFeedSettings }
+    { showHome, changeAccountFeedLogin }
 )(FeedTopPanel);

@@ -47,7 +47,7 @@ class FeedTopPanel extends PureComponent<Props> {
                         (entity) => {
                             return (
                                 <TouchableOpacity
-                                    key={'organization' + Math.random() * (99999 - 1) + 1 + entity.login}
+                                    key={'organization' + entity.login}
                                     style={styles.option}
                                     onPress={() => {
                                         changeAccountFeedLogin(entity.login);

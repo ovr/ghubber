@@ -12,12 +12,14 @@ import {
     Text,
     ScrollView,
     TouchableOpacity,
+    Platform,
 } from 'react-native';
 
 import { __ } from 'utils/i18n';
 
 const CANCEL_BUTTON_HEIGHT = 40;
 const CANCEL_BUTTON_MARGIN_TOP = 10;
+const STATUS_BAR_HEIGHT = Platform.OS === 'ios' ? 20 : 0;
 
 const { height: deviceHeight, width: deviceWidth } = Dimensions.get('window');
 
@@ -101,7 +103,7 @@ export default class ModalPicker extends PureComponent<Props, State> {
             optionContainerHeight = deviceHeight * 0.8;
         }
 
-        const topOffset = (deviceHeight - optionContainerHeight) / 2;
+        const topOffset = (deviceHeight - optionContainerHeight) / 2 + STATUS_BAR_HEIGHT;
 
         this.setState({
             optionContainerHeight,

@@ -58,8 +58,8 @@ const styles = StyleSheet.create({
 });
 
 type Props = {
-    data: Array,
-    renderOption: Function,
+    data: Array<any>,
+    renderOption: (item: Object) => React$Element<any>,
     children: Element,
 }
 
@@ -73,25 +73,21 @@ export default class ModalPicker extends PureComponent<Props, State> {
         renderOption: () => { },
     };
 
-    constructor() {
-        super();
+    state = {
+        modalVisible: false,
+    };
 
-        this.state = {
-            modalVisible: false,
-        };
-    }
-
-    close() {
+    close = () => {
         this.setState({
             modalVisible: false,
         });
-    }
+    };
 
-    open() {
+    open = () => {
         this.setState({
             modalVisible: true,
         });
-    }
+    };
 
     renderOptionList() {
         const { renderOption, data } = this.props;
@@ -125,7 +121,7 @@ export default class ModalPicker extends PureComponent<Props, State> {
                 <Modal
                     transparent={true}
                     visible={this.state.modalVisible}
-                    onRequestClose={() => this.close()}
+                    onRequestClose={this.close}
                     animationType="fade"
                 >
                     <View style={styles.overlay}>
@@ -136,7 +132,7 @@ export default class ModalPicker extends PureComponent<Props, State> {
                     </View>
                 </Modal>
 
-                <TouchableOpacity onPress={() => this.open()}>
+                <TouchableOpacity onPress={this.open}>
                     {this.props.children}
                 </TouchableOpacity>
             </View>

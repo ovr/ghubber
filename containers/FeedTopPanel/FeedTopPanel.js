@@ -44,18 +44,18 @@ class FeedTopPanel extends PureComponent<Props> {
                 <ModalPicker
                     data={[app.user, ...app.organizations]}
                     renderOption={
-                        (entity) => {
+                        ({ item }) => {
                             return (
                                 <TouchableOpacity
-                                    key={'organization' + entity.login}
+                                    key={'organization' + item.login}
                                     style={styles.option}
                                     onPress={() => {
-                                        changeAccountFeedLogin(entity.login);
+                                        changeAccountFeedLogin(item.login);
                                         showHome();
                                     }}
                                 >
-                                    <OrganizationAvatar organization={entity} size={24} style={styles.optionAvatar} />
-                                    <Text>{entity.login}</Text>
+                                    <OrganizationAvatar organization={item} size={24} style={styles.optionAvatar} />
+                                    <Text>{item.login}</Text>
                                 </TouchableOpacity>
                             );
                         }

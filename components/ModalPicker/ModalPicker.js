@@ -11,7 +11,7 @@ import {
     Modal,
     Text,
     TouchableOpacity,
-    ListView,
+    FlatList,
 } from 'react-native';
 
 import { __ } from 'utils/i18n';
@@ -65,7 +65,6 @@ type Props = {
 
 type State = {
     modalVisible: boolean,
-    dataSource: ListView.DataSource,
 };
 
 export default class ModalPicker extends PureComponent<Props, State> {
@@ -74,14 +73,11 @@ export default class ModalPicker extends PureComponent<Props, State> {
         renderOption: () => { },
     };
 
-    constructor(props) {
+    constructor() {
         super();
 
         this.state = {
             modalVisible: false,
-            dataSource: new ListView.DataSource({
-                rowHasChanged: (r1, r2) => r1.key !== r2.key
-            }).cloneWithRows(props.data),
         };
     }
 
@@ -98,15 +94,14 @@ export default class ModalPicker extends PureComponent<Props, State> {
     }
 
     renderOptionList() {
-        const { renderOption } = this.props;
-        const { dataSource } = this.state;
+        const { renderOption, data } = this.props;
 
         return (
             <View style={styles.listContainer}>
-                <ListView
-                    enableEmptySections={false}
-                    dataSource={dataSource}
-                    renderRow={renderOption}
+                <FlatList
+                    data={data}
+                    renderItem={renderOption}
+                    keyExtractor={(item) => item.id}
                 />
             </View>
         );

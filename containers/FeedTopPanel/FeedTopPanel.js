@@ -42,7 +42,7 @@ class FeedTopPanel extends PureComponent<Props> {
         return (
             <View style={styles.root}>
                 <ModalPicker
-                    data={[app.user, ...app.organizations]}
+                    data={[app.user].concat(app.organizations)}
                     renderOption={
                         ({ item }) => {
                             return (
@@ -74,7 +74,6 @@ class FeedTopPanel extends PureComponent<Props> {
                         </Text>
                     </View>
                 </ModalPicker>
-
             </View>
         );
     }

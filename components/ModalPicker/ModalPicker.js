@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
 type Props = {
     data: Array<any>,
     renderOption: (item: Object) => React$Element<any>,
-    children: Element,
+    children: React$Element<any>,
 }
 
 type State = {
@@ -70,7 +70,7 @@ type State = {
 export default class ModalPicker extends PureComponent<Props, State> {
     static defaultProps = {
         data: [],
-        renderOption: () => { },
+        renderOption: () => {},
     };
 
     state = {

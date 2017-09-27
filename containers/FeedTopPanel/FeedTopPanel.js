@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
         flex: 0,
         flexDirection: 'row',
         alignItems: 'center',
-        marginBottom: 10,
+        marginVertical: 10,
     },
     optionAvatar: {
         marginRight: 10,

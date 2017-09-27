@@ -3,11 +3,13 @@
 
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { View, StyleSheet, TouchableOpacity, Alert } from 'react-native';
-import { Avatar, UIText } from 'components';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import { Avatar, UIText, ModalPicker } from 'components';
 import Icon from 'react-native-vector-icons/Octicons';
 
 import {
+    addModal,
+    closeModal,
     showRepositoryByParams,
     showRepositoryCommit,
     showRepositoryIssue,
@@ -30,6 +32,8 @@ import type {
 
 type Props = {
     event: PushEvent | PullRequestEvent,
+    addModal: typeof addModal,
+    closeModal: typeof closeModal,
     showRepositoryByParams: typeof showRepositoryByParams,
     showRepositoryCommit: typeof showRepositoryCommit,
     showRepositoryIssue: typeof showRepositoryIssue,
@@ -54,7 +58,7 @@ function isNavigationSupported(event: PushEvent | PullRequestEvent): boolean {
 }
 
 class EventRowMobile extends PureComponent<Props> {
-    renderCommitsList(payload: Object): React.Element<any> | null {
+    renderCommitsList(payload: Object): React$Element<any> | null {
         if (!payload.commits) {
             return null;
         }
@@ -93,7 +97,7 @@ class EventRowMobile extends PureComponent<Props> {
         );
     }
 
-    renderPushEvent(event: PushEvent | PullRequestEvent): React.Element<any> {
+    renderPushEvent(event: PushEvent | PullRequestEvent): React$Element<any> {
         return (
             <View style={styles.right}>
                 <UIText>
@@ -111,7 +115,7 @@ class EventRowMobile extends PureComponent<Props> {
         );
     }
 
-    renderIssuesEvent(event: PushEvent | PullRequestEvent): React.Element<any> {
+    renderIssuesEvent(event: PushEvent | PullRequestEvent): React$Element<any> {
         return (
             <View style={styles.right}>
                 <UIText>
@@ -129,7 +133,7 @@ class EventRowMobile extends PureComponent<Props> {
         );
     }
 
-    renderReleaseEvent(event: PushEvent | PullRequestEvent): React.Element<any> {
+    renderReleaseEvent(event: PushEvent | PullRequestEvent): React$Element<any> {
         return (
             <View style={styles.right}>
                 <UIText>
@@ -143,7 +147,7 @@ class EventRowMobile extends PureComponent<Props> {
         );
     }
 
-    renderPullRequestReviewCommentEvent(event: PullRequestReviewCommentEvent): React.Element<any> {
+    renderPullRequestReviewCommentEvent(event: PullRequestReviewCommentEvent): React$Element<any> {
         return (
             <View style={styles.right}>
                 <UIText>
@@ -161,7 +165,7 @@ class EventRowMobile extends PureComponent<Props> {
         );
     }
 
-    renderPullRequestEvent(event: PushEvent | PullRequestEvent): React.Element<any> {
+    renderPullRequestEvent(event: PushEvent | PullRequestEvent): React$Element<any> {
         const { commits, additions, deletions } = event.payload.pull_request;
 
         return (
@@ -190,7 +194,7 @@ class EventRowMobile extends PureComponent<Props> {
         );
     }
 
-    renderCommitCommentEvent(event: CommitCommentEvent): React.Element<any> {
+    renderCommitCommentEvent(event: CommitCommentEvent): React$Element<any> {
         return (
             <View style={styles.right}>
                 <UIText>
@@ -208,7 +212,7 @@ class EventRowMobile extends PureComponent<Props> {
         );
     }
 
-    renderIssueCommentEvent(event: PushEvent | PullRequestEvent): React.Element<any> {
+    renderIssueCommentEvent(event: PushEvent | PullRequestEvent): React$Element<any> {
         const key = event.payload.issue.pull_request
             ? 'EventRow.Actions.CommentedPR'
             : 'EventRow.Actions.CommentedIssue';
@@ -230,7 +234,7 @@ class EventRowMobile extends PureComponent<Props> {
         );
     }
 
-    renderForkEvent(event: PushEvent | PullRequestEvent): React.Element<any> {
+    renderForkEvent(event: PushEvent | PullRequestEvent): React$Element<any> {
         return (
             <View style={styles.right}>
                 <UIText>
@@ -243,7 +247,7 @@ class EventRowMobile extends PureComponent<Props> {
         );
     }
 
-    renderCreateEvent(event: PushEvent | PullRequestEvent): React.Element<any> {
+    renderCreateEvent(event: PushEvent | PullRequestEvent): React$Element<any> {
         return (
             <View style={styles.right}>
                 <UIText>
@@ -258,7 +262,7 @@ class EventRowMobile extends PureComponent<Props> {
         );
     }
 
-    renderDeleteEvent(event: PushEvent | PullRequestEvent): React.Element<any> {
+    renderDeleteEvent(event: PushEvent | PullRequestEvent): React$Element<any> {
         return (
             <View style={styles.right}>
                 <UIText>
@@ -273,7 +277,7 @@ class EventRowMobile extends PureComponent<Props> {
         );
     }
 
-    renderWatchEvent(event: PushEvent | PullRequestEvent): React.Element<any> {
+    renderWatchEvent(event: PushEvent | PullRequestEvent): React$Element<any> {
         return (
             <View style={styles.right}>
                 <UIText>
@@ -334,25 +338,27 @@ class EventRowMobile extends PureComponent<Props> {
                 const parts = event.repo.name.split('/');
 
                 if (event.payload.commits.length > 1) {
-                    Alert.alert(
-                        'Select to display',
-                        'Specify commit to display',
-                        event.payload.commits.map(
-                            (commit) => {
-                                return {
-                                    text: commit.sha.substring(0, 7) + ' ' + commit.message.substring(0, 50),
-                                    onPress: () => this.props.showRepositoryCommit(parts[0], parts[1], commit.sha)
-                                };
+                    this.props.addModal(
+                        <ModalPicker
+                            data={event.payload.commits}
+                            renderOption={
+                                ({ item }) => {
+                                    return (
+                                        <TouchableOpacity
+                                            key={'organization' + item.sha}
+                                            onPress={() => {
+                                                this.props.closeModal();
+                                                this.props.showRepositoryCommit(parts[0], parts[1], item.sha);
+                                            }}
+                                        >
+                                            <UIText numberOfLines={3}>{item.sha.substring(0, 7) + ' ' + item.message.substring(0, 50)}</UIText>
+                                        </TouchableOpacity>
+                                    );
+                                }
                             }
-                        ).concat([
-                            {
-                                text: 'Close',
-                                onPress: () => {}
-                            }
-                        ]),
-                        {
-                            cancelable: true
-                        }
+                        />,
+                        // @todo
+                        //'Specify commit to display'
                     );
                 } else {
                     this.props.showRepositoryCommit(parts[0], parts[1], event.payload.head);
@@ -368,7 +374,7 @@ class EventRowMobile extends PureComponent<Props> {
         }
     }
 
-    render(): React.Node {
+    render(): React$Element<any> {
         const { event } = this.props;
 
         try {
@@ -511,5 +517,5 @@ const styles = StyleSheet.create({
 
 export default connect(
     null,
-    { showRepositoryByParams, showRepositoryCommit, showRepositoryIssue, showRepositoryPullRequest }
+    { showRepositoryByParams, showRepositoryCommit, showRepositoryIssue, showRepositoryPullRequest, addModal, closeModal }
 )(EventRowMobile);

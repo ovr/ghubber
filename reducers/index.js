@@ -6,6 +6,7 @@ import { combineReducers } from 'redux';
 import { default as app } from './app';
 import { default as sideMenu } from './side-menu';
 import { default as login } from './login';
+import { default as modals } from './modals';
 import { default as profile } from './profile';
 import { default as accountIssues } from './account-issues';
 import { default as accountPullRequests } from './account-pull-requests';
@@ -25,6 +26,7 @@ export default combineReducers({
     accountIssues,
     accountNotifications,
     accountPullRequests,
+    modals,
     app,
     sideMenu,
     login,

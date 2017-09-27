@@ -11,6 +11,7 @@ import type {
 import type { Store as ReduxStore } from 'redux';
 import type { StyleSheet } from 'react-native';
 
+import type { ModalsState } from 'reducers/modals';
 import type { AccountFeedState } from 'reducers/account-feed';
 import type { AccountIssuesState } from 'reducers/account-issues';
 import type { AccountPullRequestsState } from 'reducers/account-pull-requests';
@@ -51,7 +52,11 @@ export type Action =
       BaseAction<"SIDEMENU_OPEN">
     | BaseAction<"SIDEMENU_CLOSE">
     //
+    | BaseAction<"MODAL_CLOSE">
+    //
     | ActionWithPayload<"SETTINGS_THEME_CHANGE", any>
+    //
+    | ActionWithPayload<"MODAL_ADD", React$Element<any>>
     //
     | ActionWithPayload<"APP_PROFILE_SUCCESS", any>
     | ActionWithPayload<"APP_ORGANIZATIONS_SUCCESS", any>
@@ -153,6 +158,7 @@ export type State = {|
     repositoryIssue: RepositoryIssueState,
     repositoryPullRequest: RepositoryPullRequestState,
     settings: SettingsState,
+    modals: ModalsState,
 |};
 
 type ActionUnion = Action | ThunkAction | PromiseAction;

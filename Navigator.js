@@ -10,6 +10,8 @@ import { __ } from 'utils/i18n';
 import type { NavigationState } from 'reducers/navigation';
 
 import {
+    ModalsContext,
+    //
     SideMenuButton,
     SideMenuDrawer,
     HomeHeaderRight,
@@ -198,6 +200,7 @@ class AppWithNavigationState extends React.Component<AppWithNavigationStateProps
                     dispatch: this.props.dispatch,
                     state: this.props.navigation,
                 })} />
+                <ModalsContext />
             </SideMenuDrawer>
         );
     }

@@ -6,7 +6,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 
 import { Avatar, OrganizationAvatar, ModalPicker } from 'components';
-import { showHome, changeAccountFeedLogin } from 'actions';
+import { showHome, changeAccountFeedLogin, addModal, closeModal } from 'actions';
 
 // import flow types
 import type { AccountFeedState } from 'reducers/account-feed';
@@ -16,12 +16,42 @@ type Props = {
     feed: AccountFeedState,
     app: AuthAppState,
     showHome: typeof showHome,
+    addModal: typeof addModal,
+    closeModal: typeof closeModal,
     changeAccountFeedLogin: typeof changeAccountFeedLogin,
 }
 
 class FeedTopPanel extends PureComponent<Props> {
+    openModal = () => {
+        const { app, addModal, showHome, changeAccountFeedLogin, closeModal } = this.props;
+
+        addModal(
+            <ModalPicker
+                data={[app.user].concat(app.organizations)}
+                renderOption={
+                    ({ item }) => {
+                        return (
+                            <TouchableOpacity
+                                key={'organization' + item.login}
+                                style={styles.option}
+                                onPress={() => {
+                                    changeAccountFeedLogin(item.login);
+                                    closeModal();
+                                    showHome();
+                                }}
+                            >
+                                <OrganizationAvatar organization={item} size={24} style={styles.optionAvatar} />
+                                <Text>{item.login}</Text>
+                            </TouchableOpacity>
+                        );
+                    }
+                }
+            />
+        );
+    };
+
     render() {
-        const { app, feed, showHome, changeAccountFeedLogin } = this.props;
+        const { app, feed } = this.props;
 
         let isOrganization = false;
         let selectedEntity = app.user;
@@ -40,41 +70,20 @@ class FeedTopPanel extends PureComponent<Props> {
         }
 
         return (
-            <View style={styles.root}>
-                <ModalPicker
-                    data={[app.user].concat(app.organizations)}
-                    renderOption={
-                        ({ item }) => {
-                            return (
-                                <TouchableOpacity
-                                    key={'organization' + item.login}
-                                    style={styles.option}
-                                    onPress={() => {
-                                        changeAccountFeedLogin(item.login);
-                                        showHome();
-                                    }}
-                                >
-                                    <OrganizationAvatar organization={item} size={24} style={styles.optionAvatar} />
-                                    <Text>{item.login}</Text>
-                                </TouchableOpacity>
-                            );
-                        }
+            <TouchableOpacity style={styles.root} onPress={this.openModal}>
+                <View style={styles.selectWrapper}>
+                    {
+                        isOrganization ? (
+                            <OrganizationAvatar organization={selectedEntity} size={20} style={styles.avatar} />
+                        ) : (
+                            <Avatar user={selectedEntity} size={20} style={styles.avatar} />
+                        )
                     }
-                >
-                    <View style={styles.selectWrapper}>
-                        {
-                            isOrganization ? (
-                                <OrganizationAvatar organization={selectedEntity} size={20} style={styles.avatar} />
-                            ) : (
-                                    <Avatar user={selectedEntity} size={20} style={styles.avatar} />
-                                )
-                        }
-                        <Text style={styles.selectText}>
-                            {selectedEntity.login} ▾
-                        </Text>
-                    </View>
-                </ModalPicker>
-            </View>
+                    <Text style={styles.selectText}>
+                        {selectedEntity.login} ▾
+                    </Text>
+                </View>
+            </TouchableOpacity>
         );
     }
 }
@@ -120,7 +129,7 @@ const styles = StyleSheet.create({
 export default connect(
     (state) => ({
         feed: state.accountFeed,
-        app: state.app
+        app: state.app,
     }),
-    { showHome, changeAccountFeedLogin }
+    { showHome, changeAccountFeedLogin, addModal, closeModal }
 )(FeedTopPanel);

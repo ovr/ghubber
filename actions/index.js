@@ -5,6 +5,7 @@ export * from './settings';
 export * from './account-feed';
 export * from './account-issues';
 export * from './account-notifications';
+export * from './modals';
 export * from './account-pull-requests';
 export * from './app';
 export * from './login';

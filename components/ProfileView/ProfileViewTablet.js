@@ -3,8 +3,7 @@
 
 import React, { PureComponent } from 'react';
 import { View, StyleSheet } from 'react-native';
-import { Avatar, UIText } from 'components';
-import Icon from 'react-native-vector-icons/Octicons';
+import { Avatar, UIText, TextIcon } from 'components';
 
 // import flow types
 import type { UserEntity } from 'github-flow-js';
@@ -32,34 +31,25 @@ export default class ProfileViewTablet extends PureComponent<Props> {
                         </View>
                         {
                             user.company ? (
-                                <UIText numberOfLines={1} style={styles.company}>
-                                    <Icon name="organization" size={16} style={styles.icon} />
-                                    { user.company }
-                                </UIText>
+                                <TextIcon
+                                    text={{ content: user.company, style: styles.company }}
+                                    icon={{ name: 'organization' }}
+                                />
                             ) : null
                         }
                         {
                             user.location ? (
-                                <UIText numberOfLines={1} style={styles.location}>
-                                    <Icon name="location" size={16} style={styles.icon} />
-                                    { user.location }
-                                </UIText>
+                                <TextIcon text={{ content: user.location }} icon={{ name: 'location' }} />
                             ) : null
                         }
                         {
                             user.email ? (
-                                <UIText numberOfLines={1} style={styles.mail}>
-                                    <Icon name="mail" size={16} style={styles.icon} />
-                                    { user.email }
-                                </UIText>
+                                <TextIcon text={{ content: user.email }} icon={{ name: 'mail' }} />
                             ) : null
                         }
                         {
                             user.blog ? (
-                                <UIText numberOfLines={1} style={styles.blog}>
-                                    <Icon name="link" size={16} style={styles.icon} />
-                                    { user.blog }
-                                </UIText>
+                                <TextIcon text={{ content: user.blog }} icon={{ name: 'link' }} />
                             ) : null
                         }
                         <UIText style={styles.bio}>{ user.bio }</UIText>
@@ -151,17 +141,6 @@ const styles = StyleSheet.create({
     company: {
         fontSize: 14,
         fontWeight: 'bold'
-    },
-    location: {
-        fontSize: 16,
-    },
-    blog: {
-        fontSize: 16,
-    },
-    mail: {
-        fontSize: 16,
-    },
-    icon: {
     },
     infoHeader: {
         flex: 1,

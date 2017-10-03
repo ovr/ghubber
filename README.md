@@ -15,7 +15,7 @@ Yet another Mobile :iphone: client for GitHub powered on react-native.
  
 ### Android
 
-Due, app is an alpha, the easiest way to install, will be Play Market Alpha version, to get access for alpha, you should do:
+The app is an alpha and the easiest way to install will be Play Market Alpha version. To get access to the alpha, you should:
 
 1. Join [Google Plus Group](https://plus.google.com/communities/115242870069378334413) (needed to access in play market alpha page)
 2. https://play.google.com/apps/testing/com.ghubber
@@ -23,13 +23,13 @@ Due, app is an alpha, the easiest way to install, will be Play Market Alpha vers
 
 ### iOS
 
-Please write me mail to `zaets28rus@gmail.com` with Subject: `Invite me to GHubber TestFlight` and your email, firstname, lastname.
+Please send a email to `zaets28rus@gmail.com` with Subject: `Invite me to GHubber TestFlight` and your email, firstname, lastname.
 
-> Attention. Write you email that connected inside ITunes.
+> Note: Be sure to incude the email you use for iTunes.
 
 ## Installation 
 
-Before we start to develop app your should configure your env:
+Before we start to develop app you should configure your env:
 
 ### Common
 
@@ -54,7 +54,7 @@ sudo apt-get install -y nodejs
 npm install
 ```
 
-[If you are having another OS](https://nodejs.org/en/download/package-manager/)
+[If you have another OS](https://nodejs.org/en/download/package-manager/)
 
 ### Android
 
@@ -70,7 +70,7 @@ export PATH=$ANDROID_HOME/platform-tools:$PATH
 
 #### Way 1: Built-in Android emulator, use KVM on linux if it's installed for acceleration
 
-> Attentation, KVM and VirtualBox supposedly cannot coexist, or rather, VirtualBox won't run while the KVM modules are loaded in memory
+> Note: KVM and VirtualBox supposedly cannot coexist, or rather, VirtualBox won't run while the KVM modules are loaded in memory
 
 The easy way will be to create a new device inside Android Studio, press run
 
@@ -78,17 +78,17 @@ The easy way will be to create a new device inside Android Studio, press run
 
 Run it, you will see ;)
 
-#### Way 3: Run on real device (I didn't use this method for development, and I didn't recommend it)
+#### Way 3: Run on real device (I didn't use this method for development, and I don't recommend it)
 
-First you should enable Developer menu on Android, read in the Internet or try
+First you should enable Developer menu on Android, Google it or try:
  
 1. Go to the settings menu, and scroll down to "About phone." Tap it.
-2. Scroll down to the bottom again, where you see "Build number." (Your build number may vary from ours here.)
+2. Scroll down to the bottom again, where you see "Build number." (Your build number may vary from our's here.)
 3. Tap it seven (7) times. After the third tap, you'll see a playful dialog that says you're four taps away from being a developer. (If only it were that simple, eh?) Keep on tapping, and *poof*, you've got the developer settings back.
 
 ### iOS
 
-> Attention: Sorry, but for build `iOS` you should have `macOS`
+> Note: Sorry, but for build `iOS` you should have `macOS`
 
 It's pretty easy, you should install XCode by AppStore :+1:
 
@@ -98,7 +98,7 @@ It's pretty easy, you should install XCode by AppStore :+1:
 
 You should open 2 terminals
 
-Inside 2nd you should write:
+Inside second you should write:
 
 ```bash
 npm run start
@@ -164,7 +164,7 @@ Or just run `npm run start:android` or `npm run start:ios` depending on the plat
     - [ ] Close/re-open
     - [ ] Add/remove/edit comment
 
-## We are hire
+## We are hiring
 
 Do you know JS and React and would like to code on react-native for $? Write an email to dmitry@interpals.net with your resume and join Interpals.net.
 

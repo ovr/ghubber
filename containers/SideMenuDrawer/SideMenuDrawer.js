@@ -2,6 +2,7 @@
 // @flow
 
 import React, { PureComponent } from 'react';
+import { View, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { SideMenu } from 'containers';
 import { showSideMenu, hideSideMenu } from 'actions';
@@ -45,9 +46,24 @@ class SideMenuDrawer extends PureComponent<Props> {
             );
         }
 
-        return children;
+        /**
+         * @todo Try to remove this unneeded View inside RN 0.49+, because looks like 0.48 broken
+         * Easy easy, real talk, think about this man https://www.youtube.com/watch?v=adnlD8emXR4
+         */
+        return (
+            <View style={styles.root}>
+                {children}
+            </View>
+        );
     }
 }
+
+
+const styles = StyleSheet.create({
+    root: {
+        flex: 1,
+    }
+});
 
 export default connect(
     (state) => ({

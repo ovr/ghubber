@@ -60,7 +60,7 @@ export default {
           CommentedCommit: 'comentou sobre o commit',
           Closed: 'fechado',
           Merged: 'mesclado',
-          Forked: 'birfurcado',
+          Forked: 'bifurcado',
           CommentedIssue: 'comentado sobre o problema',
           Created: 'criado',
           PushedTo: 'enviado para',
@@ -95,12 +95,12 @@ export default {
       },
       CreateTypes: {
           repository: 'repositório',
-          branch: 'ramo',
-          tag: 'etiqueta',
+          branch: 'branch',
+          tag: 'tag',
       },
       DeleteTypes: {
-          branch: 'ramo',
-          tag: 'etiqueta',
+          branch: 'branch',
+          tag: 'tag',
       },
   },
   ModalPicker: {

@@ -22,7 +22,7 @@ class AccountNotifications extends PureComponent<Props> {
     componentWillMount() {
         const { fetchNotifications } = this.props;
 
-        fetchNotifications('unread');
+        fetchNotifications('participating');
     }
 
     renderContent() : React.Element<any> {

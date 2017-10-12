@@ -33,7 +33,7 @@ export type AccountNotificationsState = {
 }
 
 const initialState: AccountNotificationsState = {
-    type: 'unread',
+    type: 'participating',
     // By default, it's null, because need to show "You don't have any events :)"
     items: null,
     loading: false,

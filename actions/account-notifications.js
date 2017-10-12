@@ -1,7 +1,7 @@
 // @author Dmitry Patsura <talk@dmtry.me> https://github.com/ovr
 // @flow
 
-import { getNotifications } from 'github-flow-js';
+import { getNotifications, getNotificationsParams } from 'github-flow-js';
 import {
     ACCOUNT_NOTIFICATIONS_REQUEST,
     ACCOUNT_NOTIFICATIONS_REQUEST_SUCCESS,
@@ -16,9 +16,28 @@ import { makeThunk } from 'utils/action-helper';
 // import flow types
 import type { AccountNotificationsType } from 'reducers/account-notifications';
 
+function getNotificationsParamsByType(type: AccountNotificationsType): getNotificationsParams {
+    switch (type) {
+        case 'unread':
+            // @todo?
+            return {};
+        case 'participating':
+            return {
+                participating: true
+            };
+        case 'all':
+            return {
+                all: true
+            };
+    }
+
+    throw new Error(`Unsupported type ${type}`);
+}
+
 export function fetchNotifications(type: AccountNotificationsType): ThunkAction {
     return makeThunk(
         () => getNotifications({
+            ...getNotificationsParamsByType(type),
             per_page: ACCOUNT_NOTIFICATIONS_LIMIT
         }),
         ACCOUNT_NOTIFICATIONS_REQUEST,
@@ -35,6 +54,7 @@ export function fetchNotifications(type: AccountNotificationsType): ThunkAction 
 export function fetchMoreNotifications(page: number, type: AccountNotificationsType): ThunkAction {
     return makeThunk(
         () => getNotifications({
+            ...getNotificationsParamsByType(type),
             per_page: ACCOUNT_NOTIFICATIONS_LIMIT,
             page: page
         }),

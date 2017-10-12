@@ -71,7 +71,12 @@ class AccountNotifications extends PureComponent<Props> {
                 sections={items}
                 renderSectionHeader={({ section }) => (
                     <View style={styles.sectionHeader}>
-                        <UIText style={styles.sectionTitle}>{section.title}</UIText>
+                        <UIText
+                            style={styles.sectionTitle}
+                            numberOfLines={1}
+                        >
+                            {section.title}
+                        </UIText>
                     </View>
                 )}
                 keyExtractor={(entity: NotificationEntity) => entity.id}

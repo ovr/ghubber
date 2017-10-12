@@ -6,9 +6,9 @@ import {
     ACCOUNT_NOTIFICATIONS_REQUEST_SUCCESS,
     ACCOUNT_NOTIFICATIONS_REQUEST_FAIL,
     //
-    ACCOUNT_PULL_REQUESTS_MORE_REQUEST,
-    ACCOUNT_PULL_REQUESTS_MORE_SUCCESS,
-    ACCOUNT_PULL_REQUESTS_MORE_FAIL,
+    ACCOUNT_NOTIFICATIONS_MORE_REQUEST,
+    ACCOUNT_NOTIFICATIONS_MORE_REQUEST_SUCCESS,
+    ACCOUNT_NOTIFICATIONS_MORE_REQUEST_FAIL,
     //
     ACCOUNT_PULL_REQUESTS_LIMIT
 } from 'constants';
@@ -43,10 +43,26 @@ const initialState: AccountNotificationsState = {
     error: null,
 };
 
-function groupForSectionList(input: Array<Object>): Array<{data: Array<any>}> {
-    const indexes: { [string]: number } = {};
-    const result: Array<{data: Array<any>}> = [];
+type SectionListData = Array<{data: Array<any>}>;
+type SectionListGroupIndex = { [string]: number };
 
+function getGroupIndex(input: Array<Object>): SectionListGroupIndex {
+    const indexes: SectionListGroupIndex = {};
+
+    input.forEach(
+        (group, index) => {
+            indexes[group.title] = index;
+        }
+    );
+
+    return indexes;
+}
+
+function groupForSectionList(
+    input: Array<Object>,
+    indexes: SectionListGroupIndex = {},
+    result: SectionListData = []
+): Array<{data: Array<any>}> {
     input.forEach(
         (element) => {
             const key = element.repository.full_name;
@@ -99,25 +115,29 @@ export default (state: AccountNotificationsState = initialState, action: Object)
                 error: 'Unknown error @todo'
             };
         //
-        case ACCOUNT_PULL_REQUESTS_MORE_REQUEST:
+        case ACCOUNT_NOTIFICATIONS_MORE_REQUEST:
             return {
                 ...state,
                 infinityLoading: true,
                 type: action.payload
             };
-        case ACCOUNT_PULL_REQUESTS_MORE_SUCCESS: {
+        case ACCOUNT_NOTIFICATIONS_MORE_REQUEST_SUCCESS: {
             const payload = action.payload;
 
             return {
                 ...state,
                 infinityLoading: false,
-                items: state.items.concat(payload.data),
+                items: groupForSectionList(
+                    payload.data,
+                    getGroupIndex(state.items),
+                    state.items
+                ),
                 hasMore: payload.data.length === ACCOUNT_PULL_REQUESTS_LIMIT,
                 type: payload.type,
                 page: payload.page
             };
         }
-        case ACCOUNT_PULL_REQUESTS_MORE_FAIL:
+        case ACCOUNT_NOTIFICATIONS_MORE_REQUEST_FAIL:
             return {
                 ...state,
                 infinityLoading: false,

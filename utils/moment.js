@@ -1,8 +1,10 @@
 // @flow
 
-import DeviceInfo from 'react-native-device-info';
-import moment from 'moment/min/moment-with-locales.min';
+import { getDeviceLocale } from 'react-native-device-info';
+import moment from 'moment';
 
-moment.locale(DeviceInfo.getDeviceLocale().split('-')[0]);
+import 'moment/min/locales';
+
+moment.locale(getDeviceLocale().split('-')[0]);
 
 export default moment;

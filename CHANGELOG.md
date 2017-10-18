@@ -1,4 +1,18 @@
 
+## 0.9.0
+
+Features:
+
+- Support translations for en, es, pt_br, ru, sk
+- [AccountNotifications] Initial
+- [Feature] Account Issues/Notifications/PRs - improve error handling
+- [FeedTopPanel] Display feed settings in modal
+
+Fix:
+
+- [RepositoryPullRequestScreen] Merged should be purple color
+- [RepositoryIssue/RepositoryPullRequest] We don't neeeded to show ReactionGroup without likes
+
 ## 0.8.0
 
 Features:

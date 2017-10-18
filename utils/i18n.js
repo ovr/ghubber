@@ -1,12 +1,12 @@
 // @flow
 
-import DeviceInfo from 'react-native-device-info';
+import { getDeviceLocale } from 'react-native-device-info';
 import I18n from 'i18n-js';
 
 import locales from 'locales';
 
 I18n.fallbacks = true;
-I18n.locale = DeviceInfo.getDeviceLocale().split('-')[0];
+I18n.locale = getDeviceLocale();
 I18n.translations = locales;
 
 I18n.pluralization['ru'] = function (count) {

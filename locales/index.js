@@ -10,6 +10,6 @@ export default {
     en,
     ru,
     es,
-    pt_br,
+    'pt-BR': pt_br,
     sk
 };

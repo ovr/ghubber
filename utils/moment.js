@@ -5,6 +5,6 @@ import moment from 'moment';
 
 import 'moment/min/locales';
 
-moment.locale(getDeviceLocale().split('-')[0]);
+moment.locale(getDeviceLocale());
 
 export default moment;

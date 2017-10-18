@@ -264,6 +264,27 @@
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = RNSentry;
 		};
+		E8E36F381F97E6350087A516 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3DBE0D001F3B181A0099AA32;
+			remoteInfo = fishhook;
+		};
+		E8E36F3A1F97E6350087A516 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3DBE0D0D1F3B181C0099AA32;
+			remoteInfo = "fishhook-tvOS";
+		};
+		E8E36F4A1F97E6350087A516 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 93172E8E9C274EE9907AECD7 /* RNDeviceInfo.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E72EC1401F7ABB5A0001BC90;
+			remoteInfo = "RNDeviceInfo-tvOS";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -413,6 +434,8 @@
 			children = (
 				139FDEF41B06529B00C62182 /* libRCTWebSocket.a */,
 				3DAD3E991DF850E9000B6D8A /* libRCTWebSocket-tvOS.a */,
+				E8E36F391F97E6350087A516 /* libfishhook.a */,
+				E8E36F3B1F97E6350087A516 /* libfishhook-tvOS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -506,6 +529,7 @@
 				00E356EF1AD99517003FC87E /* ghubberTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				E87448081EBED4F9003B87B1 /* Fonts */,
+				E8E36F241F97E6320087A516 /* Recovered References */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -524,6 +548,7 @@
 			isa = PBXGroup;
 			children = (
 				E83683D41EBEC8FA00BC3F32 /* libRNDeviceInfo.a */,
+				E8E36F4B1F97E6350087A516 /* libRNDeviceInfo-tvOS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -551,6 +576,16 @@
 				E8E1AA161F0CFB530069997E /* libRNSentry.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		E8E36F241F97E6320087A516 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				E04B0EC371164294AAD83C63 /* libRNDeviceInfo.a */,
+				AE89846D80234324AEF296EE /* libz.tbd */,
+				6523C173A53740A6B2F32B3D /* libRNSentry.a */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -907,6 +942,27 @@
 			fileType = archive.ar;
 			path = libRNSentry.a;
 			remoteRef = E8E1AA151F0CFB530069997E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E8E36F391F97E6350087A516 /* libfishhook.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libfishhook.a;
+			remoteRef = E8E36F381F97E6350087A516 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E8E36F3B1F97E6350087A516 /* libfishhook-tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libfishhook-tvOS.a";
+			remoteRef = E8E36F3A1F97E6350087A516 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E8E36F4B1F97E6350087A516 /* libRNDeviceInfo-tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libRNDeviceInfo-tvOS.a";
+			remoteRef = E8E36F4A1F97E6350087A516 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */

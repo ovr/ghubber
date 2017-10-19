@@ -1,4 +1,13 @@
 
+## 0.9.1
+
+Fix:
+
+- Fix epic crash on startup
+- iOS: Welcome to new LaunchScreen
+- iOS: Add marketing icon
+- iOS: FastLane: check certs and provisions
+
 ## 0.9.0
 
 Features:

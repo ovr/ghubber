@@ -7,7 +7,10 @@ platform :ios do
     desc "Submit a new Beta Build to Apple TestFlight"
     desc "This will also make sure the profile is up to date"
     lane :beta do
-        gym(scheme: "ghubber", include_bitcode: true) # Build your app - more options available
+	cert
+	sigh
+
+        gym(scheme: "ghubber", include_bitcode: true, clean: true)
         testflight
     end
 end

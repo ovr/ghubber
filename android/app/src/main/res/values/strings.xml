@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">GHubber</string>
+    <string name="powered_by">Powered by React Native</string>
 </resources>

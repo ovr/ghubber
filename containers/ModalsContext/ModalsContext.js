@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
         ...containerStyle,
         maxHeight: deviceHeight * 0.7,
         paddingHorizontal: 10,
-        paddingTop: 10,
+        paddingVertical: 10,
     },
     modalContainer: {
         width: deviceWidth * 0.8,

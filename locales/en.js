@@ -34,6 +34,7 @@ export default {
     EventRow: {
         At: 'at',
         To: 'to',
+        In: 'in',
         Issue: 'issue',
         PR: 'pull request',
         Release: 'release',
@@ -56,6 +57,7 @@ export default {
         TypeEventNotSupported: 'This type of event ({{eventType}}) does not supported inside this version',
         UnexpectedException: 'Unexpected exception with Event\'s type ({{eventType}}) :(',
         Actions: {
+            GullumEdit: 'edited a wiki page',
             CommentedPR: 'commented on pull request',
             CommentedCommit: 'commented on commit',
             Closed: 'closed',
@@ -65,6 +67,9 @@ export default {
             Created: 'created',
             PushedTo: 'pushed to',
             Starred: 'starred',
+        },
+        GullumActions: {
+            edited: 'Edited'
         },
         IssuesActions: {
             assigned: 'assigned',

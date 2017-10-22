@@ -133,6 +133,28 @@ class EventRowMobile extends PureComponent<Props> {
         );
     }
 
+    renderGollumEvent(event: PushEvent | PullRequestEvent): React$Element<any> {
+        return (
+            <View style={styles.right}>
+                <UIText>
+                    <UIText style={styles.login}>{event.actor.login + ' '}</UIText>
+                    {__(`EventRow.Actions.GullumEdit`)}
+                    &nbsp;
+                    {__('EventRow.In')}
+                    <UIText style={styles.repoName}>{' ' + event.repo.name}</UIText>
+                </UIText>
+                <View style={styles.rightBottom}>
+                    <UIText numberOfLines={1} style={styles.commentBody}>
+                        {__(`EventRow.GullumActions.${event.payload.pages[0].action}`)}
+                        &nbsp;
+                        {event.payload.pages[0].page_name}
+                    </UIText>
+                </View>
+                <UIText style={styles.eventDate}>{moment(event.created_at).fromNow()}</UIText>
+            </View>
+        );
+    }
+
     renderReleaseEvent(event: PushEvent | PullRequestEvent): React$Element<any> {
         return (
             <View style={styles.right}>
@@ -426,6 +448,10 @@ class EventRowMobile extends PureComponent<Props> {
                 case 'IssuesEvent':
                     iconName = 'issue-opened';
                     content = this.renderIssuesEvent(event);
+                    break;
+                case 'GollumEvent':
+                    iconName = 'book';
+                    content = this.renderGollumEvent(event);
                     break;
                 case 'WatchEvent':
                     iconName = 'star';

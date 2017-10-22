@@ -34,6 +34,7 @@ export default {
     EventRow: {
         At: 'на',
         To: 'в',
+        In: 'в',
         Issue: 'задачу',
         PR: 'pull-запрос',
         Release: 'релиз',
@@ -59,6 +60,7 @@ export default {
         TypeEventNotSupported: 'Данный тип события ({{eventType}}) не поддерживается в этой версии',
         UnexpectedException: 'Неожиданное исключение в типе события ({{eventType}}) :(',
         Actions: {
+            GullumEdit: 'отредактировал wiki страницу',
             CommentedPR: 'прокомментировал pull-запрос',
             CommentedCommit: 'прокомментировал коммит',
             Closed: 'закрыл',
@@ -68,6 +70,9 @@ export default {
             Created: 'создал',
             PushedTo: 'отправил в',
             Starred: 'отметил',
+        },
+        GullumActions: {
+            edited: 'Отредактировал'
         },
         IssuesActions: {
             assigned: 'назначил',

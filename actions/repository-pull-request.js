@@ -14,6 +14,7 @@ query($owner: String!, $name: String!, $number: Int!) {
             state,
             reactionGroups {
                 content,
+                viewerHasReacted,
                 users {
                     totalCount
                 }
@@ -22,8 +23,8 @@ query($owner: String!, $name: String!, $number: Int!) {
                 login,
                 avatarUrl
             },
-      		commits(first: 100) {
-            	nodes {
+            commits(first: 100) {
+                nodes {
                 commit {
                   message,
                   oid,
@@ -31,7 +32,7 @@ query($owner: String!, $name: String!, $number: Int!) {
                     avatarUrl,
                   }
                   status {
-				    state
+                    state
                   }
                 }
               }  

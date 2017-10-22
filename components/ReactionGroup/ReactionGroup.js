@@ -29,6 +29,24 @@ function mapReaction(name: string): string {
 }
 
 export default class ReactionGroup extends PureComponent<Props> {
+    renderReaction = (reaction: Object, index: number) => {
+        let containerStyle = styles.reaction;
+
+        if (reaction.viewerHasReacted) {
+            containerStyle = StyleSheet.flatten([styles.reaction, styles.viewerHasReacted]);
+        }
+
+        return (
+            <View style={containerStyle}>
+                <UIText
+                    key={'reaction' + index}
+                >
+                    {mapReaction(reaction.content)} {reaction.users.totalCount}
+                </UIText>
+            </View>
+        );
+    };
+
     render() {
         const { reactions } = this.props;
 
@@ -49,34 +67,32 @@ export default class ReactionGroup extends PureComponent<Props> {
         }
 
         return (
-            <View style={styles.reactions}>
-                {
-                    reactions.map(
-                        (reaction, index) => {
-                            return (
-                                <UIText
-                                    key={'reaction' + index}
-                                    style={styles.reaction}
-                                >
-                                    {mapReaction(reaction.content)} {reaction.users.totalCount}
-                                </UIText>
-                            );
-                        }
-                    )
-                }
+            <View style={styles.container}>
+                {reactions.map(this.renderReaction)}
             </View>
         );
     }
 }
 
 const styles = StyleSheet.create({
-    reactions: {
+    container: {
         flex: 0,
         flexDirection: 'row',
-        marginTop: 10
+        marginTop: 10,
+        borderTopWidth: 1,
+        borderBottomWidth: 1,
+        borderLeftWidth: 1,
+        borderColor: '#e1e4e8',
+    },
+    viewerHasReacted: {
+        backgroundColor: '#f1f8ff',
     },
     reaction: {
         flex: 1,
-        flexDirection: 'row'
+        flexDirection: 'row',
+        paddingVertical: 4,
+        paddingHorizontal: 6,
+        borderColor: '#e1e4e8',
+        borderRightWidth: 1
     }
 });

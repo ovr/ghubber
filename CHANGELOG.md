@@ -12,6 +12,7 @@ Features:
 - [CommitScreen] Allow to open committer's profile
 - [Comment] Allow to open profile of the author
 - [Android] Add splash screen
+- [ReactionGroup] Show viewerHasReacted & improve style
 
 ## 0.9.1
 

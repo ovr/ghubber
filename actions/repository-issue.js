@@ -14,6 +14,7 @@ query($owner: String!, $name: String!, $number: Int!) {
             state,
             reactionGroups {
                 content,
+                viewerHasReacted,
                 users {
                     totalCount
                 }

@@ -2,10 +2,10 @@
 // @flow
 
 import React, { PureComponent } from 'react';
-import { View, StyleSheet, ScrollView, FlatList } from 'react-native';
+import { View, StyleSheet, ScrollView, FlatList, TouchableOpacity } from 'react-native';
 import { ErrorView, Spinner, UIText, DiffBlock, Avatar } from 'components';
 import { connect } from 'react-redux';
-import { fetchCommit } from 'actions';
+import { fetchCommit, showProfile } from 'actions';
 
 // import flow types
 import type { RepositoryCommitState } from 'reducers/repository-commit';
@@ -19,7 +19,8 @@ type Props = {
             sha: string
         }
     },
-    fetchCommit: typeof fetchCommit
+    fetchCommit: typeof fetchCommit,
+    showProfile: typeof showProfile
 }
 
 class CommitScreen extends PureComponent<Props> {
@@ -34,6 +35,15 @@ class CommitScreen extends PureComponent<Props> {
     }
 
     renderFile = ({ item }) => <DiffBlock file={item} style={styles.diffBlock} />;
+
+    pressOnCommiter = () => {
+        const { commit } = this.props.state;
+        const { showProfile } = this.props;
+
+        if (commit && commit.committer) {
+            showProfile(commit.committer.login);
+        }
+    };
 
     render() {
         const { loading, error, commit } = this.props.state;
@@ -67,14 +77,16 @@ class CommitScreen extends PureComponent<Props> {
                     <View style={styles.messageBox}>
                         <UIText>{commit.commit.message}</UIText>
                     </View>
-                    <View style={styles.commitInfoBox}>
+                    <TouchableOpacity style={styles.commitInfoBox} onPress={this.pressOnCommiter}>
                         {
                             commit.committer ? (
                                 <Avatar user={commit.committer} size={25} style={styles.avatar} />
                             ) : null
                         }
-                        <UIText style={styles.commiter}>{commit.committer ? commit.committer.login : commit.commit.committer.name}</UIText>
-                    </View>
+                        <UIText style={styles.commiter}>
+                            {commit.committer ? commit.committer.login : commit.commit.committer.name}
+                        </UIText>
+                    </TouchableOpacity>
                 </View>
                 <FlatList
                     data={commit.files}
@@ -134,5 +146,5 @@ export default connect(
             state: state.repositoryCommit
         };
     },
-    { fetchCommit }
+    { fetchCommit, showProfile }
 )(CommitScreen);

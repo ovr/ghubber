@@ -20,6 +20,7 @@ import { captureException } from 'utils/errors';
 import { filterBranchNameFromRefs } from 'utils/filters';
 import { normalizeFont } from 'utils/helpers';
 import { __ } from 'utils/i18n';
+import { filterCommitTitle } from 'utils/filters';
 import moment from 'utils/moment';
 
 // import flow types
@@ -79,7 +80,9 @@ class EventRowMobile extends PureComponent<Props> {
                             return (
                                 <View key={item.sha}>
                                     <UIText numberOfLines={1}>
-                                        <UIText style={styles.commitSHA}>{item.sha.substring(0, 7)}</UIText> {item.message}
+                                        <UIText style={styles.commitSHA}>
+                                            {item.sha.substring(0, 7)}
+                                        </UIText> {filterCommitTitle(item.message)}
                                     </UIText>
                                 </View>
                             );
@@ -373,7 +376,9 @@ class EventRowMobile extends PureComponent<Props> {
                                                 this.props.showRepositoryCommit(parts[0], parts[1], item.sha);
                                             }}
                                         >
-                                            <UIText numberOfLines={3}>{item.sha.substring(0, 7) + ' ' + item.message.substring(0, 50)}</UIText>
+                                            <UIText numberOfLines={3}>
+                                                {item.sha.substring(0, 7) + ' ' + filterCommitTitle(item.message)}
+                                            </UIText>
                                         </TouchableOpacity>
                                     );
                                 }

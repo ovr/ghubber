@@ -1,4 +1,9 @@
 export default {
+    CommitScreen: {
+        Error: {
+            NoCommitter: 'Мы не можем открыть профиль, отправителя не существует на GitHub'
+        }
+    },
     AccountIssues: {
         Title: 'Задачи',
         EmptyResult: 'У вас нет задач ;)',

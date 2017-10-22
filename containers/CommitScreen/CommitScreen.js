@@ -2,10 +2,11 @@
 // @flow
 
 import React, { PureComponent } from 'react';
-import { View, StyleSheet, ScrollView, FlatList, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, ScrollView, FlatList, TouchableOpacity, Alert } from 'react-native';
 import { ErrorView, Spinner, UIText, DiffBlock, Avatar } from 'components';
 import { connect } from 'react-redux';
 import { fetchCommit, showProfile } from 'actions';
+import { __ } from 'utils/i18n';
 
 // import flow types
 import type { RepositoryCommitState } from 'reducers/repository-commit';
@@ -36,12 +37,25 @@ class CommitScreen extends PureComponent<Props> {
 
     renderFile = ({ item }) => <DiffBlock file={item} style={styles.diffBlock} />;
 
-    pressOnCommiter = () => {
+    pressOnCommitter = () => {
         const { commit } = this.props.state;
         const { showProfile } = this.props;
 
-        if (commit && commit.committer) {
-            showProfile(commit.committer.login);
+        if (commit) {
+            if (commit.committer) {
+                showProfile(commit.committer.login);
+            } else {
+                Alert.alert(
+                    __('CommitScreen.Error.NoCommitter'),
+                    null,
+                    [
+                        {
+                            text: 'Ok'
+                        }
+                    ],
+                    { cancelable: false }
+                );
+            }
         }
     };
 
@@ -77,7 +91,10 @@ class CommitScreen extends PureComponent<Props> {
                     <View style={styles.messageBox}>
                         <UIText>{commit.commit.message}</UIText>
                     </View>
-                    <TouchableOpacity style={styles.commitInfoBox} onPress={this.pressOnCommiter}>
+                    <TouchableOpacity
+                        style={styles.commitInfoBox}
+                        onPress={this.pressOnCommitter}
+                    >
                         {
                             commit.committer ? (
                                 <Avatar user={commit.committer} size={25} style={styles.avatar} />

@@ -1,4 +1,9 @@
 export default {
+    CommitScreen: {
+        Error: {
+            NoCommitter: 'We cannot open profile, because commiter is not a GitHub user'
+        }
+    },
     AccountIssues: {
         Title: 'Issues',
         EmptyResult: 'You don\'t have any issues ;)',

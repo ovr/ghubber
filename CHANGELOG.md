@@ -1,4 +1,18 @@
 
+## Unreleased
+
+Fix:
+
+- [ModalPicker] Top padding should be qual to bottom
+- [EventRow] Show only first line (title) in commit select
+
+Features:
+
+- [EventRow] EventRow - support GollumEvent #65
+- [CommitScreen] Allow to open committer's profile
+- [Comment] Allow to open profile of the author
+- [Android] Add splash screen
+
 ## 0.9.1
 
 Fix:

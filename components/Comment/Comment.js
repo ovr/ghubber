@@ -2,11 +2,15 @@
 // @flow
 
 import React, { PureComponent } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { UIText, Avatar } from 'components';
+import { connect } from 'react-redux';
+import { showProfile } from 'actions';
 
 type Props = {
     comment: Object,
+    //
+    showProfile: typeof showProfile
 };
 
 const styles = StyleSheet.create({
@@ -32,16 +36,25 @@ const styles = StyleSheet.create({
     },
 });
 
-export default class Comment extends PureComponent<Props> {
+class Comment extends PureComponent<Props> {
+    onAuthorPress = () => {
+        const { comment, showProfile } = this.props;
+
+        showProfile(comment.author.login);
+    };
+
     render() {
         const { comment } = this.props;
 
         return (
             <View style={styles.root}>
-                <View style={styles.header}>
+                <TouchableOpacity
+                    style={styles.header}
+                    onPress={this.onAuthorPress}
+                >
                     <Avatar user={comment.author} size={40} style={styles.avatar} />
                     <UIText>@{comment.author.login}</UIText>
-                </View>
+                </TouchableOpacity>
                 <View style={styles.body}>
                     <UIText>{comment.body}</UIText>
                 </View>
@@ -49,3 +62,8 @@ export default class Comment extends PureComponent<Props> {
         );
     }
 }
+
+export default connect(
+    null,
+    { showProfile }
+)(Comment);

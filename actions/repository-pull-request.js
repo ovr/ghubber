@@ -13,6 +13,9 @@ query($owner: String!, $name: String!, $number: Int!) {
             body,
             state,
             reactionGroups {
+                subject {
+                    databaseId
+                },
                 content,
                 viewerHasReacted,
                 users {

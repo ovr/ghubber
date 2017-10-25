@@ -39,7 +39,8 @@ export default class ProfileOrganizationsView extends PureComponent<Props> {
                             <OrganizationAvatar
                                 key={organization.id}
                                 organization={organization}
-                                size={50} style={styles.organizationAvatar}
+                                size={50}
+                                style={styles.organizationAvatar}
                             />
                         )
                     )

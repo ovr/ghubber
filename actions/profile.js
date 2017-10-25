@@ -31,6 +31,14 @@ query($login: String!) {
         },
         followers {
             totalCount
+        },
+        organizations(first: 10) {
+            nodes {
+                id,
+                avatarUrl,
+                name
+            },
+            totalCount
         }
     }
 }

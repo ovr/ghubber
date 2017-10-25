@@ -6,35 +6,21 @@ import { View, StyleSheet, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 
 import { Spinner, ErrorView, ProfileView, ProfileOrganizationsView, ContributionsGraph, Blank } from 'components';
-import { fetchProfile, fetchOrganizations } from 'actions';
+import { fetchProfile } from 'actions';
 
 // import flow types
 import type { ProfileState } from 'reducers/profile';
-import type { ProfileOrganizationsState } from 'reducers/profile-organizations';
 import type { NavigationState } from 'reducers/navigation';
 
 type Props = {
     profile: ProfileState,
-    profileOrganizations: ProfileOrganizationsState,
     navigation: NavigationState,
     fetchProfile: typeof fetchProfile,
-    fetchOrganizations: typeof fetchOrganizations,
 }
 
 class Profile extends PureComponent<Props> {
     componentWillMount() {
         this.props.fetchProfile(this.props.navigation.params.id);
-        this.props.fetchOrganizations(this.props.navigation.params.id);
-    }
-
-    renderOrganizations() {
-        const { loading, error, organizations } = this.props.profileOrganizations;
-
-        if (loading || error || !organizations) {
-            return null;
-        }
-
-        return <ProfileOrganizationsView organizations={organizations} />;
     }
 
     render() {
@@ -69,7 +55,7 @@ class Profile extends PureComponent<Props> {
         return (
             <ScrollView style={styles.root}>
                 <ProfileView user={user} />
-                {this.renderOrganizations()}
+                <ProfileOrganizationsView organizations={user.organizations.nodes} />
                 <ContributionsGraph user={user} />
                 <Blank />
             </ScrollView>
@@ -97,5 +83,5 @@ export default connect(
             navigation: state.navigation
         };
     },
-    { fetchProfile, fetchOrganizations }
+    { fetchProfile }
 )(Profile);

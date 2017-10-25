@@ -17,10 +17,12 @@ export default class OrganizationAvatar extends PureComponent<Props> {
     render() {
         const { organization, size, style } = this.props;
 
+        const uri = organization.avatar_url ? organization.avatar_url : organization.avatarUrl;
+
         return (
             <Image
                 style={[{ width: size, height: size }, style]}
-                source={{ uri: organization.avatar_url }}
+                source={{ uri }}
             />
         );
     }

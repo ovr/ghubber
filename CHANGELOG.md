@@ -13,6 +13,7 @@ Features:
 - [Comment] Allow to open profile of the author
 - [Android] Add splash screen
 - [ReactionGroup] Show viewerHasReacted & improve style
+- Localization added for Italian and Ukrainian languages
 
 ## 0.9.1
 

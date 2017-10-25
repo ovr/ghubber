@@ -56,9 +56,9 @@ export default class ProfileViewTablet extends PureComponent<Props> {
                             ) : null
                         }
                         {
-                            user.blog ? (
+                            user.websiteUrl ? (
                                 <TextIcon
-                                    text={user.blog}
+                                    text={user.websiteUrl}
                                     iconName={'link'}
                                 />
                             ) : null
@@ -71,7 +71,7 @@ export default class ProfileViewTablet extends PureComponent<Props> {
                                 Repos
                             </UIText>
                             <UIText>
-                                {user.public_repos}
+                                {user.repositories.totalCount}
                             </UIText>
                         </View>
                         <View style={styles.statsBlock}>
@@ -79,7 +79,7 @@ export default class ProfileViewTablet extends PureComponent<Props> {
                                 Gists
                             </UIText>
                             <UIText>
-                                {user.public_gists}
+                                {user.gists.totalCount}
                             </UIText>
                         </View>
                         <View style={styles.statsBlock}>
@@ -87,7 +87,7 @@ export default class ProfileViewTablet extends PureComponent<Props> {
                                 Followers
                             </UIText>
                             <UIText>
-                                {user.followers}
+                                {user.followers.totalCount}
                             </UIText>
                         </View>
                         <View style={styles.statsBlock}>
@@ -95,7 +95,7 @@ export default class ProfileViewTablet extends PureComponent<Props> {
                                 Following
                             </UIText>
                             <UIText>
-                                {user.following}
+                                {user.following.totalCount}
                             </UIText>
                         </View>
                     </View>

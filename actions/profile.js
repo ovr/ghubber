@@ -1,36 +1,47 @@
 // @author Dmitry Patsura <talk@dmtry.me> https://github.com/ovr
 // @flow
 
-import { getUserById } from 'github-flow-js';
-import {
-    PROFILE_REQUEST,
-    PROFILE_REQUEST_SUCCESS,
-    PROFILE_REQUEST_FAIL
-} from 'constants';
 
-import { setTitle } from './navigation';
+import { executeGraphQL } from 'github-flow-js';
+import { PROFILE_REQUEST } from 'constants';
+import { makeThunk } from 'utils/action-helper';
 
-export function fetchProfile(id: string): ThunkAction {
-    return dispatch => {
-        dispatch({
-            type: PROFILE_REQUEST
-        });
+const getProfileQL = `
+query($login: String!) {
+    user(login: $login) {
+        id,
+        name,
+        avatarUrl,
+        email,
+        bio,
+        location,
+        company,
+        websiteUrl,
+        login,
+        viewerIsFollowing,
+        viewerCanFollow,
+        gists {
+            totalCount
+        },
+        repositories {
+            totalCount
+        },
+        following {
+            totalCount
+        },
+        followers {
+            totalCount
+        }
+    }
+}
+`;
 
-        getUserById(id, {}).then(
-            (user) => {
-                dispatch({
-                    type: PROFILE_REQUEST_SUCCESS,
-                    payload: user
-                });
-
-                dispatch(setTitle(user.name));
-            },
-            (error) => {
-                dispatch({
-                    type: PROFILE_REQUEST_FAIL,
-                    error: error
-                });
-            }
-        );
-    };
+export function fetchProfile(login: string): ThunkAction {
+    return makeThunk(
+        async () => {
+            const result = await executeGraphQL(getProfileQL, { login });
+            return result.user;
+        },
+        PROFILE_REQUEST
+    );
 }

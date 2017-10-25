@@ -24,14 +24,14 @@ class ProfileScreen extends PureComponent<Props> {
             title = 'Repositories';
         }
 
-        if (index === TITLE_REPOS_INDEX && profile.user && profile.user.public_repos) {
+        if (index === TITLE_REPOS_INDEX && profile.user && profile.user.repositories.totalCount) {
             return (
                 <View style={styles.pageTitleWrapper}>
                     <Text>
                         {title}
                     </Text>
                     <Text style={styles.badge}>
-                        {profile.user.public_repos}
+                        {profile.user.repositories.totalCount}
                     </Text>
                 </View>
             );
@@ -54,7 +54,7 @@ class ProfileScreen extends PureComponent<Props> {
              * Fist, title should be string
              * And We should update title to update show badge
              */
-            profile.user ? `${profile.user.public_repos}` : '0'
+            profile.user ? `${profile.user.repositories.totalCount}` : '0'
         ];
     }
 

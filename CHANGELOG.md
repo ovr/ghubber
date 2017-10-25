@@ -8,6 +8,7 @@ Fix:
 
 Features:
 
+- [ProfileScene] Use GraphQL
 - [EventRow] EventRow - support GollumEvent #65
 - [CommitScreen] Allow to open committer's profile
 - [Comment] Allow to open profile of the author

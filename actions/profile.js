@@ -2,7 +2,7 @@
 // @flow
 
 
-import { executeGraphQL } from 'github-flow-js';
+import { executeGraphQL, unfollowUser, followUser } from 'github-flow-js';
 import { PROFILE_REQUEST } from 'constants';
 import { makeThunk } from 'utils/action-helper';
 
@@ -52,4 +52,16 @@ export function fetchProfile(login: string): ThunkAction {
         },
         PROFILE_REQUEST
     );
+}
+
+export function follow(login: string): ThunkAction {
+    return () => {
+        followUser(login);
+    };
+}
+
+export function unfollow(login: string): ThunkAction {
+    return () => {
+        unfollowUser(login);
+    };
 }

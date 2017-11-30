@@ -1,9 +1,10 @@
 // @author Dmitry Patsura <talk@dmtry.me> https://github.com/ovr
 // @flow
 
-import React, { PureComponent } from 'react';
+import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Avatar, UIText, TextIcon } from 'components';
+import ProfileViewMobile  from './ProfileViewMobile';
 
 // import flow types
 import type { UserEntity } from 'github-flow-js';
@@ -12,7 +13,7 @@ type Props = {
     user: UserEntity
 };
 
-export default class ProfileViewTablet extends PureComponent<Props> {
+export default class ProfileViewTablet extends ProfileViewMobile<Props> {
     render() {
         const { user } = this.props;
 
@@ -20,6 +21,7 @@ export default class ProfileViewTablet extends PureComponent<Props> {
             <View style={styles.root}>
                 <View style={styles.left}>
                     <Avatar user={user} size={150} />
+                    {this.renderFollowButton()}
                 </View>
                 <View style={styles.right}>
                     <View style={styles.info}>

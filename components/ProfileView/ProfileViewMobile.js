@@ -3,7 +3,9 @@
 
 import React, { PureComponent } from 'react';
 import { View, StyleSheet } from 'react-native';
-import { Avatar, TextIcon, UIText } from 'components';
+import { Avatar, TextIcon, UIText, Button } from 'components';
+import { connect } from 'react-redux';
+import { follow, unfollow } from 'actions';
 
 // import flow types
 import type { UserEntity } from 'github-flow-js';
@@ -12,7 +14,29 @@ type Props = {
     user: UserEntity
 };
 
-export default class ProfileViewMobile extends PureComponent<Props> {
+class ProfileViewMobile extends PureComponent<Props> {
+    renderFollowButton() {
+        const { user } = this.props;
+
+        if (user.viewerCanFollow) {
+            if (user.viewerIsFollowing) {
+                return (
+                    <Button>
+                        Unfollow
+                    </Button>
+                );
+            } else {
+                return (
+                    <Button>
+                        Follow
+                    </Button>
+                );
+            }
+        }
+
+        return null;
+    }
+
     render() {
         const { user } = this.props;
 
@@ -96,10 +120,16 @@ export default class ProfileViewMobile extends PureComponent<Props> {
                     }
                     <UIText style={styles.bio}>{ user.bio }</UIText>
                 </View>
+                {this.renderFollowButton()}
             </View>
         );
     }
 }
+
+export default connect(
+    null,
+    { follow, unfollow }
+)(ProfileViewMobile);
 
 const styles = StyleSheet.create({
     root: {
@@ -107,10 +137,10 @@ const styles = StyleSheet.create({
         marginBottom: 20,
     },
     info: {
-        flex: 1
+        flex: 1,
     },
     avatarWrapper: {
-        flex: 0.6,
+        flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
     },

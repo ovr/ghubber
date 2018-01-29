@@ -164,10 +164,6 @@ Or just run `npm run start:android` or `npm run start:ios` depending on the plat
     - [ ] Close/re-open
     - [ ] Add/remove/edit comment
 
-## We are hiring
-
-Do you know JS and React and would like to code on react-native for $? Write an email to dmitry@interpals.net with your resume and join Interpals.net.
-
 ## Sponsors
 
 Thanks to our sponsors and supporters:
@@ -175,7 +171,6 @@ Thanks to our sponsors and supporters:
 | JetBrains | Interpals                 |
 |-----------|---------------------------|
 | WebStorm  | Hosting App inside Itunes |
-
 
 ## LICENSE
 

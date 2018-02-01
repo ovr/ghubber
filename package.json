@@ -43,7 +43,7 @@
         "redux": "^3.7.2",
         "redux-logger": "^3.0.6",
         "redux-thunk": "^2.2.0",
-        "rn-viewpager": "rizzomichaelg/React-Native-ViewPager#38a78ae"
+        "rn-viewpager": "^1.2.9"
     },
     "devDependencies": {
         "babel-eslint": "^8.2.1",

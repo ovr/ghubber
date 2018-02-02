@@ -1,6 +1,13 @@
 
 ## Unreleased
 
+## 0.11.0
+
+- Use latest React Native
+- Drop rn-viewpager, use react-native-tab-view
+
+## 0.10.0
+
 Fix:
 
 - [ModalPicker] Top padding should be qual to bottom

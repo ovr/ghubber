@@ -2,46 +2,69 @@
 // @flow
 
 import React, { PureComponent } from 'react';
-import { View, StyleSheet, Text } from 'react-native';
-import { IndicatorViewPager, PagerTitleIndicator } from 'rn-viewpager';
+import { View, StyleSheet } from 'react-native';
+import { TabViewAnimated, TabBar, SceneMap } from 'react-native-tab-view';
 import { connect } from 'react-redux';
+
+import { UIText } from 'components';
 import { Repository } from 'containers';
 
 type Props = {
 }
 
-class RepositoryScreen extends PureComponent<Props> {
+type RepositoryScreenState = {
+    index: number,
+    routes: Array<Object>
+}
+
+const Commits = () => (
+    <View>
+        <UIText>Sorry, We are working on this scene</UIText>
+    </View>
+);
+
+class RepositoryScreen extends PureComponent<Props, RepositoryScreenState> {
+    state = {
+        index: 0,
+        routes: [
+            { key: 'overview', title: 'Overview' },
+            { key: 'commits', title: 'Commits' },
+        ],
+    };
+
+    handleIndexChange = index => this.setState({ index });
+
+    renderHeader = props => (
+        <TabBar
+            {...props}
+            style={styles.tabbar}
+            tabStyle={styles.tab}
+            useNativeDriver
+        />
+    );
+
+    renderScene = SceneMap({
+        overview: Repository,
+        commits: Commits,
+    });
+
     render() {
         return (
-            <IndicatorViewPager
-                style={ styles.viewPager }
-                indicator={
-                    <PagerTitleIndicator
-                        titles={
-                            ['Overview', 'Commits']
-                        }
-                    />
-                }
-            >
-                <View style={styles.page}>
-                    <Repository />
-                </View>
-                <View style={styles.page}>
-                    <Text>Commits</Text>
-                </View>
-            </IndicatorViewPager>
+            <TabViewAnimated
+                navigationState={this.state}
+                renderScene={this.renderScene}
+                renderHeader={this.renderHeader}
+                onIndexChange={this.handleIndexChange}
+                useNativeDriver
+            />
         );
     }
 }
 
 const styles = StyleSheet.create({
-    viewPager: {
-        flex: 1,
-        flexDirection: 'column-reverse'
+    tabbar: {
+        backgroundColor: '#222',
     },
-    page: {
-        flex: 1
-    }
 });
 
 export default connect(

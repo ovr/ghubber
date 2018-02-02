@@ -2,9 +2,11 @@
 // @flow
 
 import React, { PureComponent } from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { TabViewAnimated, TabBar, SceneMap } from 'react-native-tab-view';
 import { connect } from 'react-redux';
+
+import { UIText } from 'components';
 import { Profile, ProfileRepositories } from 'containers';
 
 // import flow types
@@ -23,7 +25,7 @@ class ProfileScreen extends PureComponent<Props, ProfileScreenState> {
     state = {
         index: 0,
         routes: [
-            { key: 'profile', title: 'Overview' },
+            { key: 'overview', title: 'Overview' },
             { key: 'repositories', title: 'Repositories' },
         ],
     };
@@ -46,9 +48,9 @@ class ProfileScreen extends PureComponent<Props, ProfileScreenState> {
         if (route.key === 'repositories' && profile.user) {
             return (
                 <View style={styles.badge}>
-                    <Text style={styles.count}>
+                    <UIText style={styles.count}>
                         {profile.user.repositories.totalCount}
-                    </Text>
+                    </UIText>
                 </View>
             );
         }
@@ -57,7 +59,7 @@ class ProfileScreen extends PureComponent<Props, ProfileScreenState> {
     }
 
     renderScene = SceneMap({
-        profile: Profile,
+        overview: Profile,
         repositories: ProfileRepositories,
     });
 

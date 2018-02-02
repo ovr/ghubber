@@ -4,8 +4,9 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { View, StyleSheet, ScrollView, FlatList } from 'react-native';
+import { TabViewAnimated, TabBar } from 'react-native-tab-view';
+
 import { ErrorView, Spinner, Badge, UIText, ReactionGroup, Blank, Comment, CommitRow, RowSeparator } from 'components';
-import { IndicatorViewPager, PagerTitleIndicator } from 'rn-viewpager';
 import { fetchPullRequest, showRepositoryCommit } from 'actions';
 import { normalizeFont } from 'utils/helpers';
 
@@ -25,7 +26,10 @@ type Props = {
     showRepositoryCommit: typeof showRepositoryCommit,
 }
 
-const TITLE_COMMITS_INDEX = 1;
+type RepositoryPullRequestScreenState = {
+    index: number,
+    routes: Array<Object>
+}
 
 function getStateColor(state: string): string {
     switch (state.toLowerCase()) {
@@ -40,7 +44,53 @@ function getStateColor(state: string): string {
     }
 }
 
-class RepositoryPullRequestScreen extends PureComponent<Props> {
+class RepositoryPullRequestScreen extends PureComponent<Props, RepositoryPullRequestScreenState> {
+    state = {
+        index: 0,
+        routes: [
+            { key: 'overview', title: 'Overview' },
+            { key: 'commits', title: 'Commits' },
+        ],
+    };
+
+    renderScene = ({ route }) => {
+        switch (route.key) {
+            case 'overview':
+                return this.renderOverView(this.props.state.pullRequest);
+            case 'commits':
+                return this.renderCommits(this.props.state.pullRequest);
+            default:
+                return null;
+        }
+    }
+
+    handleIndexChange = index => this.setState({ index });
+
+    renderHeader = props => (
+        <TabBar
+            {...props}
+            style={styles.tabbar}
+            tabStyle={styles.tab}
+            renderBadge={this.renderBadge}
+        />
+    );
+
+    renderBadge = ({ route }) => {
+        const { pullRequest } = this.props.state;
+
+        if (route.key === 'commits' && pullRequest) {
+            return (
+                <View style={styles.badge}>
+                    <UIText style={styles.count}>
+                        {pullRequest.commits.nodes.length}
+                    </UIText>
+                </View>
+            );
+        }
+
+        return null;
+    }
+
     componentWillMount() {
         this.fetchPullRequest();
     }
@@ -55,69 +105,38 @@ class RepositoryPullRequestScreen extends PureComponent<Props> {
         );
     }
 
-    renderTitle = (index: number, title: string): React.Element<any> => {
-        const { pullRequest } = this.props.state;
-
-        if (index === TITLE_COMMITS_INDEX && pullRequest) {
-            return (
-                <View style={styles.pageTitleWrapper}>
-                    <UIText>
-                        Commits
-                    </UIText>
-                    <UIText style={styles.badge}>
-                        {pullRequest.commits.nodes.length}
-                    </UIText>
-                </View>
-            );
-        }
-
+    renderOverView = (pullRequest: Object): React.Element<any> => {
         return (
-            <UIText>
-                {title}
-            </UIText>
-        );
-    };
-
-    getTitles() {
-        const { pullRequest } = this.props.state;
-
-        return [
-            'Overview',
-            // Upd title on loading
-            pullRequest ? `${pullRequest.commits.nodes.length}` : '0'
-        ];
-    }
-
-    renderOverView(pullRequest: Object): React.Element<any> {
-        return (
-            <ScrollView style={styles.overview}>
-                <View style={styles.header}>
-                    <UIText style={styles.title}>{pullRequest.title}</UIText>
-                    <View style={styles.issueInfo}>
-                        <Badge
-                            text={pullRequest.state}
-                            backgroundColor={getStateColor(pullRequest.state)}
-                        />
-                    </View>
-                </View>
-                <UIText style={styles.body}>{pullRequest.body}</UIText>
-                <ReactionGroup reactions={pullRequest.reactionGroups} />
-                <FlatList
-                    style={styles.commentsList}
-                    data={pullRequest.comments.nodes}
-                    keyExtractor={(comment: Object) => comment.id}
-                    renderItem={
-                        ({ item }) => (
-                            <Comment
-                                key={'comment' + item.id}
-                                comment={item}
+            <View style={styles.page}>
+                <ScrollView style={styles.overview}>
+                    <View style={styles.header}>
+                        <UIText style={styles.title}>{pullRequest.title}</UIText>
+                        <View style={styles.issueInfo}>
+                            <Badge
+                                text={pullRequest.state}
+                                backgroundColor={getStateColor(pullRequest.state)}
                             />
-                        )
-                    }
-                    refreshing={false}
-                />
-                <Blank />
-            </ScrollView>
+                        </View>
+                    </View>
+                    <UIText style={styles.body}>{pullRequest.body}</UIText>
+                    <ReactionGroup reactions={pullRequest.reactionGroups} />
+                    <FlatList
+                        style={styles.commentsList}
+                        data={pullRequest.comments.nodes}
+                        keyExtractor={(comment: Object) => comment.id}
+                        renderItem={
+                            ({ item }) => (
+                                <Comment
+                                    key={'comment' + item.id}
+                                    comment={item}
+                                />
+                            )
+                        }
+                        refreshing={false}
+                    />
+                    <Blank />
+                </ScrollView>
+            </View>
         );
     }
 
@@ -131,9 +150,9 @@ class RepositoryPullRequestScreen extends PureComponent<Props> {
         );
     };
 
-    renderCommits(pullRequest: Object): React.Element<any> {
+    renderCommits = (pullRequest: Object): React.Element<any> => {
         return (
-            <View style={styles.wrapper}>
+            <View style={styles.page}>
                 <FlatList
                     style={styles.wrapper}
                     data={pullRequest.commits.nodes}
@@ -182,22 +201,13 @@ class RepositoryPullRequestScreen extends PureComponent<Props> {
         }
 
         return (
-            <IndicatorViewPager
-                style={styles.viewPager}
-                indicator={
-                    <PagerTitleIndicator
-                        titles={this.getTitles()}
-                        renderTitle={this.renderTitle}
-                    />
-                }
-            >
-                <View style={styles.page}>
-                    {this.renderOverView(pullRequest)}
-                </View>
-                <View style={styles.page}>
-                    {this.renderCommits(pullRequest)}
-                </View>
-            </IndicatorViewPager>
+            <TabViewAnimated
+                navigationState={this.state}
+                renderScene={this.renderScene}
+                renderHeader={this.renderHeader}
+                onIndexChange={this.handleIndexChange}
+                useNativeDriver
+            />
         );
     }
 }
@@ -207,10 +217,6 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center'
-    },
-    viewPager: {
-        flex: 1,
-        flexDirection: 'column-reverse',
     },
     page: {
         flex: 1,
@@ -237,23 +243,23 @@ const styles = StyleSheet.create({
     body: {
         fontSize: normalizeFont(14)
     },
-    pageTitleWrapper: {
-        flex: 1,
-        flexDirection: 'row',
-        alignItems: 'center'
-    },
-    badge: {
-        fontSize: 12,
-        marginLeft: 10,
-        backgroundColor: '#3498db',
-        color: '#fff',
-        paddingVertical: 3,
-        paddingHorizontal: 5
-    },
     commentsList: {
         flex: 1,
         marginTop: 10
-    }
+    },
+    tabbar: {
+        backgroundColor: '#222',
+    },
+    badge: {
+        backgroundColor: '#f44336',
+        paddingVertical: 4,
+        paddingHorizontal: 6,
+    },
+    count: {
+        color: '#fff',
+        fontSize: 12,
+        fontWeight: 'bold',
+    },
 });
 
 export default connect(

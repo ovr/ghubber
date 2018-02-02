@@ -3,7 +3,7 @@
 
 import React, { PureComponent } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
-import { IndicatorViewPager, PagerTitleIndicator } from 'rn-viewpager';
+import { TabViewAnimated, TabBar, SceneMap } from 'react-native-tab-view';
 import { connect } from 'react-redux';
 import { Profile, ProfileRepositories } from 'containers';
 
@@ -14,94 +14,80 @@ type Props = {
     profile: ProfileState
 }
 
-const TITLE_REPOS_INDEX = 1;
+type ProfileScreenState = {
+    index: number,
+    routes: array<Object>,
+}
 
-class ProfileScreen extends PureComponent<Props> {
-    renderTitle(index: number, title: string): React.Element<any> {
+class ProfileScreen extends PureComponent<Props, ProfileScreenState> {
+    state = {
+        index: 0,
+        routes: [
+            { key: 'profile', title: 'Overview' },
+            { key: 'repositories', title: 'Repositories' },
+        ],
+    };
+
+    handleIndexChange = index => this.setState({ index });
+
+    renderHeader = props => (
+        <TabBar
+            {...props}
+            style={styles.tabbar}
+            tabStyle={styles.tab}
+            renderBadge={this.renderBadge}
+            useNativeDriver
+        />
+    );
+
+    renderBadge = ({ route }) => {
         const { profile } = this.props;
 
-        if (index === TITLE_REPOS_INDEX) {
-            title = 'Repositories';
-        }
-
-        if (index === TITLE_REPOS_INDEX && profile.user && profile.user.repositories.totalCount) {
+        if (route.key === 'repositories' && profile.user) {
             return (
-                <View style={styles.pageTitleWrapper}>
-                    <Text>
-                        {title}
-                    </Text>
-                    <Text style={styles.badge}>
+                <View style={styles.badge}>
+                    <Text style={styles.count}>
                         {profile.user.repositories.totalCount}
                     </Text>
                 </View>
             );
         }
 
-        return (
-            <Text>
-                {title}
-            </Text>
-        );
+        return null;
     }
 
-    getTitles() {
-        const { profile } = this.props;
-
-        return [
-            'Overview',
-            /**
-             * There are two hacks
-             * Fist, title should be string
-             * And We should update title to update show badge
-             */
-            profile.user ? `${profile.user.repositories.totalCount}` : '0'
-        ];
-    }
+    renderScene = SceneMap({
+        profile: Profile,
+        repositories: ProfileRepositories,
+    });
 
     render() {
-
         return (
-            <IndicatorViewPager
-                style={ styles.viewPager }
-                indicator={
-                    <PagerTitleIndicator
-                        titles={this.getTitles()}
-                        renderTitle={this.renderTitle.bind(this)}
-                    />
-                }
-            >
-                <View style={styles.page}>
-                    <Profile />
-                </View>
-                <View style={styles.page}>
-                    <ProfileRepositories />
-                </View>
-            </IndicatorViewPager>
+            <TabViewAnimated
+                navigationState={this.state}
+                renderScene={this.renderScene}
+                renderHeader={this.renderHeader}
+                onIndexChange={this.handleIndexChange}
+                useNativeDriver
+            />
         );
     }
 }
 
 const styles = StyleSheet.create({
-    viewPager: {
-        flex: 1,
-        flexDirection: 'column-reverse'
-    },
-    page: {
-        flex: 1
-    },
-    pageTitleWrapper: {
-        flex: 1,
-        flexDirection: 'row',
-        alignItems: 'center'
+    tabbar: {
+        backgroundColor: '#222',
     },
     badge: {
-        fontSize: 12,
-        marginLeft: 10,
-        backgroundColor: '#3498db',
+        backgroundColor: '#f44336',
+        paddingVertical: 4,
+        paddingHorizontal: 6,
+    },
+    count: {
         color: '#fff',
-        paddingVertical: 3,
-        paddingHorizontal: 5
-    }
+        fontSize: 12,
+        fontWeight: 'bold',
+    },
 });
 
 export default connect(

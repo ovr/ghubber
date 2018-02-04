@@ -2,10 +2,12 @@
 // @flow
 
 import React, { PureComponent } from 'react';
-import { ImageBackground, View, StyleSheet, Text, Platform, Linking, TouchableOpacity } from 'react-native';
-import { Button, InputField, Spinner, KeyboardAvoidingView } from 'components';
+import { ImageBackground, View, StyleSheet, Text, Linking, TouchableOpacity } from 'react-native';
+import { getStatusBarHeight } from 'react-native-status-bar-height';
 import { connect } from 'react-redux';
+
 import { makeLogin, showHome, makeOAuthLogin } from 'actions';
+import { Button, InputField, Spinner, KeyboardAvoidingView } from 'components';
 import { images } from 'utils/images';
 import queryString from 'query-string';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -145,7 +147,7 @@ class LoginScreen extends PureComponent<Props, State> {
 const styles = StyleSheet.create({
     root: {
         flex: 1,
-        marginTop: Platform.OS === 'ios' ? 20 : 0,
+        marginTop: getStatusBarHeight(true),
     },
     background: {
         flex: 1,

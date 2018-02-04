@@ -3,10 +3,12 @@
 
 import React, { PureComponent } from 'react';
 import { View, StyleSheet, Text, ScrollView, Platform, TouchableOpacity } from 'react-native';
-import { Avatar, OrganizationAvatar, Button } from 'components';
 import { connect } from 'react-redux';
+import { getStatusBarHeight } from 'react-native-status-bar-height';
+
+import { Avatar, OrganizationAvatar, Button } from 'components';
 import { hideSideMenu, logout, showAccount, showSettings } from 'actions';
-import { APPBAR_HEIGHT, STATUSBAR_HEIGHT } from 'utils/platform';
+import { APPBAR_HEIGHT } from 'utils/platform';
 
 // import flow types
 import type { AppState } from 'reducers/app';
@@ -97,7 +99,7 @@ if (Platform.OS === 'ios') {
 const styles = StyleSheet.create({
     root: {
         flex: 1,
-        paddingTop: STATUSBAR_HEIGHT,
+        paddingTop: getStatusBarHeight(true),
         backgroundColor: Platform.OS === 'ios' ? '#F7F7F7' : '#FFF',
     },
     header: {

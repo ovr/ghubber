@@ -4,10 +4,12 @@
 import React, { PureComponent } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { UIText, Button } from 'components';
+import { getStatusBarHeight } from 'react-native-status-bar-height';
 import { connect } from 'react-redux';
+
 import { themeChange, showHome } from 'actions';
 import { getThemes, getThemeByName } from 'utils/themes';
-import { APPBAR_HEIGHT, STATUSBAR_HEIGHT } from 'utils/platform';
+import { APPBAR_HEIGHT } from 'utils/platform';
 
 import Swiper from 'react-native-swiper';
 
@@ -50,7 +52,7 @@ class SettingsScreen extends PureComponent<Props> {
 const styles = StyleSheet.create({
     theme: {
         flex: 1,
-        paddingTop: STATUSBAR_HEIGHT,
+        paddingTop: getStatusBarHeight(true),
         justifyContent: 'flex-start',
         backgroundColor: '#fff',
     },

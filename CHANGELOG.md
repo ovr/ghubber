@@ -1,6 +1,10 @@
 
 ## Unreleased
 
+## 0.11.1
+
+- [iOS] Fix iPhoneX issues related to status bar height
+
 ## 0.11.0
 
 - Use latest React Native

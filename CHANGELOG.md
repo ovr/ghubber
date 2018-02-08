@@ -1,6 +1,13 @@
 
 ## Unreleased
 
+## 0.11.2
+
+Feature:
+
+- Use latest RN 0.53
+- Use latest react-navigation
+
 ## 0.11.1
 
 - [iOS] Fix iPhoneX issues related to status bar height

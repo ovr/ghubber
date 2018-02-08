@@ -31,7 +31,7 @@
         "moment": "^2.20.1",
         "query-string": "^5.0.1",
         "react": "^16.0.0",
-        "react-native": "^0.52.2",
+        "react-native": "^0.53.0",
         "react-native-device-info": "^0.14.0",
         "react-native-htmlview": "^0.12.1",
         "react-native-sentry": "^0.33.0",

@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { addNavigationHelpers, StackNavigator, NavigationActions, Header } from 'react-navigation';
 import { __ } from 'utils/i18n';
 
+import { addListener } from 'utils/navigation-redux';
 import type { NavigationState } from 'reducers/navigation';
 
 import {
@@ -199,6 +200,7 @@ class AppWithNavigationState extends React.Component<AppWithNavigationStateProps
                 <AppNavigator navigation={addNavigationHelpers({
                     dispatch: this.props.dispatch,
                     state: this.props.navigation,
+                    addListener
                 })} />
                 <ModalsContext />
             </SideMenuDrawer>

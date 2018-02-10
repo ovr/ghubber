@@ -18,7 +18,7 @@
                         // It's enabled because We needed to test Sentry compatiblity for local development
                         // to protect bugs in release build
                         "SENTRY_ENABLED": true,
-                        "GHUBBER_OAUTH": "http://ghub.lowl.io/v1/oauth/github"
+                        "GHUBBER_OAUTH": "https://ghub.lowl.io/v1/oauth/github"
                     }
                 ]
             ]
@@ -29,7 +29,7 @@
                     "transform-define",
                     {
                         "SENTRY_ENABLED": true,
-                        "GHUBBER_OAUTH": "http://ghub.lowl.io/v1/oauth/github"
+                        "GHUBBER_OAUTH": "https://ghub.lowl.io/v1/oauth/github"
                     }
                 ],
                 "transform-remove-console"

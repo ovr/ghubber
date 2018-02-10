@@ -27,10 +27,14 @@ type AccountNotificationsComponentState = {
     notifications: Array<any>,
 }
 
+function selectParticipatingNotifications() {
+    return Realm.objects('Notification').filtered('reason = "assign" OR reason = "author" OR reason = "team_mention" OR reason = "mention" OR reason = "invitation"');
+}
+
 class AccountNotifications extends PureComponent<Props, AccountNotificationsComponentState> {
     state = {
         type: 'participating',
-        notifications: Realm.objects('Notification'),
+        notifications: selectParticipatingNotifications(),
     };
 
     componentWillMount() {
@@ -49,7 +53,7 @@ class AccountNotifications extends PureComponent<Props, AccountNotificationsComp
     selectParticipating = () => {
         this.setState({
             type: 'participating',
-            notifications: Realm.objects('Notification')
+            notifications: selectParticipatingNotifications()
         });
     }
 

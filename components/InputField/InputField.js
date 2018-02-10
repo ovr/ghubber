@@ -19,6 +19,7 @@ export default class InputField extends PureComponent<Props> {
             <TextInput
                 style={[styles.input, style]}
                 autoCapitalize="none"
+                autoCorrect={false}
                 placeholder={placeholder}
                 onChangeText={onChangeText}
                 secureTextEntry={secureTextEntry}

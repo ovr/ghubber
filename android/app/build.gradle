@@ -152,6 +152,7 @@ android {
 }
 
 dependencies {
+    compile project(':realm')
     compile project(':react-native-sentry')
     compile project(':react-native-vector-icons')
     compile project(':react-native-device-info')

@@ -4,8 +4,11 @@
 import React, { PureComponent } from 'react';
 import { View, Text, StyleSheet, SectionList } from 'react-native';
 import { connect } from 'react-redux';
-import { fetchNotifications, fetchMoreNotifications } from 'actions';
+
+import Realm from 'utils/realm';
+import { syncNotifications, trySyncNotifications } from 'actions';
 import { NotificationRow, Spinner, FilterTabType, RowSeparator, ErrorView, UIText } from 'components';
+import { groupForSectionList } from 'utils/selection-list';
 import I18n from 'utils/i18n';
 
 // import flow types
@@ -14,19 +17,48 @@ import type { AccountNotificationsState } from 'reducers/account-notifications';
 
 type Props = {
     state: AccountNotificationsState,
-    fetchNotifications: typeof fetchNotifications,
-    fetchMoreNotifications: typeof fetchMoreNotifications
+    //
+    syncNotifications: typeof syncNotifications,
+    trySyncNotifications: typeof trySyncNotifications,
 }
 
-class AccountNotifications extends PureComponent<Props> {
-    componentWillMount() {
-        const { fetchNotifications } = this.props;
+type AccountNotificationsComponentState = {
+    type: 'unread' | 'participating' | 'all',
+    notifications: Array<any>,
+}
 
-        fetchNotifications('participating');
+class AccountNotifications extends PureComponent<Props, AccountNotificationsComponentState> {
+    state = {
+        type: 'participating',
+        notifications: Realm.objects('Notification'),
+    };
+
+    componentWillMount() {
+        const { trySyncNotifications } = this.props;
+
+        trySyncNotifications();
+    }
+
+    selectUnread = () => {
+        this.setState({
+            type: 'unread'
+        });
+    }
+
+    selectParticipating = () => {
+        this.setState({
+            type: 'participating'
+        });
+    }
+
+    selectAll = () => {
+        this.setState({
+            type: 'all'
+        });
     }
 
     renderContent() : React.Element<any> {
-        const { infinityLoading, type, hasMore, page, loading, error, items } = this.props.state;
+        const { infinityLoading, loading, error, items } = this.props.state;
 
         if (loading || items === null) {
             return (
@@ -37,23 +69,23 @@ class AccountNotifications extends PureComponent<Props> {
         }
 
         if (error) {
-            const { fetchNotifications, state } = this.props;
+            const { syncNotifications } = this.props;
 
             return (
                 <View style={styles.container}>
                     <ErrorView
                         error={error}
                         onClick={
-                            () => fetchNotifications(
-                               state.type
-                            )
+                            () => syncNotifications()
                         }
                     />
                 </View>
             );
         }
 
-        if (items.length === 0) {
+        const { notifications } = this.state;
+
+        if (notifications.length === 0) {
             return (
                 <View style={styles.container}>
                     <Text>{I18n.t('AccountNotifications.EmptyResult')}</Text>
@@ -61,14 +93,12 @@ class AccountNotifications extends PureComponent<Props> {
             );
         }
 
-        const { fetchNotifications, fetchMoreNotifications } = this.props;
-
-        const isRefreshing = infinityLoading;
+        const { syncNotifications } = this.props;
 
         return (
             <SectionList
                 style={styles.list}
-                sections={items}
+                sections={groupForSectionList(notifications)}
                 renderSectionHeader={({ section }) => (
                     <View style={styles.sectionHeader}>
                         <UIText
@@ -88,36 +118,32 @@ class AccountNotifications extends PureComponent<Props> {
                     )
                 }
                 ItemSeparatorComponent={RowSeparator}
-                refreshing={isRefreshing}
-                onEndReachedThreshold={0.5}
-                onEndReached={
-                    () => !isRefreshing && hasMore ? fetchMoreNotifications(page + 1, type) : null
-                }
+                refreshing={false}
                 ListFooterComponent={() => infinityLoading ? <Spinner style={styles.moreLoadingSpinner} /> : null}
-                onRefresh={() => fetchNotifications(type)}
+                onRefresh={() => syncNotifications()}
             />
         );
     }
 
     render() {
-        const { fetchNotifications, state } = this.props;
+        const { type } = this.state;
 
         return (
             <View style={styles.root}>
                 <View style={styles.accountIssuesTypes}>
                     <FilterTabType
-                        active={state.type === 'unread'}
-                        onPress={() => fetchNotifications('unread')}
+                        active={type === 'unread'}
+                        onPress={this.selectUnread}
                         title={I18n.t('AccountNotifications.Filter.Unread')}
                     />
                     <FilterTabType
-                        active={state.type === 'participating'}
-                        onPress={() => fetchNotifications('participating')}
+                        active={type === 'participating'}
+                        onPress={this.selectParticipating}
                         title={I18n.t('AccountNotifications.Filter.Participating')}
                     />
                     <FilterTabType
-                        active={state.type === 'all'}
-                        onPress={() => fetchNotifications('all')}
+                        active={type === 'all'}
+                        onPress={this.selectAll}
                         title={I18n.t('AccountNotifications.Filter.All')}
                     />
                 </View>
@@ -162,5 +188,5 @@ export default connect(
     (state: State) => ({
         state: state.accountNotifications
     }),
-    { fetchNotifications, fetchMoreNotifications }
+    { syncNotifications, trySyncNotifications }
 )(AccountNotifications);

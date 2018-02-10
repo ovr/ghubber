@@ -1,71 +1,61 @@
 // @author Dmitry Patsura <talk@dmtry.me> https://github.com/ovr
 // @flow
 
-import { getNotifications, getNotificationsParams } from 'github-flow-js';
+import { getNotifications } from 'github-flow-js';
 import {
     ACCOUNT_NOTIFICATIONS_REQUEST,
     ACCOUNT_NOTIFICATIONS_REQUEST_SUCCESS,
     //
-    ACCOUNT_NOTIFICATIONS_MORE_REQUEST,
-    ACCOUNT_NOTIFICATIONS_MORE_REQUEST_SUCCESS,
-    //
     ACCOUNT_NOTIFICATIONS_LIMIT
 } from 'constants';
-import { makeThunk } from 'utils/action-helper';
 
-// import flow types
-import type { AccountNotificationsType } from 'reducers/account-notifications';
+import Realm from 'utils/realm';
+import { paginate } from 'utils/paginate';
 
-function getNotificationsParamsByType(type: AccountNotificationsType): getNotificationsParams {
-    switch (type) {
-        case 'unread':
-            // @todo?
-            return {};
-        case 'participating':
-            return {
-                participating: true
-            };
-        case 'all':
-            return {
-                all: true
-            };
-    }
-
-    throw new Error(`Unsupported type ${type}`);
+export function trySyncNotifications(): ThunkAction {
+    return syncNotifications();
 }
 
-export function fetchNotifications(type: AccountNotificationsType): ThunkAction {
-    return makeThunk(
-        () => getNotifications({
-            ...getNotificationsParamsByType(type),
-            per_page: ACCOUNT_NOTIFICATIONS_LIMIT
-        }),
-        ACCOUNT_NOTIFICATIONS_REQUEST,
-        (result, dispatch) => dispatch({
-            type: ACCOUNT_NOTIFICATIONS_REQUEST_SUCCESS,
-            payload: {
-                type: type,
-                data: result
-            }
-        })
-    );
-}
+export function syncNotifications(): ThunkAction {
+    return async (dispatch: Dispatch) => {
+        dispatch({
+            type: ACCOUNT_NOTIFICATIONS_REQUEST
+        });
 
-export function fetchMoreNotifications(page: number, type: AccountNotificationsType): ThunkAction {
-    return makeThunk(
-        () => getNotifications({
-            ...getNotificationsParamsByType(type),
-            per_page: ACCOUNT_NOTIFICATIONS_LIMIT,
-            page: page
-        }),
-        ACCOUNT_NOTIFICATIONS_MORE_REQUEST,
-        (response, dispatch) => dispatch({
-            type: ACCOUNT_NOTIFICATIONS_MORE_REQUEST_SUCCESS,
-            payload: {
-                type: type,
-                page: page,
-                data: response
+        const result = await paginate(
+            async (page: number) => {
+                return await getNotifications({
+                    all: true,
+                    per_page: ACCOUNT_NOTIFICATIONS_LIMIT,
+                    page
+                });
+            },
+            ACCOUNT_NOTIFICATIONS_LIMIT
+        );
+
+        console.log('syncNotifications', result);
+
+        Realm.write(
+            () => {
+                result.forEach(
+                    (notification) => {
+                        console.log('persist notification', notification);
+
+                        Realm.create('Notification', {
+                            id: notification.id,
+                            unread: notification.unread,
+                            reason: notification.reason,
+                            subject: notification.subject,
+                            repository: notification.repository,
+                            updated_at: notification.updated_at,
+                        }, true);
+                    }
+                );
             }
-        })
-    );
+        );
+
+        dispatch({
+            type: ACCOUNT_NOTIFICATIONS_REQUEST_SUCCESS
+        });
+    };
 }

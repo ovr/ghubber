@@ -41,19 +41,22 @@ class AccountNotifications extends PureComponent<Props, AccountNotificationsComp
 
     selectUnread = () => {
         this.setState({
-            type: 'unread'
+            type: 'unread',
+            notifications: Realm.objects('Notification').filtered('unread = true')
         });
     }
 
     selectParticipating = () => {
         this.setState({
-            type: 'participating'
+            type: 'participating',
+            notifications: Realm.objects('Notification')
         });
     }
 
     selectAll = () => {
         this.setState({
-            type: 'all'
+            type: 'all',
+            notifications: Realm.objects('Notification')
         });
     }
 

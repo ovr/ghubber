@@ -4,13 +4,15 @@
 import { AsyncStorage } from 'react-native';
 
 export async function getInitialState(): Promise<Object> {
-    const app = await AsyncStorage.getItem('state:app');
-    const accountFeed = await AsyncStorage.getItem('state:account-feed');
-    const settings = await AsyncStorage.getItem('state:settings');
+    const [ appPair, accountFeedPair, settingsPair] = await AsyncStorage.multiGet([
+        'state:app',
+        'state:account-feed',
+        'state:settings'
+    ]);
 
     return {
-        app: app ? (JSON.parse(app) || undefined) : undefined,
-        accountFeed: accountFeed ? (JSON.parse(accountFeed) || undefined) : undefined,
-        settings: settings ? (JSON.parse(settings) || undefined) : undefined,
+        app: appPair[1] ? (JSON.parse(appPair[1]) || undefined) : undefined,
+        accountFeed: accountFeedPair[1] ? (JSON.parse(accountFeedPair[1]) || undefined) : undefined,
+        settings: settingsPair[1] ? (JSON.parse(settingsPair[1]) || undefined) : undefined,
     };
 }

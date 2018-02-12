@@ -90,11 +90,13 @@ class LoginScreen extends PureComponent<Props, State> {
 
                     {
                         loading ? null : (
-                            <TouchableOpacity activeOpacity={0.5} onPress={() => this.oauthLogin()}>
-                                <View style={styles.oauthBtn}>
-                                    <Icon name="github" size={30} style={styles.oauthBtnIcon} />
-                                    <Text style={styles.oauthBtnText}> Login with GitHub</Text>
-                                </View>
+                            <TouchableOpacity
+                                activeOpacity={0.5}
+                                onPress={() => this.oauthLogin()}
+                                style={styles.oauthBtn}
+                            >
+                                <Icon name="github" size={30} style={styles.oauthBtnIcon} />
+                                <Text style={styles.oauthBtnText}> Login with GitHub</Text>
                             </TouchableOpacity>
                         )
                     }

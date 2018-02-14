@@ -1,6 +1,28 @@
 
 ## Unreleased
 
+## 0.11.4
+
+Feature:
+
+- Rework OAuth proccess in WebView for iOS
+
+> Hello,
+Thank you for providing more information.
+Regarding 4.0, your app continues to link out to Safari for GitHub, which provides a poor user experience.
+To resolve this issue, it would be appropriate to revise your app to enable log in or registering for an account in the app.
+We look forward to reviewing your resubmitted app.
+Best regards,
+App Store Review
+    
+## 0.11.3
+
+Feature:
+
+- Fix(iOS): Specify Dmitry Patsura team
+- Fix: Force HTTPS for GitHub OAuth
+- 
+
 ## 0.11.2
 
 Feature:

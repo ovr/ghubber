@@ -2,11 +2,11 @@
 // @flow
 
 import React, { PureComponent } from 'react';
-import { ImageBackground, View, StyleSheet, Text, Linking, TouchableOpacity } from 'react-native';
+import { ImageBackground, View, StyleSheet, Text, Linking, TouchableOpacity, Platform } from 'react-native';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import { connect } from 'react-redux';
 
-import { makeLogin, showHome, makeOAuthLogin } from 'actions';
+import { makeLogin, showHome, makeOAuthLogin, showOAuth } from 'actions';
 import { Button, InputField, Spinner, KeyboardAvoidingView } from 'components';
 import { images } from 'utils/images';
 import queryString from 'query-string';
@@ -20,6 +20,7 @@ type Props = {
     app: AppState,
     login: LoginState,
     showHome: typeof showHome,
+    showOAuth: typeof showOAuth,
     makeLogin: typeof makeLogin,
     makeOAuthLogin: typeof makeOAuthLogin,
 }
@@ -69,8 +70,11 @@ class LoginScreen extends PureComponent<Props, State> {
     }
 
     oauthLogin() {
-        // eslint-disable-next-line no-undef
-        Linking.openURL(GHUBBER_OAUTH);
+        if (Platform.OS === 'ios') {
+            this.props.showOAuth();
+        } else {
+            Linking.openURL(GHUBBER_OAUTH);
+        }
     }
 
     render() {
@@ -221,5 +225,5 @@ export default connect(
             app: state.app
         };
     },
-    { makeLogin, makeOAuthLogin, showHome }
+    { makeLogin, makeOAuthLogin, showHome, showOAuth }
 )(LoginScreen);

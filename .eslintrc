@@ -29,6 +29,7 @@
     },
     "globals": {
         "__DEV__": true,
+        "GHUBBER_OAUTH": true,
         // @todo flow
         "Action": true,
         "ComponentStyles": true,

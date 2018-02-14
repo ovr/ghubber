@@ -17,6 +17,7 @@ import {
     SideMenuDrawer,
     HomeHeaderRight,
     //
+    OAuthScreen,
     FeedScreen,
     FeedSettingsScreen,
     SettingsScreen,
@@ -47,6 +48,19 @@ export const AppNavigator = StackNavigator(
             navigationOptions: {
                 header: null
             }
+        },
+        OAuth: {
+            screen: OAuthScreen,
+            navigationOptions: () => ({
+                headerTintColor: '#fff',
+                headerTitleStyle: {
+                    color: '#fff',
+                },
+                headerStyle: {
+                    backgroundColor: '#000',
+                },
+                title: 'Continue With GitHub'
+            }),
         },
         Issue: {
             screen: RepositoryIssueScreen,

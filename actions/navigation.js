@@ -22,6 +22,12 @@ export function showFeedSettings() {
     });
 }
 
+export function showOAuth() {
+    return NavigationActions.navigate({
+        routeName: 'OAuth',
+    });
+}
+
 export function showSideMenu() {
     return {
         type: SIDEMENU_OPEN

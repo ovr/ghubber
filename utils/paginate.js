@@ -26,3 +26,27 @@ export async function paginate(
 
     return await next(1);
 }
+
+export async function paginateBySlice(
+    req: (page: number) => any,
+    limit: number,
+    cb: (result: Array<any>, page: number) => void,
+): Promise<any> {
+    async function next(page: number): Promise<any> {
+        try {
+            const response = await req(page);
+
+            cb(response, page);
+
+            // Skip unneeded fetch
+            if (response && response.length >= limit - 2) {
+                await next(page + 1);
+            }
+        } catch (e) {
+            // @todo retry query?
+            console.warn(e);
+        }
+    }
+
+    return await next(1);
+}

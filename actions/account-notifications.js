@@ -3,59 +3,80 @@
 
 import { getNotifications } from 'github-flow-js';
 import {
-    ACCOUNT_NOTIFICATIONS_REQUEST,
-    ACCOUNT_NOTIFICATIONS_REQUEST_SUCCESS,
+    ACCOUNT_NOTIFICATIONS_SYNC_START,
+    ACCOUNT_NOTIFICATIONS_SYNC_PROGRESS,
+    ACCOUNT_NOTIFICATIONS_SYNC_FINISH,
     //
     ACCOUNT_NOTIFICATIONS_LIMIT
 } from 'constants';
 
 import Realm from 'utils/realm';
-import { paginate } from 'utils/paginate';
+import { paginateBySlice } from 'utils/paginate';
 
 export function trySyncNotifications(): ThunkAction {
-    return syncNotifications();
+    return (dispatch: Dispatch, getState: GetState) => {
+        const state = getState();
+
+        if (state.accountNotifications && state.accountNotifications.sync) {
+            return;
+        }
+
+        dispatch(syncNotifications());
+    };
 }
 
 export function syncNotifications(): ThunkAction {
-    return async (dispatch: Dispatch) => {
+    return async (dispatch: Dispatch, getState: GetState) => {
+        const state = getState();
+
+        if (state.accountNotifications && state.accountNotifications.sync) {
+            return;
+        }
+
         dispatch({
-            type: ACCOUNT_NOTIFICATIONS_REQUEST
+            type: ACCOUNT_NOTIFICATIONS_SYNC_START
         });
 
-        const result = await paginate(
-            async (page: number) => {
-                return await getNotifications({
+        await paginateBySlice(
+            (page: number) => {
+                return getNotifications({
                     all: true,
                     per_page: ACCOUNT_NOTIFICATIONS_LIMIT,
                     page
                 });
             },
-            ACCOUNT_NOTIFICATIONS_LIMIT
-        );
+            ACCOUNT_NOTIFICATIONS_LIMIT,
+            function (result, page) {
+                dispatch({
+                    type: ACCOUNT_NOTIFICATIONS_SYNC_PROGRESS,
+                    payload: {
+                        page
+                    }
+                });
 
-        console.log('syncNotifications', result);
+                Realm.write(
+                    () => {
+                        result.forEach(
+                            (notification) => {
+                                console.log('persist notification', notification);
 
-        Realm.write(
-            () => {
-                result.forEach(
-                    (notification) => {
-                        console.log('persist notification', notification);
-
-                        Realm.create('Notification', {
-                            id: notification.id,
-                            unread: notification.unread,
-                            reason: notification.reason,
-                            subject: notification.subject,
-                            repository: notification.repository,
-                            updated_at: notification.updated_at,
-                        }, true);
+                                Realm.create('Notification', {
+                                    id: notification.id,
+                                    unread: notification.unread,
+                                    reason: notification.reason,
+                                    subject: notification.subject,
+                                    repository: notification.repository,
+                                    updated_at: notification.updated_at,
+                                }, true);
+                            }
+                        );
                     }
                 );
             }
         );
 
         dispatch({
-            type: ACCOUNT_NOTIFICATIONS_REQUEST_SUCCESS
+            type: ACCOUNT_NOTIFICATIONS_SYNC_FINISH
         });
     };
 }

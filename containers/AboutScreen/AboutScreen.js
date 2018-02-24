@@ -6,7 +6,7 @@ import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { Avatar } from 'components';
 import { getVersion } from 'react-native-device-info';
-import { team, contributors } from 'utils/team';
+import contributors  from 'res/contributors.json';
 import { showProfile } from 'actions';
 
 type Props = {
@@ -24,24 +24,19 @@ class AboutScreen extends PureComponent<Props> {
                 <View style={styles.header}>
                     <Text style={styles.title}>GHubber (v{version})</Text>
                 </View>
-                <View style={styles.team}>
-                    <Text style={styles.teamTitle}>Creator</Text>
-                    <TouchableOpacity onPress={() => showProfile(team[0].login)} style={styles.member}>
-                        <Avatar user={team[0]} size={250} />
-                        <Text style={styles.teamMemberName}>{team[0].name}@{team[0].login}</Text>
-                    </TouchableOpacity>
-                </View>
                 <View style={styles.contributors}>
                     <Text style={styles.contributorsTitle}>Our Awesome Contributors</Text>
-                    {
-                        contributors.map(
-                            (user) => (
-                                <TouchableOpacity onPress={() => showProfile(user.login)} key={user.id}>
-                                    <Avatar user={user} size={50} />
-                                </TouchableOpacity>
+                    <View style={styles.contributorsRow}>
+                        {
+                            contributors.map(
+                                (user) => (
+                                    <TouchableOpacity onPress={() => showProfile(user.login)} key={user.id}>
+                                        <Avatar user={user} size={50} />
+                                    </TouchableOpacity>
+                                )
                             )
-                        )
-                    }
+                        }
+                    </View>
                 </View>
             </View>
         );
@@ -61,10 +56,7 @@ const styles = StyleSheet.create({
         fontSize: 24
     },
     header: {
-        flex: 0,
-        alignItems: 'center'
-    },
-    team: {
+        marginVertical: 15,
         flex: 0,
         alignItems: 'center'
     },
@@ -73,12 +65,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginVertical: 25
     },
-    teamTitle: {
-        fontSize: 24
-    },
-    teamMemberName: {
-        fontSize: 20,
-        textAlign: 'center'
+    contributorsRow: {
+        flex: 1,
+        flexDirection: 'row'
     },
 });
 

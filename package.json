@@ -13,7 +13,8 @@
         "lint": "eslint --cache .",
         "lint:staged": "staged-files '**/*.js' -- $(npm bin)/eslint",
         "postversion": "react-native-version",
-        "postinstall": "rm ./node_modules/react-native/local-cli/core/__fixtures__/files/package.json"
+        "postinstall": "rm ./node_modules/react-native/local-cli/core/__fixtures__/files/package.json",
+        "contributors": "curl https://api.github.com/repos/ovr/ghubber/contributors > res/contributors.json"
     },
     "pre-commit": {
         "run": "lint:staged"

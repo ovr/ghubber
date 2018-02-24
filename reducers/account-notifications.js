@@ -10,12 +10,14 @@ import {
 export type AccountNotificationsState = {
     // first list fetch
     loading: boolean,
+    page: number,
     sync: boolean,
     error: Object|string|null,
 }
 
 const initialState: AccountNotificationsState = {
     loading: false,
+    page: 0,
     error: null,
 };
 
@@ -32,6 +34,7 @@ export default (state: AccountNotificationsState = initialState, action: Object)
         case ACCOUNT_NOTIFICATIONS_SYNC_PROGRESS: {
             return {
                 ...state,
+                page: action.payload,
                 sync: true,
                 loading: false,
             };

@@ -14,13 +14,7 @@ import Realm from 'utils/realm';
 import { paginateBySlice } from 'utils/paginate';
 
 export function trySyncNotifications(): ThunkAction {
-    return (dispatch: Dispatch, getState: GetState) => {
-        const state = getState();
-
-        if (state.accountNotifications && state.accountNotifications.sync) {
-            return;
-        }
-
+    return (dispatch: Dispatch) => {
         dispatch(syncNotifications());
     };
 }
@@ -49,9 +43,7 @@ export function syncNotifications(): ThunkAction {
             function (result, page) {
                 dispatch({
                     type: ACCOUNT_NOTIFICATIONS_SYNC_PROGRESS,
-                    payload: {
-                        page
-                    }
+                    payload: page
                 });
 
                 Realm.write(

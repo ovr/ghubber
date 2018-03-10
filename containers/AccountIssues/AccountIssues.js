@@ -21,7 +21,7 @@ type Props = {
 }
 
 class AccountIssues extends PureComponent<Props> {
-    componentWillMount() {
+    componentDidMount() {
         const { app, fetchIssues } = this.props;
 
         fetchIssues(app.user.login, 'created');

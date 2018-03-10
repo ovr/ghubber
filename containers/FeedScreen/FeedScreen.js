@@ -19,7 +19,7 @@ type Props = {
 }
 
 class FeedScreen extends PureComponent<Props> {
-    componentWillMount() {
+    componentDidMount() {
         this.props.fetchAccountFeed();
     }
 

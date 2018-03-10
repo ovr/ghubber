@@ -25,7 +25,7 @@ type Props = {
 }
 
 class CommitScreen extends PureComponent<Props> {
-    componentWillMount() {
+    componentDidMount() {
         const params = this.props.navigation.params;
 
         this.props.fetchCommit(

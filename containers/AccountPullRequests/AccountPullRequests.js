@@ -21,7 +21,7 @@ type Props = {
 }
 
 class AccountPullRequests extends PureComponent<Props> {
-    componentWillMount() {
+    componentDidMount() {
         const { app, fetchPullRequests } = this.props;
 
         fetchPullRequests(app.user.login, 'created');

@@ -19,7 +19,7 @@ type Props = {
 }
 
 class Repository extends PureComponent<Props> {
-    componentWillMount() {
+    componentDidMount() {
         const { repository } = this.props.state;
 
         if (!repository) {

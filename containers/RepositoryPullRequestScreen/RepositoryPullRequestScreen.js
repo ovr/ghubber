@@ -91,7 +91,7 @@ class RepositoryPullRequestScreen extends PureComponent<Props, RepositoryPullReq
         return null;
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.fetchPullRequest();
     }
 

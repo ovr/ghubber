@@ -24,7 +24,9 @@ export default class Patch extends PureComponent<Props, PatchState> {
         exception: false
     };
 
-    componentWillMount() {
+    constructor() {
+        super();
+
         try {
             const patch = parse(this.props.patch);
 

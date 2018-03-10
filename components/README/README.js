@@ -22,7 +22,7 @@ export default class README extends PureComponent<Props, READMEState> {
         content: ''
     };
 
-    componentWillMount() {
+    componentDidMount() {
         const { owner, repo } = this.props;
 
         fetch(

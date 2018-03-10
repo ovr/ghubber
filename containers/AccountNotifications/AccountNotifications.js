@@ -37,7 +37,7 @@ class AccountNotifications extends PureComponent<Props, AccountNotificationsComp
         notifications: selectParticipatingNotifications(),
     };
 
-    componentWillMount() {
+    componentDidMount() {
         const { trySyncNotifications } = this.props;
 
         trySyncNotifications();

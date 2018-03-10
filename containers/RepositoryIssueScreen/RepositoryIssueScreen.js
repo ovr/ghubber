@@ -24,7 +24,7 @@ type Props = {
 }
 
 class RepositoryIssueScreen extends PureComponent<Props> {
-    componentWillMount() {
+    componentDidMount() {
         this.fetchIssue();
     }
 

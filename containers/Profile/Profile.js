@@ -19,7 +19,7 @@ type Props = {
 }
 
 class Profile extends PureComponent<Props> {
-    componentWillMount() {
+    componentDidMount() {
         this.props.fetchProfile(this.props.navigation.params.id);
     }
 

@@ -38,7 +38,7 @@ class LoginScreen extends PureComponent<Props, State> {
         code: ''
     };
 
-    componentWillMount() {
+    componentDidMount() {
         const { user, authorization } = this.props.app;
 
         if (user && authorization) {

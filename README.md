@@ -9,6 +9,9 @@
 
 Yet another Mobile :iphone: client for GitHub powered on react-native.
 
+![https://itunes.apple.com/us/app/ghubber-for-github/id1234456646](/.github/assets/itunes.png?raw=true | width=140 "Download on the App Store")
+![https://play.google.com/store/apps/details?id=com.ghubber](/.github/assets/pmarket.png?raw=true | width=140 "Get it on Google Play")
+
 > It's alpha, in development ;)
  
 ## How to get alpha version :atom:

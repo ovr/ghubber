@@ -10,17 +10,16 @@ import { fetchProfile } from 'actions';
 
 // import flow types
 import type { ProfileState } from 'reducers/profile';
-import type { NavigationState } from 'reducers/navigation';
 
 type Props = {
     profile: ProfileState,
-    navigation: NavigationState,
     fetchProfile: typeof fetchProfile,
+    navigation: any
 }
 
 class Profile extends PureComponent<Props> {
     componentWillMount() {
-        this.props.fetchProfile(this.props.navigation.params.id);
+        this.props.fetchProfile(this.props.navigation.getParam('id'));
     }
 
     render() {
@@ -39,7 +38,9 @@ class Profile extends PureComponent<Props> {
                 <View style={styles.container}>
                     <ErrorView
                         onPress={
-                            () => this.props.fetchProfile(this.props.navigation.params.id)
+                            () => this.props.fetchProfile(
+                                this.props.navigation.getParam('id')
+                            )
                         }
                         error={error}
                         refreshable={true}
@@ -79,8 +80,7 @@ export default connect(
     (state) => {
         return {
             profile: state.profile,
-            profileOrganizations: state.profileOrganizations,
-            navigation: state.navigation
+            profileOrganizations: state.profileOrganizations
         };
     },
     { fetchProfile }

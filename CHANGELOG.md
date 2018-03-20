@@ -1,6 +1,26 @@
 
 ## Unreleased
 
+### 0.12.1
+
+Fixes:
+
+- Crash, when navigate back to about when user open profile from about
+
+### 0.12.0
+
+Feature:
+
+- AccountNotifications - rewrork on top of Realm
+- Speedup application start
+- AboutScreen - load contributors from JSON file
+- AccountNotifications - improve sync
+- Update vendors
+
+Fixes:
+
+- LoginScreen - disable autoCorrect for InputField
+
 ## 0.11.4
 
 Feature:

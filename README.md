@@ -1,19 +1,22 @@
+# <img src="https://socialconnect.github.io/assets/icons/mark-github.svg" width="27"> GHubber (GitHub mobile client)
+
+Yet another Mobile :iphone: client for GitHub powered on react-native.
+
+<a href="https://itunes.apple.com/us/app/ghubber-for-github/id1234456646">
+    <img alt="Download on the App Store" title="Download on the App Store" src="/.github/assets/itunes.png?raw=true" width="140">
+</a>
+
+<a href="https://play.google.com/store/apps/details?id=com.ghubber">
+    <img alt="Download on the App Store" title="Get it on Google Play" src="/.github/assets/pmarket.png?raw=true" width="140">
+</a>
+
+![Logo](/.github/assets/logo.jpg?raw=true "Logo")
+
 [![GitHub release](https://img.shields.io/github/release/ovr/ghubber.svg)](https://github.com/ovr/ghubber/releases)
 [![Build Status](https://travis-ci.org/ovr/ghubber.svg?branch=master)](https://travis-ci.org/ovr/ghubber)
 [![Greenkeeper badge](https://badges.greenkeeper.io/ovr/ghubber.svg)](https://greenkeeper.io/)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
-![Logo](/.github/assets/logo.jpg?raw=true "Logo")
-
-# <img src="https://socialconnect.github.io/assets/icons/mark-github.svg" width="27"> GHubber (GitHub mobile client)
-
-Yet another Mobile :iphone: client for GitHub powered on react-native.
-
-![https://itunes.apple.com/us/app/ghubber-for-github/id1234456646](/.github/assets/itunes.png?raw=true | width=140 "Download on the App Store")
-![https://play.google.com/store/apps/details?id=com.ghubber](/.github/assets/pmarket.png?raw=true | width=140 "Get it on Google Play")
-
-> It's alpha, in development ;)
- 
 ## How to get alpha version :atom:
  
 ### Android

@@ -14,11 +14,7 @@ import type { RepositoryEntity } from 'github-flow-js';
 import type { ProfileRepositoriesState } from 'reducers/profile-repositories';
 
 type Props = {
-    navigation: {
-        params: {
-            id: string
-        }
-    },
+    navigation: any,
     state: ProfileRepositoriesState,
     fetchRepositories: typeof fetchRepositories,
     fetchMoreRepositories: typeof fetchMoreRepositories,
@@ -27,7 +23,7 @@ type Props = {
 
 class ProfileRepositories extends PureComponent<Props> {
     componentDidMount() {
-        this.props.fetchRepositories(this.props.navigation.params.id);
+        this.props.fetchRepositories(this.props.navigation.getParam('id'));
     }
 
     render() {
@@ -51,7 +47,7 @@ class ProfileRepositories extends PureComponent<Props> {
 
         const { moreLoading, hasMore, page } = this.props.state;
         const { showRepository, fetchMoreRepositories } = this.props;
-        const username = this.props.navigation.params.id;
+        const username = this.props.navigation.getParam('id');
 
         return (
             <FlatList
@@ -95,8 +91,7 @@ const styles = StyleSheet.create({
 export default connect(
     (state: State) => {
         return {
-            state: state.profileRepositories,
-            navigation: state.navigation
+            state: state.profileRepositories
         };
     },
     { fetchRepositories, fetchMoreRepositories, showRepository }

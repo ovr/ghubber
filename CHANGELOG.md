@@ -1,6 +1,12 @@
 
 ## Unreleased
 
+### 0.13.0
+
+Fixes:
+
+- Crash, when navigate back to about when user open profile from about
+
 ### 0.12.0
 
 Feature:

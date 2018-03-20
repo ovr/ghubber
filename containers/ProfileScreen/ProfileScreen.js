@@ -3,7 +3,7 @@
 
 import React, { PureComponent } from 'react';
 import { View, StyleSheet } from 'react-native';
-import { TabViewAnimated, TabBar, SceneMap } from 'react-native-tab-view';
+import { TabViewAnimated, TabBar } from 'react-native-tab-view';
 import { connect } from 'react-redux';
 
 import { UIText } from 'components';
@@ -58,10 +58,16 @@ class ProfileScreen extends PureComponent<Props, ProfileScreenState> {
         return null;
     }
 
-    renderScene = SceneMap({
-        overview: Profile,
-        repositories: ProfileRepositories,
-    });
+    renderScene = ({ route }) => {
+        switch (route.key) {
+            case 'overview':
+                return <Profile {...this.props} />;
+            case 'repositories':
+                return <ProfileRepositories {...this.props} />;
+            default:
+                return null;
+        }
+    }
 
     render() {
         return (
@@ -71,6 +77,7 @@ class ProfileScreen extends PureComponent<Props, ProfileScreenState> {
                 renderHeader={this.renderHeader}
                 onIndexChange={this.handleIndexChange}
                 useNativeDriver
+                {...this.props}
             />
         );
     }
@@ -95,7 +102,6 @@ const styles = StyleSheet.create({
 export default connect(
     (state) => {
         return {
-            navigation: state.navigation,
             profile: state.profile
         };
     }

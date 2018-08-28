@@ -7,7 +7,7 @@ import { getVersion } from 'react-native-device-info';
 // eslint-disable-next-line no-undef
 if (SENTRY_ENABLED) {
     Sentry.config(
-        'https://a8a0f9d5be7e4d03890935bdbd4c8332:04008163befb47cbbad5c094d4d18488@sentry.io/171376',
+        'https://72052f3c63ed49beb78fff6830173c21@sentry.io/1269911',
         {
             release: getVersion()
         }

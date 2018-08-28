@@ -48,6 +48,7 @@
         "redux-thunk": "^2.2.0"
     },
     "devDependencies": {
+        "@sentry/cli": "^1.35.1",
         "babel-eslint": "^8.2.2",
         "babel-jest": "22.4.1",
         "babel-preset-react-native": "4.0.0",
@@ -61,7 +62,6 @@
         "pre-commit": "^1.2.2",
         "react-native-version": "^2.4.1",
         "react-test-renderer": "16.2.0",
-        "sentry-cli-binary": "^1.25.0",
         "staged-files": "^0.1.2"
     },
     "jest": {

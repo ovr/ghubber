@@ -1,4 +1,9 @@
 export default {
+    CommitScreen: {
+        Error: {
+            NoCommitter: 'Imposible abrir el perfil, el autor no es un usuario de Github'
+        }
+    },
     AccountIssues: {
         Title: 'Problemas',
         EmptyResult: 'Usted no tiene ningún problema ;)',
@@ -28,7 +33,7 @@ export default {
         }
     },
     ErrorView: {
-        Title: 'Desculpe, pero estamos teniendo {{errorCode}} en la respuesta :(',
+        Title: 'Disculpe, pero estamos teniendo {{errorCode}} en la respuesta :(',
         RefreshButton: 'Actualizar ;)',
     },
     EventRow: {
@@ -53,7 +58,7 @@ export default {
                 other: '{{count}} borrados',
             },
         },
-        TypeEventNotSupported: 'Esta versión o acepta este tipo de evento ({{eventType}})',
+        TypeEventNotSupported: 'Esta versión no acepta este tipo de evento ({{eventType}})',
         UnexpectedException: 'Excepción inesperada con el tipo de evento ({{eventType}}) :(',
         Actions: {
             CommentedPR: 'comentó una pull request',

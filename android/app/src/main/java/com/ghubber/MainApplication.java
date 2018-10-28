@@ -3,8 +3,8 @@ package com.ghubber;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
-import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import io.sentry.RNSentryPackage;
+import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import io.realm.react.RealmReactPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.facebook.react.ReactNativeHost;

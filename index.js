@@ -14,5 +14,4 @@ if (SENTRY_ENABLED) {
     ).install();
 }
 
-
 import './App';

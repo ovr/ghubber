@@ -174,9 +174,9 @@ Or just run `npm run start:android` or `npm run start:ios` depending on the plat
 
 Thanks to our sponsors and supporters:
 
-| JetBrains | Interpals                 |
-|-----------|---------------------------|
-| WebStorm  | Hosting App inside Itunes |
+| JetBrains |
+|-----------|
+| WebStorm  |
 
 ## LICENSE
 
